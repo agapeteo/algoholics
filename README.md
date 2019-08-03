@@ -15,4 +15,9 @@
 
 
 
+# TODO
 
+- more modular site builder 
+- markdown support
+- listen to FS to rebuild server
+- 
