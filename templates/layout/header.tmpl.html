@@ -1,0 +1,70 @@
+{{ define "header" }}
+    <div class="menu">
+    <!-- ABOUT -->
+    <div class="menuItem">
+        {{ if eq . "index.html" }}
+            ABOUT
+        {{ else }}
+            <a href="/index.html" >
+                ABOUT
+            </a>
+        {{ end }}
+    </div>
+
+    <!-- ESSENTIAL -->
+    <div class="menuItem">
+        {{ if eq . "essential.html" }}
+            ESSENTIAL
+        {{ else }}
+            <a href="/essential.html" >
+                ESSENTIAL
+            </a>
+        {{ end }}
+    </div>
+
+    <!-- NOVICE -->
+    <div class="menuItem">
+        {{ if eq . "novice.html" }}
+            NOVICE
+        {{ else }}
+            <a href="/novice.html" >
+                NOVICE
+            </a>
+        {{ end }}
+    </div>
+
+     <!-- ADVANCED -->
+     <div class="menuItem">
+        {{ if eq . "advanced.html" }}
+            ADVANCED
+        {{ else }}
+            <a href="/advanced.html" >
+                ADVANCED
+            </a>
+        {{ end }}
+    </div>
+
+    <!-- NINJA -->
+    <div class="menuItem">
+        {{ if eq . "ninja.html" }}
+            NINJA
+        {{ else }}
+            <a href="/ninja.html" >
+                NINJA
+            </a>
+        {{ end }}
+    </div>
+
+    <!-- LANGUAGES -->
+    <div class="menuItem">
+        {{ if eq . "languages.html" }}
+            LANGUAGES
+        {{ else }}
+            <a href="/languages.html" >
+                LANGUAGES
+            </a>
+        {{ end }}
+    </div>
+
+</div>
+{{ end }}

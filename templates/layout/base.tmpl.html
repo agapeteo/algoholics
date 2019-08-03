@@ -1,0 +1,55 @@
+{{ define "base" }}
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Practical algo | {{ template "title" . }} </title>
+    <link rel='stylesheet' href='/static/styles/styles.css'/>
+</head>
+
+<body>
+
+
+<div class="nav-container">
+    <div class="navbar-static-top"></div>
+
+    <div class="nav-left-logo"></div>
+
+    <div class="nav-logo">
+        <a href="index.html"><img width="500" src="/static/images/logo-mob.jpg"/></a>
+    </div>
+
+    <div class="nav-left-logo"></div>
+
+    <div class="menu-bottom" style="font-size:30px; color: #315C61; cursor:pointer" onclick="clickNav()"></div>
+
+</div>
+
+<div id="left-side-nav" class="sidenav">
+    <div class="nav-menu">
+        {{ template "header" . }}
+    </div>
+</div>
+
+<div class="rootContainer">
+    <div class="full-size-logo">
+        <!-- <a href="index.html"><img width="700" src="/static/images/logo.jpg"/></a> -->
+        Logo here
+    </div>
+
+    <div class="horizontal-menu">
+        {{ template "header" . }}
+    </div>
+
+    <div class="content">
+        {{ template "content" . }}
+    </div>
+
+</div>
+
+<!-- root container -->
+
+</body>
+</html>
+
+{{ end }}

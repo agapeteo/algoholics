@@ -1,0 +1,159 @@
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Veronika Gandzha |  Contacts  </title>
+    <link rel='stylesheet' href='/static/styles/styles.css'/>
+    <script>
+        function clickNav() {
+            console.log('function openNav() {', document.getElementById("left-side-nav").style.width);
+            
+            document.getElementById("left-side-nav").style.width = document.getElementById("left-side-nav").style.width !== "100%" ? "100%" : 0;
+
+        }
+
+        function closeNav() {
+            document.getElementById("left-side-nav").style.width = "0";
+        }
+    </script>
+    
+</head>
+
+<body>
+
+
+<div class="nav-container">
+    <div class="navbar-static-top"></div>
+
+    <div class="nav-left-logo"></div>
+
+    <div class="nav-logo">
+        <a href="index.html"><img width="500" src="/static/images/logo-mob.jpg"/></a>
+    </div>
+
+    <div class="nav-left-logo"></div>
+
+    <div class="menu-bottom" style="font-size:30px; color: #315C61; cursor:pointer" onclick="clickNav()"></div>
+
+</div>
+
+<div id="left-side-nav" class="sidenav">
+    <div class="nav-menu">
+        
+    <div class="menu">
+    
+    <div class="menuItem">
+        
+            <a href="/index.html" >
+                PORTFOLIO
+            </a>
+        
+    </div>
+
+    
+    <div class="menuItem">
+        
+            <a href="/bio.html" >
+                BIO
+            </a>
+        
+    </div>
+
+    
+    <div class="menuItem">
+        
+            <a href="/projects.html" >
+                PROJECTS
+            </a>
+        
+    </div>
+
+    
+    <div class="menuItem">
+        
+            CONTACT
+        
+    </div>
+
+</div>
+
+    </div>
+</div>
+
+<div class="rootContainer">
+    <div class="full-size-logo">
+        <a href="index.html"><img width="700" src="/static/images/logo.jpg"/></a>
+    </div>
+
+    <div class="horizontal-menu">
+        
+    <div class="menu">
+    
+    <div class="menuItem">
+        
+            <a href="/index.html" >
+                PORTFOLIO
+            </a>
+        
+    </div>
+
+    
+    <div class="menuItem">
+        
+            <a href="/bio.html" >
+                BIO
+            </a>
+        
+    </div>
+
+    
+    <div class="menuItem">
+        
+            <a href="/projects.html" >
+                PROJECTS
+            </a>
+        
+    </div>
+
+    
+    <div class="menuItem">
+        
+            CONTACT
+        
+    </div>
+
+</div>
+
+    </div>
+
+    <div class="content">
+        
+    <div class="contacts-container">
+        <div class="contacts-title">
+            My Contacts
+        </div>
+
+        <div class="contacts-icons">
+            <a href="mailto:nikagandzh@gmail.com">
+                <div class="icon-size mailto-icon"></div>
+            </a>
+            <a href="https://www.instagram.com/nikagandzh">
+                <div class="icon-size instagram-icon"></div>
+            </a>
+            <a href="https://www.behance.net/nikagandzhadcd">
+                <div class="icon-size behance-icon"></div>
+            </a>
+        </div>
+    </div>
+
+
+    </div>
+
+</div>
+
+
+
+</body>
+</html>
+
