@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"flag"
 	"fmt"
+	"gopkg.in/russross/blackfriday.v2"
 	"html/template"
 	"io"
 	"io/ioutil"
@@ -20,8 +21,9 @@ import (
 
 var currentFolder string
 
-const version = "2019-05-15-B"
+const version = "2019-08-06-B"
 const digit = "[0-9]+"
+const pagesDir = "pages"
 
 var isSilent bool
 var baseTmpl = new(baseTemplate)
@@ -34,9 +36,12 @@ type baseTemplate struct {
 
 func fromTemplate(w io.Writer, path string) {
 
-	contentData, ok := baseTmpl.templates[path]
+	if path == "favicon.ico" {
+		return
+	}
+	pagesData, ok := baseTmpl.templates[path]
 	if !ok {
-		log.Panicf("can't find content for path %s", path)
+		log.Panicf("can't find pagesData for path %s", path)
 	}
 
 	tmpl, err := baseTmpl.baseTemplate.Clone()
@@ -44,20 +49,22 @@ func fromTemplate(w io.Writer, path string) {
 		log.Panicf("can't create clone from base template: %v", err)
 	}
 
-	template.Must(tmpl.Parse(contentData))
+	contentFile := strings.Replace(path, ".html", ".md", 1)
+	contentBytes, err := ioutil.ReadFile(filepath.Join(currentFolder, "templates", "content", contentFile))
+	if err != nil {
+		log.Fatal("can't read content file ", contentFile)
+	}
+	logItf("reading content file %s", contentFile)
+	htmlContentBytes := blackfriday.Run(contentBytes)
+	contentTemplate := join("{{ define \"content\" }}", string(htmlContentBytes), "{{end}}")
+
+	template.Must(tmpl.Parse(contentTemplate))
+	template.Must(tmpl.Parse(pagesData))
 
 	executionErr := tmpl.ExecuteTemplate(w, "base", path)
 	if executionErr != nil {
 		panic(executionErr)
 	}
-}
-
-func prune(str string) string {
-	var result string
-	result = strings.Replace(str, "-", " ", -1)
-	result = strings.Replace(result, "_", "", -1)
-	result = digitPattern.ReplaceAllString(result, "")
-	return result
 }
 
 func prepareTemplates() {
@@ -68,7 +75,7 @@ func prepareTemplates() {
 		prepareLayouts()
 
 		var err error
-		baseTmpl.templates, err = files.ReadFiles(filepath.Join(currentFolder, "templates", "content"))
+		baseTmpl.templates, err = files.ReadFiles(filepath.Join(currentFolder, "templates", pagesDir))
 		if err != nil {
 			panic(err)
 		}
@@ -90,13 +97,10 @@ func prepareLayouts() {
 
 	baseTmpl.baseTemplate.Funcs(
 		template.FuncMap{
-			"prune": prune,
+			//"prune": prune,
 		})
 
 	for l := range layouts {
-		if l == "projects_content.tmpl.html" {
-			continue
-		}
 		template.Must(baseTmpl.baseTemplate.Parse(layouts[l]))
 		logItf("layout %v parsed", l)
 	}
@@ -160,7 +164,7 @@ func generate() {
 		logItf("can't copy folders: %v \n", err)
 	}
 
-	tmplFiles, filesErr := ioutil.ReadDir(filepath.Join(currentFolder, "templates", "content"))
+	tmplFiles, filesErr := ioutil.ReadDir(filepath.Join(currentFolder, "templates", pagesDir))
 	if filesErr != nil {
 		logItf("can't read tmplFiles in directory: %v \n", filesErr)
 	}
@@ -215,6 +219,14 @@ func logIt(msg string) {
 		return
 	}
 	log.Print(msg)
+}
+
+func join(str ...string) string {
+	var sb = strings.Builder{}
+	for _, str := range str {
+		sb.WriteString(str)
+	}
+	return sb.String()
 }
 
 func main() {
