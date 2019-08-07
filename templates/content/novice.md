@@ -1,7 +1,13 @@
+# Novice
 
-```For novice```
+### data structures:
+- Graph
 
-
+### algorithms:
+#### sorting
+- insert sort
+- merge sort
+- quick sort
 
 
 

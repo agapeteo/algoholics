@@ -1,4 +1,6 @@
-## Essential data structures:
+# Essential
+
+### data structures:
 - Array
 - Dynamic Array
 - LinkedList
@@ -6,12 +8,12 @@
 - Queue
 - Associative Array
 
-## Essential algorithms:
+### algorithms:
 - linear search 
 - binary search
-- insert sort
-- merge sort
-- quick sort
+
+
+
 
 
 

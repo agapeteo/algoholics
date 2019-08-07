@@ -1,0 +1,108 @@
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Practical algo |  Java  </title>
+    <link rel='stylesheet' href='/static/styles/styles.css'/>
+</head>
+
+<body>
+
+<div class="rootContainer">
+
+    <div class="horizontal-menu-box">
+        
+    <div class="menu">
+    
+    <div class="menuItem">
+        
+            <a href="/index.html" >
+                ABOUT
+            </a>
+        
+    </div>
+
+    
+    <div class="menuItem">
+        
+            <a href="/essential.html" >
+                ESSENTIAL
+            </a>
+        
+    </div>
+
+    
+    <div class="menuItem">
+        
+            <a href="/novice.html" >
+                NOVICE
+            </a>
+        
+    </div>
+
+     
+     <div class="menuItem">
+        
+            <a href="/advanced.html" >
+                ADVANCED
+            </a>
+        
+    </div>
+
+    
+    <div class="menuItem">
+        
+            <a href="/ninja.html" >
+                NINJA
+            </a>
+        
+    </div>
+
+    
+    <div class="menuItem">
+        
+            <a href="/languages.html" >
+                LANGUAGES
+            </a>
+        
+    </div>
+
+</div>
+
+    </div>
+
+    <div class="content">
+         <h1>Java</h1>
+
+<h3>create array</h3>
+
+<h3>dynamic array (ArrayList)</h3>
+
+<h3>linked list (LinkedList)</h3>
+
+<h3>Queue</h3>
+
+<h3>Stack</h3>
+
+<pre><code class="language-java">static void sort(int[] array){
+            for (int i = 1; i &lt; array.length; i++){
+                int iValue = array[i];
+                int j = i - 1;
+                while (j &gt;= 0 &amp;&amp; array[j] &gt; iValue){
+                    array[j+1] = array[j];
+                    j--;
+                }
+                array[j+1] = iValue;
+            }
+        } 
+</code></pre>
+ 
+    </div>
+
+</div>
+
+
+</body>
+</html>
+

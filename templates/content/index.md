@@ -1,4 +1,7 @@
-## About project
+# Project objectives 
 
-this is **markdown**
+### This project is designed for:
+
+- _learning algorithms_ 
+- _prepare to interview_
 

@@ -135,6 +135,7 @@ func serve(port string) {
 		if path == "/" {
 			path = "index.html"
 		}
+		prepareTemplates()
 		fromTemplate(writer, strings.Replace(path, "/", "", 1))
 	})
 
