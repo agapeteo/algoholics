@@ -75,6 +75,15 @@
     <div class="content">
          <h1>Go</h1>
 
+<h2>Content</h2>
+
+<ul>
+<li><a href="#basic">Basic data structures</a></li>
+<li><a href="#files">Files</a></li>
+</ul>
+
+<p><div id="basic" /></p>
+
 <h3>array</h3>
 
 <pre><code class="language-go">i := [5]int{5, 4, 5, 2, 1}
@@ -96,6 +105,26 @@ i = append(i, 6) // adding new elemet
 
 v, ok := m[&quot;Answer&quot;]
 fmt.Println(&quot;The value:&quot;, v, &quot;Present?&quot;, ok)
+</code></pre>
+
+<p><div id="files" /></p>
+
+<h3>Files</h3>
+
+<h4>check if file exist</h4>
+
+<pre><code class="language-go">f := &quot;/path/to/file&quot;
+if _, err := os.Stat(f); os.IsNotExist(err) {  
+    log.Fatalf(&quot;%s does not exist&quot;, f)
+}
+</code></pre>
+
+<h4>read file content</h4>
+
+<pre><code class="language-go">contentBytes, err := ioutil.ReadFile(filePath)
+if err != nil {
+    log.Fatalf (&quot;can't read file %s error: %v&quot;, filePath, err)
+}
 </code></pre>
  
     </div>
