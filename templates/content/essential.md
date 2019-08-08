@@ -14,8 +14,13 @@
 
 <br/>
 ### algorithms:
+
 - linear search 
 - binary search
+- find maximum
+- calculate average
+- copy to another array
+- reverse elements in array
 
 
 
