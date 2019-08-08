@@ -1,6 +1,7 @@
 # Novice
 
 ### data structures:
+- Binary search tree
 - Graph
 
 ### algorithms:
