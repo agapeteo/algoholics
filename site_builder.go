@@ -49,22 +49,34 @@ func fromTemplate(w io.Writer, path string) {
 		log.Panicf("can't create clone from base template: %v", err)
 	}
 
-	contentFile := strings.Replace(path, ".html", ".md", 1)
-	contentBytes, err := ioutil.ReadFile(filepath.Join(currentFolder, "templates", "content", contentFile))
-	if err != nil {
-		log.Fatal("can't read content file ", contentFile)
-	}
-	logItf("reading content file %s", contentFile)
-	htmlContentBytes := blackfriday.Run(contentBytes)
-	contentTemplate := join("{{ define \"content\" }}", string(htmlContentBytes), "{{end}}")
+	prepareContentTemplate(path, tmpl)
 
-	template.Must(tmpl.Parse(contentTemplate))
 	template.Must(tmpl.Parse(pagesData))
 
 	executionErr := tmpl.ExecuteTemplate(w, "base", path)
 	if executionErr != nil {
 		panic(executionErr)
 	}
+}
+
+func prepareContentTemplate(path string, tmpl *template.Template) {
+	contentFile := strings.Replace(path, ".html", ".md", 1)
+	contentFilePath := filepath.Join(currentFolder, "templates", "content", contentFile)
+
+	if _, err := os.Stat(contentFilePath); os.IsNotExist(err) {
+		logItf("content file %s does not exist, skipping", contentFilePath)
+		return
+	}
+
+	contentBytes, err := ioutil.ReadFile(contentFilePath)
+	if err != nil {
+		log.Fatalf ("can't read content file %s error: %v", contentFile, err)
+	}
+	logItf("reading content file %s", contentFile)
+	htmlContentBytes := blackfriday.Run(contentBytes)
+	contentTemplate := join("{{ define \"content\" }}", string(htmlContentBytes), "{{end}}")
+
+	template.Must(tmpl.Parse(contentTemplate))
 }
 
 func prepareTemplates() {
