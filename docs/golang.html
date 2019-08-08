@@ -74,6 +74,29 @@
 
     <div class="content">
          <h1>Go</h1>
+
+<h3>array</h3>
+
+<pre><code class="language-go">i := [5]int{5, 4, 5, 2, 1}
+s := [3]string{&quot;Java&quot;, &quot;Python&quot;, &quot;Go&quot;}
+</code></pre>
+
+<h3>dynamic array - slice</h3>
+
+<pre><code class="language-go">var i []int
+i := []int{5, 4, 5, 2, 1}
+i := make([]int, 5) // len(i)=5
+i := make([]int, 0, 5) // len(i)=0, cap(i)=5
+i = append(i, 6) // adding new elemet
+</code></pre>
+
+<h3>associative array - map</h3>
+
+<pre><code class="language-go">m = make(map[string]int)
+
+v, ok := m[&quot;Answer&quot;]
+fmt.Println(&quot;The value:&quot;, v, &quot;Present?&quot;, ok)
+</code></pre>
  
     </div>
 

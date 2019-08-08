@@ -6,7 +6,7 @@ body{
 
 .horizontal-menu-box {
     /*background-color:#f8002f;*/
-    background-color:#f88f55;
+    background-color:#58A149;
 
     width: 100%;
 }
@@ -60,10 +60,12 @@ body{
     align-items: center;
 }
 
-h1 {
+h1, h2, h3, h4, h5 {
+    color: #58A149;
     font-style: oblique;
+}
+h1 {
     font-weight: bold;
-    color: #f88f55;
 
     margin: 1em;
     font-size: 2.5em;
@@ -71,6 +73,18 @@ h1 {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+h2 {
+    margin-top: 100px;
+}
+
+h3 {
+    margin-top: 50px;
+}
+
+h4 {
+    margin-top: 20px;
 }
 
 .content {

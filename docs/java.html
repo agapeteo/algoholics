@@ -77,13 +77,87 @@
 
 <h3>create array</h3>
 
-<h3>dynamic array (ArrayList)</h3>
+<pre><code class="language-java">int[] a = new int[5];
+int[] a = new int[]{1, 2, 3, 4, 5}; 
+</code></pre>
 
-<h3>linked list (LinkedList)</h3>
+<h3>dynamic array - ArrayList</h3>
+
+<pre><code class="language-java">List&lt;Integer&gt; someList = new ArrayList();
+</code></pre>
+
+<h3>linked list - LinkedList</h3>
+
+<pre><code class="language-java">List&lt;Integer&gt; someList = new LinkedList();
+</code></pre>
 
 <h3>Queue</h3>
 
+<p>interface <code>Queue</code> with multiple implementations, like:</p>
+
+<ul>
+<li><code>LinkedList</code></li>
+<li><code>LinkedBlockingQueue</code></li>
+<li><code>ConcurrentLinkedQueue</code></li>
+<li><code>ConcurrentLinkedDeque</code></li>
+<li><code>DelayQueue</code></li>
+<li><code>LinkedTransferQueue</code></li>
+<li><code>PriorityQueue</code></li>
+<li><code>SynchronousQueue</code></li>
+</ul>
+
 <h3>Stack</h3>
+
+<p>interface <code>Dequeue</code> (<strong><em>extends <code>Queue</code></em></strong>)</p>
+
+<p>Implementation examples:</p>
+
+<ul>
+<li><code>ArrayDeque</code><br />
+</li>
+<li><code>LinkedList</code></li>
+<li><code>ArrayDeque</code><br />
+</li>
+<li><code>LinkedBlockingDeque</code></li>
+</ul>
+
+<p><div id="map" /></p>
+
+<h2>Associative arrays - maps</h2>
+
+<pre><code class="language-java">Map&lt;String, Integer&gt; dict = new HashMap();
+</code></pre>
+
+<p>Other implementations:</p>
+
+<ul>
+<li><code>TreeMap</code> (<em>implements <code>NavigableMap</code></em>)</li>
+<li><code>ConcurrentHashMap</code></li>
+<li><code>ConcurrentSkipListMap</code></li>
+<li><code>SynchronizedMap</code></li>
+<li><code>Hashtable</code> (<em>old, not used now</em>)</li>
+</ul>
+
+<h3>Example of simple implementation of LinkedList in Java <a href="/linkedlist.html#java">here</a></h3>
+
+<h2>Not a humble opinion about language</h2>
+
+<p><strong>pros</strong></p>
+
+<ul>
+<li>easy to find job and developers</li>
+<li>huge choice of libraries</li>
+<li>relatively fast</li>
+<li>platform independence</li>
+<li>can be used for multiple tasks</li>
+</ul>
+
+<p><strong>cons</strong></p>
+
+<ul>
+<li>verbose</li>
+<li>too big for simple tasks</li>
+</ul>
 
 <pre><code class="language-java">static void sort(int[] array){
             for (int i = 1; i &lt; array.length; i++){
