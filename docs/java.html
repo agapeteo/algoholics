@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <title>Practical algo |  Java  </title>
     <link rel='stylesheet' href='/static/styles/styles.css'/>
+    <link rel='stylesheet' href='/static/styles/prism.css'/>
 </head>
 
 <body>
@@ -158,25 +159,13 @@ int[] a = new int[]{1, 2, 3, 4, 5};
 <li>verbose</li>
 <li>too big for simple tasks</li>
 </ul>
-
-<pre><code class="language-java">static void sort(int[] array){
-            for (int i = 1; i &lt; array.length; i++){
-                int iValue = array[i];
-                int j = i - 1;
-                while (j &gt;= 0 &amp;&amp; array[j] &gt; iValue){
-                    array[j+1] = array[j];
-                    j--;
-                }
-                array[j+1] = iValue;
-            }
-        } 
-</code></pre>
  
     </div>
 
 </div>
 
 
+<script src="/static/js/prism.js"></script>
 </body>
 </html>
 
