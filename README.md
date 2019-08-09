@@ -17,7 +17,19 @@
 
 # TODO
 
-- more modular site builder 
-- markdown support
-- listen to FS to rebuild server
+- [x] core structure and design
+- [ ] more modular site builder 
+- [x] markdown support
+- [x] listen to FS to rebuild server
+- [x] code hightlight
+- [ ] essentials
+- [ ] novice
+- [ ] advanced
+- [ ] ninja
+- [ ] blog
+- [ ] article about classic code interview
+- [ ] interactive presentation
+- [ ] code editor in browser
+- [ ] tests 
+- [ ] payable login
 - 
