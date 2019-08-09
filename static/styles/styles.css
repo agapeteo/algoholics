@@ -62,17 +62,18 @@ body{
 
 h1, h2, h3, h4, h5 {
     color: #58A149;
-    font-style: oblique;
+
 }
 h1 {
-    font-weight: bold;
-
+    font-weight: 900;
+    font-style: oblique;
     margin: 1em;
     font-size: 2.5em;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    font-family: 'Cabin', sans-serif;
 }
 
 h2 {
@@ -91,17 +92,14 @@ h4 {
     /*background-color: yellow;*/
     align-content: center;
     max-width: 800px;
-    font-size: 16px;
+    font-size: 20px;
+
+    font-family: Palatino, 'Palatino Linotype', 'Palatino LT STD', 'Book Antiqua', Georgia, serif;
+    line-height: 32px;
+
 
 }
 
-.contacts-container {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
 
 
 
