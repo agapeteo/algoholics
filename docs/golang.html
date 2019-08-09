@@ -3,6 +3,10 @@
 <html>
 <head>
     <meta charset="utf-8">
+    
+    <meta name="description" content="data structures and algorithms in Go Golang">
+    <meta name="keywords" content="learn, explain, tutorial, data structures, algorithms, graph, tree, interview, java, golang, kotlin, python, javascript, go">
+
     <title>Practical algo |  Go  </title>
     <link rel='stylesheet' href='/static/styles/styles.css'/>
     <link rel='stylesheet' href='/static/styles/prism.css'/>
@@ -76,22 +80,31 @@
     <div class="content">
          <h1>Go</h1>
 
-<h2>Content</h2>
+<h2>Contents</h2>
+
+<hr />
 
 <ul>
-<li><a href="#basic">Basic data structures</a></li>
-<li><a href="#files">Files</a></li>
+<li><a href="#array">Array</a></li>
+<li><a href="#dynamic-array">Slice - dynamic array</a></li>
+<li><a href="#map">Map - associative array</a></li>
+<li><a href="#set">Set</a></li>
+<li><a href="#files">Working with files</a></li>
 </ul>
 
-<p><div id="basic" /></p>
+<hr />
 
-<h3>array</h3>
+<p><div id="array" /></p>
+
+<h2>Array</h2>
 
 <pre><code class="language-go">i := [5]int{5, 4, 5, 2, 1}
 s := [3]string{&quot;Java&quot;, &quot;Python&quot;, &quot;Go&quot;}
 </code></pre>
 
-<h3>dynamic array - slice</h3>
+<p><div id="dynamic-array" /></p>
+
+<h2>Slice - Dynamic array</h2>
 
 <pre><code class="language-go">var i []int
 i := []int{5, 4, 5, 2, 1}
@@ -100,7 +113,9 @@ i := make([]int, 0, 5) // len(i)=0, cap(i)=5
 i = append(i, 6) // adding new elemet
 </code></pre>
 
-<h3>associative array - map</h3>
+<p><div id="map"/></p>
+
+<h2>Map - associative array</h2>
 
 <pre><code class="language-go">m = make(map[string]int)
 
@@ -108,11 +123,33 @@ v, ok := m[&quot;Answer&quot;]
 fmt.Println(&quot;The value:&quot;, v, &quot;Present?&quot;, ok)
 </code></pre>
 
+<p><div id="set"/></p>
+
+<h2>Set</h2>
+
+<p>There is no build-in <code>Set</code> data structure in <code>Golang</code>. But keys in <code>map</code> are used as <code>set</code></p>
+
+<p>create:</p>
+
+<pre><code class="language-go">m := make(map[int]struct{})
+</code></pre>
+
+<p>set value:</p>
+
+<pre><code class="language-go">m[someValue] = struct{}() // empty struct will not consume memory
+</code></pre>
+
+<p>check if exist:</p>
+
+<pre><code class="language-go">_, ok := m[someValue]
+return ok
+</code></pre>
+
 <p><div id="files" /></p>
 
-<h3>Files</h3>
+<h2>Files</h2>
 
-<h4>check if file exist</h4>
+<p>check if file exist:</p>
 
 <pre><code class="language-go">f := &quot;/path/to/file&quot;
 if _, err := os.Stat(f); os.IsNotExist(err) {  
@@ -120,7 +157,7 @@ if _, err := os.Stat(f); os.IsNotExist(err) {
 }
 </code></pre>
 
-<h4>read file content</h4>
+<p>read file content</p>
 
 <pre><code class="language-go">contentBytes, err := ioutil.ReadFile(filePath)
 if err != nil {

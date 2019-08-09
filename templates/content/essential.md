@@ -1,19 +1,18 @@
-# Essential
+# Essential data structures
 
 ### Algorithm complexity
 [Algorithm complexity - Big O](/bigo.html)
 
-### data structures:
-- Array [Java](/java.html), [Go](/golang.html)
-- Dynamic Array [Java](/java.html), [Go](/golang.html)
+### Data structures:
+- [Array](/array.html) 
+- [Dynamic Array](/dynamic-array.html)
 - [Linked list](/linkedlist.html)
+- [Associative array (Map, Dictionary)](/map.html)
+- [Set](/set.html) 
 - [Stack](/stack.html)
 - [Queue](/queue.html)
-- Associative Array [Java](/java.html#map), [Go](/golang.html) 
 
-
-<br/>
-### algorithms:
+### Algorithms:
 
 - linear search 
 - binary search
