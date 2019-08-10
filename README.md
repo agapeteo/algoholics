@@ -20,9 +20,12 @@
 - [x] core structure and design
 - [ ] more modular site builder 
 - [x] markdown support
+- [x] code highlight
+- [x] quote css
 - [x] listen to FS to rebuild server
 - [x] code hightlight
-- [ ] essentials
+- [ ] mobile version
+- [ ] _essential -> in progress_
 - [ ] novice
 - [ ] advanced
 - [ ] ninja
