@@ -107,6 +107,42 @@ h4 {
 
 }
 
+blockquote{
+    font-size: 1.1em;
+    margin:10px auto;
+    font-family:Open Sans;
+    font-style:italic;
+    color: #101d0d;
+    padding:0.2em 20px 0.2em 40px;
+    border-left:8px solid #58A149 ;
+    line-height:1.5;
+    position: relative;
+    background: rgba(88, 161, 73, 0.13);
+}
+
+blockquote::before{
+    font-family:Arial;
+    /*content: "\261E";*/
+    font-style: normal;
+    color:#58A149;
+    font-size:2em;
+    position: absolute;
+    left: 10px;
+    top:-10px;
+}
+
+blockquote::after{
+    content: '';
+}
+
+blockquote span{
+    display:block;
+    color:#333333;
+    font-style: normal;
+    font-weight: bold;
+    margin-top:1em;
+}
+
 
 
 

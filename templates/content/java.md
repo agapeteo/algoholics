@@ -42,6 +42,9 @@ List<Integer> someList = new LinkedList();
 <div id="map" />
  
 ## Map
+> Starting `Java 8` worst case of `HashMap` changed from `O(n^2)` to `O(log(N))`. 
+When Java runtime detects high hash collision it changed `linked list` to `tree` for collection of values. 
+ 
 create map:
 ```java
 Map<String, Integer> dict = new HashMap();
