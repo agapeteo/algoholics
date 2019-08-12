@@ -23,7 +23,7 @@
 - [x] code highlight
 - [x] quote css
 - [x] listen to FS to rebuild server
-- [x] code hightlight
+- [x] code highlight
 - [ ] mobile version
 - [ ] _essential -> in progress_
 - [ ] novice
