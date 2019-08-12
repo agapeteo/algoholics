@@ -79,6 +79,15 @@ func prepareContentTemplate(path string, tmpl *template.Template) {
 	template.Must(tmpl.Parse(contentTemplate))
 }
 
+func idxFor(value int, numbers []int) int {
+	for idx, element := range numbers {
+		if element == value {
+			return idx
+		}
+	}
+	return -1
+}
+
 func prepareTemplates() {
 	var wg sync.WaitGroup
 

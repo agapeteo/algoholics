@@ -14,7 +14,7 @@
 
 ### Algorithms:
 
-- linear search 
+- [linear search](/linear-search.html) 
 - binary search
 - find maximum
 - calculate average
