@@ -15,11 +15,11 @@
 ### Algorithms:
 
 - [linear search](/linear-search.html) 
-- binary search
-- find maximum
-- calculate average
-- copy to another array
-- reverse elements in array
+- [find maximum](/find-maximum.html)
+- [calculate average](/average.html)
+- [copy to another array](/copy-array.html)
+- [reverse elements in array](/reverse-array.html)
+- [binary search](/binary-search.html)
 
 
 

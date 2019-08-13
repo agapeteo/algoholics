@@ -1,0 +1,227 @@
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <meta name="description" content="Find max value algorithm">
+    <meta name="keywords" content="learn, explain, tutorial, data structures, algorithms, graph, tree, interview, java, golang, kotlin, python, find max value">
+
+    <title>  Find maximum value algorithm  | Practical algorithms and data structures </title>
+    <link rel='stylesheet' href='/static/styles/styles.css'/>
+    <link rel='stylesheet' href='/static/styles/prism.css'/>
+</head>
+
+<body>
+
+<div class="rootContainer">
+
+    <div class="horizontal-menu-box">
+        
+    <div class="menu">
+    
+    <div class="menuItem">
+        
+            <a href="/index.html" >
+                ABOUT
+            </a>
+        
+    </div>
+
+    
+    <div class="menuItem">
+        
+            <a href="/essential.html" >
+                ESSENTIAL
+            </a>
+        
+    </div>
+
+    
+    <div class="menuItem">
+        
+            <a href="/novice.html" >
+                NOVICE
+            </a>
+        
+    </div>
+
+     
+     <div class="menuItem">
+        
+            <a href="/advanced.html" >
+                ADVANCED
+            </a>
+        
+    </div>
+
+    
+    <div class="menuItem">
+        
+            <a href="/ninja.html" >
+                NINJA
+            </a>
+        
+    </div>
+
+    
+    <div class="menuItem">
+        
+            <a href="/languages.html" >
+                LANGUAGES
+            </a>
+        
+    </div>
+
+</div>
+
+    </div>
+
+    <div class="content">
+         <h1>Find maximum</h1>
+
+<h2>Contents</h2>
+
+<hr />
+
+<ul>
+<li><a href="#description">Find maximum description</a></li>
+<li><a href="#practice">In practice</a></li>
+<li><a href="#java">Java</a></li>
+<li><a href="#go">Go</a></li>
+<li><a href="#python">Python</a></li>
+<li><a href="#javascript">JavaScript</a></li>
+<li><a href="#kotlin">Kotlin</a></li>
+</ul>
+
+<hr />
+
+<p><div id="description" /></p>
+
+<h2>Find maximum</h2>
+
+<p>Complexity <code>O(N)</code> - requires iterating through all elements in collection</p>
+
+<p><div id="practice"/></p>
+
+<h2>In practice</h2>
+
+<p>Usually most of languages have build-in function which implements finding maximum</p>
+
+<p><div id="java"/></p>
+
+<h2>Java</h2>
+
+<p><code>java.util.Collections.max()</code> returns max value in collection</p>
+
+<p>simple old school implementation:</p>
+
+<pre><code class="language-java">static int max(List&lt;Integer&gt; numbers) {
+        int max = Integer.MIN_VALUE;
+        for (int i = 0; i &lt; numbers.size(); i++) {
+            int curNumber = numbers.get(i);
+            if (curNumber &gt; max) {
+                max = curNumber;
+            }
+        }
+        return max;
+    }
+</code></pre>
+
+<p>using streams:</p>
+
+<pre><code class="language-java">int max = numbers.stream().max(Integer::compareTo).get();
+</code></pre>
+
+<p>using Collections.max:</p>
+
+<pre><code class="language-java">Collections.max(numbers);
+</code></pre>
+
+<p><div id="go"/></p>
+
+<h2>Go</h2>
+
+<h4>find index for element:</h4>
+
+<pre><code class="language-go">func Max(numbers []int) int {
+	var max int
+	for idx, n := range numbers {
+		if idx == 0 || n &lt; max {
+			max = n
+		}
+	}
+	return max
+}
+</code></pre>
+
+<p><div id="python"/></p>
+
+<h2>Python</h2>
+
+<p>using build-in function <code>max()</code>:</p>
+
+<pre><code class="language-python">print max([1, 5, -3, 11]) 
+</code></pre>
+
+<p>implementing own max_in_list:</p>
+
+<pre><code class="language-python">def max_in_list(numbers):
+    maximum = numbers[0]
+    for num in numbers:
+        if num &gt; maximum:
+            maximum = num
+    return maximum
+</code></pre>
+
+<p><div id="javascript"/></p>
+
+<h2>JavaScript</h2>
+
+<p>using JavaScript&rsquo;s <code>Math.max()</code>:</p>
+
+<pre><code class="language-javascript">const numbers = [1, 22, 33, 4]
+console.log(Math.max(...numbers))
+</code></pre>
+
+<p>custom max:</p>
+
+<pre><code class="language-javascript">function max(arr) {
+	var max = arr[0]
+    max.forEach(n =&gt; {
+      if (n &gt; max) {
+      	max = n
+      }
+    })
+  	return max
+}
+</code></pre>
+
+<p><div id="kotlin"/></p>
+
+<h2>Kotlin</h2>
+
+<p>Kotlin can use Java&rsquo;s <code>Collections.max()</code></p>
+
+<p>Custom implementation:</p>
+
+<pre><code class="language-kotlin">fun max(numbers: List&lt;Int&gt;): Int {
+    var max = Int.MIN_VALUE
+    for (n in numbers) {
+        if (n &gt; max) {
+            max = n
+        }
+    }
+    return max
+}
+</code></pre>
+ 
+    </div>
+
+</div>
+
+
+<script src="/static/js/prism.js"></script>
+</body>
+</html>
+

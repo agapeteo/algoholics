@@ -1,0 +1,189 @@
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <meta name="description" content="Binary search algorithm">
+    <meta name="keywords" content="learn, explain, tutorial, data structures, algorithms, graph, tree, interview, java, golang, kotlin, python, binary search">
+
+    <title>  Binary search algorithm  | Practical algorithms and data structures </title>
+    <link rel='stylesheet' href='/static/styles/styles.css'/>
+    <link rel='stylesheet' href='/static/styles/prism.css'/>
+</head>
+
+<body>
+
+<div class="rootContainer">
+
+    <div class="horizontal-menu-box">
+        
+    <div class="menu">
+    
+    <div class="menuItem">
+        
+            <a href="/index.html" >
+                ABOUT
+            </a>
+        
+    </div>
+
+    
+    <div class="menuItem">
+        
+            <a href="/essential.html" >
+                ESSENTIAL
+            </a>
+        
+    </div>
+
+    
+    <div class="menuItem">
+        
+            <a href="/novice.html" >
+                NOVICE
+            </a>
+        
+    </div>
+
+     
+     <div class="menuItem">
+        
+            <a href="/advanced.html" >
+                ADVANCED
+            </a>
+        
+    </div>
+
+    
+    <div class="menuItem">
+        
+            <a href="/ninja.html" >
+                NINJA
+            </a>
+        
+    </div>
+
+    
+    <div class="menuItem">
+        
+            <a href="/languages.html" >
+                LANGUAGES
+            </a>
+        
+    </div>
+
+</div>
+
+    </div>
+
+    <div class="content">
+         <h1>Binary search</h1>
+
+<h2>Contents</h2>
+
+<hr />
+
+<ul>
+<li><a href="#description">Binary search description</a></li>
+<li><a href="#practice">In practice</a></li>
+<li><a href="#java">Java</a></li>
+<li><a href="#go">Go</a></li>
+<li><a href="#python">Python</a></li>
+<li><a href="#javascript">JavaScript</a></li>
+<li><a href="#kotlin">Kotlin</a></li>
+</ul>
+
+<hr />
+
+<p><div id="description" /></p>
+
+<h2>Binary search</h2>
+
+<p>Complexity <code>O log(N)</code> - Quick search in sorted collection of data</p>
+
+<p>There are two way to find mid value:
+- low + high / 2
+- low + (high - low) / 2
+Later one helps to avoid memory overflow</p>
+
+<p><div id="practice"/></p>
+
+<h2>In practice</h2>
+
+<blockquote>
+<p><code>TODO:</code> more details</p>
+</blockquote>
+
+<p><div id="java"/></p>
+
+<h2>Java</h2>
+
+<blockquote>
+<p><code>java.util</code> already contains <code>Collections.binarySearch()</code> and <code>Arrays.binarySearch()</code>  binary search implementations
+this function expect that collection is sorted. If collection contain multiple target values - there is no guarantee which index of those will be returned</p>
+</blockquote>
+
+<pre><code class="language-java">public static &lt;T&gt; int binarySearch(List&lt;? extends Comparable&lt;? super T&gt;&gt; list, T value) {
+        int lowIdx = 0;
+        int highIdx = list.size() - 1;
+
+        while (lowIdx &lt;= highIdx) {
+            int midIdx = lowIdx + (highIdx - lowIdx / 2);
+
+            Comparable&lt;? super T&gt; midValue = list.get(midIdx);
+            if (midValue == value) {
+                return midIdx;
+            }
+            if (midValue.compareTo(value) &lt; 1) {
+                lowIdx = midIdx + 1;
+            } else {
+                highIdx = midIdx - 1;
+            }
+        }
+        return -(lowIdx + 1); // not found, also shows where it stopped with minus sign
+    }
+}
+</code></pre>
+
+<p><div id="go"/></p>
+
+<h2>Go</h2>
+
+<blockquote>
+<p><code>TODO:</code></p>
+</blockquote>
+
+<p><div id="python"/></p>
+
+<h2>Python</h2>
+
+<blockquote>
+<p><code>TODO:</code></p>
+</blockquote>
+
+<p><div id="javascript"/></p>
+
+<h2>JavaScript</h2>
+
+<blockquote>
+<p><code>TODO:</code></p>
+</blockquote>
+
+<p><div id="kotlin"/></p>
+
+<h2>Kotlin</h2>
+
+<blockquote>
+<p><code>TODO:</code></p>
+</blockquote>
+ 
+    </div>
+
+</div>
+
+
+<script src="/static/js/prism.js"></script>
+</body>
+</html>
+

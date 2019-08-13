@@ -242,7 +242,7 @@ func join(str ...string) string {
 	return sb.String()
 }
 
-func main() {
+func main_() {
 	isGenerate := flag.Bool("generate", false, "generate file, otherwise run local web server")
 	port := flag.Int("port", 8080, "web port")
 	folder := flag.String("folder", "", "source folder")

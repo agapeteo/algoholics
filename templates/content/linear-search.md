@@ -19,7 +19,7 @@
 
 ## Linear search
 
-Complexity O(N) - requires iterating through all elements in collection, usually unsorted array or list 
+Complexity `O(N)` - requires iterating through all elements in collection, usually unsorted array or list 
 
 
 
