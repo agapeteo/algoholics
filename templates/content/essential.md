@@ -14,12 +14,12 @@
 
 ### Algorithms:
 
-- [linear search](/linear-search.html) 
-- [find maximum](/find-maximum.html)
-- [calculate average](/average.html)
-- [copy to another array](/copy-array.html)
-- [reverse elements in array](/reverse-array.html)
-- [binary search](/binary-search.html)
+- [Linear search](/linear-search.html) 
+- [Find maximum](/find-maximum.html)
+- [Calculate average](/average.html)
+- [Copy to another array](/copy-array.html)
+- [Reverse elements in array](/reverse-array.html)
+- [Binary search](/binary-search.html)
 
 
 
