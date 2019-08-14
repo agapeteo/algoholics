@@ -45,8 +45,7 @@ val mutableMap = mutableMapOf("one" to 1, "two" to 2, "three" to 3, "four" to 1)
 
 <div id="set" />
 
-##
- Set
+## Set
 ```kotlin
 val s = setOf("a", "b", "c")
 ```
