@@ -21,19 +21,6 @@
 
 Complexity `O log(N)` - Quick search in sorted collection of data 
 
-There are two way to find index in the middle:
-
-- `lowIdx + highIdx / 2`
-- `lowIdx + (highIdx - lowIdx) / 2`
-- `(lowIdx + highIdx) >>> 1` (unsigned bit shift) 
-
->Note: `lowIdx + (highIdx - lowIdx) / 2` 
->
->sometimes helps to avoid memory overflow
->
->`(low + high) >>> 1` helps to avoid integer overflow)
-
-
 
 
 <div id="practice"/>
@@ -41,7 +28,36 @@ There are two way to find index in the middle:
 ## In practice
 Used very often to effectively find value in sorted collection 
 
-> `TODO:` more details
+If target element in sorted collection is not found, algorithm can:
+
+- return `undefined` or `None` value, which is mostly applicable to dynamically typed languages like JS or Python  
+- return `-1`
+- return index when it stopped searching + 1 with minus sign
+
+Last approach can be useful in some cases to understand location of values closest to target value 
+  
+Another important question is "_What if there multiple target values?_"
+
+[Java's](#java) `Collections.binarySearch()`, for example, will not have guarantees on which index will be returned
+
+[Go's `sort.Search`](#go) will return first index, bur you have to check if value by returned index actually exist.
+
+See [Kotlin example](#kotlin) which shows both approach
+
+
+There are two way to find index in the middle:
+
+- `lowIdx + highIdx / 2`
+- `lowIdx + (highIdx - lowIdx) / 2`
+- `(lowIdx + highIdx) >>> 1` (unsigned right shift) 
+
+>Note: `lowIdx + (highIdx - lowIdx) / 2` 
+>
+>sometimes helps to avoid memory overflow
+>
+>`(low + high) >>> 1` prevents integer overflow
+
+
 
 
 <div id="java"/>

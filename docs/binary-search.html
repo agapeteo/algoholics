@@ -102,12 +102,37 @@
 
 <p>Complexity <code>O log(N)</code> - Quick search in sorted collection of data</p>
 
+<p><div id="practice"/></p>
+
+<h2>In practice</h2>
+
+<p>Used very often to effectively find value in sorted collection</p>
+
+<p>If target element in sorted collection is not found, algorithm can:</p>
+
+<ul>
+<li>return <code>undefined</code> or <code>None</code> value, which is mostly applicable to dynamically typed languages like JS or Python<br />
+</li>
+<li>return <code>-1</code></li>
+<li>return index when it stopped searching + 1 with minus sign</li>
+</ul>
+
+<p>Last approach can be useful in some cases to understand location of values closest to target value</p>
+
+<p>Another important question is &ldquo;<em>What if there multiple target values?</em>&rdquo;</p>
+
+<p><a href="#java">Java&rsquo;s</a> <code>Collections.binarySearch()</code>, for example, will not have guarantees on which index will be returned</p>
+
+<p><a href="#go">Go&rsquo;s <code>sort.Search</code></a> will return first index, bur you have to check if value by returned index actually exist.</p>
+
+<p>See <a href="#kotlin">Kotlin example</a> which shows both approach</p>
+
 <p>There are two way to find index in the middle:</p>
 
 <ul>
 <li><code>lowIdx + highIdx / 2</code></li>
 <li><code>lowIdx + (highIdx - lowIdx) / 2</code></li>
-<li><code>(lowIdx + highIdx) &gt;&gt;&gt; 1</code> (unsigned bit shift)</li>
+<li><code>(lowIdx + highIdx) &gt;&gt;&gt; 1</code> (unsigned right shift)</li>
 </ul>
 
 <blockquote>
@@ -115,17 +140,7 @@
 
 <p>sometimes helps to avoid memory overflow</p>
 
-<p><code>(low + high) &gt;&gt;&gt; 1</code> helps to avoid integer overflow)</p>
-</blockquote>
-
-<p><div id="practice"/></p>
-
-<h2>In practice</h2>
-
-<p>Used very often to effectively find value in sorted collection</p>
-
-<blockquote>
-<p><code>TODO:</code> more details</p>
+<p><code>(low + high) &gt;&gt;&gt; 1</code> prevents integer overflow</p>
 </blockquote>
 
 <p><div id="java"/></p>
