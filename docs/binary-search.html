@@ -102,14 +102,27 @@
 
 <p>Complexity <code>O log(N)</code> - Quick search in sorted collection of data</p>
 
-<p>There are two way to find mid value:
-- low + high / 2
-- low + (high - low) / 2
-Later one helps to avoid memory overflow</p>
+<p>There are two way to find index in the middle:</p>
+
+<ul>
+<li><code>lowIdx + highIdx / 2</code></li>
+<li><code>lowIdx + (highIdx - lowIdx) / 2</code></li>
+<li><code>(lowIdx + highIdx) &gt;&gt;&gt; 1</code> (unsigned bit shift)</li>
+</ul>
+
+<blockquote>
+<p>Note: <code>lowIdx + (highIdx - lowIdx) / 2</code></p>
+
+<p>sometimes helps to avoid memory overflow</p>
+
+<p><code>(low + high) &gt;&gt;&gt; 1</code> helps to avoid integer overflow)</p>
+</blockquote>
 
 <p><div id="practice"/></p>
 
 <h2>In practice</h2>
+
+<p>Used very often to effectively find value in sorted collection</p>
 
 <blockquote>
 <p><code>TODO:</code> more details</p>
@@ -129,10 +142,10 @@ this function expect that collection is sorted. If collection contain multiple t
         int highIdx = list.size() - 1;
 
         while (lowIdx &lt;= highIdx) {
-            int midIdx = lowIdx + (highIdx - lowIdx / 2);
+            int midIdx = lowIdx + (highIdx - lowIdx) / 2;
 
             Comparable&lt;? super T&gt; midValue = list.get(midIdx);
-            if (midValue == value) {
+            if (midValue.equals(value)) {
                 return midIdx;
             }
             if (midValue.compareTo(value) &lt; 1) {
@@ -150,33 +163,166 @@ this function expect that collection is sorted. If collection contain multiple t
 
 <h2>Go</h2>
 
-<blockquote>
-<p><code>TODO:</code></p>
-</blockquote>
+<p>using Go&rsquo;s <code>sort.Search()</code></p>
+
+<pre><code class="language-go">func SearchFirstIndex(numbers []int, targetValue int) int {
+	idx := sort.Search(len(numbers), func(i int) bool {
+		return numbers[i] &gt;= targetValue
+	})
+	if idx &lt; len(numbers) &amp;&amp; numbers[idx] == targetValue {
+		return idx
+	}
+	return -(idx + 1)
+}
+</code></pre>
 
 <p><div id="python"/></p>
 
 <h2>Python</h2>
 
-<blockquote>
-<p><code>TODO:</code></p>
-</blockquote>
+<p>regular approach:</p>
+
+<pre><code class="language-python">def binary_search(sequence, value):
+    low_idx, high_idx = 0, len(sequence) - 1
+
+    while low_idx &lt;= high_idx:
+        mid_idx = low_idx + (high_idx - low_idx) // 2
+
+        if sequence[mid_idx] == value:
+            return mid_idx
+        if value &gt; sequence[mid_idx]:
+            low_idx = mid_idx + 1
+        else:
+            high_idx = mid_idx - 1
+    return None
+
+
+numbers = [1, 3, 5, 7, 9]
+result = binary_search(numbers, 9)
+print result  # 4
+</code></pre>
+
+<p>recursive approach:</p>
+
+<pre><code class="language-python">def binary_search_recursive(sequence, value, low_idx, high_idx):
+    if low_idx &gt; high_idx:
+        return None
+
+    mid_idx = low_idx + (high_idx - low_idx) // 2
+
+    if sequence[mid_idx] == value:
+        return mid_idx
+
+    if value &gt; sequence[mid_idx]:
+        return binary_search_recursive(sequence, value, mid_idx + 1, high_idx)
+
+    else:
+        return binary_search_recursive(sequence, value, low_idx, mid_idx - 1)
+
+
+numbers = [1, 3, 5, 7, 9]
+result = binary_search_recursive(numbers, 3, 0, len(numbers) - 1)
+print result  # 1
+</code></pre>
 
 <p><div id="javascript"/></p>
 
 <h2>JavaScript</h2>
 
+<pre><code class="language-javascript">function binarySearch(arr, value) {
+  var lowIdx = 0
+  var highIdx = arr.length - 1
+
+  while (lowIdx &lt;= highIdx) {    
+    var midIdx = Math.floor(lowIdx + (highIdx - lowIdx) / 2)
+    
+    if (value === arr[midIdx]) {
+      return midIdx
+    }
+    if (value &gt; arr[midIdx]) {
+      lowIdx = midIdx + 1
+    } else {
+      highIdx = midIdx - 1
+    }
+  }
+}
+
+const numbers = [1, 3, 5, 7, 9]
+console.log(binarySearch(numbers, 3)) // 1 
+console.log(binarySearch(numbers, 4)) // undefined
+</code></pre>
+
 <blockquote>
-<p><code>TODO:</code></p>
+<p>Note: Pay attention to <code>Max.floor()</code></p>
+
+<p><code>console.log(3/2) // 1.5</code></p>
+
+<p><code>numbers[3/2]</code> will return <code>undefined</code> without any error</p>
 </blockquote>
 
 <p><div id="kotlin"/></p>
 
 <h2>Kotlin</h2>
 
-<blockquote>
-<p><code>TODO:</code></p>
-</blockquote>
+<p>using build-in <code>binarySearch()</code> method for lists and arrays:</p>
+
+<pre><code class="language-kotlin">listOf(1, 3, 5, 7, 9).binarySearch(3) // 1 
+</code></pre>
+
+<p>iterative approach:</p>
+
+<pre><code class="language-kotlin">fun &lt;T&gt; binarySearch(list: List&lt;Comparable&lt;in T&gt;&gt;, value: T): Int {
+    var lowIdx = 0
+    var highIdx = list.size - 1
+
+    while (lowIdx &lt;= highIdx) {
+        var midIdx = lowIdx + (highIdx - lowIdx) / 2
+        when {
+            list[midIdx] == value -&gt; return midIdx
+            list[midIdx] &lt; value -&gt; lowIdx = midIdx + 1
+            list[midIdx] &gt; value -&gt; highIdx = midIdx - 1
+        }
+    }
+    return -(lowIdx + 1)
+}
+</code></pre>
+
+<p>recursive approach:</p>
+
+<pre><code class="language-kotlin">fun &lt;T&gt; binarySearchRecursive(list: List&lt;Comparable&lt;in T&gt;&gt;, value: T, lowIdx: Int = 0, highIdx: Int = list.size - 1): Int {
+    val notFound = -(lowIdx + 1)
+    if (lowIdx &gt; highIdx) {
+        return notFound
+    }
+    val midIdx = lowIdx + (highIdx - lowIdx) / 2
+    return when {
+        list[midIdx] == value -&gt; midIdx
+        list[midIdx] &lt; value -&gt; binarySearchRecursive(list, value, midIdx + 1, highIdx)
+        list[midIdx] &gt; value -&gt; binarySearchRecursive(list, value, lowIdx, midIdx - 1)
+        else -&gt; notFound
+    }
+}
+</code></pre>
+
+<p>returning first index:</p>
+
+<pre><code class="language-kotlin">fun &lt;T&gt; binarySearchLowestIndex(list: List&lt;Comparable&lt;in T&gt;&gt;, value: T): Int {
+    var lowIdx = -1
+    var highIdx = list.size
+    while (lowIdx + 1 &lt; highIdx) {
+        val midIdx = (lowIdx + highIdx) ushr 1 // shifting but to right is same as dividing by 2 
+        if (list[midIdx] &gt;= value) {
+            highIdx = midIdx
+        } else {
+            lowIdx = midIdx
+        }
+    }
+    return when (value) {
+        list[highIdx] -&gt; highIdx
+        else -&gt; -(highIdx + 1)
+    }
+}
+</code></pre>
  
     </div>
 

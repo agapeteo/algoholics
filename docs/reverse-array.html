@@ -100,57 +100,164 @@
 
 <h2>Reverse array</h2>
 
-<p>Complexity <code>O(N)</code> - requires iterating through all elements in collection, usually unsorted array or list</p>
+<p>Complexity <code>O(N)</code> - requires iterating through all (or half) elements in collection</p>
+
+<p>Space complexity is <code>O(1)</code> for in-place approach and <code>O(N)</code> for new copy of array</p>
 
 <p><div id="practice"/></p>
 
 <h2>In practice</h2>
 
-<p>Examples include:</p>
-
-<blockquote>
-<p><code>TODO:</code></p>
-</blockquote>
+<p>Used for reversing arrays and lists or strings</p>
 
 <p><div id="java"/></p>
 
 <h2>Java</h2>
 
+<p>Use <code>Collections.reverse()</code> to reverse any collection</p>
+
 <blockquote>
-<p><code>TODO:</code></p>
+<p>To convert array to List use <code>Arrays.toList()</code></p>
+</blockquote>
+
+<p>Using new array (<code>O(N)</code> space complexity):</p>
+
+<pre><code class="language-java">int[] srcArr = {1, 2, 3};
+int[] reversedArr = new int[srcArr.length];
+
+for (int i = 0; i &lt; srcArr.length; i++) {
+    reversedArr[srcArr.length - i - 1] = srcArr[i];
+}
+System.out.println(Arrays.toString(reversedArr));
+</code></pre>
+
+<p>In-place reverse (<code>O(1)</code> space complexity):</p>
+
+<pre><code class="language-java">int[] arr = {1, 2, 3};
+
+for (int i = 0; i &lt;= arr.length/2; i++) {
+    int tmp = arr[i];
+    arr[i] = arr[arr.length - i - 1];
+    arr[arr.length - i - 1] = tmp;
+}
+System.out.println(Arrays.toString(arr));
+</code></pre>
+
+<blockquote>
+<p>Note: to reverse String use:</p>
+
+<p><code>new StringBuilder(&quot;someString&quot;).reverse().toString()</code></p>
+
+<p>or convert string to char array and than reverse array, for example:</p>
+
+<p><code>char[] chars = &quot;someString&quot;.toCharArray();</code></p>
 </blockquote>
 
 <p><div id="go"/></p>
 
 <h2>Go</h2>
 
-<blockquote>
-<p><code>TODO:</code></p>
-</blockquote>
+<p>approach #1:</p>
+
+<pre><code class="language-go">numbers := []int{0, 1, 2}
+for i := 0; i &lt; len(numbers)/2; i++ {
+    opposite := len(numbers) - 1
+    numbers[i], numbers[opposite] = numbers[opposite], numbers[i]
+}
+fmt.Printf(&quot;numbers: %v&quot;, numbers)
+</code></pre>
+
+<p>approach #2:</p>
+
+<pre><code class="language-go">numbers := []int{0, 1, 2}
+for leftIdx, rightIdx := 0, len(numbers)-1; leftIdx &lt; rightIdx; leftIdx, rightIdx = leftIdx+1, rightIdx-1 {
+    numbers[leftIdx], numbers[rightIdx] = numbers[rightIdx], numbers[leftIdx]
+}
+fmt.Printf(&quot;numbers: %v&quot;, numbers)
+</code></pre>
 
 <p><div id="python"/></p>
 
 <h2>Python</h2>
 
-<blockquote>
-<p><code>TODO:</code></p>
-</blockquote>
+<p>using <code>reverse()</code> (in-place):</p>
+
+<pre><code class="language-python">numbers = [1, 22, 3]
+numbers.reverse()
+print numbers  # [3, 22, 1]
+</code></pre>
+
+<p>using slices:</p>
+
+<pre><code class="language-python">numbers = [1, 22, 3]
+numbers_reversed = numbers[::-1]
+print numbers_reversed  # [3, 22, 1]
+</code></pre>
+
+<p>straight forward approach (in-place):</p>
+
+<pre><code class="language-python">def reverse_inplace(any_list):
+    for i in range(len(any_list) / 2):
+        opposite_idx = len(any_list) - i - 1
+        any_list[i], any_list[opposite_idx] = any_list[opposite_idx], any_list[i]
+
+
+numbers = [1, 22, 3]
+reverse_inplace(numbers)
+print numbers  # [3, 22, 1]
+</code></pre>
 
 <p><div id="javascript"/></p>
 
 <h2>JavaScript</h2>
 
-<blockquote>
-<p><code>TODO:</code></p>
-</blockquote>
+<p>Use <code>reverse()</code> method for arrays:</p>
+
+<pre><code class="language-javascript">console.log([1, 2, 3].reverse()) // [3, 2, 1]
+</code></pre>
+
+<p>implementation example:</p>
+
+<pre><code class="language-javascript">function reverse(arr) {
+  for (i = 0; i &lt;= arr.length/2; i++) {
+    tmp = arr[i]
+    arr[i] = arr[arr.length - i - 1]
+    arr[arr.length - i - 1] = tmp
+  }
+}
+const numbers = [1, 22, 3]
+reverse(numbers)
+
+console.log(numbers) // [3, 22, 1]
+</code></pre>
 
 <p><div id="kotlin"/></p>
 
 <h2>Kotlin</h2>
 
-<blockquote>
-<p><code>TODO:</code></p>
-</blockquote>
+<p>using <code>reversed()</code>:</p>
+
+<pre><code class="language-kotlin">arrayOf(1, 2, 3).reversed() // [3, 2, 1]
+</code></pre>
+
+<p>using <code>asReversed()</code> read-only view:</p>
+
+<pre><code class="language-kotlin">val reversedView = listOf(0, 1).asReversed()
+println(&quot;${reversedView.first()}, ${reversedView.last()}&quot;) //  1, 0
+</code></pre>
+
+<p>implementing in-place reverse:</p>
+
+<pre><code class="language-kotlin">val numbers = arrayOf(1, 22, 3)
+    
+for (idx in 0..numbers.size / 2) {
+    val oppositeIdx = numbers.size - idx - 1
+    val tmp = numbers[idx]
+    numbers[idx] = numbers[oppositeIdx]
+    numbers[oppositeIdx] = tmp
+}
+println(&quot;reversed numbers: ${Arrays.toString(numbers)}&quot;) // [3, 22, 1]
+</code></pre>
  
     </div>
 
