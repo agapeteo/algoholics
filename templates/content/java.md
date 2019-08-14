@@ -3,12 +3,12 @@
 ## Contents
 ---
 - [Array](#array)
+- [List interface](#list)
 - [ArrayList - dynamic array](#dynamic-array)
 - [LinkedList](#linked-list)
 - [Map](#map)
 - [Set](#set)
 - [Queue](#queue)
-- [Stack](#stack)
 - [Not a humble opinion about language](#pros-cons)
 
 ---
@@ -21,6 +21,28 @@ create array:
 int[] a = new int[5];
 int[] a = new int[]{1, 2, 3, 4, 5}; 
 ```
+
+
+<div id="list"/>
+## List interface
+notable methods:
+
+- `get(int index)` - _returns the element at the specified position in this list_
+
+- `add(E e)` - _appends the specified element to the end of this list (optional operation)_
+
+- `add(int index, E element)` - _inserts the specified element at the specified position in this list (optional operation)_
+
+- `set(int index, E element)` - _replaces the element at the specified position in this list with the specified element (optional operation)_
+
+- `remove(int index)` - _removes the element at the specified position in this list (optional operation)_
+
+- `remove(Object o)` - _removes the first occurrence of the specified element from this list, if it is present (optional operation)_
+
+- `size()` - _returns the number of elements in this list_
+
+See more details about `List` interface and list of methods [here](https://docs.oracle.com/javase/8/docs/api/java/util/List.html)
+
 
 <div id="dynamic-array"/>
 
@@ -57,6 +79,8 @@ Other implementations:
 - `SynchronizedMap`
 - `Hashtable` (_old, not used now_)
 
+See more details about `Map` interface and list of methods [here](https://docs.oracle.com/javase/8/docs/api/java/util/Map.html)
+
 
 <div id="set" />
 
@@ -72,6 +96,8 @@ other implementations of `Set`:
 - `SynchronizedSet`
 - `LinkedHashSet`
 
+See more details about `Set` interface and list of methods [here](https://docs.oracle.com/javase/8/docs/api/java/util/Set.html)
+
 
 <div id="queue" />
 
@@ -86,22 +112,6 @@ interface `Queue` with multiple implementations, like:
 - `LinkedTransferQueue`
 - `PriorityQueue`
 - `SynchronousQueue`
-
-
-<div id="stack" />
-
-## Stack
-interface `Dequeue` (**_extends `Queue`_**)
-
-Implementation examples:
-
-- `ArrayDeque`  
-- `LinkedList` 
-- `ArrayDeque`  
-- `LinkedBlockingDeque`
-
-Example of simple implementation of LinkedList in Java [here](/linkedlist.html#java)
-<br/>
 
 
 <div id="pros-cons" />
