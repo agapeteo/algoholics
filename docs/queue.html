@@ -123,6 +123,8 @@
 
 <h2>Java</h2>
 
+<p>See Java&rsquo;s <code>Queue</code> description and methods <a href="https://docs.oracle.com/javase/8/docs/api/java/util/Queue.html">here at official documentation</a></p>
+
 <p>interface <code>Queue</code> with multiple implementations, like:</p>
 
 <ul>
@@ -136,12 +138,14 @@
 <li><code>SynchronousQueue</code></li>
 </ul>
 
-<p>Simplified implementation example:
-<script src="https://gist.github.com/agapeteo/40e8764a5da58bb54b9a8501feedd725.js"></script></p>
+<p><br/>
+See example of implementation <a href="/linkedlist.html#java">in linked list page for java</a>:</p>
 
 <p><div id="go"/></p>
 
 <h2>Go</h2>
+
+<p>using slice:</p>
 
 <pre><code class="language-go">queue := make([]int, 0)
 queue = append(queue, 1) // same as enqueue()
@@ -155,16 +159,50 @@ queue = queue[1:]
 fmt.Printf(&quot;firstElement: %v, queue: %v&quot;, firstElement, queue) // firstElement: 1, queue: [2 3]
 </code></pre>
 
-<p>struct using slices:</p>
+<p><br/></p>
+
+<p>creating <code>Queue</code> struct based on slices (<code>[]int</code>):</p>
+
+<pre><code class="language-go">package main
+
+import (
+	&quot;fmt&quot;
+)
+
+type Queue []int
+
+func (q *Queue) Enqueue(element int) {
+	*q = append(*q, element)
+}
+
+func (q *Queue) Dequeue() (int, bool) {
+	if len(*q) == 0 {
+		return 0, false
+	} else {
+		firstElement := (*q)[0]
+		*q = (*q)[1:]
+		return firstElement, true
+	}
+}
+
+func main() {
+	queue := &amp;Queue{}
+	queue.Enqueue(1)
+	queue.Enqueue(2)
+	queue.Enqueue(3)
+
+	firstElement, _ := queue.Dequeue()
+
+	fmt.Printf(&quot;firstElement: %v, queue: %v&quot;, firstElement, *queue) // firstElement: 1, queue: [2 3]
+}
+</code></pre>
+
+<p><br/></p>
+
+<p>See <code>Queue</code> struct using linked list in <a href="/linkedlist.html#go">linked list page for Go</a></p>
 
 <blockquote>
-<p><code>TODO:</code></p>
-</blockquote>
-
-<p>struct using linked list:</p>
-
-<blockquote>
-<p><code>TODO:</code></p>
+<p>Note. If you need to use linked list or stack/queue based linked list in production prefer using <a href="https://golang.org/pkg/container/list/">Go&rsquo;s container/list</a></p>
 </blockquote>
 
 <p><div id="python"/></p>

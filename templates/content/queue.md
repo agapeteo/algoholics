@@ -34,6 +34,8 @@ Core methods:
 <div id="java"/>
 
 ## Java
+See Java's `Queue` description and methods [here at official documentation](https://docs.oracle.com/javase/8/docs/api/java/util/Queue.html)
+
 interface `Queue` with multiple implementations, like: 
 
 - `LinkedList` 
@@ -45,14 +47,15 @@ interface `Queue` with multiple implementations, like:
 - `PriorityQueue`
 - `SynchronousQueue`
 
+<br/>
+See example of implementation [in linked list page for java](/linkedlist.html#java):
 
-Simplified implementation example:
-<script src="https://gist.github.com/agapeteo/40e8764a5da58bb54b9a8501feedd725.js"></script>
 
 
 <div id="go"/>
 
 ## Go
+using slice:
 ```go
 queue := make([]int, 0)
 queue = append(queue, 1) // same as enqueue()
@@ -65,14 +68,49 @@ queue = queue[1:]
 
 fmt.Printf("firstElement: %v, queue: %v", firstElement, queue) // firstElement: 1, queue: [2 3]
 ```
+<br/>
 
-struct using slices:
+creating `Queue` struct based on slices (`[]int`):
+```go
+package main
 
-> `TODO:`
+import (
+	"fmt"
+)
 
-struct using linked list:
+type Queue []int
 
-> `TODO:`
+func (q *Queue) Enqueue(element int) {
+	*q = append(*q, element)
+}
+
+func (q *Queue) Dequeue() (int, bool) {
+	if len(*q) == 0 {
+		return 0, false
+	} else {
+		firstElement := (*q)[0]
+		*q = (*q)[1:]
+		return firstElement, true
+	}
+}
+
+func main() {
+	queue := &Queue{}
+	queue.Enqueue(1)
+	queue.Enqueue(2)
+	queue.Enqueue(3)
+
+	firstElement, _ := queue.Dequeue()
+
+	fmt.Printf("firstElement: %v, queue: %v", firstElement, *queue) // firstElement: 1, queue: [2 3]
+}
+```
+
+<br/>
+
+See `Queue` struct using linked list in [linked list page for Go](/linkedlist.html#go)
+
+> Note. If you need to use linked list or stack/queue based linked list in production prefer using [Go's container/list] (https://golang.org/pkg/container/list/)
 
 
 <div id="python"/>

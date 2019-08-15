@@ -125,23 +125,21 @@
 
 <h2>Java</h2>
 
-<p>interface <code>Dequeue</code> (<strong><em>extends <code>Queue</code></em></strong>)</p>
+<p>Interface <code>Dequeue</code> (<strong><em>which extends <code>Queue</code></em></strong>) has all methods required for <code>Stack</code></p>
+
+<p>See more details and list of methods <a href="https://docs.oracle.com/javase/8/docs/api/java/util/Deque.html">here at official documentation web page</a></p>
 
 <p>Implementation examples:</p>
 
 <ul>
-<li><code>ArrayDeque</code><br />
-</li>
 <li><code>LinkedList</code></li>
 <li><code>ArrayDeque</code><br />
 </li>
 <li><code>LinkedBlockingDeque</code></li>
 </ul>
 
-<p>Example of simple implementation of LinkedList in Java <a href="/linkedlist.html#java">here</a></p>
-
-<p>Simplified implementation example:
-<script src="https://gist.github.com/agapeteo/40e8764a5da58bb54b9a8501feedd725.js"></script></p>
+<p><br/>
+See example of implementation <a href="/linkedlist.html#java">in linked list page for java</a>:</p>
 
 <p><div id="go"/></p>
 
@@ -162,16 +160,50 @@ stack = stack[:lastIdx]
 fmt.Printf(&quot;topElement: %v, stack: %v&quot;, topElement, stack) // topElement: 3, stack: [1 2]
 </code></pre>
 
-<p>struct using slices:</p>
+<p><br/></p>
+
+<p><code>Stack</code> struct using slices (<code>[]int</code>)</p>
+
+<pre><code class="language-go">package main
+
+import (
+	&quot;fmt&quot;
+)
+
+type Stack []int
+
+func (s *Stack) Push(element int) {
+	*s = append(*s, element)
+}
+
+func (s *Stack) Pop() (int, bool) {
+	if len(*s) == 0 {
+		return 0, false
+	} else {
+		lastIdx := len(*s) - 1
+		topElement := (*s)[lastIdx]
+		*s = (*s)[:lastIdx]
+		return topElement, true
+	}
+}
+
+func main() {
+	stack := &amp;Stack{}
+	stack.Push(1)
+	stack.Push(2)
+	stack.Push(3)
+
+	topElement, _ := stack.Pop()
+
+	fmt.Printf(&quot;topElement: %v, stack: %v&quot;, topElement, *stack) // topElement: 3, stack: [1 2]
+}
+</code></pre>
+
+<p><br/>
+linked list example, which also implements stack look at <a href="/linkedlist.html#go">linked list page, Go</a></p>
 
 <blockquote>
-<p><code>TODO:</code></p>
-</blockquote>
-
-<p>struct using linked list:</p>
-
-<blockquote>
-<p><code>TODO:</code></p>
+<p>Note. If you need to use linked list or stack/queue based linked list in production prefer using <a href="https://golang.org/pkg/container/list/">Go&rsquo;s container/list</a></p>
 </blockquote>
 
 <p><div id="python"/></p>

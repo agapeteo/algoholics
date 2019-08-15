@@ -35,20 +35,19 @@ Both complexities are `O(1)`
 <div id="java"/>
 
 ## Java
-interface `Dequeue` (**_extends `Queue`_**)
+Interface `Dequeue` (**_which extends `Queue`_**) has all methods required for `Stack`
+
+See more details and list of methods [here at official documentation web page](https://docs.oracle.com/javase/8/docs/api/java/util/Deque.html)
 
 Implementation examples:
 
-- `ArrayDeque`  
 - `LinkedList` 
 - `ArrayDeque`  
 - `LinkedBlockingDeque`
 
-Example of simple implementation of LinkedList in Java [here](/linkedlist.html#java)
+<br/>
+See example of implementation [in linked list page for java](/linkedlist.html#java):
 
-
-Simplified implementation example:
-<script src="https://gist.github.com/agapeteo/40e8764a5da58bb54b9a8501feedd725.js"></script>
 
 
 <div id="go"/>
@@ -68,14 +67,52 @@ stack = stack[:lastIdx]
 
 fmt.Printf("topElement: %v, stack: %v", topElement, stack) // topElement: 3, stack: [1 2]
 ```
-struct using slices:
 
-> `TODO:`
+<br/>
 
-struct using linked list:
+`Stack` struct using slices (`[]int`)
+```go
+package main
 
-> `TODO:`
+import (
+	"fmt"
+)
 
+type Stack []int
+
+func (s *Stack) Push(element int) {
+	*s = append(*s, element)
+}
+
+func (s *Stack) Pop() (int, bool) {
+	if len(*s) == 0 {
+		return 0, false
+	} else {
+		lastIdx := len(*s) - 1
+		topElement := (*s)[lastIdx]
+		*s = (*s)[:lastIdx]
+		return topElement, true
+	}
+}
+
+func main() {
+	stack := &Stack{}
+	stack.Push(1)
+	stack.Push(2)
+	stack.Push(3)
+
+	topElement, _ := stack.Pop()
+
+	fmt.Printf("topElement: %v, stack: %v", topElement, *stack) // topElement: 3, stack: [1 2]
+}
+```
+
+
+
+<br/>
+linked list example, which also implements stack look at [linked list page, Go](/linkedlist.html#go)
+
+> Note. If you need to use linked list or stack/queue based linked list in production prefer using [Go's container/list] (https://golang.org/pkg/container/list/)
 
 
 <div id="python"/>
