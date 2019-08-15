@@ -1,7 +1,8 @@
 # Project objectives 
 
-### This project is designed for:
+### This project is designed to help:
 
-- _learning algorithms_ 
-- _prepare to interview_
+- learn data structures algorithms in practical way
+- learn new programming language 
+- prepare to interview
 
