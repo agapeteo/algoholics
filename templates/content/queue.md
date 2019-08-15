@@ -131,6 +131,8 @@ print x  # 1
 print queue  # [2, 3]
 ```
 
+<br/>
+Also see Python's [collections.deque](https://docs.python.org/3/library/collections.html#collections.deque) which is implemented based on `Linked list` and has methods for `Stack` and `Queue`
 
 <div id="javascript"/>
 
@@ -152,5 +154,4 @@ console.log(queue) // [2, 3]
 ## Kotlin
 Kotlin can use `Queue` from [Java](#java)
 
-Example of simplified version in Kotlin:
-<script src="https://gist.github.com/agapeteo/15d80043e9b1454a7d57e102ea849ef4.js"></script>
+See example of simple `LinkedList` in Kotlin which implements `Stack` and `Queue` in [Linked List page](/linkedlist.html#kotlin)
