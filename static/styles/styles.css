@@ -97,6 +97,23 @@ h4 {
     margin-top: 30px;
 }
 
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th {
+    background-color: rgba(88, 161, 73, 0.13);
+}
+
+table, th, td {
+    border: 1px solid #386830;
+    padding: 0.3em;
+    font-size: 0.93em;
+    /*font-family: 'Cabin', sans-serif;*/
+    color: #172b14;
+}
+
 .content {
     /*background-color: yellow;*/
     align-content: center;

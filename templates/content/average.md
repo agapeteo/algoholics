@@ -85,6 +85,14 @@ function average(arr) {
 }
 ```
 
+using `reduce()`:
+```javascript
+function average(arr) {
+  const sum = arr.reduce((sum, n) => sum += n)
+  return sum/arr.length
+}
+```
+
 
 <div id="kotlin"/>
 

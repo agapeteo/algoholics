@@ -3,7 +3,7 @@
 ## Contents
 ---
 
-- [Array - dynamic array](#array)
+- [Array](#array)
 - [Map - associative array](#map)
 - [Set](#set)
 
@@ -11,21 +11,42 @@
 
 <div id="array"/>
 
-## Array - dynamic array
-JavaScript arrays are `dynamic arrays`.
-It's implementation (`dense` or `sparse` arrays) depends on browser and may be defined in runtime.
+## JavaScript Array 
+There two array implementation approaches in JavaScript:
 
-- `Dense arrays` are like auto resizing arrays
-- `Sparse arrays` are similar to `hash maps`
+- `Dense arrays` are like auto resizing arrays (dynamic array)
+- `Sparse arrays` are more similar to `hash maps`
 
+JavaScript engines choose array implementation in run-time in most cases
 
-create array:
+create array example:
 ```javascript
 var arr = [0, 1, 2];
 var anotherArray = new Array("a", "b", "c");
 ```
 
-Check more details about JS arrays [here](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)
+Notable array methods:
+
+method | description | returns | note
+--- | --- | --- | ---
+`push()` | add element(s) to the end  | new array length | same as `push()` in `Stack` and `enqueue()` in `Queue`
+`pop()` | remove last element | removed element | same as `pop()` in `Stack`
+`shift()` | remove first element | removed element | changes the length of the array  
+`unshift()` | add element(s) to the beginning of array | added element | 
+`slice()` | create slice of array based on start and end index | shallow copy of array | original array won't be changed. <br/> `["a", "b", "c"].slice(1) \\ [b, c]` <br/> `["a", "b", "c"].slice(1, 2) \\ [b]`  
+`splice()` | in place changes the contents of an array by removing or replacing existing elements and/or adding new elements | array containing the deleted elements |  `arr = ["a", "c"];` <br/> `x = arr.splice(1, 0, "b")` <br/> `["a", "b", "c"]`  
+`every()` | check if **all** values satisfy provided test function (predicate)  | Boolean |    
+`some()` | check if **at least one** of values satisfy provided test function (predicate)  | Boolean |    
+`sort()` | in place sort  | sorted array |  compares sequences of UTF-16 code units values  
+`filter()` | filters by test function (predicate)  | new filtered array copy |  original won't be changed  
+`reduce()` | applies **reduce** function on each element | result of reduction |  `const sum = [1, 2, 3].reduce((sum, n) => sum += n)`
+`forEach()` | applies provided function on each element | undefined |  `[1,2,3].forEach(i => console.log(i))`
+`map()` | creates a new array with the results of applying provided function on each element | new array  |  `[1,2,3].map(n => n * 2) \\ [2,4,6]`
+ 
+  
+
+
+Check more details about JavaScript arrays [here](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)
  
  
   
