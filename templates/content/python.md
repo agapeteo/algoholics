@@ -43,6 +43,13 @@ create dictionary:
 d = {"one": 1, "two": 2}
 ```
 
+Another options: 
+
+- [UserDict](https://docs.python.org/3/library/collections.html#collections.UserDict)
+- [OrderedDict](https://docs.python.org/3/library/collections.html#collections.OrderedDict)
+- [ChainMap](https://docs.python.org/3/library/collections.html#collections.ChainMap)
+
+
 
 <div id="set" />
 
