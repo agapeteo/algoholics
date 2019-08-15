@@ -59,14 +59,14 @@ using slices:
 stack := make([]int, 0)
 stack = append(stack, 1) // same as push()
 stack = append(stack, 2)
-stack = append(stack, 2)
+stack = append(stack, 3)
 
 // same as pop()
 lastIdx := len(stack) - 1
 topElement := stack[lastIdx]
 stack = stack[:lastIdx]
 
-fmt.Printf("topElement: %v, stack: %v", topElement, stack) // topElement: 2, stack: [1 2]
+fmt.Printf("topElement: %v, stack: %v", topElement, stack) // topElement: 3, stack: [1 2]
 ```
 struct using slices:
 

@@ -80,22 +80,142 @@
     <div class="content">
          <h1>Stack</h1>
 
+<h2>Contents</h2>
+
+<hr />
+
+<ul>
+<li><a href="#description">Stack description</a></li>
+<li><a href="#practice">In practice</a></li>
+<li><a href="#java">Java</a></li>
+<li><a href="#go">Go</a></li>
+<li><a href="#python">Python</a></li>
+<li><a href="#javascript">JavaScript</a></li>
+<li><a href="#kotlin">Kotlin</a></li>
+</ul>
+
+<hr />
+
+<p><div id="description"/></p>
+
+<h2>Description</h2>
+
+<p>Core methods:</p>
+
+<ul>
+<li><code>push()</code> - <em>add elements to the top (end) of the stack</em></li>
+<li><code>pop()</code> - <em>delete and return element at the top (end) of the stack</em></li>
+</ul>
+
+<p>Both complexities are <code>O(1)</code></p>
+
 <blockquote>
 <p><code>//TODO: description with images</code></p>
 </blockquote>
 
-<h3>Implementation examples:</h3>
+<p><div id="practice"/></p>
+
+<h2>In Practice</h2>
+
+<blockquote>
+<p><code>//TODO:</code></p>
+</blockquote>
+
+<p><div id="java"/></p>
+
+<h2>Java</h2>
+
+<p>interface <code>Dequeue</code> (<strong><em>extends <code>Queue</code></em></strong>)</p>
+
+<p>Implementation examples:</p>
 
 <ul>
-<li><a href="#java">Java implementation</a></li>
-<li>&hellip;</li>
+<li><code>ArrayDeque</code><br />
+</li>
+<li><code>LinkedList</code></li>
+<li><code>ArrayDeque</code><br />
+</li>
+<li><code>LinkedBlockingDeque</code></li>
 </ul>
 
-<p><div id="java"></p>
+<p>Example of simple implementation of LinkedList in Java <a href="/linkedlist.html#java">here</a></p>
 
-<h3>Java implementation</h3>
+<p>Simplified implementation example:
+<script src="https://gist.github.com/agapeteo/40e8764a5da58bb54b9a8501feedd725.js"></script></p>
 
-<script src="https://gist.github.com/agapeteo/40e8764a5da58bb54b9a8501feedd725.js"></script>
+<p><div id="go"/></p>
+
+<h2>Go</h2>
+
+<p>using slices:</p>
+
+<pre><code class="language-go">stack := make([]int, 0)
+stack = append(stack, 1) // same as push()
+stack = append(stack, 2)
+stack = append(stack, 3)
+
+// same as pop()
+lastIdx := len(stack) - 1
+topElement := stack[lastIdx]
+stack = stack[:lastIdx]
+
+fmt.Printf(&quot;topElement: %v, stack: %v&quot;, topElement, stack) // topElement: 3, stack: [1 2]
+</code></pre>
+
+<p>struct using slices:</p>
+
+<blockquote>
+<p><code>TODO:</code></p>
+</blockquote>
+
+<p>struct using linked list:</p>
+
+<blockquote>
+<p><code>TODO:</code></p>
+</blockquote>
+
+<p><div id="python"/></p>
+
+<h2>Python</h2>
+
+<p>using build-in list methods:</p>
+
+<pre><code class="language-python">stack = []
+
+stack.append(1)  # same as `push()`, adds 1 to the top of stack (end of list)
+stack.append(2)
+stack.append(3)
+
+x = stack.pop()  # deletes and returns element at the top of stack (end of list)
+
+print x  # 3
+print stack  # [1, 2]
+</code></pre>
+
+<p><div id="javascript"/></p>
+
+<h2>JavaScript</h2>
+
+<p>using Arrays&rsquo;s methods:</p>
+
+<pre><code class="language-javascript">const stack = []
+stack.push(1) // adds 1 to the top of stack (end of array)
+stack.push(2)
+stack.push(3)
+const value = stack.pop() //deletes and returns element at the top of stack (end of array)
+
+console.log(value) // 3
+console.log(stack) // [1, 2]
+</code></pre>
+
+<p><div id="kotlin"/></p>
+
+<h2>Kotlin</h2>
+
+<p>Kotlin can use <code>Dequeue</code> from <a href="#java">Java</a></p>
+
+<p>Example of simplified version in Kotlin:
+<script src="https://gist.github.com/agapeteo/15d80043e9b1454a7d57e102ea849ef4.js"></script></p>
  
     </div>
 

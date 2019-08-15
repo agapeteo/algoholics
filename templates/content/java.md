@@ -8,7 +8,6 @@
 - [LinkedList](#linked-list)
 - [Map](#map)
 - [Set](#set)
-- [Queue](#queue)
 - [Not a humble opinion about language](#pros-cons)
 
 ---
@@ -98,20 +97,6 @@ other implementations of `Set`:
 
 See more details about `Set` interface and list of methods [here](https://docs.oracle.com/javase/8/docs/api/java/util/Set.html)
 
-
-<div id="queue" />
-
-## Queue
-interface `Queue` with multiple implementations, like: 
-
-- `LinkedList` 
-- `LinkedBlockingQueue`
-- `ConcurrentLinkedQueue`
-- `ConcurrentLinkedDeque`
-- `DelayQueue`
-- `LinkedTransferQueue`
-- `PriorityQueue`
-- `SynchronousQueue`
 
 
 <div id="pros-cons" />

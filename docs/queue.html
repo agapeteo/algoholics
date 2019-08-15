@@ -80,22 +80,135 @@
     <div class="content">
          <h1>Queue</h1>
 
+<h2>Contents</h2>
+
+<hr />
+
+<ul>
+<li><a href="#description">Queue description</a></li>
+<li><a href="#practice">In practice</a></li>
+<li><a href="#java">Java</a></li>
+<li><a href="#go">Go</a></li>
+<li><a href="#python">Python</a></li>
+<li><a href="#javascript">JavaScript</a></li>
+<li><a href="#kotlin">Kotlin</a></li>
+</ul>
+
+<hr />
+
+<p><div id="description"/></p>
+
+<h2>Description</h2>
+
+<p>Core methods:</p>
+
+<ul>
+<li><code>enqueue()</code> - <em>add elements to the end of the queue</em></li>
+<li><code>dequeue()</code> - <em>delete and return element from the beginning of the queue</em></li>
+</ul>
+
 <blockquote>
 <p><code>//TODO: description with images</code></p>
 </blockquote>
 
-<h3>Implementation examples:</h3>
+<p><div id="practice"/></p>
+
+<h2>In Practice</h2>
+
+<blockquote>
+<p><code>//TODO:</code></p>
+</blockquote>
+
+<p><div id="java"/></p>
+
+<h2>Java</h2>
+
+<p>interface <code>Queue</code> with multiple implementations, like:</p>
 
 <ul>
-<li><a href="#java">Java implementation</a></li>
-<li>&hellip;</li>
+<li><code>LinkedList</code></li>
+<li><code>LinkedBlockingQueue</code></li>
+<li><code>ConcurrentLinkedQueue</code></li>
+<li><code>ConcurrentLinkedDeque</code></li>
+<li><code>DelayQueue</code></li>
+<li><code>LinkedTransferQueue</code></li>
+<li><code>PriorityQueue</code></li>
+<li><code>SynchronousQueue</code></li>
 </ul>
 
-<p><div id="java"></p>
+<p>Simplified implementation example:
+<script src="https://gist.github.com/agapeteo/40e8764a5da58bb54b9a8501feedd725.js"></script></p>
 
-<h3>Java implementation</h3>
+<p><div id="go"/></p>
 
-<script src="https://gist.github.com/agapeteo/40e8764a5da58bb54b9a8501feedd725.js"></script>
+<h2>Go</h2>
+
+<pre><code class="language-go">queue := make([]int, 0)
+queue = append(queue, 1) // same as enqueue()
+queue = append(queue, 2)
+queue = append(queue, 3)
+
+// same as dequeue()
+firstElement := queue[0]
+queue = queue[1:]
+
+fmt.Printf(&quot;firstElement: %v, queue: %v&quot;, firstElement, queue) // firstElement: 1, queue: [2 3]
+</code></pre>
+
+<p>struct using slices:</p>
+
+<blockquote>
+<p><code>TODO:</code></p>
+</blockquote>
+
+<p>struct using linked list:</p>
+
+<blockquote>
+<p><code>TODO:</code></p>
+</blockquote>
+
+<p><div id="python"/></p>
+
+<h2>Python</h2>
+
+<p>using build-in list methods:</p>
+
+<pre><code class="language-python">queue = []
+
+queue.append(1)  # same as `enqueue()`, adds 1 to the end of queue
+queue.append(2)
+queue.append(3)
+
+x = queue.pop(0)  # same as 'dequeue()', deletes and returns element at the beginning of queue
+
+print x  # 1
+print queue  # [2, 3]
+</code></pre>
+
+<p><div id="javascript"/></p>
+
+<h2>JavaScript</h2>
+
+<p>using Arrays&rsquo;s methods:</p>
+
+<pre><code class="language-javascript">const queue = []
+queue.push(1) // adds 1 to the end of queue
+queue.push(2)
+queue.push(3)
+const value = queue.shift() //deletes and returns element at the beginning of queue
+
+console.log(value) // 1
+console.log(queue) // [2, 3]
+</code></pre>
+
+<p><div id="kotlin"/></p>
+
+<h2>Kotlin</h2>
+
+<p>Kotlin can use <code>Queue</code> from <a href="#java">Java</a></p>
+
+<p>Example of simplified version in Kotlin:
+<script src="https://gist.github.com/agapeteo/15d80043e9b1454a7d57e102ea849ef4.js"></script></p>
  
     </div>
 

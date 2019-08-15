@@ -86,12 +86,11 @@
 
 <ul>
 <li><a href="#array">Array</a></li>
+<li><a href="#list">List interface</a></li>
 <li><a href="#dynamic-array">ArrayList - dynamic array</a></li>
 <li><a href="#linked-list">LinkedList</a></li>
 <li><a href="#map">Map</a></li>
 <li><a href="#set">Set</a></li>
-<li><a href="#queue">Queue</a></li>
-<li><a href="#stack">Stack</a></li>
 <li><a href="#pros-cons">Not a humble opinion about language</a></li>
 </ul>
 
@@ -106,6 +105,30 @@
 <pre><code class="language-java">int[] a = new int[5];
 int[] a = new int[]{1, 2, 3, 4, 5}; 
 </code></pre>
+
+<p><div id="list"/></p>
+
+<h2>List interface</h2>
+
+<p>notable methods:</p>
+
+<ul>
+<li><p><code>get(int index)</code> - <em>returns the element at the specified position in this list</em></p></li>
+
+<li><p><code>add(E e)</code> - <em>appends the specified element to the end of this list (optional operation)</em></p></li>
+
+<li><p><code>add(int index, E element)</code> - <em>inserts the specified element at the specified position in this list (optional operation)</em></p></li>
+
+<li><p><code>set(int index, E element)</code> - <em>replaces the element at the specified position in this list with the specified element (optional operation)</em></p></li>
+
+<li><p><code>remove(int index)</code> - <em>removes the element at the specified position in this list (optional operation)</em></p></li>
+
+<li><p><code>remove(Object o)</code> - <em>removes the first occurrence of the specified element from this list, if it is present (optional operation)</em></p></li>
+
+<li><p><code>size()</code> - <em>returns the number of elements in this list</em></p></li>
+</ul>
+
+<p>See more details about <code>List</code> interface and list of methods <a href="https://docs.oracle.com/javase/8/docs/api/java/util/List.html">here</a></p>
 
 <p><div id="dynamic-array"/></p>
 
@@ -149,6 +172,8 @@ When Java runtime detects high hash collision it changed <code>linked list</code
 <li><code>Hashtable</code> (<em>old, not used now</em>)</li>
 </ul>
 
+<p>See more details about <code>Map</code> interface and list of methods <a href="https://docs.oracle.com/javase/8/docs/api/java/util/Map.html">here</a></p>
+
 <p><div id="set" /></p>
 
 <h2>Set</h2>
@@ -166,42 +191,7 @@ When Java runtime detects high hash collision it changed <code>linked list</code
 <li><code>LinkedHashSet</code></li>
 </ul>
 
-<p><div id="queue" /></p>
-
-<h2>Queue</h2>
-
-<p>interface <code>Queue</code> with multiple implementations, like:</p>
-
-<ul>
-<li><code>LinkedList</code></li>
-<li><code>LinkedBlockingQueue</code></li>
-<li><code>ConcurrentLinkedQueue</code></li>
-<li><code>ConcurrentLinkedDeque</code></li>
-<li><code>DelayQueue</code></li>
-<li><code>LinkedTransferQueue</code></li>
-<li><code>PriorityQueue</code></li>
-<li><code>SynchronousQueue</code></li>
-</ul>
-
-<p><div id="stack" /></p>
-
-<h2>Stack</h2>
-
-<p>interface <code>Dequeue</code> (<strong><em>extends <code>Queue</code></em></strong>)</p>
-
-<p>Implementation examples:</p>
-
-<ul>
-<li><code>ArrayDeque</code><br />
-</li>
-<li><code>LinkedList</code></li>
-<li><code>ArrayDeque</code><br />
-</li>
-<li><code>LinkedBlockingDeque</code></li>
-</ul>
-
-<p>Example of simple implementation of LinkedList in Java <a href="/linkedlist.html#java">here</a>
-<br/></p>
+<p>See more details about <code>Set</code> interface and list of methods <a href="https://docs.oracle.com/javase/8/docs/api/java/util/Set.html">here</a></p>
 
 <p><div id="pros-cons" /></p>
 
