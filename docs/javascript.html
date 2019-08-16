@@ -85,7 +85,7 @@
 <hr />
 
 <ul>
-<li><a href="#array">Array - dynamic array</a></li>
+<li><a href="#array">Array</a></li>
 <li><a href="#map">Map - associative array</a></li>
 <li><a href="#set">Set</a></li>
 </ul>
@@ -94,23 +94,129 @@
 
 <p><div id="array"/></p>
 
-<h2>Array - dynamic array</h2>
+<h2>JavaScript Array</h2>
 
-<p>JavaScript arrays are <code>dynamic arrays</code>.
-It&rsquo;s implementation (<code>dense</code> or <code>sparse</code> arrays) depends on browser and may be defined in runtime.</p>
+<p>There two array implementation approaches in JavaScript:</p>
 
 <ul>
-<li><code>Dense arrays</code> are like auto resizing arrays</li>
-<li><code>Sparse arrays</code> are similar to <code>hash maps</code></li>
+<li><code>Dense arrays</code> are like auto resizing arrays (dynamic array)</li>
+<li><code>Sparse arrays</code> are more similar to <code>hash maps</code></li>
 </ul>
 
-<p>create array:</p>
+<p>JavaScript engines choose array implementation in run-time in most cases</p>
+
+<p>create array example:</p>
 
 <pre><code class="language-javascript">var arr = [0, 1, 2];
 var anotherArray = new Array(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;);
 </code></pre>
 
-<p>Check more details about JS arrays <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">here</a></p>
+<p>Notable array methods:</p>
+
+<table>
+<thead>
+<tr>
+<th>method</th>
+<th>description</th>
+<th>returns</th>
+<th>note</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>push()</code></td>
+<td>add element(s) to the end</td>
+<td>new array length</td>
+<td>same as <code>push()</code> in <code>Stack</code> and <code>enqueue()</code> in <code>Queue</code></td>
+</tr>
+
+<tr>
+<td><code>pop()</code></td>
+<td>remove last element</td>
+<td>removed element</td>
+<td>same as <code>pop()</code> in <code>Stack</code></td>
+</tr>
+
+<tr>
+<td><code>shift()</code></td>
+<td>remove first element</td>
+<td>removed element</td>
+<td>changes the length of the array</td>
+</tr>
+
+<tr>
+<td><code>unshift()</code></td>
+<td>add element(s) to the beginning of array</td>
+<td>added element</td>
+<td></td>
+</tr>
+
+<tr>
+<td><code>slice()</code></td>
+<td>create slice of array based on start and end index</td>
+<td>shallow copy of array</td>
+<td>original array won&rsquo;t be changed. <br/> <code>[&quot;a&quot;, &quot;b&quot;, &quot;c&quot;].slice(1) \\ [b, c]</code> <br/> <code>[&quot;a&quot;, &quot;b&quot;, &quot;c&quot;].slice(1, 2) \\ [b]</code></td>
+</tr>
+
+<tr>
+<td><code>splice()</code></td>
+<td>in place changes the contents of an array by removing or replacing existing elements and/or adding new elements</td>
+<td>array containing the deleted elements</td>
+<td><code>arr = [&quot;a&quot;, &quot;c&quot;];</code> <br/> <code>x = arr.splice(1, 0, &quot;b&quot;)</code> <br/> <code>[&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]</code></td>
+</tr>
+
+<tr>
+<td><code>every()</code></td>
+<td>check if <strong>all</strong> values satisfy provided test function (predicate)</td>
+<td>Boolean</td>
+<td></td>
+</tr>
+
+<tr>
+<td><code>some()</code></td>
+<td>check if <strong>at least one</strong> of values satisfy provided test function (predicate)</td>
+<td>Boolean</td>
+<td></td>
+</tr>
+
+<tr>
+<td><code>sort()</code></td>
+<td>in place sort</td>
+<td>sorted array</td>
+<td>compares sequences of UTF-16 code units values</td>
+</tr>
+
+<tr>
+<td><code>filter()</code></td>
+<td>filters by test function (predicate)</td>
+<td>new filtered array copy</td>
+<td>original won&rsquo;t be changed</td>
+</tr>
+
+<tr>
+<td><code>reduce()</code></td>
+<td>applies <strong>reduce</strong> function on each element</td>
+<td>result of reduction</td>
+<td><code>const sum = [1, 2, 3].reduce((sum, n) =&gt; sum += n)</code></td>
+</tr>
+
+<tr>
+<td><code>forEach()</code></td>
+<td>applies provided function on each element</td>
+<td>undefined</td>
+<td><code>[1,2,3].forEach(i =&gt; console.log(i))</code></td>
+</tr>
+
+<tr>
+<td><code>map()</code></td>
+<td>creates a new array with the results of applying provided function on each element</td>
+<td>new array</td>
+<td><code>[1,2,3].map(n =&gt; n * 2) \\ [2,4,6]</code></td>
+</tr>
+</tbody>
+</table>
+<p>Check more details about JavaScript arrays <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">here</a></p>
 
 <p><div id="map"/></p>
 
