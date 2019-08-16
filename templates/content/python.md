@@ -35,6 +35,24 @@ l = [1, 2, 3]
 ```
 
 
+List of notable methods:
+
+method | description | returns | note | __________example__________ | big O
+--- | --- | --- | --- | --- | ---
+`append(element)` | add element to the end | `None` |  | `[0, 1].append(2)` | `O(1)`
+`extend(iterable)` | joins other list in place | `None` | same as `[1,2] + [3,4] ` <br/> but `extend` is in place | `[0, 1].extend([2, 3])` | `O(k)`
+`insert (idx, element)` | inserts element at given index | `None` | in place | `[1, 3].insert(1, 2)`  <br/> inserts 2 between 1 and 3 | `O(N)`
+`pop(idx)` | removes element and index and returns that value | removed value |  default idx is `-1` (last) | `[1, 2].pop()` | `O(N)` <br/> but `O(1)` for last element 
+`remove(value)`| removes value from list| `None` | raises error if value not found | `[1, 2].remove[2]` | `O(N)`
+`reverse()`| reverses list | `None` | in place | `[0, 1].reverse()` | `O(N)`
+`sort()` | sorts list <br/> in place  | `None` | optionally specify sort key and/or reverse order, defaults are: (`key=None, reverse=False`).<br/> Algorithm used: [Timsort](https://en.wikipedia.org/wiki/Timsort) | `[0, 2, 1].sort()` | `O(log(N))`
+`index(value)` | finds fist index of element | found index |  raises `ValueError` if not found | `[0, 1].index(1)` | `O(N)`
+`count(element)` | returns the number of times given element appears in list | number of repeats | | `["a", "b", "a"].count("a")` | `O(N)`
+
+
+See other build-in functions like `len()`, `max()`, `cmp()`, `filter()`, `map()`, `any()`, `all()`, `range()` etc [here at official Python documentation](https://docs.python.org/3/library/functions.html)
+
+
 <div id="map" />
 
 ## Dictionary - map, associative array `{ key: value }`
