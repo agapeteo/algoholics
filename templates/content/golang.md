@@ -17,22 +17,65 @@
 
 ## Array
 ```go
-i := [5]int{5, 4, 5, 2, 1}
-s := [3]string{"Java", "Python", "Go"}
+a := [5]int{5, 4, 5, 2, 1}
+b := [...]int{5, 4, 5, 2, 1} 
+c := b // creates copy of array a (not a reference!)
+
+s := [...]string{"Java", "Python", "Go"}
 ```
 
 
 <div id="dynamic-array" />
 
 ## Slice - Dynamic array
+create slice:
 ```go
 var i []int
+
 i := []int{5, 4, 5, 2, 1}
-i := make([]int, 5) // len(i)=5
+
+i := make([]int, 5) // len(i)=5, cap(i)=5
+
 i := make([]int, 0, 5) // len(i)=0, cap(i)=5
-i = append(i, 6) // adding new elemet
+
 ```
 
+append to slice:
+```go
+var i []int
+i = append(i, 1)
+```
+
+join slices
+```go
+a := []int{1, 2}
+b := []int{2, 4}
+a = append(a, b...) // a - [1, 2, 3, 4]
+```
+slices can overlap underlying arrays:
+```go
+a := []int{1, 2, 3, 4}
+b := a[2:]
+
+b[0] = 300 // referencing to underlying array of a (a also updated by changes in slice b)
+fmt.Printf("a: %v, len: %v cap: %v \n", a, len(a), cap(a)) // a: [1 2 300 4], len: 4 cap: 4
+fmt.Printf("b: %v, len: %v cap: %v \n", b, len(b), cap(b)) // b: [300 4], len: 2 cap: 2
+
+b = append(b, 500, 600, 700)
+b[1] = 400 // slice b is not referencing to underlying array of slice a anymore (doesn't change slice a, even it was overlapping before)
+
+fmt.Println("after append and b modifications:")
+fmt.Printf("a: %v, len: %v cap: %v \n", a, len(a), cap(a)) // a: [1 2 300 4], len: 4 cap: 4
+fmt.Printf("b: %v, len: %v cap: %v \n", b, len(b), cap(b)) // b: [300 400 500 600 700], len: 5 cap: 6
+```
+
+More info about slices:
+
+- [a tour to go slices playground](https://tour.golang.org/moretypes/7)
+- [slice internals](https://blog.golang.org/go-slices-usage-and-internals)
+- [how append() work inside](https://blog.golang.org/slices)
+- [slice tricks](https://github.com/golang/go/wiki/SliceTricks)
+- [slice source code](https://golang.org/src/runtime/slice.go#L11)
 
 <div id="map"/>
 

@@ -98,20 +98,68 @@
 
 <h2>Array</h2>
 
-<pre><code class="language-go">i := [5]int{5, 4, 5, 2, 1}
-s := [3]string{&quot;Java&quot;, &quot;Python&quot;, &quot;Go&quot;}
+<pre><code class="language-go">a := [5]int{5, 4, 5, 2, 1}
+b := [...]int{5, 4, 5, 2, 1} 
+c := b // creates copy of array a (not a reference!)
+
+s := [...]string{&quot;Java&quot;, &quot;Python&quot;, &quot;Go&quot;}
 </code></pre>
 
 <p><div id="dynamic-array" /></p>
 
 <h2>Slice - Dynamic array</h2>
 
+<p>create slice:</p>
+
 <pre><code class="language-go">var i []int
+
 i := []int{5, 4, 5, 2, 1}
-i := make([]int, 5) // len(i)=5
+
+i := make([]int, 5) // len(i)=5, cap(i)=5
+
 i := make([]int, 0, 5) // len(i)=0, cap(i)=5
-i = append(i, 6) // adding new elemet
+
 </code></pre>
+
+<p>append to slice:</p>
+
+<pre><code class="language-go">var i []int
+i = append(i, 1)
+</code></pre>
+
+<p>join slices</p>
+
+<pre><code class="language-go">a := []int{1, 2}
+b := []int{2, 4}
+a = append(a, b...) // a - [1, 2, 3, 4]
+</code></pre>
+
+<p>slices can overlap underlying arrays:</p>
+
+<pre><code class="language-go">a := []int{1, 2, 3, 4}
+b := a[2:]
+
+b[0] = 300 // referencing to underlying array of a (a also updated by changes in slice b)
+fmt.Printf(&quot;a: %v, len: %v cap: %v \n&quot;, a, len(a), cap(a)) // a: [1 2 300 4], len: 4 cap: 4
+fmt.Printf(&quot;b: %v, len: %v cap: %v \n&quot;, b, len(b), cap(b)) // b: [300 4], len: 2 cap: 2
+
+b = append(b, 500, 600, 700)
+b[1] = 400 // slice b is not referencing to underlying array of slice a anymore (doesn't change slice a, even it was overlapping before)
+
+fmt.Println(&quot;after append and b modifications:&quot;)
+fmt.Printf(&quot;a: %v, len: %v cap: %v \n&quot;, a, len(a), cap(a)) // a: [1 2 300 4], len: 4 cap: 4
+fmt.Printf(&quot;b: %v, len: %v cap: %v \n&quot;, b, len(b), cap(b)) // b: [300 400 500 600 700], len: 5 cap: 6
+</code></pre>
+
+<p>More info about slices:</p>
+
+<ul>
+<li><a href="https://tour.golang.org/moretypes/7">a tour to go slices playground</a></li>
+<li><a href="https://blog.golang.org/go-slices-usage-and-internals">slice internals</a></li>
+<li><a href="https://blog.golang.org/slices">how append() work inside</a></li>
+<li><a href="https://github.com/golang/go/wiki/SliceTricks">slice tricks</a></li>
+<li><a href="https://golang.org/src/runtime/slice.go#L11">slice source code</a></li>
+</ul>
 
 <p><div id="map"/></p>
 

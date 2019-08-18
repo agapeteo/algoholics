@@ -63,56 +63,72 @@ stack = append(stack, 3)
 // same as pop()
 lastIdx := len(stack) - 1
 topElement := stack[lastIdx]
-stack = stack[:lastIdx]
+stack = stack[:lastIdx] // WARNING! potential memory leak
 
 fmt.Printf("topElement: %v, stack: %v", topElement, stack) // topElement: 3, stack: [1 2]
 ```
 
 <br/>
 
-`Stack` struct using slices (`[]int`)
+`Stack` struct based on `container/list`:
 ```go
 package main
 
 import (
+	"container/list"
 	"fmt"
 )
 
-type Stack []int
-
-func (s *Stack) Push(element int) {
-	*s = append(*s, element)
+type Stack struct {
+	elements *list.List
 }
 
-func (s *Stack) Pop() (int, bool) {
-	if len(*s) == 0 {
-		return 0, false
-	} else {
-		lastIdx := len(*s) - 1
-		topElement := (*s)[lastIdx]
-		*s = (*s)[:lastIdx]
-		return topElement, true
+func NewStack() *Stack {
+	s := new(Stack)
+	s.elements = list.New()
+	return s
+}
+
+func (s *Stack) Push(e interface{}) {
+	s.elements.PushBack(e)
+}
+
+func (s *Stack) Pop() (interface{}, bool) {
+	if s.elements.Len() == 0 {
+		return nil, true
 	}
+	e := s.elements.Back().Value
+	s.elements.Remove(s.elements.Back())
+	return e, false
+}
+
+func (s *Stack) Elements() []interface{} {
+	c := make([]interface{}, s.elements.Len())
+
+	for i, e := 0, s.elements.Front(); e != nil; i, e = i+1, e.Next() {
+		c[i] = e.Value
+	}
+	return c
+}
+
+func (s *Stack) Len() int {
+	return s.elements.Len()
 }
 
 func main() {
-	stack := &Stack{}
-	stack.Push(1)
-	stack.Push(2)
-	stack.Push(3)
+	s := NewStack()
+	s.Push(1)
+	s.Push(2)
+	s.Push(3)
 
-	topElement, _ := stack.Pop()
+	v, _ := s.Pop()
 
-	fmt.Printf("topElement: %v, stack: %v", topElement, *stack) // topElement: 3, stack: [1 2]
+	fmt.Printf("value %v, all elements: %v", v, s.Elements()) // value 3, all elements: [1 2]
 }
 ```
 
-
-
 <br/>
-linked list example, which also implements stack look at [linked list page, Go](/linkedlist.html#go)
-
-> Note. If you need to use linked list or stack/queue based linked list in production prefer using [Go's container/list] (https://golang.org/pkg/container/list/)
+See also deque implementation [based on container.list with improved performance](https://github.com/juju/utils/blob/master/deque/deque.go)
 
 
 <div id="python"/>

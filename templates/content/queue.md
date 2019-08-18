@@ -64,53 +64,75 @@ queue = append(queue, 3)
 
 // same as dequeue()
 firstElement := queue[0]
-queue = queue[1:]
+queue = queue[1:] // WARNING: potential memory leak
 
 fmt.Printf("firstElement: %v, queue: %v", firstElement, queue) // firstElement: 1, queue: [2 3]
 ```
 <br/>
 
-creating `Queue` struct based on slices (`[]int`):
+`Queue` struct based on `container/list`:
 ```go
 package main
 
 import (
+	"container/list"
 	"fmt"
 )
 
-type Queue []int
-
-func (q *Queue) Enqueue(element int) {
-	*q = append(*q, element)
+type Queue struct {
+	elements *list.List
 }
 
-func (q *Queue) Dequeue() (int, bool) {
-	if len(*q) == 0 {
-		return 0, false
-	} else {
-		firstElement := (*q)[0]
-		*q = (*q)[1:]
-		return firstElement, true
+func NewQueue() *Queue {
+	q := new(Queue)
+	q.elements = list.New()
+	return q
+}
+
+func (q *Queue) Enqueue(e interface{}) {
+	q.elements.PushBack(e)
+}
+
+func (q *Queue) Dequeue() (interface{}, bool) {
+	if q.elements.Len() == 0 {
+		return nil, true
 	}
+	e := q.elements.Front().Value
+	q.elements.Remove(q.elements.Front())
+	return e, false
+}
+
+func (q *Queue) Elements() []interface{} {
+	c := make([]interface{}, q.elements.Len())
+
+	for i, e := 0, q.elements.Front(); e != nil; i, e = i+1, e.Next() {
+		c[i] = e.Value
+	}
+	return c
+}
+
+func (q *Queue) Len() int {
+	return q.elements.Len()
 }
 
 func main() {
-	queue := &Queue{}
-	queue.Enqueue(1)
-	queue.Enqueue(2)
-	queue.Enqueue(3)
+	q := NewQueue()
+	q.Enqueue(1)
+	q.Enqueue(2)
+	q.Enqueue(3)
 
-	firstElement, _ := queue.Dequeue()
+	v, _ := q.Dequeue()
 
-	fmt.Printf("firstElement: %v, queue: %v", firstElement, *queue) // firstElement: 1, queue: [2 3]
+	fmt.Printf("value %v, all elements: %v", v, q.Elements()) // value 1, all elements: [2 3]
 }
 ```
 
 <br/>
 
-See `Queue` struct using linked list in [linked list page for Go](/linkedlist.html#go)
+Other queue implementations:
 
-> Note. If you need to use linked list or stack/queue based linked list in production prefer using [Go's container/list] (https://golang.org/pkg/container/list/)
+- [deque implementation based on container.list with improved performance](https://github.com/juju/utils/blob/master/deque/deque.go)
+- [based on slices no memory leaks] (https://github.com/phf/go-queue/blob/master/queue/queue.go) 
 
 
 <div id="python"/>
