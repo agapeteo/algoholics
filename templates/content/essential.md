@@ -20,6 +20,12 @@
 - [Copy to another array](/copy-array.html)
 - [Reverse elements in array](/reverse-array.html)
 - [Binary search](/binary-search.html)
+- Recursion
+  - [factorial](/recursive-factorial.html)
+  - [directory traversal](recursive-directory-traversal.html)
+- Sorting
+  - [bubble sort](bubble-sort.html)
+  - [insert sort](insert-sort.html)
 
 
 

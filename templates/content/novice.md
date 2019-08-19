@@ -1,6 +1,7 @@
 # Novice
 
 ### data structures:
+- Ring buffer
 - Binary search tree
 - Graph
 
@@ -13,7 +14,6 @@
  
 #### sorting
 
-- insert sort
 - merge sort
 - quick sort
 
