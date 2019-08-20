@@ -8,7 +8,6 @@
 - [Java](#java)
 - [Go](#go)
 - [Python](#python)
-- [JavaScript](#javascript)
 - [Kotlin](#kotlin)
 
 ---
@@ -120,16 +119,29 @@ func printDirContent(dir string, tabs int, ignoreHidden bool) {
 
 ## Python
 ```python
-#  TODO:
+import os
+
+
+def print_dir_content(dir_abs, tabs=0, ignore_hidden=True):
+    for f in os.listdir(dir_abs):
+        if ignore_hidden and f.startswith("."):
+            continue
+
+        tabs_str = "".join("\t" * tabs)
+        print tabs_str + f + "/"
+
+        full_path = os.path.join(dir_abs, f)
+        if os.path.isdir(full_path):
+            print_dir_content(full_path, tabs + 1)
+        else:
+            print "\t" + tabs_str + f
+
+
+print_dir_content("/full/path/to/directory/")
 ```
-
-
-<div id="javascript"/>
-
-## JavaScript
-```javascript
-// TODO:
-```
+> Note: This example is given for learning recursive approach 
+> 
+> Python already has build-in [`os.walk`](https://docs.python.org/3/library/os.html#os.walk)
 
 
 <div id="kotlin"/>
