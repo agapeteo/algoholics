@@ -21,11 +21,11 @@
 - [Reverse elements in array](/reverse-array.html)
 - [Binary search](/binary-search.html)
 - Recursion
-  - [factorial](/recursive-factorial.html)
-  - [directory traversal](recursive-directory-traversal.html)
+  - [Factorial](/recursive-factorial.html)
+  - [Directory traversal](recursive-directory-traversal.html)
 - Sorting
-  - [bubble sort](bubble-sort.html)
-  - [insertion sort](insertion-sort.html)
+  - [Bubble sort](bubble-sort.html)
+  - [Insertion sort](insertion-sort.html)
 
 
 
