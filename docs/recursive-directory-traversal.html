@@ -1,0 +1,251 @@
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <meta name="description" content="Recursive directory traversal">
+    <meta name="keywords" content="learn, explain, tutorial, data structures, algorithms, graph, tree, interview, java, golang, kotlin, python, file system, recursive, directory traversal">
+
+    <title>  Recursive directory traversal  | Practical algorithms and data structures </title>
+    <link rel='stylesheet' href='/static/styles/styles.css'/>
+    <link rel='stylesheet' href='/static/styles/prism.css'/>
+</head>
+
+<body>
+
+<div class="rootContainer">
+
+    <div class="horizontal-menu-box">
+        
+    <div class="menu">
+    
+    <div class="menuItem">
+        
+            <a href="/index.html" >
+                ABOUT
+            </a>
+        
+    </div>
+
+    
+    <div class="menuItem">
+        
+            <a href="/essential.html" >
+                ESSENTIAL
+            </a>
+        
+    </div>
+
+    
+    <div class="menuItem">
+        
+            <a href="/novice.html" >
+                NOVICE
+            </a>
+        
+    </div>
+
+     
+     <div class="menuItem">
+        
+            <a href="/advanced.html" >
+                ADVANCED
+            </a>
+        
+    </div>
+
+    
+    <div class="menuItem">
+        
+            <a href="/ninja.html" >
+                NINJA
+            </a>
+        
+    </div>
+
+    
+    <div class="menuItem">
+        
+            <a href="/languages.html" >
+                LANGUAGES
+            </a>
+        
+    </div>
+
+</div>
+
+    </div>
+
+    <div class="content">
+         <h1>Recursive directory traversal</h1>
+
+<h2>Contents</h2>
+
+<hr />
+
+<ul>
+<li><a href="#complexity">Complexity</a></li>
+<li><a href="#java">Java</a></li>
+<li><a href="#go">Go</a></li>
+<li><a href="#python">Python</a></li>
+<li><a href="#javascript">JavaScript</a></li>
+<li><a href="#kotlin">Kotlin</a></li>
+</ul>
+
+<hr />
+
+<p><div id="complexity"/></p>
+
+<h2>Complexity</h2>
+
+<p><code>O(N)</code></p>
+
+<p><div id="java"/></p>
+
+<h2>Java</h2>
+
+<pre><code class="language-java">public static void main(String[] args) {
+    printDirContent(&quot;/path/to/folder/&quot;, true);
+}
+
+static void printDirContent(String dir, boolean ignoreHidden) {
+    System.out.println(&quot;directory structure of &quot; + dir);
+    printDirContent(new File(dir), 0, ignoreHidden);
+}
+
+static void printDirContent(File dir, int tabsCount, boolean ignoreHidden) {
+
+    if (!dir.exists()) throw new IllegalArgumentException(dir + &quot; does not exist&quot;);
+    if (!dir.isDirectory()) throw new IllegalArgumentException(dir + &quot; is not directory&quot;);
+
+    StringBuilder tabs = new StringBuilder();
+    for (int i = 0; i &lt; tabsCount; i++) {
+        tabs.append(&quot;\t&quot;);
+    }
+
+    StringBuilder dirOutput = new StringBuilder();
+    dirOutput
+            .append(tabs)
+            .append(dir.getName())
+            .append(&quot;/&quot;);
+    System.out.println(dirOutput.toString());
+
+    for (File file : dir.listFiles()) {
+        if (ignoreHidden &amp;&amp; file.getName().startsWith(&quot;.&quot;)) continue;
+
+        if (file.isDirectory()) {
+            printDirContent(file, tabsCount + 1, ignoreHidden);
+        } else {
+            StringBuilder fileOutput = new StringBuilder();
+            fileOutput
+                    .append(&quot;\t&quot;)
+                    .append(tabs)
+                    .append(file.getName());
+            System.out.println(fileOutput.toString());
+        }
+    }
+}
+</code></pre>
+
+<p><div id="go"/></p>
+
+<h2>Go</h2>
+
+<pre><code class="language-go">func printDirContent(dir string, tabs int, ignoreHidden bool) {
+	info, err := os.Stat(dir)
+	if err != nil {
+		if os.IsNotExist(err) {
+			log.Fatalf(&quot;dir does not exist: %s&quot;, dir)
+		}
+		log.Fatal(err)
+	}
+
+	if !info.IsDir() {
+		log.Fatalf(&quot;%s is not directory&quot;, dir)
+	}
+
+	tabsBuilder := strings.Builder{}
+	for i := 0; i &lt; tabs; i++ {
+		tabsBuilder.WriteString(&quot;\t&quot;)
+	}
+	dirParts := strings.Split(dir, &quot;/&quot;)
+	fmt.Printf(&quot;%s%s/\n&quot;, tabsBuilder.String(), dirParts[len(dirParts) - 1])
+
+	files, err := ioutil.ReadDir(dir)
+	if err != nil {
+		log.Fatal(err)
+	}
+	for _, f := range files {
+		if f.IsDir() {
+			if ignoreHidden &amp;&amp; strings.HasPrefix(f.Name(), &quot;.&quot;) {
+				continue
+			}
+			printDirContent(filepath.Join(dir, f.Name()), tabs+1, ignoreHidden)
+		} else {
+			fmt.Printf(&quot;\t%s%s\n&quot;, tabsBuilder.String(), f.Name())
+		}
+	}
+}
+</code></pre>
+
+<blockquote>
+<p>Note: This example is given for learning recursive approach</p>
+
+<p>Go already has build-in <a href="https://golang.org/pkg/path/filepath/#example_Walk"><code>filepath.Walk</code></a></p>
+</blockquote>
+
+<p><div id="python"/></p>
+
+<h2>Python</h2>
+
+<pre><code class="language-python">#  TODO:
+</code></pre>
+
+<p><div id="javascript"/></p>
+
+<h2>JavaScript</h2>
+
+<pre><code class="language-javascript">// TODO:
+</code></pre>
+
+<p><div id="kotlin"/></p>
+
+<h2>Kotlin</h2>
+
+<pre><code class="language-kotlin">fun printDirContent(dir: File, tabsCount: Int = 0, ignoreHidden: Boolean = true) {
+    require(dir.exists()) { &quot;$dir must exist&quot; }
+    require(dir.isDirectory) { &quot;$dir must be directory&quot; }
+
+    val tabs = StringBuilder()
+    repeat(tabsCount) { tabs.append(&quot;\t&quot;) }
+
+    val dirOutput = StringBuilder()
+    dirOutput.append(tabs).append(dir.name).append(&quot;/&quot;)
+    
+    println(dirOutput.toString())
+
+    for (file in dir.listFiles()) {
+        if (ignoreHidden &amp;&amp; file.name.startsWith(&quot;.&quot;)) continue
+
+        if (file.isDirectory) {
+            printDirContent(file, tabsCount + 1, ignoreHidden)
+        } else {
+            val fileOutput = StringBuilder()
+            fileOutput.append(&quot;\t&quot;).append(tabs).append(file.name)
+            
+            println(fileOutput.toString())
+        }
+    }
+}
+</code></pre>
+ 
+    </div>
+
+</div>
+
+
+<script src="/static/js/prism.js"></script>
+</body>
+</html>
+
