@@ -4,6 +4,7 @@
 
 ---
 
+- [Description](#description)
 - [Complexity](#complexity)
 - [In practice](#practice)
 - [Java](#java)
@@ -13,6 +14,12 @@
 - [Kotlin](#kotlin)
 
 ---
+
+<div id="description"/>
+
+## Description
+more details on [wikipedia on Bubble sort](https://en.wikipedia.org/wiki/Bubble_sort)
+
 
 <div id="complexity"/>
 

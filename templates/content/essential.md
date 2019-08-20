@@ -25,7 +25,7 @@
   - [directory traversal](recursive-directory-traversal.html)
 - Sorting
   - [bubble sort](bubble-sort.html)
-  - [insert sort](insert-sort.html)
+  - [insertion sort](insertion-sort.html)
 
 
 
