@@ -20,6 +20,9 @@
 - [Copy to another array](/copy-array.html)
 - [Reverse elements in array](/reverse-array.html)
 - [Binary search](/binary-search.html)
+- [Validate single parentheses](/validate-single-parentheses.html)
+- [Validate multiple parentheses using Stack](/validate-smultiple-parentheses.html)
+- [Count how many times each work appears in text using hash map (associative array](/word-count.html)
 - Recursion
   - [Factorial](/recursive-factorial.html)
   - [Directory traversal](recursive-directory-traversal.html)
