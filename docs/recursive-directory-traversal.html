@@ -89,7 +89,6 @@
 <li><a href="#java">Java</a></li>
 <li><a href="#go">Go</a></li>
 <li><a href="#python">Python</a></li>
-<li><a href="#javascript">JavaScript</a></li>
 <li><a href="#kotlin">Kotlin</a></li>
 </ul>
 
@@ -199,15 +198,32 @@ static void printDirContent(File dir, int tabsCount, boolean ignoreHidden) {
 
 <h2>Python</h2>
 
-<pre><code class="language-python">#  TODO:
+<pre><code class="language-python">import os
+
+
+def print_dir_content(dir_abs, tabs=0, ignore_hidden=True):
+    for f in os.listdir(dir_abs):
+        if ignore_hidden and f.startswith(&quot;.&quot;):
+            continue
+
+        tabs_str = &quot;&quot;.join(&quot;\t&quot; * tabs)
+        print tabs_str + f + &quot;/&quot;
+
+        full_path = os.path.join(dir_abs, f)
+        if os.path.isdir(full_path):
+            print_dir_content(full_path, tabs + 1)
+        else:
+            print &quot;\t&quot; + tabs_str + f
+
+
+print_dir_content(&quot;/full/path/to/directory/&quot;)
 </code></pre>
 
-<p><div id="javascript"/></p>
+<blockquote>
+<p>Note: This example is given for learning recursive approach</p>
 
-<h2>JavaScript</h2>
-
-<pre><code class="language-javascript">// TODO:
-</code></pre>
+<p>Python already has build-in <a href="https://docs.python.org/3/library/os.html#os.walk"><code>os.walk</code></a></p>
+</blockquote>
 
 <p><div id="kotlin"/></p>
 
