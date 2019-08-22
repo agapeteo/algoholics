@@ -13,7 +13,7 @@
 - DFS
  
 #### sorting
-- count how many times each work appears in text using hash map (associative array
+- count how many times each work appears in text using hash map (associative array)
 - Expression evaluation using Dijkstra's two-stack algorithm 
 - two-sum problem
 - merge sort
