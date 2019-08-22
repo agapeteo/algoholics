@@ -1,8 +1,8 @@
 # Novice
 
 ### data structures:
-- Ring buffer
 - Binary search tree
+- Ring buffer
 - Graph
 
 ### algorithms:
@@ -13,7 +13,9 @@
 - DFS
  
 #### sorting
-
+- count how many times each work appears in text using hash map (associative array
+- Expression evaluation using Dijkstra's two-stack algorithm 
+- two-sum problem
 - merge sort
 - quick sort
 

@@ -25,8 +25,8 @@
 - [x] listen to FS to rebuild server
 - [x] code highlight
 - [ ] mobile version
-- [ ] _essential -> in progress_
-- [ ] novice
+- [x] fundamental 
+- [ ] basic -> in progress
 - [ ] advanced
 - [ ] ninja
 - [ ] blog
