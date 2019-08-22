@@ -1,4 +1,4 @@
-# Essential data structures
+# Fundamental data structures
 
 ### Algorithm complexity
 [Algorithm complexity - Big O](/bigo.html)

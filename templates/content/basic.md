@@ -1,4 +1,4 @@
-# Novice
+# Basic data structures
 
 ### data structures:
 - Binary search tree

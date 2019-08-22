@@ -35,4 +35,4 @@
 - [ ] code editor in browser
 - [ ] tests 
 - [ ] payable login
-- 
+- [ ] add script to check not working links
