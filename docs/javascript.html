@@ -232,14 +232,18 @@ You can read about <code>Map</code> and <code>objects</code> difference <a href=
 <h4>basic Map usage</h4>
 
 <pre><code class="language-javascript">const m = new Map();
-m.set(&quot;one&quot;, 1);
-m.get(&quot;one&quot;) // 1
+m.set(&quot;one&quot;, 1); // set valur
+m.get(&quot;one&quot;) // 1 - read value
+m.has(&quot;one&quot;) // true - check if key exist
+m.keys()
 
 // using object 
 const obj = {};
 obj['one'] = 1;
 obj.one; // 1
 </code></pre>
+
+<p>see more details about <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">JavaScript Map here</a></p>
 
 <p><div id="set"/></p>
 

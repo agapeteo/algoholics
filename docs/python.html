@@ -224,7 +224,18 @@ a, b, c = t
 
 <p>create dictionary:</p>
 
-<pre><code class="language-python">d = {&quot;one&quot;: 1, &quot;two&quot;: 2}
+<pre><code class="language-python">d = {&quot;one&quot;: 1, &quot;two&quot;: 2}  # create dict with initialized data
+
+some_dict = {}  # create empty dict
+
+some_dict[&quot;three&quot;] = 3  # set/update value
+
+try:
+    print some_dict[&quot;four&quot;]  # read/get value from dict, throws KeyError if given key is absent
+except KeyError:
+    print &quot;key does not exist int this dictionary&quot;
+
+print &quot;one&quot; in some_dict  # check if dict contains key, O(1)
 </code></pre>
 
 <p>Another options:</p>
