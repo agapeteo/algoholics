@@ -21,8 +21,8 @@ Unlike [multiple parentheses](/validate-multiple-parentheses.html), single paren
 
 Using simple counter is enough: 
 
-- for open parentheses, like `(`, **increment counter**
-- for close parentheses, like `)`, **decrement counter**
+- for open parenthesis, like `(`, **increment counter**
+- for close parenthesis, like `)`, **decrement counter**
 
 To avoid invalid cases like `)(` or `())(` check if `counter == 0`, if so - return `false`
 

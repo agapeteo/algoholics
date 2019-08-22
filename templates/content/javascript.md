@@ -64,15 +64,17 @@ You can read about `Map` and `objects` difference [here](https://developer.mozil
 #### basic Map usage
 ```javascript
 const m = new Map();
-m.set("one", 1);
-m.get("one") // 1
+m.set("one", 1); // set valur
+m.get("one") // 1 - read value
+m.has("one") // true - check if key exist
+m.keys()
 
 // using object 
 const obj = {};
 obj['one'] = 1;
 obj.one; // 1
 ```
-
+see more details about [JavaScript Map here](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map)
 
 <div id="set"/>
 
