@@ -253,6 +253,15 @@ print &quot;one&quot; in some_dict  # check if dict contains key, O(1)
 <p>create set:</p>
 
 <pre><code class="language-python">s = {1, 2, 3}
+
+another_set = set()
+another_set.add(&quot;a&quot;)  # add value
+another_set.update(&quot;c&quot;, &quot;d&quot;)  # adding one or more elements
+another_set = another_set | {&quot;b&quot;}  # joining two sets (union)
+another_set.remove(&quot;c&quot;)  # remove element
+print another_set  # set(['a', 'b', 'd'])
+
+print &quot;'b' found&quot; if &quot;b&quot; in another_set else &quot;'b' is not found&quot;  # check if set contains value
 </code></pre>
  
     </div>

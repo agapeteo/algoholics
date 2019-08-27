@@ -1,0 +1,605 @@
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <meta name="description" content="Binary search tree data structure">
+    <meta name="keywords" content="learn, explain, tutorial, data structures, algorithms, graph, tree, interview, java, golang, kotlin, python, binary search tree">
+
+    <title>  Binary search tree data structure  | Practical algorithms and data structures </title>
+    <link rel='stylesheet' href='/static/styles/styles.css'/>
+    <link rel='stylesheet' href='/static/styles/prism.css'/>
+</head>
+
+<body>
+
+<div class="rootContainer">
+
+    <div class="horizontal-menu-box">
+        
+    <div class="menu">
+    
+    <div class="menuItem">
+        
+            <a href="/index.html" >
+                ABOUT
+            </a>
+        
+    </div>
+
+    
+    <div class="menuItem">
+        
+            <a href="/fundamental.html" >
+                FUNDAMENTAL
+            </a>
+        
+    </div>
+
+    
+    <div class="menuItem">
+        
+            <a href="/basic.html" >
+                BASIC
+            </a>
+        
+    </div>
+
+     
+     <div class="menuItem">
+        
+            <a href="/advanced.html" >
+                ADVANCED
+            </a>
+        
+    </div>
+
+    
+    <div class="menuItem">
+        
+            <a href="/ninja.html" >
+                NINJA
+            </a>
+        
+    </div>
+
+    
+    <div class="menuItem">
+        
+            <a href="/languages.html" >
+                LANGUAGES
+            </a>
+        
+    </div>
+
+</div>
+
+    </div>
+
+    <div class="content">
+         <h1>Binary search tree</h1>
+
+<h2>Contents</h2>
+
+<hr />
+
+<ul>
+<li><a href="#description">Binary search description</a></li>
+<li><a href="#java">Java</a></li>
+<li><a href="#go">Go</a></li>
+<li><a href="#python">Python</a></li>
+<li><a href="#javascript">JavaScript</a></li>
+<li><a href="#kotlin">Kotlin</a></li>
+</ul>
+
+<hr />
+
+<p><div id="description" /></p>
+
+<h2>Binary search tree</h2>
+
+<p>Most operations <code>O log(N)</code></p>
+
+<p><div id="java"/></p>
+
+<h2>Java</h2>
+
+<pre><code class="language-java">package tree;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class UnbalancedBinarySearchTree&lt;E extends Comparable&lt;E&gt;&gt; {
+    static class Node&lt;E&gt; {
+        E value;
+        Node&lt;E&gt; left;
+        Node&lt;E&gt; right;
+
+        Node(E value) {
+            this.value = value;
+        }
+    }
+
+    private Node&lt;E&gt; root;
+
+    public void add(E value) {
+        if (root == null) {
+            root = new Node&lt;&gt;(value);
+            return;
+        }
+        addToRootNode(root, value);
+    }
+
+    private void addToRootNode(Node&lt;E&gt; rootNode, E value) {
+        if (value.compareTo(rootNode.value) &lt;= 0) {
+            if (rootNode.left == null) {
+                rootNode.left = new Node&lt;&gt;(value);
+            } else {
+                addToRootNode(rootNode.left, value);
+            }
+        } else {
+            if (rootNode.right == null) {
+                rootNode.right = new Node&lt;&gt;(value);
+            } else {
+                addToRootNode(rootNode.right, value);
+            }
+        }
+    }
+
+    public boolean contains(E value) {
+        return rootNodeContains(root, value);
+    }
+
+    private boolean rootNodeContains(Node&lt;E&gt; rootNode, E value) {
+        if (rootNode == null) return false;
+
+        if (value == rootNode.value) return true;
+
+        if (value.compareTo(rootNode.value) &lt; 0) {
+            return rootNodeContains(rootNode.left, value);
+        } else {
+            return rootNodeContains(rootNode.right, value);
+        }
+    }
+
+    public List&lt;E&gt; elementsSorted() {
+        List&lt;E&gt; result = new ArrayList&lt;&gt;();
+        appendSortedForRootNode(root, result);
+        return result;
+    }
+
+    private void appendSortedForRootNode(Node&lt;E&gt; rootNode, List&lt;E&gt; elements) {
+        if (rootNode == null) return;
+
+        appendSortedForRootNode(rootNode.left, elements);
+        elements.add(rootNode.value);
+        appendSortedForRootNode(rootNode.right, elements);
+    }
+
+    public int depth() {
+        return depthFromNode(root, 0);
+    }
+
+    private int depthFromNode(Node&lt;E&gt; node, int curDepth) {
+        if (node == null || (node.left == null &amp;&amp; node.right == null)) {
+            return curDepth;
+        }
+
+        return Math.max(
+                depthFromNode(node.left, curDepth + 1),
+                depthFromNode(node.right, curDepth + 1)
+        );
+    }
+}
+
+</code></pre>
+
+<p><div id="go"/></p>
+
+<h2>Go</h2>
+
+<pre><code class="language-go">package tree
+
+type node struct {
+	value int
+	left *node
+	right *node
+}
+
+func newNode(value int) *node{
+	return &amp;node{value, nil, nil}
+}
+
+type UnbalancedBinarySearchTree struct {
+	root *node
+}
+
+func (t *UnbalancedBinarySearchTree) Add(newValue int) {
+	if t.root == nil{
+		t.root = newNode(newValue)
+		return
+	}
+
+	addToNode(t.root, newValue)
+}
+
+func addToNode(n *node, newValue int) {
+	if newValue &lt;= n.value {
+		if n.left == nil{
+			n.left = newNode(newValue)
+		} else {
+			addToNode(n.left, newValue)
+		}
+	} else {
+		if n.right == nil {
+			n.right = newNode(newValue)
+		} else {
+			addToNode(n.right, newValue)
+		}
+	}
+}
+
+func (t *UnbalancedBinarySearchTree) OrderedElements() []int{
+	if t.root == nil {
+		return make([]int, 0)
+	}
+
+	var result = addToSlice(t.root, make([]int, 0))
+
+	return result
+}
+
+func addToSlice(n *node, values []int) []int {
+	if n == nil {
+		return values
+	}
+
+	values = addToSlice(n.left, values)
+	values = append(values, n.value)
+	values = addToSlice(n.right, values)
+
+	return values
+}
+
+func (t UnbalancedBinarySearchTree) Contains(value int) bool{
+	if t.root == nil {
+		return false
+	}
+
+	return containsInNode(t.root, value)
+}
+
+func containsInNode(n *node, value int) bool {
+	if n.value == value{
+		return true
+	}
+
+	if value &lt; n.value{
+		if n.left == nil{
+			return false
+		} else {
+			return containsInNode(n.left, value)
+		}
+	} else {
+		if n.right == nil{
+			return false
+		} else {
+			return containsInNode(n.right, value)
+		}
+	}
+}
+
+func (t *UnbalancedBinarySearchTree) Depth() int{
+	if t.root == nil{
+		return 0
+	}
+
+	return nodeDepth(t.root, 0)
+}
+
+func nodeDepth(n *node, curDepth int) int {
+	var leftDepth = curDepth
+	var rightDepth = curDepth
+
+	if n.left != nil {
+		leftDepth = nodeDepth(n.left, curDepth + 1)
+	}
+
+	if n.right != nil {
+		rightDepth = nodeDepth(n.right, curDepth + 1)
+	}
+
+	if leftDepth &gt; rightDepth{
+		return leftDepth
+	} else {
+		return rightDepth
+	}
+}
+
+</code></pre>
+
+<p><div id="python"/></p>
+
+<h2>Python</h2>
+
+<pre><code class="language-python">class Node:
+    def __init__(self, input_value):
+        self.value = input_value
+        self.left = None
+        self.right = None
+
+
+class Tree:
+    def __init__(self):
+        self.root = None
+        pass
+
+    def add(self, input_value):
+        if not self.root:
+            self.root = Node(input_value)
+            return
+        self.add_to_node(self.root, input_value)
+
+    def add_to_node(self, root_node, input_value):
+        if input_value &lt;= root_node.value:
+            if not root_node.left:
+                root_node.left = Node(input_value)
+            else:
+                self.add_to_node(root_node.left, input_value)
+        else:
+            if not root_node.right:
+                root_node.right = Node(input_value)
+            else:
+                self.add_to_node(root_node.right, input_value)
+
+    def __contains__(self, input_value):
+        return self.contains_from_node(self.root, input_value)
+
+    def contains_from_node(self, root_node, input_value):
+        if not root_node:
+            return False
+        if root_node.value == input_value:
+            return True
+        if input_value &lt; root_node.value:
+            return self.contains_from_node(root_node.left, input_value)
+        else:
+            return self.contains_from_node(root_node.right, input_value)
+
+    def elements_sorted(self):
+        result_list = []
+        self.elements_sorted_from_node(self.root, result_list)
+        return result_list
+
+    def elements_sorted_from_node(self, root_node, input_list):
+        if not root_node:
+            return
+        self.elements_sorted_from_node(root_node.left, input_list)
+        input_list.append(root_node.value)
+        self.elements_sorted_from_node(root_node.right, input_list)
+
+</code></pre>
+
+<p><div id="javascript"/></p>
+
+<h2>JavaScript</h2>
+
+<pre><code class="language-javascript">function Node(inputValue) {
+  this.value = inputValue
+  this.left
+  this.right
+}
+
+class Tree {
+  constructor(){
+    this.root;
+  }
+
+  add(value) {
+    if (!this.root) {
+      this.root = new Node(value)
+      return
+      
+    }
+    this.addToNode(this.root, value)
+  }
+
+  addToNode(node, value){
+    if (value &lt;= node.value) {
+      if (!node.left) {
+        node.left = new Node(value)
+      } else {
+        this.addToNode(node.left, value)
+      }
+    } else {
+      if (!node.right) {
+        node.right = new Node(value )
+      } else {
+        this.addToNode(node.right, value)
+      }
+    }   
+  }
+
+  contains(value) {
+    return this.containsInNode(this.root, value)
+  }
+
+  containsInNode(node, value) {
+    if (!node) return false
+   
+    if (node.value == value) return true
+
+    if (value &lt; node.value) {
+      return this.containsInNode(node.left, value)
+    } else {
+      return this.containsInNode(node.right, value)
+    }   
+  }
+
+  elements(){    
+    result = []
+    this.elementsForNode(this.root, result)
+    return result
+  }
+
+  elementsForNode(node, arr) {
+    if (node == null) {
+      return
+    }
+    this.elementsForNode(node.left, arr)
+    arr.push(node.value)
+    this.elementsForNode(node.right, arr)
+  }
+
+  depth() {
+    return this.depthForNode(this.root, 0)
+  }
+  
+  depthForNode(node, curDepth) {
+    if (!node || (!node.left &amp;&amp; !node.right)) return curDepth
+    return Math.max(
+      this.depthForNode(node.left, curDepth + 1),
+      this.depthForNode(node.right, curDepth + 1),
+    )
+  }
+  
+}
+</code></pre>
+
+<p><div id="kotlin"/></p>
+
+<h2>Kotlin</h2>
+
+<p>interface:</p>
+
+<pre><code class="language-kotlin">package tree
+
+interface BinarySearchTree&lt;E : Comparable&lt;E&gt;&gt; {
+    fun add(value: E)
+    fun elements(): List&lt;E&gt;
+    fun contains(value: E): Boolean
+    fun orderedElements(): List&lt;E&gt;
+    fun depth(): Int
+}
+</code></pre>
+
+<p>implementation:</p>
+
+<pre><code class="language-kotlin"> package tree
+ 
+ import kotlin.math.max
+ 
+ class UnbalancedBinarySearchTree&lt;E : Comparable&lt;E&gt;&gt; : BinarySearchTree&lt;E&gt; {
+ 
+     private var root: Node&lt;E&gt;? = null
+ 
+     private data class Node&lt;E&gt;(val value: E, var left: Node&lt;E&gt;? = null, var right: Node&lt;E&gt;? = null)
+ 
+     override fun add(value: E) {
+         if (root == null) {
+             root = Node(value)
+             return
+         }
+ 
+         addNode(root!!, value)
+     }
+ 
+     private fun addNode(rootNode: Node&lt;E&gt;, value: E) {
+         if (value &lt;= rootNode.value) {
+             if (rootNode.left == null) {
+                 rootNode.left = Node(value)
+             } else {
+                 addNode(rootNode.left!!, value)
+             }
+         } else {
+             if (rootNode.right == null) {
+                 rootNode.right = Node(value)
+             } else {
+                 addNode(rootNode.right!!, value)
+             }
+         }
+     }
+ 
+     override fun elements(): List&lt;E&gt; {
+         if (root == null) return listOf()
+ 
+         val result = mutableListOf&lt;E&gt;()
+ 
+         addRootElements(root, result)
+ 
+         return result
+     }
+ 
+     private fun addRootElements(root: Node&lt;E&gt;?, list: MutableList&lt;E&gt;) {
+         if (root == null) return
+ 
+         list.add(root.value)
+         addRootElements(root.left, list)
+         addRootElements(root.right, list)
+     }
+ 
+     override fun contains(value: E): Boolean {
+         if (root == null) return false
+ 
+         return containsFromRoot(root, value)
+     }
+ 
+     private fun containsFromRoot(root: Node&lt;E&gt;?, value: E): Boolean {
+         if (root == null) return false
+ 
+         if (root.value == value) return true
+ 
+         return if (value &lt; root.value) {
+             containsFromRoot(root.left, value)
+         } else {
+             containsFromRoot(root.right, value)
+         }
+     }
+ 
+     override fun orderedElements(): List&lt;E&gt; {
+         if (root == null) return listOf()
+ 
+         val result = mutableListOf&lt;E&gt;()
+         addElement(root, result)
+         return result
+     }
+ 
+     private fun addElement(node: Node&lt;E&gt;?, list: MutableList&lt;E&gt;) {
+         if (node == null) return
+ 
+         addElement(node.left, list)
+         list.add(node.value)
+         addElement(node.right, list)
+     }
+ 
+     override fun depth(): Int {
+         if (root == null) return 0
+ 
+         return depthNode(root!!, 0)
+     }
+ 
+     private fun depthNode(node: Node&lt;E&gt;, curDepth: Int): Int {
+         return max(
+                 if (node.left == null) {
+                     curDepth
+                 } else {
+                     depthNode(node.left!!, curDepth + 1)
+                 }, if (node.right == null) {
+             curDepth
+         } else {
+             depthNode(node.right!!, curDepth + 1)
+         })
+     }     
+ }
+
+</code></pre>
+ 
+    </div>
+
+</div>
+
+
+<script src="/static/js/prism.js"></script>
+</body>
+</html>
+
