@@ -2,7 +2,7 @@
 
 ### data structures:
 - [Binary search tree](/binary-search-tree.html)
-- Graph
+- [Graph](/graph.html)
 - Ring buffer
 
 
@@ -10,11 +10,6 @@
 
 #### Tree related
 - lowest common ancestor 
-
-#### graph related
-
-- BFS
-- DFS
 - count how many times each work appears in text using hash map (associative array)
  
  

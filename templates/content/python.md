@@ -86,6 +86,15 @@ Another options:
 create set:
 ```python
 s = {1, 2, 3}
+
+another_set = set()
+another_set.add("a")  # add value
+another_set.update("c", "d")  # adding one or more elements
+another_set = another_set | {"b"}  # joining two sets (union)
+another_set.remove("c")  # remove element
+print another_set  # set(['a', 'b', 'd'])
+
+print "'b' found" if "b" in another_set else "'b' is not found"  # check if set contains value
 ```
 
 
