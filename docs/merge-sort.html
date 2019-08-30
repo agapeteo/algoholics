@@ -1,0 +1,386 @@
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <meta name="description" content="Merge sort algorithm">
+    <meta name="keywords" content="learn, explain, tutorial, data structures, algorithms, graph, tree, interview, java, golang, kotlin, python, sorting, merge sort">
+
+    <title>  Merge sort algorithm  | Practical algorithms and data structures </title>
+    <link rel='stylesheet' href='/static/styles/styles.css'/>
+    <link rel='stylesheet' href='/static/styles/prism.css'/>
+</head>
+
+<body>
+
+<div class="rootContainer">
+
+    <div class="horizontal-menu-box">
+        
+    <div class="menu">
+    
+    <div class="menuItem">
+        
+            <a href="/index.html" >
+                ABOUT
+            </a>
+        
+    </div>
+
+    
+    <div class="menuItem">
+        
+            <a href="/fundamental.html" >
+                FUNDAMENTAL
+            </a>
+        
+    </div>
+
+    
+    <div class="menuItem">
+        
+            <a href="/basic.html" >
+                BASIC
+            </a>
+        
+    </div>
+
+     
+     <div class="menuItem">
+        
+            <a href="/advanced.html" >
+                ADVANCED
+            </a>
+        
+    </div>
+
+    
+    <div class="menuItem">
+        
+            <a href="/ninja.html" >
+                NINJA
+            </a>
+        
+    </div>
+
+    
+    <div class="menuItem">
+        
+            <a href="/languages.html" >
+                LANGUAGES
+            </a>
+        
+    </div>
+
+</div>
+
+    </div>
+
+    <div class="content">
+         <h1>Merge sort</h1>
+
+<h2>Contents</h2>
+
+<hr />
+
+<ul>
+<li><a href="#description">Description</a></li>
+<li><a href="#complexity">Complexity</a></li>
+<li><a href="#practice">In practice</a></li>
+<li><a href="#java">Java</a></li>
+<li><a href="#go">Go</a></li>
+<li><a href="#python">Python</a></li>
+<li><a href="#javascript">JavaScript</a></li>
+<li><a href="#kotlin">Kotlin</a></li>
+</ul>
+
+<hr />
+
+<p><div id="description"/></p>
+
+<h2>Description</h2>
+
+<p>Stable
+more details on <a href="https://en.wikipedia.org/wiki/Merge_sort">wikipedia on Merge sort</a></p>
+
+<p><div id="complexity"/></p>
+
+<h2>Complexity</h2>
+
+<p><code>O(N log(N))</code></p>
+
+<p><div id="practice"/></p>
+
+<h2>In practice</h2>
+
+<p><code>Merge sort</code> for sorting collection that doesn&rsquo;t fit memory</p>
+
+<p><div id="java"/></p>
+
+<h2>Java</h2>
+
+<pre><code class="language-java">package sort;
+
+import java.util.ArrayList;
+import java.util.List;
+
+
+public class MergeSort {
+
+    /**
+     * Using Lists for better support of generics. Same algorithms applies to arrays
+     **/
+    public static &lt;T extends Comparable&lt;? super T&gt;&gt; void mergeSort(List&lt;T&gt; listToSort) {
+        if (listToSort == null || listToSort.size() &lt; 2) return;
+
+        List&lt;T&gt; tmpList = new ArrayList&lt;&gt;(listToSort); // temporarily container to keep data for merge sort
+
+        mergeSort(listToSort, tmpList, 0, listToSort.size() - 1); // high index inclusive
+    }
+
+    private static &lt;T extends Comparable&lt;? super T&gt;&gt; void mergeSort(List&lt;T&gt; listToSort, List&lt;T&gt; tmpList, int lowIdx, int highIdx) {
+        if (lowIdx &gt;= highIdx) return;
+
+        int middleIdx = lowIdx + (highIdx - lowIdx) / 2;
+        mergeSort(listToSort, tmpList, lowIdx, middleIdx); //  sort left side
+        mergeSort(listToSort, tmpList, middleIdx + 1, highIdx); // sort right side
+
+        merge(listToSort, tmpList, lowIdx, middleIdx, highIdx); // merge sorted from left and right sides
+    }
+
+    private static &lt;T extends Comparable&lt;? super T&gt;&gt; void merge(List&lt;T&gt; listToSort, List&lt;T&gt; tmpList, int lowIdx, int middleIdx, int highIdx) {
+        for (int i = lowIdx; i &lt;= highIdx; i++) {
+            tmpList.set(i, listToSort.get(i));
+        }
+
+        int leftIdx = lowIdx;
+        int rightIdx = middleIdx + 1;
+        int curIdx = leftIdx;
+
+        while (leftIdx &lt;= middleIdx &amp;&amp; rightIdx &lt;= highIdx) {
+            if (tmpList.get(leftIdx).compareTo(tmpList.get(rightIdx)) &lt; 0) {
+                listToSort.set(curIdx, tmpList.get(leftIdx));
+                leftIdx++;
+            } else {
+                listToSort.set(curIdx, tmpList.get(rightIdx));
+                rightIdx++;
+            }
+            curIdx++;
+        }
+
+        int remainingCount = middleIdx - leftIdx;
+        for (int i = 0; i &lt;= remainingCount; i++) {
+            listToSort.set(curIdx + i, tmpList.get(leftIdx + i));
+        }
+    }
+}
+
+</code></pre>
+
+<p><div id="go"/></p>
+
+<h2>Go</h2>
+
+<pre><code class="language-go">package sort
+
+func MergeSort(inputSlice []int) {
+	if len(inputSlice) &lt; 2 {
+		return
+	}
+	tmpSlice := make([]int, len(inputSlice), len(inputSlice))
+	mergeSortRange(inputSlice, tmpSlice, 0, len(inputSlice)-1)
+}
+
+func mergeSortRange(inputSlice, tmpSlice []int, lowIdx, highIdx int) {
+	if lowIdx &gt;= highIdx {
+		return
+	}
+	midIdx := lowIdx + (highIdx-lowIdx)/2
+	mergeSortRange(inputSlice, tmpSlice, lowIdx, midIdx)
+	mergeSortRange(inputSlice, tmpSlice, midIdx+1, highIdx)
+
+	merge(inputSlice, tmpSlice, lowIdx, midIdx, highIdx)
+}
+
+func merge(inputSlice, tmpSlice []int, lowIdx, midIdx, highIdx int) {
+	for i := lowIdx; i &lt;= highIdx; i++ {
+		tmpSlice[i] = inputSlice[i]
+	}
+
+	leftIdx := lowIdx
+	rightIdx := midIdx + 1
+	curIdx := leftIdx
+
+	for leftIdx &lt;= midIdx &amp;&amp; rightIdx &lt;= highIdx {
+		if tmpSlice[leftIdx] &lt;= tmpSlice[rightIdx] {
+			inputSlice[curIdx] = tmpSlice[leftIdx]
+			leftIdx++
+		} else {
+			inputSlice[curIdx] = tmpSlice[rightIdx]
+			rightIdx++
+		}
+		curIdx++
+	}
+
+	remaining := midIdx - leftIdx
+	for i := 0; i &lt;= remaining; i++ {
+		inputSlice[curIdx+i] = tmpSlice[leftIdx+i]
+	}
+}
+
+</code></pre>
+
+<p><div id="python"/></p>
+
+<h2>Python</h2>
+
+<pre><code class="language-python">def merge(input_list, tmp_list, low_idx, mid_idx, high_idx):
+    for i in range(low_idx, high_idx + 1):
+        tmp_list[i] = input_list[i]
+
+    left_idx = low_idx
+    right_idx = mid_idx + 1
+    cur_idx = left_idx
+
+    while left_idx &lt;= mid_idx and right_idx &lt;= high_idx:
+        if tmp_list[left_idx] &lt;= tmp_list[right_idx]:
+            input_list[cur_idx] = tmp_list[left_idx]
+            left_idx = left_idx + 1
+        else:
+            input_list[cur_idx] = tmp_list[right_idx]
+            right_idx = right_idx + 1
+        cur_idx = cur_idx + 1
+
+    remaining = mid_idx - left_idx
+    for i in range(0, remaining + 1):
+        input_list[cur_idx + i] = tmp_list[left_idx + i]
+
+
+def merge_sort_range(input_list, tmp_list, low_idx, high_idx):
+    if low_idx &gt;= high_idx:
+        return
+
+    mid_idx = low_idx + (high_idx - low_idx) / 2
+    merge_sort_range(input_list, tmp_list, low_idx, mid_idx)
+    merge_sort_range(input_list, tmp_list, mid_idx + 1, high_idx)
+
+    merge(input_list, tmp_list, low_idx, mid_idx, high_idx)
+
+
+def merge_sort(input_list):
+    if len(input_list) &lt; 2:
+        return
+
+    tmp_list = [None] * len(input_list)
+    merge_sort_range(input_list, tmp_list, 0, len(input_list) - 1)
+</code></pre>
+
+<p><div id="javascript"/></p>
+
+<h2>JavaScript</h2>
+
+<pre><code class="language-javascript">function mergeSort(inputArr) {
+  if (inputArr.length &lt; 2) return inputArr
+
+  const tmpArr = Array(inputArr.length).fill({})
+
+  mergeSortRange(inputArr, tmpArr, 0, inputArr.length - 1)
+}
+
+function mergeSortRange(inputArr, tmpArr, lowIdx, highIdx) {
+  if (lowIdx &gt;= highIdx) return
+
+  const midIdx = Math.floor(lowIdx + (highIdx - lowIdx)/2)  
+  mergeSortRange(inputArr, tmpArr, lowIdx, midIdx)
+  mergeSortRange(inputArr, tmpArr, midIdx + 1, highIdx)
+
+  merge(inputArr, tmpArr, lowIdx, midIdx, highIdx)
+}
+
+function merge(inputArr, tmpArr, lowIdx, midIdx, highIdx) {
+  for (i = lowIdx; i &lt;= highIdx; i++) {
+    tmpArr[i] = inputArr[i]
+  }
+
+  let leftIdx = lowIdx
+  let rightIdx = midIdx + 1
+  let curIdx = lowIdx
+
+  while (leftIdx &lt;= midIdx &amp;&amp; rightIdx &lt;= highIdx) {
+    if (tmpArr[leftIdx] &lt;= tmpArr[rightIdx]) {
+      inputArr[curIdx] = tmpArr[leftIdx]
+      leftIdx++
+    } else {
+      inputArr[curIdx] = tmpArr[rightIdx]
+      rightIdx++
+    }
+    curIdx++
+  }
+  const remaining = midIdx - leftIdx
+  for (i = 0; i &lt;= remaining; i++) {
+    inputArr[curIdx + i] = tmpArr[leftIdx + i]
+  }
+}
+</code></pre>
+
+<p><div id="kotlin"/></p>
+
+<h2>Kotlin</h2>
+
+<pre><code class="language-kotlin">package sort
+
+import java.util.ArrayList
+
+
+fun &lt;T : Comparable&lt;in T&gt;&gt; mergeSort(
+        listToSort: MutableList&lt;T&gt;,
+        tmpList: MutableList&lt;T&gt; = ArrayList(listToSort),
+        lowIdx: Int = 0, highIdx: Int = listToSort.size - 1) {
+
+    if (lowIdx &gt;= highIdx || listToSort.size &lt; 2) return
+
+    val middleIdx = lowIdx + (highIdx - lowIdx) / 2
+    mergeSort(listToSort, tmpList, lowIdx, middleIdx) //  sort left side
+    mergeSort(listToSort, tmpList, middleIdx + 1, highIdx) // sort right side
+
+    merge(listToSort, tmpList, lowIdx, middleIdx, highIdx) // merge sorted from left and right sides
+}
+
+private fun &lt;T : Comparable&lt;T&gt;&gt; merge(listToSort: MutableList&lt;T&gt;, tmpList: MutableList&lt;T&gt;, lowIdx: Int, middleIdx: Int, highIdx: Int) {
+    for (i in lowIdx..highIdx) {
+        tmpList[i] = listToSort[i]
+    }
+    
+    var leftIdx = lowIdx
+    var rightIdx = middleIdx + 1
+    var curIdx = leftIdx
+
+    while (leftIdx &lt;= middleIdx &amp;&amp; rightIdx &lt;= highIdx) {
+        if (tmpList[leftIdx] &lt;= (tmpList[rightIdx])) {
+            listToSort[curIdx] = tmpList[leftIdx]
+            leftIdx++
+        } else {
+            listToSort[curIdx] = tmpList[rightIdx]
+            rightIdx++
+        }
+        curIdx++
+    }
+
+    val remainingCount = middleIdx - leftIdx
+    for (i in 0..remainingCount) {
+        listToSort[curIdx + i] = tmpList[leftIdx + i]
+    }
+}
+
+</code></pre>
+ 
+    </div>
+
+</div>
+
+
+<script src="/static/js/prism.js"></script>
+</body>
+</html>
+
