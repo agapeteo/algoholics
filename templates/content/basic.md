@@ -18,7 +18,7 @@
 - Expression evaluation using Dijkstra's two-stack algorithm 
 - two-sum problem
 - [merge sort](/merge-sort.html)
-- quick sort
+- [quick sort](/quick-sort.html)
 
 
 
