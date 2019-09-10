@@ -1,4 +1,5 @@
-# Queue
+# Ring Buffer 
+# Circular buffer
 
 ## Contents
 ---
