@@ -3,7 +3,7 @@
 ### data structures:
 - [Binary search tree](/binary-search-tree.html)
 - [Graph](/graph.html)
-- Ring buffer
+- [Ring buffer](/ring-buffer.html)
 
 
 ### algorithms:
