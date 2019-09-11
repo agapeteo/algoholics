@@ -21,4 +21,9 @@
 - [quick sort](/quick-sort.html)
 
 
+Other: 
+
+- [remove duplicates in-place](/remove-duplicates-inplace.html)
+
+
 
