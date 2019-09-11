@@ -1,0 +1,203 @@
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <meta name="description" content="Remove duplicates in-place">
+    <meta name="keywords" content="learn, explain, tutorial, data structures, algorithms, graph, tree, interview, java, golang, kotlin, python, remove duplicates in-place">
+
+    <title>  Remove duplicates in-place  | Practical algorithms and data structures </title>
+    <link rel='stylesheet' href='/static/styles/styles.css'/>
+    <link rel='stylesheet' href='/static/styles/prism.css'/>
+</head>
+
+<body>
+
+<div class="rootContainer">
+
+    <div class="horizontal-menu-box">
+        
+    <div class="menu">
+    
+    <div class="menuItem">
+        
+            <a href="/index.html" >
+                ABOUT
+            </a>
+        
+    </div>
+
+    
+    <div class="menuItem">
+        
+            <a href="/fundamental.html" >
+                FUNDAMENTAL
+            </a>
+        
+    </div>
+
+    
+    <div class="menuItem">
+        
+            <a href="/basic.html" >
+                BASIC
+            </a>
+        
+    </div>
+
+     
+     <div class="menuItem">
+        
+            <a href="/advanced.html" >
+                ADVANCED
+            </a>
+        
+    </div>
+
+    
+    <div class="menuItem">
+        
+            <a href="/ninja.html" >
+                NINJA
+            </a>
+        
+    </div>
+
+    
+    <div class="menuItem">
+        
+            <a href="/languages.html" >
+                LANGUAGES
+            </a>
+        
+    </div>
+
+</div>
+
+    </div>
+
+    <div class="content">
+         <h1>Remove duplicates in-place</h1>
+
+<h2>Contents</h2>
+
+<hr />
+
+<ul>
+<li><a href="#java">Java</a></li>
+<li><a href="#go">Go</a></li>
+<li><a href="#python">Python</a></li>
+<li><a href="#javascript">JavaScript</a></li>
+<li><a href="#kotlin">Kotlin</a></li>
+</ul>
+
+<hr />
+
+<p><div id="java"/></p>
+
+<h2>Java</h2>
+
+<pre><code class="language-java">package arrays;
+
+import java.util.Arrays;
+
+public class InPlaceDuplicateRemoval {
+
+    public static int remove(Object[] arr) {
+        Arrays.sort(arr);
+        int i = 0;
+        for (int j = 1; j &lt; arr.length; j++) {
+            if (!arr[j].equals(arr[i])) {
+                arr[i + 1] = arr[j];
+                i++;
+            }
+        }
+        return i;
+    }
+}
+</code></pre>
+
+<p><div id="go"/></p>
+
+<h2>Go</h2>
+
+<pre><code class="language-go">package arrays
+
+import &quot;sort&quot;
+
+func RemoveDuplicates(arr []string) int {
+	sort.Strings(arr)
+	i := 0
+	for j := 1; j &lt; len(arr); j++ {
+		if arr[j] != arr[i] {
+			arr[i+1] = arr[j]
+			i++
+		}
+	}
+	return i
+}
+
+</code></pre>
+
+<p><div id="python"/></p>
+
+<h2>Python</h2>
+
+<pre><code class="language-python">def inplace_deduplicate(in_list):
+    in_list.sort()
+    i = 0
+    for j in range(1, len(in_list)):
+        if in_list[j] != in_list[i]:
+            in_list[i + 1] = in_list[j]
+            i = i + 1
+    return i
+</code></pre>
+
+<p><div id="javascript"/></p>
+
+<h2>JavaScript</h2>
+
+<pre><code class="language-javascript">const inPlaceRemoval = arr =&gt; {
+  arr.sort()
+  let i = 0
+  for (j = 1; j &lt; arr.length; j++) {
+    if (arr[j] != arr[i]) {
+      arr[i + 1] = arr[j]
+      i++
+    }
+  }
+  return i
+}
+</code></pre>
+
+<p><div id="kotlin"/></p>
+
+<h2>Kotlin</h2>
+
+<pre><code class="language-kotlin">package arrays
+
+object InPlaceDuplicateRemoval {
+    fun &lt;T&gt; remove(arr: Array&lt;T&gt;): Int {
+        arr.sort()
+        var i = 0
+        for (j in 1 until arr.size) {
+            if (arr[j] != arr[i]) {
+                arr[i + 1] = arr[j]
+                i++
+            }
+        }
+        return i
+    }
+}
+</code></pre>
+ 
+    </div>
+
+</div>
+
+
+<script src="/static/js/prism.js"></script>
+</body>
+</html>
+
