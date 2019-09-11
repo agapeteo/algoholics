@@ -28,6 +28,7 @@
 - Sorting
   - [Bubble sort](bubble-sort.html)
   - [Insertion sort](insertion-sort.html)
+- [Word count using map](/word-count.html)
 
 
 

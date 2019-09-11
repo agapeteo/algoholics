@@ -26,12 +26,21 @@ More details on [wikipedia on Quick sort](https://en.wikipedia.org/wiki/Quicksor
 
 2 approaches:
 
-- Lomuto
+- [Lomuto](https://upload.wikimedia.org/wikipedia/commons/8/84/Lomuto_animated.gif)
 - Hoare
 
-TODO: on checking pivot
-TODO: steps
-TODO: other optimizations
+Hoare's approach is used more often in practice than Lomuto's because it causes less swaps.
+But Hoare's approach is very very error prone. It's easy to get into infinite loop or incorrectly treat duplicate values, especially last swap
+
+see more details about [Hoare vs Lomuto](https://cs.stackexchange.com/questions/11458/quicksort-partitioning-hoare-vs-lomuto)
+
+
+Other optimization:
+
+- using insertion sort for small array ranges, f.e. less than 20
+- choosing pivot as median in sort range
+- 3-way partition - partition array range into 3 parts: less than pivot, equal to pivot and more than pivot
+
 
 
 
@@ -240,6 +249,7 @@ func partitionHoare(arr []int, lowIdx, highIdx int) int {
 
 ```
 
+see also Go's implementation of quick sort in [sort package](https://golang.org/src/sort/sort.go)
 
 
 <div id="python"/>
