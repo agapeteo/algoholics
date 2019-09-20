@@ -10,7 +10,6 @@
 
 #### Tree related
 - lowest common ancestor 
-- count how many times each work appears in text using hash map (associative array)
  
  
 #### sorting
