@@ -34,6 +34,11 @@ create list:
 l = [1, 2, 3]
 ```
 
+create empty list of specified size:
+```python
+list_size = 12
+some_list = [None] * list_size
+```
 
 List of notable methods:
 

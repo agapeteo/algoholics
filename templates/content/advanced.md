@@ -6,6 +6,7 @@
 - Heap
 
 
+
 ### algorithms:
 - Node removal from BST
 - Union find
@@ -14,6 +15,12 @@
 - graph degree of separation in graph 
 - graph reachability
 - graph shortest path
+- topological sort
+- radix sort
+- bucket sort
+- expression evaluation using Dijkstra's two-stack algorithm
+- generate permutation of string
+
 
 
 

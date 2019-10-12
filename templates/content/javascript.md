@@ -25,6 +25,14 @@ var arr = [0, 1, 2];
 var anotherArray = new Array("a", "b", "c");
 ```
 
+create empty array of specified length:
+```javascript
+const arrLength = 5;
+const arr = Array(arrLength).fill({});
+// or
+const arr = Array(arrLength).fill(null);
+```
+
 Notable array methods:
 
 method | description | returns | note
