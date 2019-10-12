@@ -1,4 +1,4 @@
-# Topology sort
+# Topological sort
 
 ## Contents
 

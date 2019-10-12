@@ -15,7 +15,7 @@
 - graph degree of separation in graph 
 - graph reachability
 - graph shortest path
-- topological sort
+- [topological sort](/topological-sort.html)
 - radix sort
 - bucket sort
 - expression evaluation using Dijkstra's two-stack algorithm
