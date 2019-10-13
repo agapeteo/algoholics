@@ -1,0 +1,328 @@
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <meta name="description" content="Kruskal Minimum Spanning Tree">
+    <meta name="keywords" content="learn, explain, tutorial, data structures, algorithms, graph, tree, interview, java, golang, kotlin, python, sorting, directed graph, topological sort, DAG">
+
+    <title>  Topology sort algorithm  | Practical algorithms and data structures </title>
+    <link rel='stylesheet' href='/static/styles/styles.css'/>
+    <link rel='stylesheet' href='/static/styles/prism.css'/>
+</head>
+
+<body>
+
+<div class="rootContainer">
+
+    <div class="horizontal-menu-box">
+        
+    <div class="menu">
+    
+    <div class="menuItem">
+        
+            <a href="/index.html" >
+                ABOUT
+            </a>
+        
+    </div>
+
+    
+    <div class="menuItem">
+        
+            <a href="/fundamental.html" >
+                FUNDAMENTAL
+            </a>
+        
+    </div>
+
+    
+    <div class="menuItem">
+        
+            <a href="/basic.html" >
+                BASIC
+            </a>
+        
+    </div>
+
+     
+     <div class="menuItem">
+        
+            <a href="/advanced.html" >
+                ADVANCED
+            </a>
+        
+    </div>
+
+    
+    <div class="menuItem">
+        
+            <a href="/ninja.html" >
+                NINJA
+            </a>
+        
+    </div>
+
+    
+    <div class="menuItem">
+        
+            <a href="/languages.html" >
+                LANGUAGES
+            </a>
+        
+    </div>
+
+</div>
+
+    </div>
+
+    <div class="content">
+         <h1>Minimum Spanning Tree</h1>
+
+<h2>Contents</h2>
+
+<hr />
+
+<ul>
+<li><a href="#minimum-spanning-tree">Minimum Spanning Tree</a>
+
+<ul>
+<li><a href="#contents">Contents</a></li>
+<li><a href="#java">Java</a></li>
+</ul></li>
+</ul>
+
+<hr />
+
+<p><div id="java"/></p>
+
+<h2>Java</h2>
+
+<pre><code class="language-java">package io.algoholics.graph.mst;
+
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+public class DisjointSet&lt;T&gt; {
+    private final Map&lt;T, T&gt; parents;
+    private final Map&lt;T, Integer&gt; heights;
+    private int count;
+
+    public DisjointSet() {
+        this(null);
+    }
+
+    public DisjointSet(Collection&lt;T&gt; elements) {
+        if (null == elements || elements.isEmpty()) {
+            parents = new HashMap&lt;&gt;();
+            heights = new HashMap&lt;&gt;();
+            count = 0;
+        } else {
+            parents = elements.stream().collect(Collectors.toMap(p -&gt; p, p -&gt; p));
+            heights = elements.stream().collect(Collectors.toMap(p -&gt; p, p -&gt; 0));
+            count = elements.size();
+        }
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public T find(T element) {
+        if (!parents.containsKey(element)) {
+            parents.put(element, element);
+            heights.put(element, 0);
+            count++;
+            return element;
+        }
+
+        while (element != parents.get(element)) {
+            parents.put(element, parents.get(parents.get(element)));
+            element = parents.get(element);
+        }
+        return element;
+    }
+
+    public boolean connected(T element1, T element2) {
+        return find(element1) == find(element2);
+    }
+
+    public boolean union(T element1, T element2) {
+        final T rootElement1 = find(element1);
+        final T rootElement2 = find(element2);
+
+        if (rootElement1 == rootElement2)
+            return false;
+
+        if (heights.get(rootElement1) &lt; heights.get(rootElement2)) {
+            parents.put(rootElement1, rootElement2);
+        } else if (heights.get(rootElement1) &gt; heights.get(rootElement2)) {
+            parents.put(rootElement2, rootElement1);
+        } else {
+            parents.put(rootElement2, rootElement1);
+            heights.merge(rootElement1, 1, Integer::sum);
+        }
+
+        count--;
+        return true;
+    }
+}
+</code></pre>
+
+<pre><code class="language-java">package io.algoholics.graph.mst;
+
+import java.util.Objects;
+import java.util.StringJoiner;
+
+public class Edge&lt;T&gt; {
+    private final T source;
+    private final T target;
+    private final double weight;
+
+    public Edge(T source, T target, double weight) {
+        this.source = source;
+        this.target = target;
+        this.weight = weight;
+    }
+
+    public T getSource() {
+        return source;
+    }
+
+    public T getTarget() {
+        return target;
+    }
+
+    public double getWeight() {
+        return weight;
+    }
+
+    public T getOther(T vertex) {
+        if (source.equals(vertex)) {
+            return target;
+        }
+        if (target.equals(vertex)) {
+            return source;
+        }
+        throw new IllegalArgumentException(String.format(&quot;No vertex %s in the edge %s&quot;, vertex, this));
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Edge&lt;?&gt; edge = (Edge&lt;?&gt;) o;
+        return Double.compare(edge.weight, weight) == 0 &amp;&amp;
+                Objects.equals(source, edge.source) &amp;&amp;
+                Objects.equals(target, edge.target);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(source, target, weight);
+    }
+
+    @Override
+    public String toString() {
+        return new StringJoiner(&quot;, &quot;, Edge.class.getSimpleName() + &quot;[&quot;, &quot;]&quot;)
+                .add(&quot;source=&quot; + source)
+                .add(&quot;target=&quot; + target)
+                .add(&quot;weight=&quot; + weight)
+                .toString();
+    }
+}
+</code></pre>
+
+<pre><code class="language-java">package io.algoholics.graph.mst;
+
+import java.util.*;
+import java.util.stream.Collectors;
+
+public class Graph&lt;T&gt; {
+    private final Map&lt;T, List&lt;Edge&lt;T&gt;&gt;&gt; adjacencyList;
+    private int edgesCount;
+
+    public Graph(final Map&lt;T, List&lt;Edge&lt;T&gt;&gt;&gt; adjacencyList) {
+        this.adjacencyList = adjacencyList;
+        this.edgesCount = getEdges().size();
+    }
+
+    public Graph() {
+        this(new HashMap&lt;&gt;());
+    }
+
+    public void addEdge(final Edge&lt;T&gt; edge) {
+        adjacencyList.merge(edge.getSource(), new ArrayList&lt;&gt;(Collections.singletonList(edge)), (oldVal, newVal) -&gt; {
+            oldVal.addAll(newVal);
+            return oldVal;
+        });
+        adjacencyList.merge(edge.getTarget(), new ArrayList&lt;&gt;(Collections.singletonList(edge)), (oldVal, newVal) -&gt; {
+            oldVal.addAll(newVal);
+            return oldVal;
+        });
+        edgesCount++;
+    }
+
+    public List&lt;Edge&lt;T&gt;&gt; getEdges() {
+        return adjacencyList.entrySet().stream().flatMap(p -&gt; p.getValue().stream()).distinct().collect(Collectors.toList());
+    }
+
+    public List&lt;Edge&lt;T&gt;&gt; getEdges(T vertex) {
+        return new ArrayList&lt;&gt;(adjacencyList.get(vertex));
+    }
+
+    public List&lt;T&gt; getVertices() {
+        return new ArrayList&lt;&gt;(adjacencyList.keySet());
+    }
+}
+</code></pre>
+
+<pre><code class="language-java">package io.algoholics.graph.mst;
+
+import java.util.Comparator;
+import java.util.HashSet;
+import java.util.PriorityQueue;
+import java.util.Set;
+
+public class KuskalMst {
+
+    private static final class EdgeComparator&lt;T&gt; implements Comparator&lt;Edge&lt;T&gt;&gt; {
+
+        @Override
+        public int compare(Edge&lt;T&gt; t1, Edge&lt;T&gt; t2) {
+            return Double.compare(t1.getWeight(), t2.getWeight());
+        }
+    }
+
+    public &lt;T&gt; Set&lt;Edge&lt;T&gt;&gt; mst(final Graph&lt;T&gt; graph) {
+        final Set&lt;Edge&lt;T&gt;&gt; mst = new HashSet&lt;&gt;();
+        final DisjointSet&lt;T&gt; connected = new DisjointSet&lt;&gt;(graph.getVertices());
+        final int vertexCount = connected.getCount();
+        final PriorityQueue&lt;Edge&lt;T&gt;&gt; pq = new PriorityQueue&lt;&gt;(new EdgeComparator&lt;&gt;());
+
+        pq.addAll(graph.getEdges());
+
+        while (!pq.isEmpty() &amp;&amp; mst.size() &lt; vertexCount - 1) {
+            final Edge&lt;T&gt; edge = pq.poll();
+            if (connected.union(edge.getSource(), edge.getTarget())) {
+                mst.add(edge);
+            }
+        }
+
+        return mst;
+    }
+}
+</code></pre>
+ 
+    </div>
+
+</div>
+
+
+<script src="/static/js/prism.js"></script>
+</body>
+</html>
+
