@@ -10,9 +10,9 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
-	"nika/files"
 	"os"
 	"path/filepath"
+	"practicalalgo/files"
 	"regexp"
 	"strconv"
 	"strings"
@@ -21,7 +21,7 @@ import (
 
 var currentFolder string
 
-const version = "2019-08-06-B"
+const version = "2019-10-12-A"
 const digit = "[0-9]+"
 const pagesDir = "pages"
 
@@ -70,7 +70,7 @@ func prepareContentTemplate(path string, tmpl *template.Template) {
 
 	contentBytes, err := ioutil.ReadFile(contentFilePath)
 	if err != nil {
-		log.Fatalf ("can't read content file %s error: %v", contentFile, err)
+		log.Fatalf("can't read content file %s error: %v", contentFile, err)
 	}
 	logItf("reading content file %s", contentFile)
 	htmlContentBytes := blackfriday.Run(contentBytes)
@@ -242,7 +242,7 @@ func join(str ...string) string {
 	return sb.String()
 }
 
-func main_() {
+func main() {
 	isGenerate := flag.Bool("generate", false, "generate file, otherwise run local web server")
 	port := flag.Int("port", 8080, "web port")
 	folder := flag.String("folder", "", "source folder")

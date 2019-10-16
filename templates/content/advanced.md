@@ -8,6 +8,7 @@
 
 
 ### algorithms:
+- [basic bit manipulations](/bit-manipulations.html)
 - Node removal from BST
 - Union find
 - shortest path in graph
