@@ -11,7 +11,6 @@ Ninja data structures and algorithms
 
 - graph coloring
 - sales person travel problem 
-- Kruskal's MST
 - regular expressions
 - LZW compression
 - suffix array

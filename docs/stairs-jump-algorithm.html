@@ -1,0 +1,205 @@
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <meta name="description" content="Stairs jump algorithm">
+    <meta name="keywords" content="learn, explain, tutorial, data structures, algorithms, graph, tree, interview, java, golang, kotlin, python, file system, recursive, dynamic programming, stairs jump algorithm">
+
+    <title>  Stairs jump algorithm  | Practical algorithms and data structures </title>
+    <link rel='stylesheet' href='/static/styles/styles.css'/>
+    <link rel='stylesheet' href='/static/styles/prism.css'/>
+</head>
+
+<body>
+
+<div class="rootContainer">
+
+    <div class="horizontal-menu-box">
+        
+    <div class="menu">
+    
+    <div class="menuItem">
+        
+            <a href="/index.html" >
+                ABOUT
+            </a>
+        
+    </div>
+
+    
+    <div class="menuItem">
+        
+            <a href="/fundamental.html" >
+                FUNDAMENTAL
+            </a>
+        
+    </div>
+
+    
+    <div class="menuItem">
+        
+            <a href="/basic.html" >
+                BASIC
+            </a>
+        
+    </div>
+
+     
+     <div class="menuItem">
+        
+            <a href="/advanced.html" >
+                ADVANCED
+            </a>
+        
+    </div>
+
+    
+    <div class="menuItem">
+        
+            <a href="/ninja.html" >
+                NINJA
+            </a>
+        
+    </div>
+
+    
+    <div class="menuItem">
+        
+            <a href="/languages.html" >
+                LANGUAGES
+            </a>
+        
+    </div>
+
+</div>
+
+    </div>
+
+    <div class="content">
+         <h1>Stairs jump algorithm</h1>
+
+<h2>Contents</h2>
+
+<hr />
+
+<ul>
+<li><a href="#complexity">Complexity</a></li>
+<li><a href="#java">Java</a></li>
+<li><a href="#go">Go</a></li>
+<li><a href="#python">Python</a></li>
+<li><a href="#kotlin">Kotlin</a></li>
+</ul>
+
+<hr />
+
+<p><div id="complexity"/></p>
+
+<h2>Complexity</h2>
+
+<p><code>TODO</code></p>
+
+<p><div id="java"/></p>
+
+<h2>Java</h2>
+
+<p>Recursive approach:</p>
+
+<pre><code class="language-java">package recursion;
+
+public class StairJump {
+
+    public static int waysCount(int stairsCount, int[] jumpWays) {
+        if (stairsCount &lt; 0) return 0;
+
+        if (stairsCount == 0) return 1;
+
+        int totalWaysCount = 0;
+        for (int curJump : jumpWays) {
+            totalWaysCount += waysCount(stairsCount - curJump, jumpWays);
+        }
+        return totalWaysCount;
+    }
+}
+
+</code></pre>
+
+<p><div id="go"/></p>
+
+<h2>Go</h2>
+
+<pre><code class="language-go">package recursion
+
+func StairJumpCount(stairsCount int, jumps []int) int {
+	if stairsCount &lt; 0 {
+		return 0
+	}
+
+	if stairsCount == 0 {
+		return 1
+	}
+
+	var total int
+	for _, curJumps := range jumps {
+		total += StairJumpCount(stairsCount-curJumps, jumps)
+	}
+	return total
+}
+</code></pre>
+
+<p><div id="python"/></p>
+
+<h2>Python</h2>
+
+<pre><code class="language-python">def count_ways(stairs_count, jump_ways):
+    if stairs_count &lt; 0:
+        return 0
+    if stairs_count == 0:
+        return 1
+
+    total_ways = 0
+    for cur_jump in jump_ways:
+        total_ways += count_ways(stairs_count - cur_jump, jump_ways)
+
+    return total_ways
+</code></pre>
+
+<p><div id="kotlin"/></p>
+
+<h2>Kotlin</h2>
+
+<p>Recursive approach:</p>
+
+<pre><code class="language-kotlin">package recursion
+
+object StairJump {
+
+    fun waysCount(stairsCount: Int, jumpWays: IntArray): Int {
+        if (stairsCount &lt; 0) return 0
+
+        if (stairsCount == 0) return 1
+
+        var totalCount = 0;
+
+        for (jumpStairsWay in jumpWays) {
+            totalCount += waysCount(stairsCount - jumpStairsWay, jumpWays)
+        }
+        return totalCount;
+    }
+}
+</code></pre>
+
+<p>caching result approach (dynamic programming):</p>
+
+<pre><code class="language-kotlin"></code></pre>
+ 
+    </div>
+
+</div>
+
+
+<script src="/static/js/prism.js"></script>
+</body>
+</html>
+
