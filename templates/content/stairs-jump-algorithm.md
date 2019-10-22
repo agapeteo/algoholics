@@ -4,21 +4,13 @@
 
 ---
 
-- [Complexity](#complexity)
 - [Java](#java)
 - [Go](#go)
 - [Python](#python)
+- [JavaScript](#javascript)
 - [Kotlin](#kotlin)
 
 ---
-
-
-<div id="complexity"/>
-
-
-## Complexity
-`TODO`
-
  
 
 <div id="java"/>
@@ -45,6 +37,37 @@ public class StairJump {
 
 ```
 
+with caching (dynamic):
+```java
+package dynamic;
+
+public class StairJump {
+    public static int waysCount(int stairsCount, int[] waysCount) {
+        int[] cache = new int[stairsCount + 1];
+        return waysCount(stairsCount, waysCount, cache);
+    }
+
+    private static int waysCount(int stairsCount, int[] waysCount, int[] cache) {
+        if (stairsCount < 0) return 0;
+        if (stairsCount == 0) return 1;
+
+        int totalWays = 0;
+        for (int curJump : waysCount) {
+            int curJumpIdx = stairsCount - curJump;
+            if (curJumpIdx < 0) continue;
+
+            int cachedResult = cache[curJumpIdx];
+            if (cachedResult == 0) {
+                cachedResult = waysCount(curJumpIdx, waysCount, cache);
+                cache[curJumpIdx] = cachedResult;
+            }
+            totalWays += cachedResult;
+        }
+        return totalWays;
+    }
+}
+
+```
 
 
 <div id="go"/>
@@ -70,6 +93,41 @@ func StairJumpCount(stairsCount int, jumps []int) int {
 }
 ```
 
+with caching (dynamic):
+```go
+package dynamic
+
+func StairJumpCount(stairsCount int, jumps []int) int {
+	cache := make([]int, stairsCount+1, stairsCount+1)
+	return stairJumpCount(stairsCount, jumps, cache)
+}
+
+func stairJumpCount(stairsCount int, jumps []int, cache []int) int {
+	if stairsCount < 0 {
+		return 0
+	}
+	if stairsCount == 0 {
+		return 1
+	}
+
+	var totalWays int
+	for _, curJump := range jumps {
+		curJumpIdx := stairsCount - curJump
+		if curJumpIdx < 0 {
+			continue
+		}
+		curWays := cache[curJumpIdx]
+
+		if curWays == 0 {
+			curWays = stairJumpCount(curJumpIdx, jumps, cache)
+			cache[curJumpIdx] = curWays
+		}
+		totalWays += curWays
+	}
+	return totalWays
+}
+
+```
 
 
 <div id="python"/>
@@ -88,6 +146,83 @@ def count_ways(stairs_count, jump_ways):
 
     return total_ways
 ```
+
+with caching (dynamic):
+```python
+def _count_ways(stairs_count, jump_ways, cache):
+    if stairs_count < 0:
+        return 0
+
+    if stairs_count == 0:
+        return 1
+
+    total_ways = 0
+    for cur_jump in jump_ways:
+        cur_ways_idx = stairs_count - cur_jump
+        if cur_ways_idx < 0:
+            continue
+
+        cur_ways = cache[cur_ways_idx]
+        if not cur_ways:
+            cur_ways = _count_ways(cur_ways_idx, jump_ways, cache)
+            cache[cur_ways_idx] = cur_ways
+
+        total_ways += cur_ways
+
+    return total_ways
+
+
+def count_ways(stairs_count, jump_ways):
+    cache = [None] * (stairs_count + 1)
+    return _count_ways(stairs_count, jump_ways, cache)
+```
+
+
+<div id="javascript"/>
+
+## JavaScript
+Recursive approach:
+```javascript
+function waysCount(stairsCount, jumpWays) {
+    if (stairsCount < 0) return 0;
+    if (stairsCount == 0) return 1;
+
+    let totalCount = 0;
+    for (let curJump of jumpWays) {
+        totalCount += waysCount(stairsCount - curJump, jumpWays);
+    }
+    return totalCount
+}
+```
+
+with caching (dynamic):
+```javascript
+function waysCount(stairsCount, jumpWays, cache) {
+    cache = Array(stairsCount + 1).fill(0)
+    return waysCountWithCache(stairsCount, jumpWays, cache)
+}
+
+function waysCountWithCache(stairsCount, jumpWays, cache) {
+    if (stairsCount < 0) return 0;
+    if (stairsCount == 0) return 1;
+
+    let totalCount = 0;
+    for (let curJump of jumpWays) {
+        const curWaysIdx = stairsCount - curJump;
+        if (curWaysIdx < 0) {
+            continue;
+        }
+        let curWays = cache[curWaysIdx];
+        if (!curWays) {
+            curWays = waysCountWithCache(curWaysIdx, jumpWays, cache);
+            cache[curWaysIdx] = curWays;
+        }
+        totalCount += curWays
+    }
+    return totalCount
+}
+```
+
 
 
 
@@ -115,6 +250,32 @@ object StairJump {
 }
 ```
 
-caching result approach (dynamic programming):
+with caching results (dynamic):
 ```kotlin
+package dynamic
+
+object StairJump {
+
+    fun waysCount(stairsCount: Int, jumpWays: IntArray, cache: Array<Int?> = arrayOfNulls<Int?>(stairsCount + 1)): Int {
+        if (stairsCount < 0) return 0
+
+        if (stairsCount == 0) return 1
+
+        var totalWays = 0
+
+        for (curJump in jumpWays) {
+            val curWaysCountIdx = stairsCount - curJump
+
+            if (curWaysCountIdx < 0) continue
+
+            var curJumpWays = cache[curWaysCountIdx]
+            if (curJumpWays == null) {
+                curJumpWays = waysCount(curWaysCountIdx, jumpWays, cache)
+                cache[curWaysCountIdx] = curJumpWays
+            }
+            totalWays += curJumpWays
+        }
+        return totalWays
+    }
+}
 ```
