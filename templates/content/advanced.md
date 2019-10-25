@@ -9,6 +9,7 @@
 
 ### algorithms:
 - [basic bit manipulations](/bit-manipulations.html)
+- Dijstra's shortest path in weighted graph 
 - Node removal from BST
 - Union find
 - shortest path in graph
@@ -22,6 +23,7 @@
 - expression evaluation using Dijkstra's two-stack algorithm
 - generate permutation of string
 - [stairs jump count algorithm](stairs-jump-algorithm.html)
+- [power set](/powerset.html)
 
 
 

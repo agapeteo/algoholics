@@ -1,0 +1,330 @@
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <meta name="description" content="Powerset">
+    <meta name="keywords" content="learn, explain, tutorial, data structures, algorithms, graph, tree, interview, java, golang, kotlin, python, dynamic programming, powerset">
+
+    <title>  Power Set  | Practical algorithms and data structures </title>
+    <link rel='stylesheet' href='/static/styles/styles.css'/>
+    <link rel='stylesheet' href='/static/styles/prism.css'/>
+</head>
+
+<body>
+
+<div class="rootContainer">
+
+    <div class="horizontal-menu-box">
+        
+    <div class="menu">
+    
+    <div class="menuItem">
+        
+            <a href="/index.html" >
+                ABOUT
+            </a>
+        
+    </div>
+
+    
+    <div class="menuItem">
+        
+            <a href="/fundamental.html" >
+                FUNDAMENTAL
+            </a>
+        
+    </div>
+
+    
+    <div class="menuItem">
+        
+            <a href="/basic.html" >
+                BASIC
+            </a>
+        
+    </div>
+
+     
+     <div class="menuItem">
+        
+            <a href="/advanced.html" >
+                ADVANCED
+            </a>
+        
+    </div>
+
+    
+    <div class="menuItem">
+        
+            <a href="/ninja.html" >
+                NINJA
+            </a>
+        
+    </div>
+
+    
+    <div class="menuItem">
+        
+            <a href="/languages.html" >
+                LANGUAGES
+            </a>
+        
+    </div>
+
+</div>
+
+    </div>
+
+    <div class="content">
+         <h1>Power Set</h1>
+
+<h2>Contents</h2>
+
+<hr />
+
+<ul>
+<li><a href="#java">Java</a></li>
+<li><a href="#go">Go</a></li>
+<li><a href="#python">Python</a></li>
+<li><a href="#javascript">JavaScript</a></li>
+<li><a href="#kotlin">Kotlin</a></li>
+</ul>
+
+<hr />
+
+<p><div id="java"/></p>
+
+<h2>Java</h2>
+
+<p>dynamic:</p>
+
+<pre><code class="language-java">package dynamic;
+
+import java.util.*;
+
+public class PowerSet {
+    public static &lt;T&gt; List&lt;List&lt;T&gt;&gt; powerSet(List&lt;T&gt; inputSet) {
+        List&lt;List&lt;T&gt;&gt; powerSet = new ArrayList&lt;&gt;();
+
+        for (T inputElement: inputSet) {
+            ListIterator&lt;List&lt;T&gt;&gt; psIterator = powerSet.listIterator();
+            while (psIterator.hasNext()) {
+                List&lt;T&gt; curList = new ArrayList&lt;&gt;(psIterator.next());
+                curList.add(inputElement);
+                psIterator.add(curList);
+            }
+            powerSet.add(Arrays.asList(inputElement));
+        }
+        powerSet.add(Collections.emptyList());
+        return powerSet;
+    }
+}
+</code></pre>
+
+<p>combinatorics:</p>
+
+<pre><code class="language-java">package bits;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class PowerSet {
+    public static &lt;T&gt; List&lt;List&lt;T&gt;&gt; powerSet(List&lt;T&gt; inputSet) {
+        List&lt;List&lt;T&gt;&gt; powerSet = new ArrayList&lt;&gt;();
+        int max = 1 &lt;&lt; inputSet.size(); // 2^n, where n is size of inputSet
+
+        for (int intNumber = 0; intNumber &lt; max; intNumber++) {
+            List&lt;T&gt; curSet = toSubset(intNumber, inputSet);
+            powerSet.add(curSet);
+        }
+        return powerSet;
+    }
+
+    private static &lt;T&gt; List&lt;T&gt; toSubset(int intNumber, List&lt;T&gt; inputSet) {
+        List&lt;T&gt; subSet = new ArrayList&lt;&gt;();
+        int idx = -1;
+        for (int bits = intNumber; bits &gt; 0; bits &gt;&gt;= 1) {
+            idx++;
+
+            if ((bits &amp; 1) != 1) continue; // cur bit is 0
+
+            subSet.add(inputSet.get(idx));
+        }
+        return subSet;
+    }
+}
+
+</code></pre>
+
+<p><div id="go"/></p>
+
+<h2>Go</h2>
+
+<p>dynamic:</p>
+
+<pre><code class="language-go">package dynamic
+
+func PowerSet(inSet []interface{}) [][]interface{} {
+	powerSet := make([][]interface{}, 0)
+
+	for _, elem := range inSet {
+		for _, curSet := range powerSet {
+			newSet := make([]interface{}, len(curSet))
+			copy(newSet, curSet)
+			newSet = append(newSet, elem)
+			powerSet = append(powerSet, newSet)
+		}
+		curElemSet := make([]interface{}, 0, 1)
+		curElemSet = append(curElemSet, elem)
+		powerSet = append(powerSet, curElemSet)
+	}
+	powerSet = append(powerSet, make([]interface{}, 0))
+	return powerSet
+}
+</code></pre>
+
+<p>combinatorics:</p>
+
+<pre><code class="language-go">package bits
+
+func PowerSet(inSet []interface{}) [][]interface{} {
+	powerSet := make([][]interface{}, 0)
+
+	max := 1 &lt;&lt; uint(len(inSet))
+	for i := 0; i &lt; max; i++ {
+		powerSet = append(powerSet, setForNUmber(i, inSet))
+	}
+	return powerSet
+}
+
+func setForNUmber(n int, inSet []interface{}) []interface{} {
+	set := make([]interface{}, 0)
+
+	i := 0
+	num := n
+
+	for num &gt; 0 {
+		if (num &amp; 1) != 0 {
+			set = append(set, inSet[i])
+		}
+		num = num &gt;&gt; 1
+		i++
+	}
+	return set
+}
+</code></pre>
+
+<p><div id="python"/></p>
+
+<h2>Python</h2>
+
+<pre><code class="language-python">def power_set(in_set):
+    result_set = []
+    for cur_elem in in_set:
+        result_set_len = len(result_set)
+        for cur_set_idx in range(result_set_len):
+            new_set = result_set[cur_set_idx].copy()
+            new_set.append(cur_elem)
+            result_set.append(new_set)
+
+        result_set.append([cur_elem])
+
+    result_set.append([])
+
+    return result_set
+</code></pre>
+
+<p><div id="javascript"/></p>
+
+<h2>JavaScript</h2>
+
+<pre><code class="language-javascript">function powerSet(inSet) {
+    const resultSet = [];
+    for (const elem of inSet) {
+        const resultSetLen = resultSet.length;
+        for (let i = 0; i &lt; resultSetLen; i++) {
+            const newSet = [...resultSet[i]];
+            newSet.push(elem);
+            resultSet.push(newSet);
+        }
+        resultSet.push([elem]);
+    }
+    resultSet.push([]);
+    return resultSet;
+}
+</code></pre>
+
+<p><div id="kotlin"/></p>
+
+<h2>Kotlin</h2>
+
+<p>dynamic:</p>
+
+<pre><code class="language-kotlin">package dynamic
+
+object PowerSet {
+
+    fun &lt;T&gt; powerSet(inputSet: List&lt;T&gt;): List&lt;List&lt;T&gt;&gt; {
+        val powerSet = mutableListOf&lt;List&lt;T&gt;&gt;()
+
+        for (item in inputSet) {
+            val powerSetIter = powerSet.listIterator()
+
+            while (powerSetIter.hasNext()) {
+                val curSet = powerSetIter.next()
+                val newSet = curSet.plus(item)
+                powerSetIter.add(newSet)
+            }
+            powerSet.add(listOf(item))
+        }
+        powerSet.add(emptyList())
+
+        return powerSet
+    }
+}
+</code></pre>
+
+<p>combinatorics:</p>
+
+<pre><code class="language-kotlin">package bits
+
+object PowerSet {
+
+    fun &lt;T&gt; powerSet(inputSet: List&lt;T&gt;): List&lt;List&lt;T&gt;&gt; {
+
+        fun binaryToSet(number: Int): List&lt;T&gt; {
+            val curSet = mutableListOf&lt;T&gt;()
+            var i = 0
+            var curNumber = number
+            while (curNumber &gt; 0) {
+                if ((curNumber and 1) != 0) {
+                    curSet.add(inputSet[i])
+                }
+                curNumber = curNumber shr 1
+                i++
+            }
+            return curSet
+        }
+
+        val powerSet = mutableListOf&lt;List&lt;T&gt;&gt;()
+        val max = 1 shl inputSet.size
+
+        for (i in 0 until max) {
+            powerSet.add(binaryToSet(i))
+        }
+        return powerSet
+    }
+}
+</code></pre>
+ 
+    </div>
+
+</div>
+
+
+<script src="/static/js/prism.js"></script>
+</body>
+</html>
+

@@ -14,4 +14,6 @@ Ninja data structures and algorithms
 - regular expressions
 - LZW compression
 - suffix array
+- edit distance
+
 
