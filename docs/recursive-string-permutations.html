@@ -1,0 +1,257 @@
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <meta name="description" content="Permute string recursively">
+    <meta name="keywords" content="learn, explain, tutorial, data structures, algorithms, graph, tree, interview, java, golang, kotlin, python, recursion, string permutations">
+
+    <title>  Recursive string permutations  | Practical algorithms and data structures </title>
+    <link rel='stylesheet' href='/static/styles/styles.css'/>
+    <link rel='stylesheet' href='/static/styles/prism.css'/>
+</head>
+
+<body>
+
+<div class="rootContainer">
+
+    <div class="horizontal-menu-box">
+        
+    <div class="menu">
+    
+    <div class="menuItem">
+        
+            <a href="/index.html" >
+                ABOUT
+            </a>
+        
+    </div>
+
+    
+    <div class="menuItem">
+        
+            <a href="/fundamental.html" >
+                FUNDAMENTAL
+            </a>
+        
+    </div>
+
+    
+    <div class="menuItem">
+        
+            <a href="/basic.html" >
+                BASIC
+            </a>
+        
+    </div>
+
+     
+     <div class="menuItem">
+        
+            <a href="/advanced.html" >
+                ADVANCED
+            </a>
+        
+    </div>
+
+    
+    <div class="menuItem">
+        
+            <a href="/ninja.html" >
+                NINJA
+            </a>
+        
+    </div>
+
+    
+    <div class="menuItem">
+        
+            <a href="/languages.html" >
+                LANGUAGES
+            </a>
+        
+    </div>
+
+</div>
+
+    </div>
+
+    <div class="content">
+         <h1>Recursive string permutations</h1>
+
+<h2>Contents</h2>
+
+<hr />
+
+<ul>
+<li><a href="#complexity">Complexity</a></li>
+<li><a href="#java">Java</a></li>
+<li><a href="#go">Go</a></li>
+<li><a href="#python">Python</a></li>
+<li><a href="#javascript">JavaScript</a></li>
+<li><a href="#kotlin">Kotlin</a></li>
+</ul>
+
+<hr />
+
+<p><div id="complexity"/></p>
+
+<h2>Complexity</h2>
+
+<p><code>O(N!)</code></p>
+
+<p><div id="java"/></p>
+
+<h2>Java</h2>
+
+<pre><code class="language-java">package recursion;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class StringPermutation {
+
+    public static List&lt;String&gt; permute(String str) {
+        return permute(&quot;&quot;, str, new ArrayList&lt;&gt;());
+    }
+
+    private static List&lt;String&gt; permute(String prefix, String str, List&lt;String&gt; permutations) {
+        if (!str.isEmpty()) {
+            for (int i = 0; i &lt; str.length(); i++) {
+                String newPrefix = String.format(&quot;%s%s&quot;, prefix, str.charAt(i));
+                String strBeforeChar = str.substring(0, i);
+
+                String strAfterChar = &quot;&quot;;
+                boolean isLastChar = i == str.length() - 1;
+                if (!isLastChar) {
+                    strAfterChar = str.substring(i + 1);
+                }
+                String newString = String.format(&quot;%s%s&quot;, strBeforeChar, strAfterChar);
+                permute(newPrefix, newString, permutations);
+            }
+        } else {
+            permutations.add(prefix);
+        }
+        return permutations;
+    }
+}
+
+</code></pre>
+
+<p><div id="go"/></p>
+
+<h2>Go</h2>
+
+<pre><code class="language-go">package recursion
+
+func PermuteStr(str string) []string {
+	perms := make([]string, 0)
+
+	return permuteStr([]rune(&quot;&quot;), []rune(str), &amp;perms)
+}
+
+func permuteStr(prefix, str []rune, perms *[]string) []string {
+	if len(str) &gt; 0 {
+		for idx, char := range str {
+			newPrefix := append(prefix, char)
+			strBeforeRune := str[:idx]
+			strAfterRune := str[idx+1:]
+			newStr := append(strAfterRune, strBeforeRune...)
+
+			permuteStr(newPrefix, newStr, perms)
+		}
+	} else {
+		*perms = append(*perms, string(prefix))
+	}
+	return *perms
+}
+</code></pre>
+
+<p><div id="python"/></p>
+
+<h2>Python</h2>
+
+<pre><code class="language-python">def _string_permutation(prefix, in_str, permutations):
+    if in_str:
+        for char_idx in range(len(in_str)):
+            new_prefix = prefix + in_str[char_idx]
+            str_before = in_str[:char_idx]
+            str_after = &quot;&quot;
+            if char_idx != len(in_str) - 1:
+                str_after = in_str[char_idx + 1:]
+            new_str = str_before + str_after
+
+            _string_permutation(new_prefix, new_str, permutations)
+    else:
+        permutations.append(prefix)
+    return permutations
+
+
+def string_permutation(in_str):
+    return _string_permutation(&quot;&quot;, in_str, [])
+</code></pre>
+
+<p><div id="javascript"/></p>
+
+<h2>JavaScript</h2>
+
+<pre><code class="language-javascript">function permute(str, prefix, permutations) {
+    if (!prefix) prefix = &quot;&quot;;
+    if (!permutations) permutations = [];
+
+    if (str) {
+        for (let i = 0; i &lt; str.length; i++) {
+            const newPrefix = `${prefix}${str.charAt(i)}`;
+            const strBeforeChar = str.substring(0, i);
+            let strAfterChar = &quot;&quot;;
+            if (i != str.length - 1) {
+                strAfterChar = str.substring(i + 1);
+            }
+            const newStr = `${strBeforeChar}${strAfterChar}`;
+
+            permute(newStr, newPrefix, permutations);
+        }
+    } else {
+        permutations.push(prefix)
+    }
+    return permutations;
+}
+</code></pre>
+
+<p><div id="kotlin"/></p>
+
+<h2>Kotlin</h2>
+
+<pre><code class="language-kotlin">package recursion
+
+object StringPermutation {
+
+    fun permute(str: String, prefix: String = &quot;&quot;, curPermutations: MutableList&lt;String&gt; = mutableListOf()): List&lt;String&gt; {
+        if (str.isNotEmpty()) {
+            for (charIdx in str.indices) {
+                val newPrefix = &quot;${prefix}${str[charIdx]}&quot;
+                val strBeforeCurChar = str.substring(0, charIdx)
+                val isLastIdx = charIdx == str.length - 1
+                val strAfterCurChar = if (isLastIdx) &quot;&quot; else str.substring(charIdx + 1)
+                val newStr = &quot;${strBeforeCurChar}${strAfterCurChar}&quot;
+
+                permute(newStr, newPrefix, curPermutations)
+            }
+        } else {
+            curPermutations.add(prefix)
+        }
+        return curPermutations
+    }
+}
+</code></pre>
+ 
+    </div>
+
+</div>
+
+
+<script src="/static/js/prism.js"></script>
+</body>
+</html>
+

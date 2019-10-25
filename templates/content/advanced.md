@@ -24,6 +24,8 @@
 - generate permutation of string
 - [stairs jump count algorithm](stairs-jump-algorithm.html)
 - [power set](/powerset.html)
+- [recursive string permutations](/recursive-string-permutations.html)
+- coin change ways
 
 
 
