@@ -25,6 +25,8 @@
 - Recursion
   - [Factorial](/recursive-factorial.html)
   - [Directory traversal](recursive-directory-traversal.html)
+  - [Greatest common divisor (GCD)](recursive-greatest-common-divisor.html) 
+
 - Sorting
   - [Bubble sort](bubble-sort.html)
   - [Insertion sort](insertion-sort.html)
