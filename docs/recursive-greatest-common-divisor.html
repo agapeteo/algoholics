@@ -1,0 +1,168 @@
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <meta name="description" content="Recursive greatest common divisor algorithm">
+    <meta name="keywords" content="learn, explain, tutorial, data structures, algorithms, graph, tree, interview, java, golang, kotlin, python, gcd, greatest common divisor">
+
+    <title>  GCD - greatest common divisor, recursive approach  | Practical algorithms and data structures </title>
+    <link rel='stylesheet' href='/static/styles/styles.css'/>
+    <link rel='stylesheet' href='/static/styles/prism.css'/>
+</head>
+
+<body>
+
+<div class="rootContainer">
+
+    <div class="horizontal-menu-box">
+        
+    <div class="menu">
+    
+    <div class="menuItem">
+        
+            <a href="/index.html" >
+                ABOUT
+            </a>
+        
+    </div>
+
+    
+    <div class="menuItem">
+        
+            <a href="/fundamental.html" >
+                FUNDAMENTAL
+            </a>
+        
+    </div>
+
+    
+    <div class="menuItem">
+        
+            <a href="/basic.html" >
+                BASIC
+            </a>
+        
+    </div>
+
+     
+     <div class="menuItem">
+        
+            <a href="/advanced.html" >
+                ADVANCED
+            </a>
+        
+    </div>
+
+    
+    <div class="menuItem">
+        
+            <a href="/ninja.html" >
+                NINJA
+            </a>
+        
+    </div>
+
+    
+    <div class="menuItem">
+        
+            <a href="/languages.html" >
+                LANGUAGES
+            </a>
+        
+    </div>
+
+</div>
+
+    </div>
+
+    <div class="content">
+         <h1>Greatest common divisor</h1>
+
+<h2>Contents</h2>
+
+<hr />
+
+<ul>
+<li><a href="#java">Java</a></li>
+<li><a href="#go">Go</a></li>
+<li><a href="#python">Python</a></li>
+<li><a href="#javascript">JavaScript</a></li>
+<li><a href="#kotlin">Kotlin</a></li>
+</ul>
+
+<hr />
+
+<p><div id="java"/></p>
+
+<h2>Java</h2>
+
+<pre><code class="language-java">package recursion;
+
+public class GreatestCommonDivisor {
+    public static int gcd(int a, int b) {
+        if (b == 0) return a;
+        return gcd(b, a % b);
+    }
+}
+</code></pre>
+
+<p><div id="go"/></p>
+
+<h2>Go</h2>
+
+<pre><code class="language-go">package recursion
+
+func Gcd(a, b int) int {
+	if b == 0 {
+		return a
+	}
+	return Gcd(b, a%b)
+}
+</code></pre>
+
+<p><div id="python"/></p>
+
+<h2>Python</h2>
+
+<pre><code class="language-python">def gcd(a, b):
+    if b == 0:
+        return a
+    return gcd(b, a % b)
+
+</code></pre>
+
+<p><div id="javascript"/></p>
+
+<h2>JavaScript</h2>
+
+<pre><code class="language-javascript">const gcd = (a, b) =&gt; {
+    if (b == 0) {
+        return a
+    }
+    return gcd(b, a % b)
+}
+</code></pre>
+
+<p><div id="kotlin"/></p>
+
+<h2>Kotlin</h2>
+
+<pre><code class="language-kotlin">package recursion
+
+fun gcd(a: Int, b: Int): Int {
+    if (b == 0) return a
+    return gcd(b, a % b)
+}
+</code></pre>
+ 
+    </div>
+
+</div>
+
+
+<script src="/static/js/prism.js"></script>
+</body>
+</html>
+

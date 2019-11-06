@@ -10,6 +10,7 @@
 - [merge sort](/merge-sort.html)
 - [quick sort](/quick-sort.html)
 - [counting sort](/counting-sort.html)
+- [quick select (find smallest k element)](/quick-select.html)
 
 
 #### other: 
