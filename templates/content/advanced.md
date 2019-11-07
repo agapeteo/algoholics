@@ -3,7 +3,7 @@
 ### data structures:
 - Trie
 - Ternary Search Tree
-- Heap
+- [Binary heap](binary-heap.html)
 
 
 
@@ -25,6 +25,7 @@
 - [power set](/powerset.html)
 - [recursive string permutations](/recursive-string-permutations.html)
 - coin change ways
+- knapsack problem
 
 
 
