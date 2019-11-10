@@ -16,6 +16,7 @@
 #### other: 
 - [remove duplicates in-place](/remove-duplicates-inplace.html)
 - [rotate string](/rotate-string.html)
+- [sieve of Eratosthenes (find prime numbers)](sieve-of-eratosthenes-primes.html)
 
 
 

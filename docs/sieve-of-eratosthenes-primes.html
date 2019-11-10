@@ -1,0 +1,258 @@
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <meta name="description" content="Sieve of Eratosthenes, prime numbers">
+    <meta name="keywords" content="learn, explain, tutorial, data structures, algorithms, graph, tree, interview, java, golang, kotlin, python, prime numbers, sieve of eratosthenes">
+
+    <title>  Sieve of Eratosthenes, prime numbers  | Practical algorithms and data structures </title>
+    <link rel='stylesheet' href='/static/styles/styles.css'/>
+    <link rel='stylesheet' href='/static/styles/prism.css'/>
+</head>
+
+<body>
+
+<div class="rootContainer">
+
+    <div class="horizontal-menu-box">
+        
+    <div class="menu">
+    
+    <div class="menuItem">
+        
+            <a href="/index.html" >
+                ABOUT
+            </a>
+        
+    </div>
+
+    
+    <div class="menuItem">
+        
+            <a href="/fundamental.html" >
+                FUNDAMENTAL
+            </a>
+        
+    </div>
+
+    
+    <div class="menuItem">
+        
+            <a href="/basic.html" >
+                BASIC
+            </a>
+        
+    </div>
+
+     
+     <div class="menuItem">
+        
+            <a href="/advanced.html" >
+                ADVANCED
+            </a>
+        
+    </div>
+
+    
+    <div class="menuItem">
+        
+            <a href="/ninja.html" >
+                NINJA
+            </a>
+        
+    </div>
+
+    
+    <div class="menuItem">
+        
+            <a href="/languages.html" >
+                LANGUAGES
+            </a>
+        
+    </div>
+
+</div>
+
+    </div>
+
+    <div class="content">
+         <h1>Sieve of Eratosthenes</h1>
+
+<h2>Contents</h2>
+
+<hr />
+
+<ul>
+<li><a href="#description">Find prime numbers using sieve of Eratosthenes approach</a></li>
+<li><a href="#java">Java</a></li>
+<li><a href="#go">Go</a></li>
+<li><a href="#python">Python</a></li>
+<li><a href="#javascript">JavaScript</a></li>
+<li><a href="#kotlin">Kotlin</a></li>
+</ul>
+
+<hr />
+
+<p><div id="description" /></p>
+
+<h2>Calculate average</h2>
+
+<p>Find prime numbers using sieve of Eratosthenes</p>
+
+<p><div id="java"/></p>
+
+<h2>Java</h2>
+
+<pre><code class="language-java">package math;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class EratosthenesSievePrime {
+
+    public static List&lt;Integer&gt; primes(int limit) {
+        boolean[] arr = new boolean[limit];
+
+        for (int i = 2; i &lt; Math.sqrt(limit); i++) {
+            if (arr[i]) continue;
+            for (int j = i + i; j &lt; limit; j += i) {
+                arr[j] = true;
+            }
+        }
+
+        List&lt;Integer&gt; result = new ArrayList&lt;&gt;();
+        for (int k = 2; k &lt; limit; k++) {
+            if (!arr[k]) {
+                result.add(k);
+            }
+        }
+        return result;
+    }
+}
+</code></pre>
+
+<p><div id="go"/></p>
+
+<h2>Go</h2>
+
+<pre><code class="language-go">package math
+
+func Primes(lim int) []int {
+	s := make([]bool, lim)
+
+	for i := 2; i*i &lt; lim; i++ {
+		if s[i] {
+			continue
+		}
+		for j := i + i; j &lt; lim; j += i {
+			s[j] = true // true == number is not prime
+		}
+	}
+	return extractPrimes(s)
+}
+
+func extractPrimes(s []bool) []int {
+	res := make([]int, 0)
+	for num, notPrime := range s {
+		if num == 0 || num == 1 {
+			continue
+		}
+		if !notPrime {
+			res = append(res, num)
+		}
+	}
+	return res
+}
+</code></pre>
+
+<p><div id="python"/></p>
+
+<h2>Python</h2>
+
+<pre><code class="language-python">import math
+
+
+def primes(limit):
+    sieve_list = [False] * limit
+    for i in range(2, math.floor(math.sqrt(limit))):
+        if sieve_list[i]:
+            continue
+
+        for j in range(i + i, limit, i):
+            sieve_list[j] = True
+
+    result = []
+    for k in range(2, limit):
+        if not sieve_list[k]:
+            result.append(k)
+    return result
+</code></pre>
+
+<p><div id="javascript"/></p>
+
+<h2>JavaScript</h2>
+
+<pre><code class="language-javascript">const primes = limit =&gt; {
+    const arr = Array(limit).fill(false);
+    for (let i = 2; i * i &lt; limit; i++) {
+        if (arr[i]) continue;
+
+        for (let j = i + i; j &lt; limit; j += i) {
+            arr[j] = true;
+        }
+    }
+    const result = [];
+    for (let k = 2; k &lt; limit; k++) {
+        if (!arr[k]) {
+            result.push(k);
+        }
+    }
+    return result;
+};
+</code></pre>
+
+<p><div id="kotlin"/></p>
+
+<h2>Kotlin</h2>
+
+<pre><code class="language-kotlin">package math
+
+import kotlin.math.sqrt
+
+object EratosthenesSievePrimes {
+
+    fun primes(limit: Int): List&lt;Int&gt; {
+        val arr = BooleanArray(limit)
+
+        for (i in 2 until sqrt(limit.toDouble()).toInt()) {
+            if (arr[i]) continue
+
+            var j = i + i
+            while (j &lt; limit) {
+                arr[j] = true
+                j += i
+            }
+        }
+        val result = mutableListOf&lt;Int&gt;()
+        for ((num, notPrime) in arr.withIndex()) {
+            if (num == 0 || num == 1) continue
+            if (!notPrime) {
+                result.add(num)
+            }
+        }
+        return result
+    }
+}
+</code></pre>
+ 
+    </div>
+
+</div>
+
+
+<script src="/static/js/prism.js"></script>
+</body>
+</html>
+
