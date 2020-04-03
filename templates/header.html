@@ -1,0 +1,74 @@
+{% block header %}
+<div class="menu">
+    <!-- ABOUT -->
+    <div class="menuItem">
+        {% if menu_item == "index" %}
+            ABOUT
+        {% else %}
+        <a href="/index.html" >
+            ABOUT
+        </a>
+        {% endif %}
+
+    </div>
+
+    <!-- FUNDAMENTAL -->
+    <div class="menuItem">
+        {% if menu_item == "fundamental" %}
+        FUNDAMENTAL
+        {% else %}
+        <a href="/fundamental/contents" >
+            FUNDAMENTAL
+        </a>
+        {% endif %}
+    </div>
+
+    <!-- BASIC -->
+    <div class="menuItem">
+        {% if menu_item == "basic" %}
+        BASIC
+        {% else %}
+        <a href="/basic/contents" >
+            BASIC
+        </a>
+        {% endif %}
+    </div>
+
+    <!-- ADVANCED -->
+    <div class="menuItem">
+        {% if menu_item == "advanced" %}
+        ADVANCED
+        {% else %}
+        <a href="/advanced/contents" >
+            ADVANCED
+        </a>
+        {% endif %}
+    </div>
+
+    <!-- NINJA -->
+    <div class="menuItem">
+
+        {% if menu_item == "ninja" %}
+        NINJA
+        {% else %}
+        <a href="/ninja/contents" >
+            NINJA
+        </a>
+        {% endif %}
+
+    </div>
+
+    <!-- LANGUAGES -->
+    <div class="menuItem">
+        {% if menu_item == "languages" %}
+        LANGUAGES
+        {% else %}
+        <a href="/languages/contents" >
+            LANGUAGES
+        </a>
+        {% endif %}
+
+    </div>
+
+</div>
+{% endblock header %}

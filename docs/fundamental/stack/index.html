@@ -1,0 +1,246 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <meta name="description" content="Stack">
+    <meta name="keywords" content="stack, learn, explain, tutorial, data structures, algorithms, graph, tree, interview, java, golang, kotlin, python, javascript, rust">
+
+    <title> 
+    Stack
+ | Practical algorithms and data structures </title>
+    <link rel='stylesheet' href='/styles/styles.css'/>
+</head>
+
+<body>
+
+<div class="rootContainer">
+    <div class="horizontal-menu-box">
+        
+    
+    
+    
+<div class="menu">
+    <!-- ABOUT -->
+    <div class="menuItem">
+        
+        <a href="/index.html" >
+            ABOUT
+        </a>
+        
+
+    </div>
+
+    <!-- FUNDAMENTAL -->
+    <div class="menuItem">
+        
+        <a href="/fundamental/contents" >
+            FUNDAMENTAL
+        </a>
+        
+    </div>
+
+    <!-- BASIC -->
+    <div class="menuItem">
+        
+        <a href="/basic/contents" >
+            BASIC
+        </a>
+        
+    </div>
+
+    <!-- ADVANCED -->
+    <div class="menuItem">
+        
+        <a href="/advanced/contents" >
+            ADVANCED
+        </a>
+        
+    </div>
+
+    <!-- NINJA -->
+    <div class="menuItem">
+
+        
+        <a href="/ninja/contents" >
+            NINJA
+        </a>
+        
+
+    </div>
+
+    <!-- LANGUAGES -->
+    <div class="menuItem">
+        
+        <a href="/languages/contents" >
+            LANGUAGES
+        </a>
+        
+
+    </div>
+
+</div>
+
+
+
+    </div>
+
+    <div class="content">
+        
+    <h1 id="stack">Stack</h1>
+<h2 id="contents">Contents</h2>
+<hr />
+<ul>
+<li><a href="https://algoholics.io/fundamental/stack/#description">Stack description</a></li>
+<li><a href="https://algoholics.io/fundamental/stack/#practice">In practice</a></li>
+<li><a href="https://algoholics.io/fundamental/stack/#java">Java</a></li>
+<li><a href="https://algoholics.io/fundamental/stack/#go">Go</a></li>
+<li><a href="https://algoholics.io/fundamental/stack/#python">Python</a></li>
+<li><a href="https://algoholics.io/fundamental/stack/#javascript">JavaScript</a></li>
+<li><a href="https://algoholics.io/fundamental/stack/#kotlin">Kotlin</a></li>
+<li><a href="https://algoholics.io/fundamental/stack/#rust">Rust</a></li>
+</ul>
+<hr />
+<div id="description"/>
+<h2 id="description">Description</h2>
+<p>Core methods:</p>
+<ul>
+<li><code>push()</code> - <em>add elements to the top (end) of the stack</em> </li>
+<li><code>pop()</code> - <em>delete and return element at the top (end) of the stack</em></li>
+</ul>
+<p>Both complexities are <code>O(1)</code></p>
+<blockquote>
+<p><code>//TODO: description with images</code></p>
+</blockquote>
+<div id="practice"/>
+<h2 id="in-practice">In Practice</h2>
+<blockquote>
+<p><code>//TODO: </code></p>
+</blockquote>
+<div id="java"/>
+<h2 id="java">Java</h2>
+<p>Interface <code>Dequeue</code> (<strong><em>which extends <code>Queue</code></em></strong>) has all methods required for <code>Stack</code></p>
+<p>See more details and list of methods <a href="https://docs.oracle.com/javase/8/docs/api/java/util/Deque.html">here at official documentation web page</a></p>
+<p>Implementation examples:</p>
+<ul>
+<li><code>LinkedList</code> </li>
+<li><code>ArrayDeque</code></li>
+<li><code>LinkedBlockingDeque</code></li>
+</ul>
+<br/>
+See example of implementation [in linked list page for java](/linkedlist.html#java):
+<div id="go"/>
+<h2 id="go">Go</h2>
+<p>using slices:</p>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#cccece;">stack </span><span style="color:#5fb3b3;">:= </span><span style="color:#6699cc;">make</span><span style="color:#5fb3b3;">([]</span><span style="color:#c594c5;">int</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">)</span><span style="color:#cccece;">
+stack </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">append</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">stack</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">) </span><span style="color:#5f6364;">// same as push()
+</span><span style="color:#cccece;">stack </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">append</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">stack</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">)</span><span style="color:#cccece;">
+stack </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">append</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">stack</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">3</span><span style="color:#5fb3b3;">)
+
+</span><span style="color:#5f6364;">// same as pop()
+</span><span style="color:#cccece;">lastIdx </span><span style="color:#5fb3b3;">:= </span><span style="color:#6699cc;">len</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">stack</span><span style="color:#5fb3b3;">) - </span><span style="color:#f99157;">1
+</span><span style="color:#cccece;">topElement </span><span style="color:#5fb3b3;">:=</span><span style="color:#cccece;"> stack</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">lastIdx</span><span style="color:#5fb3b3;">]</span><span style="color:#cccece;">
+stack </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> stack</span><span style="color:#5fb3b3;">[:</span><span style="color:#cccece;">lastIdx</span><span style="color:#5fb3b3;">] </span><span style="color:#5f6364;">// WARNING! potential memory leak
+</span><span style="color:#cccece;">
+fmt</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">Printf</span><span style="color:#5fb3b3;">(&quot;</span><span style="color:#99c794;">topElement: %v, stack: %v</span><span style="color:#5fb3b3;">&quot;,</span><span style="color:#6699cc;"> topElement</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> stack</span><span style="color:#5fb3b3;">) </span><span style="color:#5f6364;">// topElement: 3, stack: [1 2]
+</span></pre><br/>
+<p><code>Stack</code> struct based on <code>container/list</code>:</p>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">package</span><span style="color:#cccece;"> main
+
+</span><span style="color:#c594c5;">import </span><span style="color:#5fb3b3;">(
+	&quot;</span><span style="color:#99c794;">container/list</span><span style="color:#5fb3b3;">&quot;
+	&quot;</span><span style="color:#99c794;">fmt</span><span style="color:#5fb3b3;">&quot;
+)
+
+</span><span style="color:#c594c5;">type </span><span style="color:#cccece;">Stack </span><span style="color:#c594c5;">struct </span><span style="color:#5fb3b3;">{
+	</span><span style="color:#cccece;">elements *list.List
+</span><span style="color:#5fb3b3;">}
+
+</span><span style="color:#c594c5;">func </span><span style="color:#6699cc;">NewStack</span><span style="color:#5fb3b3;">() *</span><span style="color:#cccece;">Stack </span><span style="color:#5fb3b3;">{
+	</span><span style="color:#cccece;">s </span><span style="color:#5fb3b3;">:= </span><span style="color:#6699cc;">new</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">Stack</span><span style="color:#5fb3b3;">)</span><span style="color:#cccece;">
+	s</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">elements </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> list</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">New</span><span style="color:#5fb3b3;">()
+	</span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> s
+</span><span style="color:#5fb3b3;">}
+
+</span><span style="color:#c594c5;">func </span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">s </span><span style="color:#5fb3b3;">*</span><span style="color:#cccece;">Stack</span><span style="color:#5fb3b3;">) </span><span style="color:#6699cc;">Push</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">e </span><span style="color:#c594c5;">interface</span><span style="color:#5fb3b3;">{}) {</span><span style="color:#cccece;">
+	s</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">elements</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">PushBack</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">e</span><span style="color:#5fb3b3;">)
+}
+
+</span><span style="color:#c594c5;">func </span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">s </span><span style="color:#5fb3b3;">*</span><span style="color:#cccece;">Stack</span><span style="color:#5fb3b3;">) </span><span style="color:#6699cc;">Pop</span><span style="color:#5fb3b3;">() (</span><span style="color:#c594c5;">interface</span><span style="color:#5fb3b3;">{}, </span><span style="color:#c594c5;">bool</span><span style="color:#5fb3b3;">) {
+	</span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> s</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">elements</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">Len</span><span style="color:#5fb3b3;">() == </span><span style="color:#f99157;">0 </span><span style="color:#5fb3b3;">{
+		</span><span style="color:#c594c5;">return </span><span style="color:#f99157;">nil</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">true
+	</span><span style="color:#5fb3b3;">}
+	</span><span style="color:#cccece;">e </span><span style="color:#5fb3b3;">:=</span><span style="color:#cccece;"> s</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">elements</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">Back</span><span style="color:#5fb3b3;">().</span><span style="color:#cccece;">Value
+	s</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">elements</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">Remove</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">s</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">elements</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">Back</span><span style="color:#5fb3b3;">())
+	</span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> e</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">false
+</span><span style="color:#5fb3b3;">}
+
+</span><span style="color:#c594c5;">func </span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">s </span><span style="color:#5fb3b3;">*</span><span style="color:#cccece;">Stack</span><span style="color:#5fb3b3;">) </span><span style="color:#6699cc;">Elements</span><span style="color:#5fb3b3;">() []</span><span style="color:#c594c5;">interface</span><span style="color:#5fb3b3;">{} {
+	</span><span style="color:#cccece;">c </span><span style="color:#5fb3b3;">:= </span><span style="color:#6699cc;">make</span><span style="color:#5fb3b3;">([]</span><span style="color:#c594c5;">interface</span><span style="color:#5fb3b3;">{},</span><span style="color:#6699cc;"> s</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">elements</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">Len</span><span style="color:#5fb3b3;">())
+
+	</span><span style="color:#c594c5;">for </span><span style="color:#cccece;">i</span><span style="color:#5fb3b3;">, </span><span style="color:#cccece;">e </span><span style="color:#5fb3b3;">:= </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">,</span><span style="color:#cccece;"> s</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">elements</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">Front</span><span style="color:#5fb3b3;">()</span><span style="color:#cccece;">; e </span><span style="color:#5fb3b3;">!= </span><span style="color:#f99157;">nil</span><span style="color:#cccece;">; i</span><span style="color:#5fb3b3;">,</span><span style="color:#cccece;"> e </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> i</span><span style="color:#5fb3b3;">+</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">,</span><span style="color:#cccece;"> e</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">Next</span><span style="color:#5fb3b3;">() {</span><span style="color:#cccece;">
+		c</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">i</span><span style="color:#5fb3b3;">] =</span><span style="color:#cccece;"> e</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">Value
+	</span><span style="color:#5fb3b3;">}
+	</span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> c
+</span><span style="color:#5fb3b3;">}
+
+</span><span style="color:#c594c5;">func </span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">s </span><span style="color:#5fb3b3;">*</span><span style="color:#cccece;">Stack</span><span style="color:#5fb3b3;">) </span><span style="color:#6699cc;">Len</span><span style="color:#5fb3b3;">() </span><span style="color:#c594c5;">int </span><span style="color:#5fb3b3;">{
+	</span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> s</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">elements</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">Len</span><span style="color:#5fb3b3;">()
+}
+
+</span><span style="color:#c594c5;">func </span><span style="color:#6699cc;">main</span><span style="color:#5fb3b3;">() {
+	</span><span style="color:#cccece;">s </span><span style="color:#5fb3b3;">:= </span><span style="color:#6699cc;">NewStack</span><span style="color:#5fb3b3;">()</span><span style="color:#cccece;">
+	s</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">Push</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">)</span><span style="color:#cccece;">
+	s</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">Push</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">)</span><span style="color:#cccece;">
+	s</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">Push</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">3</span><span style="color:#5fb3b3;">)
+
+	</span><span style="color:#cccece;">v</span><span style="color:#5fb3b3;">, </span><span style="color:#cccece;">_ </span><span style="color:#5fb3b3;">:=</span><span style="color:#cccece;"> s</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">Pop</span><span style="color:#5fb3b3;">()</span><span style="color:#cccece;">
+
+	fmt</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">Printf</span><span style="color:#5fb3b3;">(&quot;</span><span style="color:#99c794;">value %v, all elements: %v</span><span style="color:#5fb3b3;">&quot;,</span><span style="color:#6699cc;"> v</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> s</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">Elements</span><span style="color:#5fb3b3;">()) </span><span style="color:#5f6364;">// value 3, all elements: [1 2]
+</span><span style="color:#5fb3b3;">}
+</span></pre><br/>
+See also deque implementation [based on container.list with improved performance](https://github.com/juju/utils/blob/master/deque/deque.go)
+<div id="python"/>
+<h2 id="python">Python</h2>
+<p>using build-in list methods:</p>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#cccece;">stack </span><span style="color:#5fb3b3;">= []
+
+</span><span style="color:#6699cc;">stack</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">append</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">)  </span><span style="color:#5f6364;"># same as `push()`, adds 1 to the top of stack (end of list)
+</span><span style="color:#6699cc;">stack</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">append</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">)
+</span><span style="color:#6699cc;">stack</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">append</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">3</span><span style="color:#5fb3b3;">)
+
+</span><span style="color:#cccece;">x </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">stack</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">pop</span><span style="color:#5fb3b3;">()  </span><span style="color:#5f6364;"># deletes and returns element at the top of stack (end of list)
+
+</span><span style="color:#c594c5;">print </span><span style="color:#cccece;">x  </span><span style="color:#5f6364;"># 3
+</span><span style="color:#c594c5;">print </span><span style="color:#cccece;">stack  </span><span style="color:#5f6364;"># [1, 2]
+</span></pre><br/>
+Also see Python's [collections.deque](https://docs.python.org/3/library/collections.html#collections.deque) which is implemented based on `Linked list` and has methods for `Stack` and `Queue`
+<div id="javascript"/>
+<h2 id="javascript">JavaScript</h2>
+<p>using Arrays's methods:</p>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">const </span><span style="color:#cccece;">stack </span><span style="color:#5fb3b3;">= []
+</span><span style="color:#cccece;">stack</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">push</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">) </span><span style="color:#5f6364;">// adds 1 to the top of stack (end of array)
+</span><span style="color:#cccece;">stack</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">push</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">)
+</span><span style="color:#cccece;">stack</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">push</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">3</span><span style="color:#5fb3b3;">)
+</span><span style="color:#c594c5;">const </span><span style="color:#cccece;">value </span><span style="color:#5fb3b3;">= </span><span style="color:#cccece;">stack</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">pop</span><span style="color:#5fb3b3;">() </span><span style="color:#5f6364;">//deletes and returns element at the top of stack (end of array)
+
+</span><span style="color:#fac863;">console</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">log</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">value</span><span style="color:#5fb3b3;">) </span><span style="color:#5f6364;">// 3
+</span><span style="color:#fac863;">console</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">log</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">stack</span><span style="color:#5fb3b3;">) </span><span style="color:#5f6364;">// [1, 2]
+</span></pre><div id="kotlin"/>
+<h2 id="kotlin">Kotlin</h2>
+<p>Kotlin can use <code>Dequeue</code> from <a href="https://algoholics.io/fundamental/stack/#java">Java</a></p>
+<p>See example of simple <code>LinkedList</code> in Kotlin which implements <code>Stack</code> and <code>Queue</code> in <a href="/linkedlist.html#kotlin">Linked List page</a></p>
+<h2 id="rust">Rust</h2>
+<p>See example <a href="/languages/rust#stack">Stack using VecDeque</a></p>
+
+
+    </div>
+
+</div>
+
+</body>
+</html>

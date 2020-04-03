@@ -1,0 +1,396 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <meta name="description" content="Stairs jump count">
+    <meta name="keywords" content="Stairs jump count, learn, explain, tutorial, data structures, algorithms, graph, tree, interview, java, golang, kotlin, python, rust, javascript, advanced">
+
+    <title> 
+    Stairs jump count
+ | Practical algorithms and data structures </title>
+    <link rel='stylesheet' href='/styles/styles.css'/>
+</head>
+
+<body>
+
+<div class="rootContainer">
+    <div class="horizontal-menu-box">
+        
+    
+    
+    
+<div class="menu">
+    <!-- ABOUT -->
+    <div class="menuItem">
+        
+        <a href="/index.html" >
+            ABOUT
+        </a>
+        
+
+    </div>
+
+    <!-- FUNDAMENTAL -->
+    <div class="menuItem">
+        
+        <a href="/fundamental/contents" >
+            FUNDAMENTAL
+        </a>
+        
+    </div>
+
+    <!-- BASIC -->
+    <div class="menuItem">
+        
+        <a href="/basic/contents" >
+            BASIC
+        </a>
+        
+    </div>
+
+    <!-- ADVANCED -->
+    <div class="menuItem">
+        
+        <a href="/advanced/contents" >
+            ADVANCED
+        </a>
+        
+    </div>
+
+    <!-- NINJA -->
+    <div class="menuItem">
+
+        
+        <a href="/ninja/contents" >
+            NINJA
+        </a>
+        
+
+    </div>
+
+    <!-- LANGUAGES -->
+    <div class="menuItem">
+        
+        <a href="/languages/contents" >
+            LANGUAGES
+        </a>
+        
+
+    </div>
+
+</div>
+
+
+
+    </div>
+
+    <div class="content">
+        
+    <h1 id="stairs-jump-algorithm">Stairs jump algorithm</h1>
+<h2 id="contents">Contents</h2>
+<hr />
+<ul>
+<li><a href="https://algoholics.io/advanced/stairs-jump-algorithm/#java">Java</a></li>
+<li><a href="https://algoholics.io/advanced/stairs-jump-algorithm/#go">Go</a></li>
+<li><a href="https://algoholics.io/advanced/stairs-jump-algorithm/#python">Python</a></li>
+<li><a href="https://algoholics.io/advanced/stairs-jump-algorithm/#javascript">JavaScript</a></li>
+<li><a href="https://algoholics.io/advanced/stairs-jump-algorithm/#kotlin">Kotlin</a></li>
+<li><a href="https://algoholics.io/advanced/stairs-jump-algorithm/#rust">Rust</a></li>
+</ul>
+<hr />
+<div id="java"/>
+<h2 id="java">Java</h2>
+<p>Recursive approach:</p>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">package </span><span style="color:#cccece;">recursion</span><span style="color:#5fb3b3;">;
+
+</span><span style="color:#c594c5;">public class </span><span style="color:#fac863;">StairJump </span><span style="color:#5fb3b3;">{
+
+    </span><span style="color:#c594c5;">public static int </span><span style="color:#6699cc;">waysCount</span><span style="color:#5fb3b3;">(</span><span style="color:#c594c5;">int </span><span style="color:#f99157;">stairsCount</span><span style="color:#5fb3b3;">, </span><span style="color:#c594c5;">int[] </span><span style="color:#f99157;">jumpWays</span><span style="color:#5fb3b3;">) {
+        </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">stairsCount </span><span style="color:#5fb3b3;">&lt; </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">) </span><span style="color:#c594c5;">return </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">;
+
+        </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">stairsCount </span><span style="color:#5fb3b3;">== </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">) </span><span style="color:#c594c5;">return </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">;
+
+        </span><span style="color:#c594c5;">int</span><span style="color:#cccece;"> totalWaysCount </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">;
+        </span><span style="color:#c594c5;">for </span><span style="color:#5fb3b3;">(</span><span style="color:#c594c5;">int</span><span style="color:#cccece;"> curJump </span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> jumpWays</span><span style="color:#5fb3b3;">) {</span><span style="color:#cccece;">
+            totalWaysCount </span><span style="color:#5fb3b3;">+= </span><span style="color:#6699cc;">waysCount</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">stairsCount </span><span style="color:#5fb3b3;">-</span><span style="color:#6699cc;"> curJump</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> jumpWays</span><span style="color:#5fb3b3;">);
+        }
+        </span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> totalWaysCount</span><span style="color:#5fb3b3;">;
+    }
+}
+
+</span></pre>
+<p>with caching (dynamic):</p>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">package </span><span style="color:#cccece;">dynamic</span><span style="color:#5fb3b3;">;
+
+</span><span style="color:#c594c5;">public class </span><span style="color:#fac863;">StairJump </span><span style="color:#5fb3b3;">{
+    </span><span style="color:#c594c5;">public static int </span><span style="color:#6699cc;">waysCount</span><span style="color:#5fb3b3;">(</span><span style="color:#c594c5;">int </span><span style="color:#f99157;">stairsCount</span><span style="color:#5fb3b3;">, </span><span style="color:#c594c5;">int[] </span><span style="color:#f99157;">waysCount</span><span style="color:#5fb3b3;">) {
+        </span><span style="color:#c594c5;">int[]</span><span style="color:#cccece;"> cache </span><span style="color:#5fb3b3;">= </span><span style="color:#c594c5;">new int</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">stairsCount </span><span style="color:#5fb3b3;">+ </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">];
+        </span><span style="color:#c594c5;">return </span><span style="color:#6699cc;">waysCount</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">stairsCount</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> waysCount</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> cache</span><span style="color:#5fb3b3;">);
+    }
+
+    </span><span style="color:#c594c5;">private static int </span><span style="color:#6699cc;">waysCount</span><span style="color:#5fb3b3;">(</span><span style="color:#c594c5;">int </span><span style="color:#f99157;">stairsCount</span><span style="color:#5fb3b3;">, </span><span style="color:#c594c5;">int[] </span><span style="color:#f99157;">waysCount</span><span style="color:#5fb3b3;">, </span><span style="color:#c594c5;">int[] </span><span style="color:#f99157;">cache</span><span style="color:#5fb3b3;">) {
+        </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">stairsCount </span><span style="color:#5fb3b3;">&lt; </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">) </span><span style="color:#c594c5;">return </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">;
+        </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">stairsCount </span><span style="color:#5fb3b3;">== </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">) </span><span style="color:#c594c5;">return </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">;
+
+        </span><span style="color:#c594c5;">int</span><span style="color:#cccece;"> totalWays </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">;
+        </span><span style="color:#c594c5;">for </span><span style="color:#5fb3b3;">(</span><span style="color:#c594c5;">int</span><span style="color:#cccece;"> curJump </span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> waysCount</span><span style="color:#5fb3b3;">) {
+            </span><span style="color:#c594c5;">int</span><span style="color:#cccece;"> curJumpIdx </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> stairsCount </span><span style="color:#5fb3b3;">-</span><span style="color:#cccece;"> curJump</span><span style="color:#5fb3b3;">;
+            </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">curJumpIdx </span><span style="color:#5fb3b3;">&lt; </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">) </span><span style="color:#c594c5;">continue</span><span style="color:#5fb3b3;">;
+
+            </span><span style="color:#c594c5;">int</span><span style="color:#cccece;"> cachedResult </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> cache[curJumpIdx]</span><span style="color:#5fb3b3;">;
+            </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">cachedResult </span><span style="color:#5fb3b3;">== </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">) {</span><span style="color:#cccece;">
+                cachedResult </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">waysCount</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">curJumpIdx</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> waysCount</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> cache</span><span style="color:#5fb3b3;">);</span><span style="color:#cccece;">
+                cache[curJumpIdx] </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> cachedResult</span><span style="color:#5fb3b3;">;
+            }</span><span style="color:#cccece;">
+            totalWays </span><span style="color:#5fb3b3;">+=</span><span style="color:#cccece;"> cachedResult</span><span style="color:#5fb3b3;">;
+        }
+        </span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> totalWays</span><span style="color:#5fb3b3;">;
+    }
+}
+
+</span></pre><div id="go"/>
+<h2 id="go">Go</h2>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">package</span><span style="color:#cccece;"> recursion
+
+</span><span style="color:#c594c5;">func </span><span style="color:#6699cc;">StairJumpCount</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">stairsCount </span><span style="color:#c594c5;">int</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">jumps </span><span style="color:#5fb3b3;">[]</span><span style="color:#c594c5;">int</span><span style="color:#5fb3b3;">) </span><span style="color:#c594c5;">int </span><span style="color:#5fb3b3;">{
+	</span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> stairsCount </span><span style="color:#5fb3b3;">&lt; </span><span style="color:#f99157;">0 </span><span style="color:#5fb3b3;">{
+		</span><span style="color:#c594c5;">return </span><span style="color:#f99157;">0
+	</span><span style="color:#5fb3b3;">}
+
+	</span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> stairsCount </span><span style="color:#5fb3b3;">== </span><span style="color:#f99157;">0 </span><span style="color:#5fb3b3;">{
+		</span><span style="color:#c594c5;">return </span><span style="color:#f99157;">1
+	</span><span style="color:#5fb3b3;">}
+
+	</span><span style="color:#c594c5;">var </span><span style="color:#cccece;">total </span><span style="color:#c594c5;">int
+	for </span><span style="color:#cccece;">_</span><span style="color:#5fb3b3;">, </span><span style="color:#cccece;">curJumps </span><span style="color:#5fb3b3;">:= </span><span style="color:#c594c5;">range</span><span style="color:#cccece;"> jumps </span><span style="color:#5fb3b3;">{</span><span style="color:#cccece;">
+		total </span><span style="color:#5fb3b3;">+= </span><span style="color:#6699cc;">StairJumpCount</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">stairsCount</span><span style="color:#5fb3b3;">-</span><span style="color:#6699cc;">curJumps</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> jumps</span><span style="color:#5fb3b3;">)
+	}
+	</span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> total
+</span><span style="color:#5fb3b3;">}
+</span></pre>
+<p>with caching (dynamic):</p>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">package</span><span style="color:#cccece;"> dynamic
+
+</span><span style="color:#c594c5;">func </span><span style="color:#6699cc;">StairJumpCount</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">stairsCount </span><span style="color:#c594c5;">int</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">jumps </span><span style="color:#5fb3b3;">[]</span><span style="color:#c594c5;">int</span><span style="color:#5fb3b3;">) </span><span style="color:#c594c5;">int </span><span style="color:#5fb3b3;">{
+	</span><span style="color:#cccece;">cache </span><span style="color:#5fb3b3;">:= </span><span style="color:#6699cc;">make</span><span style="color:#5fb3b3;">([]</span><span style="color:#c594c5;">int</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> stairsCount</span><span style="color:#5fb3b3;">+</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> stairsCount</span><span style="color:#5fb3b3;">+</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">)
+	</span><span style="color:#c594c5;">return </span><span style="color:#6699cc;">stairJumpCount</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">stairsCount</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> jumps</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> cache</span><span style="color:#5fb3b3;">)
+}
+
+</span><span style="color:#c594c5;">func </span><span style="color:#6699cc;">stairJumpCount</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">stairsCount </span><span style="color:#c594c5;">int</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">jumps </span><span style="color:#5fb3b3;">[]</span><span style="color:#c594c5;">int</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">cache </span><span style="color:#5fb3b3;">[]</span><span style="color:#c594c5;">int</span><span style="color:#5fb3b3;">) </span><span style="color:#c594c5;">int </span><span style="color:#5fb3b3;">{
+	</span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> stairsCount </span><span style="color:#5fb3b3;">&lt; </span><span style="color:#f99157;">0 </span><span style="color:#5fb3b3;">{
+		</span><span style="color:#c594c5;">return </span><span style="color:#f99157;">0
+	</span><span style="color:#5fb3b3;">}
+	</span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> stairsCount </span><span style="color:#5fb3b3;">== </span><span style="color:#f99157;">0 </span><span style="color:#5fb3b3;">{
+		</span><span style="color:#c594c5;">return </span><span style="color:#f99157;">1
+	</span><span style="color:#5fb3b3;">}
+
+	</span><span style="color:#c594c5;">var </span><span style="color:#cccece;">totalWays </span><span style="color:#c594c5;">int
+	for </span><span style="color:#cccece;">_</span><span style="color:#5fb3b3;">, </span><span style="color:#cccece;">curJump </span><span style="color:#5fb3b3;">:= </span><span style="color:#c594c5;">range</span><span style="color:#cccece;"> jumps </span><span style="color:#5fb3b3;">{
+		</span><span style="color:#cccece;">curJumpIdx </span><span style="color:#5fb3b3;">:=</span><span style="color:#cccece;"> stairsCount </span><span style="color:#5fb3b3;">-</span><span style="color:#cccece;"> curJump
+		</span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> curJumpIdx </span><span style="color:#5fb3b3;">&lt; </span><span style="color:#f99157;">0 </span><span style="color:#5fb3b3;">{
+			</span><span style="color:#c594c5;">continue
+		</span><span style="color:#5fb3b3;">}
+		</span><span style="color:#cccece;">curWays </span><span style="color:#5fb3b3;">:=</span><span style="color:#cccece;"> cache</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">curJumpIdx</span><span style="color:#5fb3b3;">]
+
+		</span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> curWays </span><span style="color:#5fb3b3;">== </span><span style="color:#f99157;">0 </span><span style="color:#5fb3b3;">{</span><span style="color:#cccece;">
+			curWays </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">stairJumpCount</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">curJumpIdx</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> jumps</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> cache</span><span style="color:#5fb3b3;">)</span><span style="color:#cccece;">
+			cache</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">curJumpIdx</span><span style="color:#5fb3b3;">] =</span><span style="color:#cccece;"> curWays
+		</span><span style="color:#5fb3b3;">}</span><span style="color:#cccece;">
+		totalWays </span><span style="color:#5fb3b3;">+=</span><span style="color:#cccece;"> curWays
+	</span><span style="color:#5fb3b3;">}
+	</span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> totalWays
+</span><span style="color:#5fb3b3;">}
+
+</span></pre><div id="python"/>
+<h2 id="python">Python</h2>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">def </span><span style="color:#6699cc;">count_ways</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">stairs_count</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">jump_ways</span><span style="color:#5fb3b3;">):
+    </span><span style="color:#c594c5;">if </span><span style="color:#cccece;">stairs_count </span><span style="color:#5fb3b3;">&lt; </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">:
+        </span><span style="color:#c594c5;">return </span><span style="color:#f99157;">0
+    </span><span style="color:#c594c5;">if </span><span style="color:#cccece;">stairs_count </span><span style="color:#5fb3b3;">== </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">:
+        </span><span style="color:#c594c5;">return </span><span style="color:#f99157;">1
+
+    </span><span style="color:#cccece;">total_ways </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">0
+    </span><span style="color:#c594c5;">for </span><span style="color:#cccece;">cur_jump </span><span style="color:#c594c5;">in </span><span style="color:#cccece;">jump_ways</span><span style="color:#5fb3b3;">:
+        </span><span style="color:#cccece;">total_ways </span><span style="color:#5fb3b3;">+= </span><span style="color:#6699cc;">count_ways</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">stairs_count </span><span style="color:#5fb3b3;">- </span><span style="color:#6699cc;">cur_jump</span><span style="color:#5fb3b3;">, </span><span style="color:#6699cc;">jump_ways</span><span style="color:#5fb3b3;">)
+
+    </span><span style="color:#c594c5;">return </span><span style="color:#cccece;">total_ways
+</span></pre>
+<p>with caching (dynamic):</p>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">def </span><span style="color:#6699cc;">_count_ways</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">stairs_count</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">jump_ways</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">cache</span><span style="color:#5fb3b3;">):
+    </span><span style="color:#c594c5;">if </span><span style="color:#cccece;">stairs_count </span><span style="color:#5fb3b3;">&lt; </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">:
+        </span><span style="color:#c594c5;">return </span><span style="color:#f99157;">0
+
+    </span><span style="color:#c594c5;">if </span><span style="color:#cccece;">stairs_count </span><span style="color:#5fb3b3;">== </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">:
+        </span><span style="color:#c594c5;">return </span><span style="color:#f99157;">1
+
+    </span><span style="color:#cccece;">total_ways </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">0
+    </span><span style="color:#c594c5;">for </span><span style="color:#cccece;">cur_jump </span><span style="color:#c594c5;">in </span><span style="color:#cccece;">jump_ways</span><span style="color:#5fb3b3;">:
+        </span><span style="color:#cccece;">cur_ways_idx </span><span style="color:#5fb3b3;">= </span><span style="color:#cccece;">stairs_count </span><span style="color:#5fb3b3;">- </span><span style="color:#cccece;">cur_jump
+        </span><span style="color:#c594c5;">if </span><span style="color:#cccece;">cur_ways_idx </span><span style="color:#5fb3b3;">&lt; </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">:
+            </span><span style="color:#c594c5;">continue
+
+        </span><span style="color:#cccece;">cur_ways </span><span style="color:#5fb3b3;">= </span><span style="color:#cccece;">cache</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">cur_ways_idx</span><span style="color:#5fb3b3;">]
+        </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">not </span><span style="color:#cccece;">cur_ways</span><span style="color:#5fb3b3;">:
+            </span><span style="color:#cccece;">cur_ways </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">_count_ways</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">cur_ways_idx</span><span style="color:#5fb3b3;">, </span><span style="color:#6699cc;">jump_ways</span><span style="color:#5fb3b3;">, </span><span style="color:#6699cc;">cache</span><span style="color:#5fb3b3;">)
+            </span><span style="color:#cccece;">cache</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">cur_ways_idx</span><span style="color:#5fb3b3;">] = </span><span style="color:#cccece;">cur_ways
+
+        total_ways </span><span style="color:#5fb3b3;">+= </span><span style="color:#cccece;">cur_ways
+
+    </span><span style="color:#c594c5;">return </span><span style="color:#cccece;">total_ways
+
+
+</span><span style="color:#c594c5;">def </span><span style="color:#6699cc;">count_ways</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">stairs_count</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">jump_ways</span><span style="color:#5fb3b3;">):
+    </span><span style="color:#cccece;">cache </span><span style="color:#5fb3b3;">= [</span><span style="color:#f99157;">None</span><span style="color:#5fb3b3;">] * (</span><span style="color:#cccece;">stairs_count </span><span style="color:#5fb3b3;">+ </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">)
+    </span><span style="color:#c594c5;">return </span><span style="color:#6699cc;">_count_ways</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">stairs_count</span><span style="color:#5fb3b3;">, </span><span style="color:#6699cc;">jump_ways</span><span style="color:#5fb3b3;">, </span><span style="color:#6699cc;">cache</span><span style="color:#5fb3b3;">)
+</span></pre><div id="javascript"/>
+<h2 id="javascript">JavaScript</h2>
+<p>Recursive approach:</p>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">function </span><span style="color:#6699cc;">waysCount</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">stairsCount</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">jumpWays</span><span style="color:#5fb3b3;">) {
+    </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">stairsCount </span><span style="color:#5fb3b3;">&lt; </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">) </span><span style="color:#c594c5;">return </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">;
+    </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">stairsCount </span><span style="color:#5fb3b3;">== </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">) </span><span style="color:#c594c5;">return </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">;
+
+    </span><span style="color:#c594c5;">let </span><span style="color:#cccece;">totalCount </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">;
+    </span><span style="color:#c594c5;">for </span><span style="color:#5fb3b3;">(</span><span style="color:#c594c5;">let </span><span style="color:#cccece;">curJump </span><span style="color:#5fb3b3;">of </span><span style="color:#cccece;">jumpWays</span><span style="color:#5fb3b3;">) {
+        </span><span style="color:#cccece;">totalCount </span><span style="color:#5fb3b3;">+= </span><span style="color:#6699cc;">waysCount</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">stairsCount </span><span style="color:#5fb3b3;">- </span><span style="color:#cccece;">curJump</span><span style="color:#5fb3b3;">, </span><span style="color:#cccece;">jumpWays</span><span style="color:#5fb3b3;">);
+    }
+    </span><span style="color:#c594c5;">return </span><span style="color:#cccece;">totalCount
+</span><span style="color:#5fb3b3;">}
+</span></pre>
+<p>with caching (dynamic):</p>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">function </span><span style="color:#6699cc;">waysCount</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">stairsCount</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">jumpWays</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">cache</span><span style="color:#5fb3b3;">) {
+    </span><span style="color:#cccece;">cache </span><span style="color:#5fb3b3;">= </span><span style="color:#fac863;">Array</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">stairsCount </span><span style="color:#5fb3b3;">+ </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">).</span><span style="color:#6699cc;">fill</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">)
+    </span><span style="color:#c594c5;">return </span><span style="color:#6699cc;">waysCountWithCache</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">stairsCount</span><span style="color:#5fb3b3;">, </span><span style="color:#cccece;">jumpWays</span><span style="color:#5fb3b3;">, </span><span style="color:#cccece;">cache</span><span style="color:#5fb3b3;">)
+}
+
+</span><span style="color:#c594c5;">function </span><span style="color:#6699cc;">waysCountWithCache</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">stairsCount</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">jumpWays</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">cache</span><span style="color:#5fb3b3;">) {
+    </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">stairsCount </span><span style="color:#5fb3b3;">&lt; </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">) </span><span style="color:#c594c5;">return </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">;
+    </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">stairsCount </span><span style="color:#5fb3b3;">== </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">) </span><span style="color:#c594c5;">return </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">;
+
+    </span><span style="color:#c594c5;">let </span><span style="color:#cccece;">totalCount </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">;
+    </span><span style="color:#c594c5;">for </span><span style="color:#5fb3b3;">(</span><span style="color:#c594c5;">let </span><span style="color:#cccece;">curJump </span><span style="color:#5fb3b3;">of </span><span style="color:#cccece;">jumpWays</span><span style="color:#5fb3b3;">) {
+        </span><span style="color:#c594c5;">const </span><span style="color:#cccece;">curWaysIdx </span><span style="color:#5fb3b3;">= </span><span style="color:#cccece;">stairsCount </span><span style="color:#5fb3b3;">- </span><span style="color:#cccece;">curJump</span><span style="color:#5fb3b3;">;
+        </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">curWaysIdx </span><span style="color:#5fb3b3;">&lt; </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">) {
+            </span><span style="color:#c594c5;">continue</span><span style="color:#5fb3b3;">;
+        }
+        </span><span style="color:#c594c5;">let </span><span style="color:#cccece;">curWays </span><span style="color:#5fb3b3;">= </span><span style="color:#cccece;">cache</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">curWaysIdx</span><span style="color:#5fb3b3;">];
+        </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">(!</span><span style="color:#cccece;">curWays</span><span style="color:#5fb3b3;">) {
+            </span><span style="color:#cccece;">curWays </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">waysCountWithCache</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">curWaysIdx</span><span style="color:#5fb3b3;">, </span><span style="color:#cccece;">jumpWays</span><span style="color:#5fb3b3;">, </span><span style="color:#cccece;">cache</span><span style="color:#5fb3b3;">);
+            </span><span style="color:#cccece;">cache</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">curWaysIdx</span><span style="color:#5fb3b3;">] = </span><span style="color:#cccece;">curWays</span><span style="color:#5fb3b3;">;
+        }
+        </span><span style="color:#cccece;">totalCount </span><span style="color:#5fb3b3;">+= </span><span style="color:#cccece;">curWays
+    </span><span style="color:#5fb3b3;">}
+    </span><span style="color:#c594c5;">return </span><span style="color:#cccece;">totalCount
+</span><span style="color:#5fb3b3;">}
+</span></pre><div id="kotlin"/>
+<h2 id="kotlin">Kotlin</h2>
+<p>Recursive approach:</p>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">package </span><span style="color:#cccece;">recursion
+
+object StairJump {
+
+    </span><span style="color:#c594c5;">fun </span><span style="color:#6699cc;">waysCount</span><span style="color:#cccece;">(</span><span style="color:#f99157;">stairsCount</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">Int</span><span style="color:#cccece;">, </span><span style="color:#f99157;">jumpWays</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">IntArray</span><span style="color:#cccece;">)</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">Int</span><span style="color:#cccece;"> {
+        </span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> (stairsCount </span><span style="color:#5fb3b3;">&lt; </span><span style="color:#f99157;">0</span><span style="color:#cccece;">) </span><span style="color:#c594c5;">return </span><span style="color:#f99157;">0
+
+        </span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> (stairsCount </span><span style="color:#5fb3b3;">== </span><span style="color:#f99157;">0</span><span style="color:#cccece;">) </span><span style="color:#c594c5;">return </span><span style="color:#f99157;">1
+
+        </span><span style="color:#c594c5;">var </span><span style="color:#cccece;">totalCount </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">;
+
+        </span><span style="color:#c594c5;">for</span><span style="color:#cccece;"> (jumpStairsWay </span><span style="color:#c594c5;">in</span><span style="color:#cccece;"> jumpWays) {
+            totalCount </span><span style="color:#5fb3b3;">+=</span><span style="color:#cccece;"> waysCount(stairsCount </span><span style="color:#5fb3b3;">-</span><span style="color:#cccece;"> jumpStairsWay, jumpWays)
+        }
+        </span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> totalCount</span><span style="color:#5fb3b3;">;</span><span style="color:#cccece;">
+    }
+}
+</span></pre>
+<p>with caching results (dynamic):</p>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">package </span><span style="color:#cccece;">dynamic
+
+object StairJump {
+
+    </span><span style="color:#c594c5;">fun </span><span style="color:#6699cc;">waysCount</span><span style="color:#cccece;">(</span><span style="color:#f99157;">stairsCount</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">Int</span><span style="color:#cccece;">, </span><span style="color:#f99157;">jumpWays</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">IntArray</span><span style="color:#cccece;">, </span><span style="color:#f99157;">cache</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">Array</span><span style="color:#cccece;">&lt;</span><span style="color:#c594c5;">Int</span><span style="color:#cccece;">?&gt; </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> arrayOfNulls&lt;</span><span style="color:#c594c5;">Int</span><span style="color:#cccece;">?&gt;(stairsCount </span><span style="color:#5fb3b3;">+ </span><span style="color:#f99157;">1</span><span style="color:#cccece;">))</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">Int</span><span style="color:#cccece;"> {
+        </span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> (stairsCount </span><span style="color:#5fb3b3;">&lt; </span><span style="color:#f99157;">0</span><span style="color:#cccece;">) </span><span style="color:#c594c5;">return </span><span style="color:#f99157;">0
+
+        </span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> (stairsCount </span><span style="color:#5fb3b3;">== </span><span style="color:#f99157;">0</span><span style="color:#cccece;">) </span><span style="color:#c594c5;">return </span><span style="color:#f99157;">1
+
+        </span><span style="color:#c594c5;">var </span><span style="color:#cccece;">totalWays </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">0
+
+        </span><span style="color:#c594c5;">for</span><span style="color:#cccece;"> (curJump </span><span style="color:#c594c5;">in</span><span style="color:#cccece;"> jumpWays) {
+            </span><span style="color:#c594c5;">val </span><span style="color:#cccece;">curWaysCountIdx </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> stairsCount </span><span style="color:#5fb3b3;">-</span><span style="color:#cccece;"> curJump
+
+            </span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> (curWaysCountIdx </span><span style="color:#5fb3b3;">&lt; </span><span style="color:#f99157;">0</span><span style="color:#cccece;">) </span><span style="color:#c594c5;">continue
+
+            var </span><span style="color:#cccece;">curJumpWays </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> cache[curWaysCountIdx]
+            </span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> (curJumpWays </span><span style="color:#5fb3b3;">== </span><span style="color:#f99157;">null</span><span style="color:#cccece;">) {
+                curJumpWays </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> waysCount(curWaysCountIdx, jumpWays, cache)
+                cache[curWaysCountIdx] </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> curJumpWays
+            }
+            totalWays </span><span style="color:#5fb3b3;">+=</span><span style="color:#cccece;"> curJumpWays
+        }
+        </span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> totalWays
+    }
+}
+</span></pre><div id="rust"/>
+<h2 id="rust">Rust</h2>
+<p>Recursive approach:</p>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">fn </span><span style="color:#6699cc;">ways</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">stairs</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">i32</span><span style="color:#cccece;">, </span><span style="color:#f99157;">jump_ways</span><span style="color:#5fb3b3;">: &amp;</span><span style="color:#cccece;">[</span><span style="color:#c594c5;">i32</span><span style="color:#cccece;">]</span><span style="color:#5fb3b3;">) -&gt; </span><span style="color:#c594c5;">usize </span><span style="color:#5fb3b3;">{
+    </span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> stairs </span><span style="color:#5fb3b3;">&lt; </span><span style="color:#f99157;">0 </span><span style="color:#5fb3b3;">{
+        </span><span style="color:#c594c5;">return </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">;
+    }
+    </span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> stairs </span><span style="color:#5fb3b3;">== </span><span style="color:#f99157;">0 </span><span style="color:#5fb3b3;">{
+        </span><span style="color:#c594c5;">return </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">;
+    }
+    </span><span style="color:#c594c5;">let mut</span><span style="color:#cccece;"> total_ways </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">;
+    </span><span style="color:#c594c5;">for</span><span style="color:#cccece;"> cur_jump </span><span style="color:#5fb3b3;">in</span><span style="color:#cccece;"> jump_ways </span><span style="color:#5fb3b3;">{</span><span style="color:#cccece;">
+        total_ways </span><span style="color:#5fb3b3;">+= </span><span style="color:#6699cc;">ways</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">stairs </span><span style="color:#5fb3b3;">- *</span><span style="color:#cccece;">cur_jump</span><span style="color:#5fb3b3;">,</span><span style="color:#cccece;"> jump_ways</span><span style="color:#5fb3b3;">);
+    }</span><span style="color:#cccece;">
+    total_ways
+</span><span style="color:#5fb3b3;">}
+</span></pre>
+<p>Dynamic:</p>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">use </span><span style="color:#cccece;">std</span><span style="color:#5fb3b3;">::</span><span style="color:#cccece;">collections</span><span style="color:#5fb3b3;">::</span><span style="color:#cccece;">HashMap</span><span style="color:#5fb3b3;">;
+
+</span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">ways_dynamic</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">stairs</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">i32</span><span style="color:#cccece;">, </span><span style="color:#f99157;">jump_ways</span><span style="color:#5fb3b3;">: &amp;</span><span style="color:#cccece;">[</span><span style="color:#c594c5;">i32</span><span style="color:#cccece;">]</span><span style="color:#5fb3b3;">) -&gt; </span><span style="color:#c594c5;">usize </span><span style="color:#5fb3b3;">{
+    </span><span style="color:#c594c5;">let mut</span><span style="color:#cccece;"> cache</span><span style="color:#5fb3b3;">: </span><span style="color:#cccece;">HashMap</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#c594c5;">i32</span><span style="color:#cccece;">, </span><span style="color:#c594c5;">usize</span><span style="color:#5fb3b3;">&gt; = </span><span style="color:#cccece;">HashMap</span><span style="color:#5fb3b3;">::</span><span style="color:#cccece;">new</span><span style="color:#5fb3b3;">();
+    </span><span style="color:#6699cc;">ways_cached</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">stairs</span><span style="color:#5fb3b3;">,</span><span style="color:#cccece;"> jump_ways</span><span style="color:#5fb3b3;">, &amp;</span><span style="color:#c594c5;">mut</span><span style="color:#cccece;"> cache</span><span style="color:#5fb3b3;">)
+}
+
+</span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">ways_cached</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">stairs</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">i32</span><span style="color:#cccece;">, </span><span style="color:#f99157;">jump_ways</span><span style="color:#5fb3b3;">: &amp;</span><span style="color:#cccece;">[</span><span style="color:#c594c5;">i32</span><span style="color:#cccece;">], </span><span style="color:#f99157;">cache</span><span style="color:#5fb3b3;">: &amp;</span><span style="color:#c594c5;">mut </span><span style="color:#cccece;">HashMap</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#c594c5;">i32</span><span style="color:#cccece;">, </span><span style="color:#c594c5;">usize</span><span style="color:#5fb3b3;">&gt;) -&gt; </span><span style="color:#c594c5;">usize </span><span style="color:#5fb3b3;">{
+    </span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> stairs </span><span style="color:#5fb3b3;">&lt; </span><span style="color:#f99157;">0 </span><span style="color:#5fb3b3;">{
+        </span><span style="color:#c594c5;">return </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">;
+    }
+    </span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> stairs </span><span style="color:#5fb3b3;">== </span><span style="color:#f99157;">0 </span><span style="color:#5fb3b3;">{
+        </span><span style="color:#c594c5;">return </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">;
+    }
+    </span><span style="color:#c594c5;">let mut</span><span style="color:#cccece;"> total_ways </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">;
+    </span><span style="color:#c594c5;">for</span><span style="color:#cccece;"> cur_jump </span><span style="color:#5fb3b3;">in</span><span style="color:#cccece;"> jump_ways </span><span style="color:#5fb3b3;">{
+        </span><span style="color:#c594c5;">let</span><span style="color:#cccece;"> cur_stairs </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> stairs </span><span style="color:#5fb3b3;">- *</span><span style="color:#cccece;">cur_jump</span><span style="color:#5fb3b3;">;
+        </span><span style="color:#c594c5;">if let </span><span style="color:#fac863;">Some</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">count</span><span style="color:#5fb3b3;">) =</span><span style="color:#cccece;"> cache</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">get</span><span style="color:#5fb3b3;">(&amp;</span><span style="color:#cccece;">cur_stairs</span><span style="color:#5fb3b3;">) {</span><span style="color:#cccece;">
+            total_ways </span><span style="color:#5fb3b3;">+= *</span><span style="color:#cccece;">count</span><span style="color:#5fb3b3;">;
+        } </span><span style="color:#c594c5;">else </span><span style="color:#5fb3b3;">{</span><span style="color:#cccece;">
+            cache</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">insert</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">cur_stairs</span><span style="color:#5fb3b3;">, </span><span style="color:#6699cc;">ways</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">cur_stairs</span><span style="color:#5fb3b3;">,</span><span style="color:#cccece;"> jump_ways</span><span style="color:#5fb3b3;">));</span><span style="color:#cccece;">
+            total_ways </span><span style="color:#5fb3b3;">+=</span><span style="color:#cccece;"> cache</span><span style="color:#5fb3b3;">[&amp;</span><span style="color:#cccece;">cur_stairs</span><span style="color:#5fb3b3;">];
+        }
+    }</span><span style="color:#cccece;">
+    total_ways
+</span><span style="color:#5fb3b3;">}
+</span></pre>
+
+    </div>
+
+</div>
+
+</body>
+</html>

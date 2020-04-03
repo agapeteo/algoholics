@@ -1,0 +1,156 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <meta name="description" content="Topological sort">
+    <meta name="keywords" content="Topological sort, graph, learn, explain, tutorial, data structures, algorithms, graph, tree, interview, java, golang, kotlin, python, rust, javascript, advanced">
+
+    <title> 
+    Topological sort
+ | Practical algorithms and data structures </title>
+    <link rel='stylesheet' href='/styles/styles.css'/>
+</head>
+
+<body>
+
+<div class="rootContainer">
+    <div class="horizontal-menu-box">
+        
+    
+    
+    
+<div class="menu">
+    <!-- ABOUT -->
+    <div class="menuItem">
+        
+        <a href="/index.html" >
+            ABOUT
+        </a>
+        
+
+    </div>
+
+    <!-- FUNDAMENTAL -->
+    <div class="menuItem">
+        
+        <a href="/fundamental/contents" >
+            FUNDAMENTAL
+        </a>
+        
+    </div>
+
+    <!-- BASIC -->
+    <div class="menuItem">
+        
+        <a href="/basic/contents" >
+            BASIC
+        </a>
+        
+    </div>
+
+    <!-- ADVANCED -->
+    <div class="menuItem">
+        
+        <a href="/advanced/contents" >
+            ADVANCED
+        </a>
+        
+    </div>
+
+    <!-- NINJA -->
+    <div class="menuItem">
+
+        
+        <a href="/ninja/contents" >
+            NINJA
+        </a>
+        
+
+    </div>
+
+    <!-- LANGUAGES -->
+    <div class="menuItem">
+        
+        <a href="/languages/contents" >
+            LANGUAGES
+        </a>
+        
+
+    </div>
+
+</div>
+
+
+
+    </div>
+
+    <div class="content">
+        
+    <h1 id="topological-sort">Topological sort</h1>
+<h2 id="contents">Contents</h2>
+<hr />
+<ul>
+<li><a href="https://algoholics.io/advanced/topological-sort/#kotlin">Kotlin</a></li>
+</ul>
+<hr />
+<div id="kotlin"/>
+<h2 id="kotlin">Kotlin</h2>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">package </span><span style="color:#cccece;">graph
+
+object GandzhaTopologySort {
+    </span><span style="color:#c594c5;">fun</span><span style="color:#cccece;"> &lt;</span><span style="color:#c594c5;">T</span><span style="color:#cccece;">&gt; </span><span style="color:#6699cc;">topologySort</span><span style="color:#cccece;">(</span><span style="color:#f99157;">vertices</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">List</span><span style="color:#cccece;">&lt;T&gt;, </span><span style="color:#f99157;">dependencies</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">List</span><span style="color:#cccece;">&lt;Pair&lt;T, T&gt;&gt;)</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">List</span><span style="color:#cccece;">&lt;T&gt; {
+        </span><span style="color:#c594c5;">val </span><span style="color:#cccece;">graph </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> buildReverseGraph(vertices, dependencies)
+        </span><span style="color:#c594c5;">val </span><span style="color:#cccece;">dependenciesCount </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> countDependencies(graph)
+        </span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> toList(dependenciesCount)
+    }
+
+    </span><span style="color:#c594c5;">private fun</span><span style="color:#cccece;"> &lt;</span><span style="color:#c594c5;">T</span><span style="color:#cccece;">&gt; </span><span style="color:#6699cc;">countDependencies</span><span style="color:#cccece;">(</span><span style="color:#f99157;">graph</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">Map</span><span style="color:#cccece;">&lt;T, </span><span style="color:#c594c5;">List</span><span style="color:#cccece;">&lt;T&gt;&gt;)</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">Map</span><span style="color:#cccece;">&lt;T, </span><span style="color:#c594c5;">Int</span><span style="color:#cccece;">&gt; {
+        </span><span style="color:#c594c5;">val </span><span style="color:#cccece;">result </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> mutableMapOf&lt;T, </span><span style="color:#c594c5;">Int</span><span style="color:#cccece;">&gt;()
+
+        </span><span style="color:#c594c5;">for</span><span style="color:#cccece;"> (vertex </span><span style="color:#c594c5;">in</span><span style="color:#cccece;"> graph</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">keys) {
+            countFor(graph, vertex, mutableSetOf(), result)
+        }
+        </span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> result
+    }
+
+    </span><span style="color:#c594c5;">private fun</span><span style="color:#cccece;"> &lt;</span><span style="color:#c594c5;">T</span><span style="color:#cccece;">&gt; </span><span style="color:#6699cc;">buildReverseGraph</span><span style="color:#cccece;">(</span><span style="color:#f99157;">vertices</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">List</span><span style="color:#cccece;">&lt;T&gt;, </span><span style="color:#f99157;">dependencies</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">List</span><span style="color:#cccece;">&lt;Pair&lt;T, T&gt;&gt;)</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">Map</span><span style="color:#cccece;">&lt;T, </span><span style="color:#c594c5;">List</span><span style="color:#cccece;">&lt;T&gt;&gt; {
+        </span><span style="color:#c594c5;">val </span><span style="color:#cccece;">result </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> mutableMapOf&lt;T, MutableList&lt;T&gt;&gt;()
+        </span><span style="color:#c594c5;">for</span><span style="color:#cccece;"> (v </span><span style="color:#c594c5;">in</span><span style="color:#cccece;"> vertices) {
+            result[v] </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> mutableListOf()
+        }
+        </span><span style="color:#c594c5;">for</span><span style="color:#cccece;"> (pair </span><span style="color:#c594c5;">in</span><span style="color:#cccece;"> dependencies) {
+            result[pair</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">first]?</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">add(pair</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">second)
+        }
+        </span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> result
+    }
+
+    </span><span style="color:#c594c5;">private fun</span><span style="color:#cccece;"> &lt;</span><span style="color:#c594c5;">T</span><span style="color:#cccece;">&gt; </span><span style="color:#6699cc;">countFor</span><span style="color:#cccece;">(</span><span style="color:#f99157;">graph</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">Map</span><span style="color:#cccece;">&lt;T, </span><span style="color:#c594c5;">List</span><span style="color:#cccece;">&lt;T&gt;&gt;, </span><span style="color:#f99157;">vertex</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> T, </span><span style="color:#f99157;">visiting</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> MutableSet&lt;T&gt;, </span><span style="color:#f99157;">result</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> MutableMap&lt;T, </span><span style="color:#c594c5;">Int</span><span style="color:#cccece;">&gt;)</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">Int</span><span style="color:#cccece;"> {
+        visiting</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">add(vertex)
+        </span><span style="color:#c594c5;">var </span><span style="color:#cccece;">count </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">0
+
+        </span><span style="color:#c594c5;">val </span><span style="color:#cccece;">dependencies </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> graph[vertex] ?</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> emptyList()
+        </span><span style="color:#c594c5;">for</span><span style="color:#cccece;"> (dependency </span><span style="color:#c594c5;">in</span><span style="color:#cccece;"> dependencies) {
+            require(</span><span style="color:#5fb3b3;">!</span><span style="color:#cccece;">visiting</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">contains(dependency)) { </span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">cycled dependencies detected</span><span style="color:#5fb3b3;">&quot;</span><span style="color:#cccece;"> }
+            count</span><span style="color:#5fb3b3;">++</span><span style="color:#cccece;">
+            count </span><span style="color:#5fb3b3;">+=</span><span style="color:#cccece;"> result[dependency] ?</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> countFor(graph, dependency, visiting, result)
+        }
+        result[vertex] </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> count
+        </span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> count
+    }
+
+    </span><span style="color:#c594c5;">private fun</span><span style="color:#cccece;"> &lt;</span><span style="color:#c594c5;">T</span><span style="color:#cccece;">&gt; </span><span style="color:#6699cc;">toList</span><span style="color:#cccece;">(</span><span style="color:#f99157;">dependenciesCount</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">Map</span><span style="color:#cccece;">&lt;T, </span><span style="color:#c594c5;">Int</span><span style="color:#cccece;">&gt;)</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">List</span><span style="color:#cccece;">&lt;T&gt; {
+        </span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> dependenciesCount</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">toList()
+                </span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">sortedBy { it</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">second }
+                </span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">map { it</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">first }
+    }
+}
+</span></pre>
+
+    </div>
+
+</div>
+
+</body>
+</html>

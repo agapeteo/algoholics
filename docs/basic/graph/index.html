@@ -1,0 +1,724 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <meta name="description" content="Graph data structure">
+    <meta name="keywords" content="graph, learn, explain, tutorial, data structures, algorithms, graph, tree, interview, java, golang, kotlin, python, rust, javascript, basic level">
+
+    <title> 
+    Graph
+ | Practical algorithms and data structures </title>
+    <link rel='stylesheet' href='/styles/styles.css'/>
+</head>
+
+<body>
+
+<div class="rootContainer">
+    <div class="horizontal-menu-box">
+        
+    
+    
+    
+<div class="menu">
+    <!-- ABOUT -->
+    <div class="menuItem">
+        
+        <a href="/index.html" >
+            ABOUT
+        </a>
+        
+
+    </div>
+
+    <!-- FUNDAMENTAL -->
+    <div class="menuItem">
+        
+        <a href="/fundamental/contents" >
+            FUNDAMENTAL
+        </a>
+        
+    </div>
+
+    <!-- BASIC -->
+    <div class="menuItem">
+        
+        <a href="/basic/contents" >
+            BASIC
+        </a>
+        
+    </div>
+
+    <!-- ADVANCED -->
+    <div class="menuItem">
+        
+        <a href="/advanced/contents" >
+            ADVANCED
+        </a>
+        
+    </div>
+
+    <!-- NINJA -->
+    <div class="menuItem">
+
+        
+        <a href="/ninja/contents" >
+            NINJA
+        </a>
+        
+
+    </div>
+
+    <!-- LANGUAGES -->
+    <div class="menuItem">
+        
+        <a href="/languages/contents" >
+            LANGUAGES
+        </a>
+        
+
+    </div>
+
+</div>
+
+
+
+    </div>
+
+    <div class="content">
+        
+    <h1 id="graph">Graph</h1>
+<h2 id="contents">Contents</h2>
+<hr />
+<ul>
+<li><a href="https://algoholics.io/basic/graph/#description">Description</a></li>
+<li><a href="https://algoholics.io/basic/graph/#java">Java</a></li>
+<li><a href="https://algoholics.io/basic/graph/#go">Go</a></li>
+<li><a href="https://algoholics.io/basic/graph/#python">Python</a></li>
+<li><a href="https://algoholics.io/basic/graph/#javascript">JavaScript</a></li>
+<li><a href="https://algoholics.io/basic/graph/#kotlin">Kotlin</a></li>
+<li><a href="https://algoholics.io/basic/graph/#rust">Rust</a></li>
+</ul>
+<hr />
+<div id="description" />
+<h2 id="description">Description</h2>
+<blockquote>
+<p><code>TODO description</code> </p>
+</blockquote>
+<div id="java"/>
+<h2 id="java">Java</h2>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">package </span><span style="color:#cccece;">graph</span><span style="color:#5fb3b3;">;
+
+</span><span style="color:#c594c5;">import </span><span style="color:#fac863;">java</span><span style="color:#5fb3b3;">.</span><span style="color:#fac863;">util</span><span style="color:#5fb3b3;">.*;
+
+</span><span style="color:#c594c5;">public class </span><span style="color:#fac863;">Graph</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#f99157;">E</span><span style="color:#5fb3b3;">&gt; {
+    </span><span style="color:#c594c5;">private final </span><span style="color:#fac863;">Map</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#fac863;">E</span><span style="color:#5fb3b3;">, </span><span style="color:#fac863;">Set</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#fac863;">E</span><span style="color:#5fb3b3;">&gt;&gt; </span><span style="color:#cccece;">edges</span><span style="color:#5fb3b3;">;
+
+    </span><span style="color:#c594c5;">public </span><span style="color:#6699cc;">Graph</span><span style="color:#5fb3b3;">() {</span><span style="color:#cccece;">
+        edges </span><span style="color:#5fb3b3;">= </span><span style="color:#c594c5;">new </span><span style="color:#fac863;">HashMap</span><span style="color:#5fb3b3;">&lt;&gt;();
+    }
+
+    </span><span style="color:#c594c5;">void </span><span style="color:#6699cc;">addBothEdges</span><span style="color:#5fb3b3;">(</span><span style="color:#fac863;">E </span><span style="color:#f99157;">from</span><span style="color:#5fb3b3;">, </span><span style="color:#fac863;">E </span><span style="color:#f99157;">to</span><span style="color:#5fb3b3;">) {
+        </span><span style="color:#6699cc;">addEdge</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">from</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> to</span><span style="color:#5fb3b3;">);
+        </span><span style="color:#6699cc;">addEdge</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">to</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> from</span><span style="color:#5fb3b3;">);
+    }
+
+    </span><span style="color:#c594c5;">private void </span><span style="color:#6699cc;">addEdge</span><span style="color:#5fb3b3;">(</span><span style="color:#fac863;">E </span><span style="color:#f99157;">from</span><span style="color:#5fb3b3;">, </span><span style="color:#fac863;">E </span><span style="color:#f99157;">to</span><span style="color:#5fb3b3;">) {
+        </span><span style="color:#fac863;">Set</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#fac863;">E</span><span style="color:#5fb3b3;">&gt;</span><span style="color:#cccece;"> currentEdges </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> edges</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">get</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">from</span><span style="color:#5fb3b3;">);
+        </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">currentEdges </span><span style="color:#5fb3b3;">== </span><span style="color:#f99157;">null</span><span style="color:#5fb3b3;">) {</span><span style="color:#cccece;">
+            currentEdges </span><span style="color:#5fb3b3;">= </span><span style="color:#c594c5;">new </span><span style="color:#fac863;">HashSet</span><span style="color:#5fb3b3;">&lt;&gt;();</span><span style="color:#cccece;">
+            edges</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">put</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">from</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> currentEdges</span><span style="color:#5fb3b3;">);
+        }</span><span style="color:#cccece;">
+        currentEdges</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">add</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">to</span><span style="color:#5fb3b3;">);
+    }
+
+    </span><span style="color:#c594c5;">public </span><span style="color:#fac863;">List</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#fac863;">E</span><span style="color:#5fb3b3;">&gt; </span><span style="color:#6699cc;">elementsDfs</span><span style="color:#5fb3b3;">() {
+        </span><span style="color:#fac863;">List</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#fac863;">E</span><span style="color:#5fb3b3;">&gt;</span><span style="color:#cccece;"> resultList </span><span style="color:#5fb3b3;">= </span><span style="color:#c594c5;">new </span><span style="color:#fac863;">ArrayList</span><span style="color:#5fb3b3;">&lt;&gt;();
+        </span><span style="color:#fac863;">Set</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#fac863;">E</span><span style="color:#5fb3b3;">&gt;</span><span style="color:#cccece;"> visited </span><span style="color:#5fb3b3;">= </span><span style="color:#c594c5;">new </span><span style="color:#fac863;">HashSet</span><span style="color:#5fb3b3;">&lt;&gt;();</span><span style="color:#cccece;">
+        edges</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">keySet</span><span style="color:#5fb3b3;">().</span><span style="color:#6699cc;">forEach</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">v </span><span style="color:#c594c5;">-&gt; </span><span style="color:#6699cc;">elementsDfs</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">v</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> resultList</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> visited</span><span style="color:#5fb3b3;">));
+        </span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> resultList</span><span style="color:#5fb3b3;">;
+    }
+
+    </span><span style="color:#c594c5;">private void </span><span style="color:#6699cc;">elementsDfs</span><span style="color:#5fb3b3;">(</span><span style="color:#fac863;">E </span><span style="color:#f99157;">vertex</span><span style="color:#5fb3b3;">, </span><span style="color:#fac863;">List</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#fac863;">E</span><span style="color:#5fb3b3;">&gt; </span><span style="color:#f99157;">resultList</span><span style="color:#5fb3b3;">, </span><span style="color:#fac863;">Set</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#fac863;">E</span><span style="color:#5fb3b3;">&gt; </span><span style="color:#f99157;">visited</span><span style="color:#5fb3b3;">) {
+        </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">visited</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">contains</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">vertex</span><span style="color:#5fb3b3;">)) </span><span style="color:#c594c5;">return</span><span style="color:#5fb3b3;">;</span><span style="color:#cccece;">
+
+        resultList</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">add</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">vertex</span><span style="color:#5fb3b3;">);</span><span style="color:#cccece;">
+        visited</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">add</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">vertex</span><span style="color:#5fb3b3;">);</span><span style="color:#cccece;">
+
+        edges</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">get</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">vertex</span><span style="color:#5fb3b3;">).</span><span style="color:#6699cc;">forEach</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">v </span><span style="color:#c594c5;">-&gt; </span><span style="color:#6699cc;">elementsDfs</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">v</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> resultList</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> visited</span><span style="color:#5fb3b3;">));
+    }
+
+    </span><span style="color:#c594c5;">public </span><span style="color:#fac863;">List</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#fac863;">E</span><span style="color:#5fb3b3;">&gt; </span><span style="color:#6699cc;">elementsBfs</span><span style="color:#5fb3b3;">() {
+        </span><span style="color:#fac863;">List</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#fac863;">E</span><span style="color:#5fb3b3;">&gt;</span><span style="color:#cccece;"> resultList </span><span style="color:#5fb3b3;">= </span><span style="color:#c594c5;">new </span><span style="color:#fac863;">ArrayList</span><span style="color:#5fb3b3;">&lt;&gt;();
+        </span><span style="color:#fac863;">Set</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#fac863;">E</span><span style="color:#5fb3b3;">&gt;</span><span style="color:#cccece;"> visited </span><span style="color:#5fb3b3;">= </span><span style="color:#c594c5;">new </span><span style="color:#fac863;">HashSet</span><span style="color:#5fb3b3;">&lt;&gt;();</span><span style="color:#cccece;">
+        edges</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">keySet</span><span style="color:#5fb3b3;">().</span><span style="color:#6699cc;">forEach</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">v </span><span style="color:#c594c5;">-&gt; </span><span style="color:#6699cc;">elementsBfs</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">v</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> resultList</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> visited</span><span style="color:#5fb3b3;">));
+        </span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> resultList</span><span style="color:#5fb3b3;">;
+    }
+
+    </span><span style="color:#c594c5;">private void </span><span style="color:#6699cc;">elementsBfs</span><span style="color:#5fb3b3;">(</span><span style="color:#fac863;">E </span><span style="color:#f99157;">vertex</span><span style="color:#5fb3b3;">, </span><span style="color:#fac863;">List</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#fac863;">E</span><span style="color:#5fb3b3;">&gt; </span><span style="color:#f99157;">resultList</span><span style="color:#5fb3b3;">, </span><span style="color:#fac863;">Set</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#fac863;">E</span><span style="color:#5fb3b3;">&gt; </span><span style="color:#f99157;">visited</span><span style="color:#5fb3b3;">) {
+        </span><span style="color:#fac863;">Deque</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#fac863;">E</span><span style="color:#5fb3b3;">&gt;</span><span style="color:#cccece;"> queue </span><span style="color:#5fb3b3;">= </span><span style="color:#c594c5;">new </span><span style="color:#fac863;">LinkedList</span><span style="color:#5fb3b3;">&lt;&gt;();</span><span style="color:#cccece;">
+        queue</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">add</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">vertex</span><span style="color:#5fb3b3;">);
+
+        </span><span style="color:#c594c5;">while </span><span style="color:#5fb3b3;">(!</span><span style="color:#cccece;">queue</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">isEmpty</span><span style="color:#5fb3b3;">()) {
+            </span><span style="color:#fac863;">E</span><span style="color:#cccece;"> eachVertex </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> queue</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">pollFirst</span><span style="color:#5fb3b3;">();
+
+            </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">visited</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">contains</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">eachVertex</span><span style="color:#5fb3b3;">)) </span><span style="color:#c594c5;">continue</span><span style="color:#5fb3b3;">;</span><span style="color:#cccece;">
+
+            resultList</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">add</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">eachVertex</span><span style="color:#5fb3b3;">);</span><span style="color:#cccece;">
+            visited</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">add</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">eachVertex</span><span style="color:#5fb3b3;">);</span><span style="color:#cccece;">
+
+            edges</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">get</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">eachVertex</span><span style="color:#5fb3b3;">).</span><span style="color:#6699cc;">forEach</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">v </span><span style="color:#c594c5;">-&gt;</span><span style="color:#6699cc;"> queue</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">add</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">v</span><span style="color:#5fb3b3;">));
+        }
+    }
+
+    </span><span style="color:#c594c5;">public boolean </span><span style="color:#6699cc;">connected</span><span style="color:#5fb3b3;">(</span><span style="color:#fac863;">E </span><span style="color:#f99157;">start</span><span style="color:#5fb3b3;">, </span><span style="color:#fac863;">E </span><span style="color:#f99157;">target</span><span style="color:#5fb3b3;">) {
+        </span><span style="color:#fac863;">Set</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#fac863;">E</span><span style="color:#5fb3b3;">&gt;</span><span style="color:#cccece;"> visited </span><span style="color:#5fb3b3;">= </span><span style="color:#c594c5;">new </span><span style="color:#fac863;">HashSet</span><span style="color:#5fb3b3;">&lt;&gt;();
+        </span><span style="color:#c594c5;">return </span><span style="color:#6699cc;">connectedFromNode</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">start</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> target</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> visited</span><span style="color:#5fb3b3;">);
+    }
+
+    </span><span style="color:#c594c5;">private boolean </span><span style="color:#6699cc;">connectedFromNode</span><span style="color:#5fb3b3;">(</span><span style="color:#fac863;">E </span><span style="color:#f99157;">start</span><span style="color:#5fb3b3;">, </span><span style="color:#fac863;">E </span><span style="color:#f99157;">target</span><span style="color:#5fb3b3;">, </span><span style="color:#fac863;">Set</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#fac863;">E</span><span style="color:#5fb3b3;">&gt; </span><span style="color:#f99157;">visited</span><span style="color:#5fb3b3;">) {
+        </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">visited</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">contains</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">start</span><span style="color:#5fb3b3;">)) </span><span style="color:#c594c5;">return </span><span style="color:#f99157;">false</span><span style="color:#5fb3b3;">;
+
+        </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">start </span><span style="color:#5fb3b3;">==</span><span style="color:#cccece;"> target</span><span style="color:#5fb3b3;">) </span><span style="color:#c594c5;">return </span><span style="color:#f99157;">true</span><span style="color:#5fb3b3;">;</span><span style="color:#cccece;">
+
+        visited</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">add</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">start</span><span style="color:#5fb3b3;">);
+
+        </span><span style="color:#c594c5;">for </span><span style="color:#5fb3b3;">(</span><span style="color:#fac863;">E</span><span style="color:#cccece;"> vertex</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> edges</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">get</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">start</span><span style="color:#5fb3b3;">)) {
+            </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">connectedFromNode</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">vertex</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> target</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> visited</span><span style="color:#5fb3b3;">)) </span><span style="color:#c594c5;">return </span><span style="color:#f99157;">true</span><span style="color:#5fb3b3;">;
+        }
+
+        </span><span style="color:#c594c5;">return </span><span style="color:#f99157;">false</span><span style="color:#5fb3b3;">;
+    }
+}
+
+</span></pre><div id="go"/>
+<h2 id="go">Go</h2>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">package</span><span style="color:#cccece;"> graph
+
+</span><span style="color:#c594c5;">type </span><span style="color:#cccece;">Graph </span><span style="color:#c594c5;">struct </span><span style="color:#5fb3b3;">{
+	</span><span style="color:#cccece;">edges </span><span style="color:#c594c5;">map</span><span style="color:#5fb3b3;">[</span><span style="color:#c594c5;">interface</span><span style="color:#5fb3b3;">{}][]</span><span style="color:#c594c5;">interface</span><span style="color:#5fb3b3;">{}
+}
+
+</span><span style="color:#c594c5;">func </span><span style="color:#6699cc;">NewGraph</span><span style="color:#5fb3b3;">() *</span><span style="color:#cccece;">Graph </span><span style="color:#5fb3b3;">{
+	</span><span style="color:#cccece;">g </span><span style="color:#5fb3b3;">:= </span><span style="color:#6699cc;">new</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">Graph</span><span style="color:#5fb3b3;">)</span><span style="color:#cccece;">
+	g</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">edges </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">make</span><span style="color:#5fb3b3;">(</span><span style="color:#c594c5;">map</span><span style="color:#5fb3b3;">[</span><span style="color:#c594c5;">interface</span><span style="color:#5fb3b3;">{}][]</span><span style="color:#c594c5;">interface</span><span style="color:#5fb3b3;">{})
+	</span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> g
+</span><span style="color:#5fb3b3;">}
+
+</span><span style="color:#c594c5;">func </span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">g</span><span style="color:#cccece;"> Graph</span><span style="color:#5fb3b3;">) </span><span style="color:#6699cc;">AddEdge</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">from </span><span style="color:#c594c5;">interface</span><span style="color:#5fb3b3;">{}, </span><span style="color:#f99157;">to </span><span style="color:#c594c5;">interface</span><span style="color:#5fb3b3;">{}) {
+	</span><span style="color:#cccece;">edges </span><span style="color:#5fb3b3;">:=</span><span style="color:#cccece;"> g</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">edges</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">from</span><span style="color:#5fb3b3;">]
+	</span><span style="color:#cccece;">newEdges </span><span style="color:#5fb3b3;">:= </span><span style="color:#6699cc;">append</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">edges</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> to</span><span style="color:#5fb3b3;">)</span><span style="color:#cccece;">
+	g</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">edges</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">from</span><span style="color:#5fb3b3;">] =</span><span style="color:#cccece;"> newEdges
+</span><span style="color:#5fb3b3;">}
+
+</span><span style="color:#c594c5;">func </span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">g</span><span style="color:#cccece;"> Graph</span><span style="color:#5fb3b3;">) </span><span style="color:#6699cc;">AddBothEdges</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">from </span><span style="color:#c594c5;">interface</span><span style="color:#5fb3b3;">{}, </span><span style="color:#f99157;">to </span><span style="color:#c594c5;">interface</span><span style="color:#5fb3b3;">{}) {</span><span style="color:#cccece;">
+	g</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">AddEdge</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">from</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> to</span><span style="color:#5fb3b3;">)</span><span style="color:#cccece;">
+	g</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">AddEdge</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">to</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> from</span><span style="color:#5fb3b3;">)
+}
+
+</span><span style="color:#c594c5;">func </span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">g</span><span style="color:#cccece;"> Graph</span><span style="color:#5fb3b3;">) </span><span style="color:#6699cc;">ElementsDfs</span><span style="color:#5fb3b3;">() []</span><span style="color:#c594c5;">interface</span><span style="color:#5fb3b3;">{} {
+	</span><span style="color:#cccece;">visited </span><span style="color:#5fb3b3;">:= </span><span style="color:#6699cc;">make</span><span style="color:#5fb3b3;">(</span><span style="color:#c594c5;">map</span><span style="color:#5fb3b3;">[</span><span style="color:#c594c5;">interface</span><span style="color:#5fb3b3;">{}]</span><span style="color:#c594c5;">struct</span><span style="color:#5fb3b3;">{})
+	</span><span style="color:#cccece;">result </span><span style="color:#5fb3b3;">:= </span><span style="color:#6699cc;">make</span><span style="color:#5fb3b3;">([]</span><span style="color:#c594c5;">interface</span><span style="color:#5fb3b3;">{}, </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">)
+
+	</span><span style="color:#c594c5;">for </span><span style="color:#cccece;">k</span><span style="color:#5fb3b3;">, </span><span style="color:#cccece;">_ </span><span style="color:#5fb3b3;">:= </span><span style="color:#c594c5;">range</span><span style="color:#cccece;"> g</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">edges </span><span style="color:#5fb3b3;">{</span><span style="color:#cccece;">
+		g</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">appendElementsDfs</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">k</span><span style="color:#5fb3b3;">, &amp;</span><span style="color:#6699cc;">visited</span><span style="color:#5fb3b3;">, &amp;</span><span style="color:#6699cc;">result</span><span style="color:#5fb3b3;">)
+	}
+	</span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> result
+</span><span style="color:#5fb3b3;">}
+
+</span><span style="color:#c594c5;">func </span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">g</span><span style="color:#cccece;"> Graph</span><span style="color:#5fb3b3;">) </span><span style="color:#6699cc;">IsConnected</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">from </span><span style="color:#c594c5;">interface</span><span style="color:#5fb3b3;">{}, </span><span style="color:#f99157;">to </span><span style="color:#c594c5;">interface</span><span style="color:#5fb3b3;">{}) </span><span style="color:#c594c5;">bool </span><span style="color:#5fb3b3;">{
+	</span><span style="color:#cccece;">visited </span><span style="color:#5fb3b3;">:= </span><span style="color:#6699cc;">make</span><span style="color:#5fb3b3;">(</span><span style="color:#c594c5;">map</span><span style="color:#5fb3b3;">[</span><span style="color:#c594c5;">interface</span><span style="color:#5fb3b3;">{}]</span><span style="color:#c594c5;">struct</span><span style="color:#5fb3b3;">{})
+	</span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> g</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">isConnectedFrom</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">from</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> to</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> visited</span><span style="color:#5fb3b3;">)
+}
+
+</span><span style="color:#c594c5;">func </span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">g</span><span style="color:#cccece;"> Graph</span><span style="color:#5fb3b3;">) </span><span style="color:#6699cc;">isConnectedFrom</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">from </span><span style="color:#c594c5;">interface</span><span style="color:#5fb3b3;">{}, </span><span style="color:#f99157;">to </span><span style="color:#c594c5;">interface</span><span style="color:#5fb3b3;">{}, </span><span style="color:#f99157;">visited </span><span style="color:#c594c5;">map</span><span style="color:#5fb3b3;">[</span><span style="color:#c594c5;">interface</span><span style="color:#5fb3b3;">{}]</span><span style="color:#c594c5;">struct</span><span style="color:#5fb3b3;">{}) </span><span style="color:#c594c5;">bool </span><span style="color:#5fb3b3;">{
+	</span><span style="color:#cccece;">_</span><span style="color:#5fb3b3;">, </span><span style="color:#cccece;">isVisited </span><span style="color:#5fb3b3;">:=</span><span style="color:#cccece;"> visited</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">from</span><span style="color:#5fb3b3;">]</span><span style="color:#cccece;">;
+	</span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> isVisited </span><span style="color:#5fb3b3;">{
+		</span><span style="color:#c594c5;">return </span><span style="color:#f99157;">false
+	</span><span style="color:#5fb3b3;">}
+
+	</span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> from </span><span style="color:#5fb3b3;">==</span><span style="color:#cccece;"> to </span><span style="color:#5fb3b3;">{
+		</span><span style="color:#c594c5;">return </span><span style="color:#f99157;">true
+	</span><span style="color:#5fb3b3;">}</span><span style="color:#cccece;">
+
+	visited</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">from</span><span style="color:#5fb3b3;">] = </span><span style="color:#c594c5;">struct</span><span style="color:#5fb3b3;">{}{}
+
+	</span><span style="color:#c594c5;">for </span><span style="color:#cccece;">_</span><span style="color:#5fb3b3;">, </span><span style="color:#cccece;">conn </span><span style="color:#5fb3b3;">:= </span><span style="color:#c594c5;">range</span><span style="color:#cccece;"> g</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">edges</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">from</span><span style="color:#5fb3b3;">] {
+		</span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> g</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">isConnectedFrom</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">conn</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> to</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> visited</span><span style="color:#5fb3b3;">) {
+			</span><span style="color:#c594c5;">return </span><span style="color:#f99157;">true
+		</span><span style="color:#5fb3b3;">}
+	}
+	</span><span style="color:#c594c5;">return </span><span style="color:#f99157;">false
+</span><span style="color:#5fb3b3;">}
+
+</span><span style="color:#c594c5;">func </span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">g</span><span style="color:#cccece;"> Graph</span><span style="color:#5fb3b3;">) </span><span style="color:#6699cc;">ElementsBfs</span><span style="color:#5fb3b3;">() []</span><span style="color:#c594c5;">interface</span><span style="color:#5fb3b3;">{} {
+	</span><span style="color:#cccece;">visited </span><span style="color:#5fb3b3;">:= </span><span style="color:#6699cc;">make</span><span style="color:#5fb3b3;">(</span><span style="color:#c594c5;">map</span><span style="color:#5fb3b3;">[</span><span style="color:#c594c5;">interface</span><span style="color:#5fb3b3;">{}]</span><span style="color:#c594c5;">struct</span><span style="color:#5fb3b3;">{})
+	</span><span style="color:#cccece;">result </span><span style="color:#5fb3b3;">:= </span><span style="color:#6699cc;">make</span><span style="color:#5fb3b3;">([]</span><span style="color:#c594c5;">interface</span><span style="color:#5fb3b3;">{}, </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">)
+
+	</span><span style="color:#c594c5;">for </span><span style="color:#cccece;">k</span><span style="color:#5fb3b3;">, </span><span style="color:#cccece;">_ </span><span style="color:#5fb3b3;">:= </span><span style="color:#c594c5;">range</span><span style="color:#cccece;"> g</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">edges </span><span style="color:#5fb3b3;">{
+		</span><span style="color:#cccece;">queue </span><span style="color:#5fb3b3;">:= </span><span style="color:#6699cc;">make</span><span style="color:#5fb3b3;">([]</span><span style="color:#c594c5;">interface</span><span style="color:#5fb3b3;">{}, </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">)</span><span style="color:#cccece;">
+		queue </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">append</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">queue</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> k</span><span style="color:#5fb3b3;">)
+
+		</span><span style="color:#c594c5;">for </span><span style="color:#6699cc;">len</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">queue</span><span style="color:#5fb3b3;">) &gt; </span><span style="color:#f99157;">0 </span><span style="color:#5fb3b3;">{
+			</span><span style="color:#cccece;">first </span><span style="color:#5fb3b3;">:=</span><span style="color:#cccece;"> queue</span><span style="color:#5fb3b3;">[</span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">]</span><span style="color:#cccece;">
+			queue </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> queue</span><span style="color:#5fb3b3;">[</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">:]
+
+			</span><span style="color:#cccece;">_</span><span style="color:#5fb3b3;">, </span><span style="color:#cccece;">isVisited </span><span style="color:#5fb3b3;">:=</span><span style="color:#cccece;"> visited</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">k</span><span style="color:#5fb3b3;">]</span><span style="color:#cccece;">;
+			</span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> isVisited </span><span style="color:#5fb3b3;">{
+				</span><span style="color:#c594c5;">continue
+			</span><span style="color:#5fb3b3;">}</span><span style="color:#cccece;">
+			result </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">append</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">result</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> first</span><span style="color:#5fb3b3;">)</span><span style="color:#cccece;">
+			visited</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">first</span><span style="color:#5fb3b3;">] = </span><span style="color:#c594c5;">struct</span><span style="color:#5fb3b3;">{}{}
+
+			</span><span style="color:#c594c5;">for </span><span style="color:#cccece;">_</span><span style="color:#5fb3b3;">, </span><span style="color:#cccece;">e </span><span style="color:#5fb3b3;">:= </span><span style="color:#c594c5;">range</span><span style="color:#cccece;"> g</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">edges</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">first</span><span style="color:#5fb3b3;">] {</span><span style="color:#cccece;">
+				queue </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">append</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">queue</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> e</span><span style="color:#5fb3b3;">)
+			}
+		}
+	}
+	</span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> result
+</span><span style="color:#5fb3b3;">}
+
+</span><span style="color:#c594c5;">func </span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">g</span><span style="color:#cccece;"> Graph</span><span style="color:#5fb3b3;">) </span><span style="color:#6699cc;">appendElementsDfs</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">from </span><span style="color:#c594c5;">interface</span><span style="color:#5fb3b3;">{}, </span><span style="color:#f99157;">visited </span><span style="color:#5fb3b3;">*</span><span style="color:#c594c5;">map</span><span style="color:#5fb3b3;">[</span><span style="color:#c594c5;">interface</span><span style="color:#5fb3b3;">{}]</span><span style="color:#c594c5;">struct</span><span style="color:#5fb3b3;">{}, </span><span style="color:#f99157;">list </span><span style="color:#5fb3b3;">*[]</span><span style="color:#c594c5;">interface</span><span style="color:#5fb3b3;">{}) {
+	</span><span style="color:#c594c5;">if </span><span style="color:#cccece;">_</span><span style="color:#5fb3b3;">, </span><span style="color:#cccece;">isVisited </span><span style="color:#5fb3b3;">:= (*</span><span style="color:#cccece;">visited</span><span style="color:#5fb3b3;">)[</span><span style="color:#cccece;">from</span><span style="color:#5fb3b3;">]</span><span style="color:#cccece;">; isVisited </span><span style="color:#5fb3b3;">{
+		</span><span style="color:#c594c5;">return
+	</span><span style="color:#5fb3b3;">}
+	*</span><span style="color:#cccece;">list </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">append</span><span style="color:#5fb3b3;">(*</span><span style="color:#6699cc;">list</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> from</span><span style="color:#5fb3b3;">)
+	(*</span><span style="color:#cccece;">visited</span><span style="color:#5fb3b3;">)[</span><span style="color:#cccece;">from</span><span style="color:#5fb3b3;">] = </span><span style="color:#c594c5;">struct</span><span style="color:#5fb3b3;">{}{}
+
+	</span><span style="color:#c594c5;">for </span><span style="color:#cccece;">_</span><span style="color:#5fb3b3;">, </span><span style="color:#cccece;">v </span><span style="color:#5fb3b3;">:= </span><span style="color:#c594c5;">range</span><span style="color:#cccece;"> g</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">edges</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">from</span><span style="color:#5fb3b3;">] {</span><span style="color:#cccece;">
+		g</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">appendElementsDfs</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">v</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> visited</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> list</span><span style="color:#5fb3b3;">)
+	}
+}
+</span></pre><div id="python"/>
+<h2 id="python">Python</h2>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">class </span><span style="color:#fac863;">Graph</span><span style="color:#5fb3b3;">:
+    </span><span style="color:#c594c5;">def </span><span style="color:#6699cc;">__init__</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">self</span><span style="color:#5fb3b3;">):
+        </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">edges </span><span style="color:#5fb3b3;">= {}
+
+    </span><span style="color:#c594c5;">def </span><span style="color:#6699cc;">add_edge</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">self</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">input_from</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">input_to</span><span style="color:#5fb3b3;">):
+        </span><span style="color:#cccece;">connections </span><span style="color:#5fb3b3;">= </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">edges</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">get</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">input_from</span><span style="color:#5fb3b3;">)
+
+        </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">not </span><span style="color:#cccece;">connections</span><span style="color:#5fb3b3;">:
+            </span><span style="color:#cccece;">connections </span><span style="color:#5fb3b3;">= </span><span style="color:#fac863;">set</span><span style="color:#5fb3b3;">()
+        </span><span style="color:#6699cc;">connections</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">add</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">input_to</span><span style="color:#5fb3b3;">)
+
+        </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">edges</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">input_from</span><span style="color:#5fb3b3;">] = </span><span style="color:#cccece;">connections
+
+    </span><span style="color:#c594c5;">def </span><span style="color:#6699cc;">add_both_edges</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">self</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">input_from</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">input_to</span><span style="color:#5fb3b3;">):
+        </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">add_edge</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">input_from</span><span style="color:#5fb3b3;">, </span><span style="color:#6699cc;">input_to</span><span style="color:#5fb3b3;">)
+        </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">add_edge</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">input_to</span><span style="color:#5fb3b3;">, </span><span style="color:#6699cc;">input_from</span><span style="color:#5fb3b3;">)
+
+    </span><span style="color:#c594c5;">def </span><span style="color:#6699cc;">elements_dfs</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">self</span><span style="color:#5fb3b3;">):
+        </span><span style="color:#cccece;">result_list </span><span style="color:#5fb3b3;">= []
+        </span><span style="color:#cccece;">visited </span><span style="color:#5fb3b3;">= </span><span style="color:#fac863;">set</span><span style="color:#5fb3b3;">()
+
+        </span><span style="color:#c594c5;">for </span><span style="color:#cccece;">element </span><span style="color:#c594c5;">in </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">edges</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">keys</span><span style="color:#5fb3b3;">():
+            </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">add_dfs_elements</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">element</span><span style="color:#5fb3b3;">, </span><span style="color:#6699cc;">result_list</span><span style="color:#5fb3b3;">, </span><span style="color:#6699cc;">visited</span><span style="color:#5fb3b3;">)
+
+        </span><span style="color:#c594c5;">return </span><span style="color:#cccece;">result_list
+
+    </span><span style="color:#c594c5;">def </span><span style="color:#6699cc;">add_dfs_elements</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">self</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">from_element</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">result_list</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">visited</span><span style="color:#5fb3b3;">):
+        </span><span style="color:#c594c5;">if </span><span style="color:#cccece;">from_element </span><span style="color:#5fb3b3;">in </span><span style="color:#cccece;">visited</span><span style="color:#5fb3b3;">:
+            </span><span style="color:#c594c5;">return
+
+        </span><span style="color:#6699cc;">result_list</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">append</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">from_element</span><span style="color:#5fb3b3;">)
+        </span><span style="color:#6699cc;">visited</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">add</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">from_element</span><span style="color:#5fb3b3;">)
+
+        </span><span style="color:#c594c5;">for </span><span style="color:#cccece;">e </span><span style="color:#c594c5;">in </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">edges</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">from_element</span><span style="color:#5fb3b3;">]:
+            </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">add_dfs_elements</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">e</span><span style="color:#5fb3b3;">, </span><span style="color:#6699cc;">result_list</span><span style="color:#5fb3b3;">, </span><span style="color:#6699cc;">visited</span><span style="color:#5fb3b3;">)
+
+    </span><span style="color:#c594c5;">def </span><span style="color:#6699cc;">elements_bfs</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">self</span><span style="color:#5fb3b3;">):
+        </span><span style="color:#cccece;">visited </span><span style="color:#5fb3b3;">= </span><span style="color:#fac863;">set</span><span style="color:#5fb3b3;">()
+        </span><span style="color:#cccece;">result_list </span><span style="color:#5fb3b3;">= []
+
+        </span><span style="color:#c594c5;">for </span><span style="color:#cccece;">k </span><span style="color:#c594c5;">in </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">edges</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">keys</span><span style="color:#5fb3b3;">():
+            </span><span style="color:#cccece;">queue </span><span style="color:#5fb3b3;">= [</span><span style="color:#cccece;">k</span><span style="color:#5fb3b3;">]
+            </span><span style="color:#c594c5;">while </span><span style="color:#6699cc;">len</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">queue</span><span style="color:#5fb3b3;">) &gt; </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">:
+                </span><span style="color:#cccece;">first_element </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">queue</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">pop</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">)
+                </span><span style="color:#c594c5;">if </span><span style="color:#cccece;">first_element </span><span style="color:#5fb3b3;">in </span><span style="color:#cccece;">visited</span><span style="color:#5fb3b3;">:
+                    </span><span style="color:#c594c5;">continue
+                </span><span style="color:#6699cc;">result_list</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">append</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">first_element</span><span style="color:#5fb3b3;">)
+                </span><span style="color:#6699cc;">visited</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">add</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">first_element</span><span style="color:#5fb3b3;">)
+
+                </span><span style="color:#c594c5;">for </span><span style="color:#cccece;">vertex </span><span style="color:#c594c5;">in </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">edges</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">first_element</span><span style="color:#5fb3b3;">]:
+                    </span><span style="color:#6699cc;">queue</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">append</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">vertex</span><span style="color:#5fb3b3;">)
+        </span><span style="color:#c594c5;">return </span><span style="color:#cccece;">result_list
+
+    </span><span style="color:#c594c5;">def </span><span style="color:#6699cc;">is_connected</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">self</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">from_element</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">to_element</span><span style="color:#5fb3b3;">):
+        </span><span style="color:#c594c5;">return </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">_is_connected</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">from_element</span><span style="color:#5fb3b3;">, </span><span style="color:#6699cc;">to_element</span><span style="color:#5fb3b3;">, </span><span style="color:#fac863;">set</span><span style="color:#5fb3b3;">())
+
+    </span><span style="color:#c594c5;">def </span><span style="color:#6699cc;">_is_connected</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">self</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">from_element</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">to_element</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">visited</span><span style="color:#5fb3b3;">):
+        </span><span style="color:#c594c5;">if </span><span style="color:#cccece;">from_element </span><span style="color:#5fb3b3;">in </span><span style="color:#cccece;">visited</span><span style="color:#5fb3b3;">:
+            </span><span style="color:#c594c5;">return </span><span style="color:#f99157;">False
+
+        </span><span style="color:#c594c5;">if </span><span style="color:#cccece;">from_element </span><span style="color:#5fb3b3;">== </span><span style="color:#cccece;">to_element</span><span style="color:#5fb3b3;">:
+            </span><span style="color:#c594c5;">return </span><span style="color:#f99157;">True
+
+        </span><span style="color:#6699cc;">visited</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">add</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">from_element</span><span style="color:#5fb3b3;">)
+
+        </span><span style="color:#c594c5;">for </span><span style="color:#cccece;">vertex </span><span style="color:#c594c5;">in </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">edges</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">from_element</span><span style="color:#5fb3b3;">]:
+            </span><span style="color:#c594c5;">if </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">_is_connected</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">vertex</span><span style="color:#5fb3b3;">, </span><span style="color:#6699cc;">to_element</span><span style="color:#5fb3b3;">, </span><span style="color:#6699cc;">visited</span><span style="color:#5fb3b3;">):
+                </span><span style="color:#c594c5;">return </span><span style="color:#f99157;">True
+
+        </span><span style="color:#c594c5;">return </span><span style="color:#f99157;">False
+</span></pre><div id="javascript"/>
+<h2 id="javascript">JavaScript</h2>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">class </span><span style="color:#fac863;">Graph </span><span style="color:#5fb3b3;">{
+  </span><span style="color:#6699cc;">constructor</span><span style="color:#5fb3b3;">() {
+    </span><span style="color:#ec5f67;">this</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">edges </span><span style="color:#5fb3b3;">= new </span><span style="color:#fac863;">Map</span><span style="color:#5fb3b3;">()
+    </span><span style="color:#ec5f67;">this</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">elementsDfs</span><span style="color:#5fb3b3;">=</span><span style="color:#ec5f67;">this</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">elementsDfs</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">bind</span><span style="color:#5fb3b3;">(</span><span style="color:#ec5f67;">this</span><span style="color:#5fb3b3;">)
+  }
+
+  </span><span style="color:#6699cc;">addEdge</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">from_element</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">to_element</span><span style="color:#5fb3b3;">) {
+    </span><span style="color:#c594c5;">let </span><span style="color:#cccece;">connections </span><span style="color:#5fb3b3;">= </span><span style="color:#ec5f67;">this</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">edges</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">from_element</span><span style="color:#5fb3b3;">]
+    </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">(!</span><span style="color:#cccece;">connections</span><span style="color:#5fb3b3;">) {
+      </span><span style="color:#cccece;">connections </span><span style="color:#5fb3b3;">= []
+    }
+    </span><span style="color:#cccece;">connections</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">push</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">to_element</span><span style="color:#5fb3b3;">)
+
+    </span><span style="color:#ec5f67;">this</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">edges</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">from_element</span><span style="color:#5fb3b3;">] = </span><span style="color:#cccece;">connections
+  </span><span style="color:#5fb3b3;">}
+
+  </span><span style="color:#6699cc;">addBothEdges</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">from_element</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">to_element</span><span style="color:#5fb3b3;">) {
+    </span><span style="color:#ec5f67;">this</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">addEdge</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">from_element</span><span style="color:#5fb3b3;">, </span><span style="color:#cccece;">to_element</span><span style="color:#5fb3b3;">)
+    </span><span style="color:#ec5f67;">this</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">addEdge</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">to_element</span><span style="color:#5fb3b3;">, </span><span style="color:#cccece;">from_element</span><span style="color:#5fb3b3;">)
+  }
+
+  </span><span style="color:#6699cc;">elementsDfs</span><span style="color:#5fb3b3;">() {
+    </span><span style="color:#c594c5;">const </span><span style="color:#cccece;">visited </span><span style="color:#5fb3b3;">= new </span><span style="color:#fac863;">Set</span><span style="color:#5fb3b3;">()
+    </span><span style="color:#c594c5;">const </span><span style="color:#cccece;">result </span><span style="color:#5fb3b3;">= []
+   
+    </span><span style="color:#c594c5;">for </span><span style="color:#5fb3b3;">(</span><span style="color:#c594c5;">const </span><span style="color:#cccece;">key </span><span style="color:#5fb3b3;">in </span><span style="color:#ec5f67;">this</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">edges</span><span style="color:#5fb3b3;">) {       
+      </span><span style="color:#ec5f67;">this</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">addElementsDfsFrom</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">key</span><span style="color:#5fb3b3;">, </span><span style="color:#cccece;">visited</span><span style="color:#5fb3b3;">, </span><span style="color:#cccece;">result</span><span style="color:#5fb3b3;">)
+    } 
+    </span><span style="color:#c594c5;">return </span><span style="color:#cccece;">result
+  </span><span style="color:#5fb3b3;">}
+
+  </span><span style="color:#6699cc;">addElementsDfsFrom</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">from_element</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">visited</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">result</span><span style="color:#5fb3b3;">) {    
+    </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">visited</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">has</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">from_element</span><span style="color:#5fb3b3;">)) </span><span style="color:#c594c5;">return
+
+    </span><span style="color:#cccece;">result</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">push</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">from_element</span><span style="color:#5fb3b3;">)
+    </span><span style="color:#cccece;">visited</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">add</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">from_element</span><span style="color:#5fb3b3;">)
+
+    </span><span style="color:#c594c5;">for </span><span style="color:#5fb3b3;">(</span><span style="color:#c594c5;">const </span><span style="color:#cccece;">k </span><span style="color:#5fb3b3;">of </span><span style="color:#ec5f67;">this</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">edges</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">from_element</span><span style="color:#5fb3b3;">]) {
+      </span><span style="color:#ec5f67;">this</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">addElementsDfsFrom</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">k</span><span style="color:#5fb3b3;">, </span><span style="color:#cccece;">visited</span><span style="color:#5fb3b3;">, </span><span style="color:#cccece;">result</span><span style="color:#5fb3b3;">)
+    }
+  }
+
+  </span><span style="color:#6699cc;">elementsBfs</span><span style="color:#5fb3b3;">() {
+    </span><span style="color:#c594c5;">const </span><span style="color:#cccece;">visited </span><span style="color:#5fb3b3;">= new </span><span style="color:#fac863;">Set</span><span style="color:#5fb3b3;">()
+    </span><span style="color:#c594c5;">const </span><span style="color:#cccece;">result </span><span style="color:#5fb3b3;">= []
+   
+    </span><span style="color:#c594c5;">for </span><span style="color:#5fb3b3;">(</span><span style="color:#c594c5;">const </span><span style="color:#cccece;">key </span><span style="color:#5fb3b3;">in </span><span style="color:#ec5f67;">this</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">edges</span><span style="color:#5fb3b3;">) {       
+      </span><span style="color:#c594c5;">const </span><span style="color:#cccece;">queue </span><span style="color:#5fb3b3;">= []
+      </span><span style="color:#cccece;">queue</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">push</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">key</span><span style="color:#5fb3b3;">)
+      </span><span style="color:#c594c5;">while </span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">queue</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">length </span><span style="color:#5fb3b3;">&gt; </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">) {
+        </span><span style="color:#cccece;">first </span><span style="color:#5fb3b3;">= </span><span style="color:#cccece;">queue</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">shift</span><span style="color:#5fb3b3;">()
+        </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">visited</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">has</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">first</span><span style="color:#5fb3b3;">)) </span><span style="color:#c594c5;">continue
+        </span><span style="color:#cccece;">result</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">push</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">first</span><span style="color:#5fb3b3;">)
+        </span><span style="color:#cccece;">visited</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">add</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">first</span><span style="color:#5fb3b3;">)
+        </span><span style="color:#c594c5;">for </span><span style="color:#5fb3b3;">(</span><span style="color:#c594c5;">const </span><span style="color:#cccece;">k </span><span style="color:#5fb3b3;">of </span><span style="color:#ec5f67;">this</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">edges</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">first</span><span style="color:#5fb3b3;">]) {
+          </span><span style="color:#cccece;">queue</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">push</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">k</span><span style="color:#5fb3b3;">)
+        }
+      }
+    } 
+    </span><span style="color:#c594c5;">return </span><span style="color:#cccece;">result
+  </span><span style="color:#5fb3b3;">}
+
+  </span><span style="color:#6699cc;">isConnected</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">fromElement</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">toElement</span><span style="color:#5fb3b3;">) {
+    </span><span style="color:#c594c5;">const </span><span style="color:#cccece;">visited </span><span style="color:#5fb3b3;">= new </span><span style="color:#fac863;">Set</span><span style="color:#5fb3b3;">()
+    </span><span style="color:#c594c5;">return </span><span style="color:#ec5f67;">this</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">isConnectedFrom</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">fromElement</span><span style="color:#5fb3b3;">, </span><span style="color:#cccece;">toElement</span><span style="color:#5fb3b3;">, </span><span style="color:#cccece;">visited</span><span style="color:#5fb3b3;">)
+  }
+
+  </span><span style="color:#6699cc;">isConnectedFrom</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">fromElement</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">toElement</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">visited</span><span style="color:#5fb3b3;">) {
+    </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">visited</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">has</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">fromElement</span><span style="color:#5fb3b3;">)) </span><span style="color:#c594c5;">return </span><span style="color:#f99157;">false
+
+    </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">fromElement </span><span style="color:#5fb3b3;">== </span><span style="color:#cccece;">toElement</span><span style="color:#5fb3b3;">) </span><span style="color:#c594c5;">return </span><span style="color:#f99157;">true
+    
+    </span><span style="color:#cccece;">visited</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">add</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">fromElement</span><span style="color:#5fb3b3;">)
+
+    </span><span style="color:#c594c5;">for </span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">vertex of </span><span style="color:#ec5f67;">this</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">edges</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">fromElement</span><span style="color:#5fb3b3;">]) {      
+      </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">(</span><span style="color:#ec5f67;">this</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">isConnectedFrom</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">vertex</span><span style="color:#5fb3b3;">, </span><span style="color:#cccece;">toElement</span><span style="color:#5fb3b3;">, </span><span style="color:#cccece;">visited</span><span style="color:#5fb3b3;">)) {
+        </span><span style="color:#c594c5;">return </span><span style="color:#f99157;">true
+      </span><span style="color:#5fb3b3;">}
+    }
+    </span><span style="color:#c594c5;">return </span><span style="color:#f99157;">false
+  </span><span style="color:#5fb3b3;">}
+}
+</span></pre><div id="kotlin"/>
+<h2 id="kotlin">Kotlin</h2>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">package </span><span style="color:#cccece;">graph
+
+import java</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">util</span><span style="color:#5fb3b3;">.*
+</span><span style="color:#c594c5;">import</span><span style="color:#cccece;"> kotlin.collections.HashSet
+
+
+class Graph&lt;E&gt; {
+
+    </span><span style="color:#c594c5;">val </span><span style="color:#cccece;">edges</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> MutableMap&lt;E, HashSet&lt;E&gt;&gt; </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> mutableMapOf()
+
+    </span><span style="color:#c594c5;">fun </span><span style="color:#6699cc;">addEdge</span><span style="color:#cccece;">(</span><span style="color:#f99157;">from</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> E, </span><span style="color:#f99157;">to</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> E) {
+        edges</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">computeIfAbsent(from) { HashSet() }</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">add(to)
+    }
+
+    </span><span style="color:#c594c5;">fun </span><span style="color:#6699cc;">addBothEdges</span><span style="color:#cccece;">(</span><span style="color:#f99157;">from</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> E, </span><span style="color:#f99157;">to</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> E) {
+        addEdge(from, to)
+        addEdge(to, from)
+    }
+
+    </span><span style="color:#c594c5;">fun </span><span style="color:#6699cc;">elementsDfs</span><span style="color:#cccece;">()</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">List</span><span style="color:#cccece;">&lt;E&gt; {
+        </span><span style="color:#c594c5;">val </span><span style="color:#cccece;">visited </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> mutableSetOf&lt;E&gt;()
+
+        </span><span style="color:#c594c5;">fun </span><span style="color:#6699cc;">addToResult</span><span style="color:#cccece;">(</span><span style="color:#f99157;">element</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> E, </span><span style="color:#f99157;">list</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> MutableList&lt;E&gt;) {
+            </span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> (visited</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">contains(element)) </span><span style="color:#c594c5;">return</span><span style="color:#cccece;">
+
+            visited</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">add(element)
+            list</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">add(element)
+            edges[element]?</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">forEach { addToResult(it, list) }
+        }
+
+        </span><span style="color:#c594c5;">val </span><span style="color:#cccece;">result </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> mutableListOf&lt;E&gt;()
+        edges</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">keys</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">forEach { addToResult(it, result) }
+        </span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> result
+    }
+
+    </span><span style="color:#c594c5;">fun </span><span style="color:#6699cc;">elementsBfs</span><span style="color:#cccece;">()</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">List</span><span style="color:#cccece;">&lt;E&gt; {
+        </span><span style="color:#c594c5;">val </span><span style="color:#cccece;">result </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> mutableListOf&lt;E&gt;()
+        </span><span style="color:#c594c5;">val </span><span style="color:#cccece;">visited </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> mutableSetOf&lt;E&gt;()
+
+        edges</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">keys</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">forEach { topElement </span><span style="color:#5fb3b3;">-&gt;
+            </span><span style="color:#c594c5;">val </span><span style="color:#cccece;">queue</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> Deque&lt;E&gt; </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> LinkedList()
+
+            queue</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">add(topElement)
+            </span><span style="color:#c594c5;">while</span><span style="color:#cccece;"> (queue</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">isNotEmpty()) {
+                </span><span style="color:#c594c5;">val </span><span style="color:#cccece;">element </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> queue</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">removeFirst()
+                </span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> (</span><span style="color:#5fb3b3;">!</span><span style="color:#cccece;">visited</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">contains(element)) {
+                    visited</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">add(element)
+                    result</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">add(element)
+                    edges[element]?</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">forEach { queue</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">add(it) }
+                }
+            }
+        }
+        </span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> result
+    }
+
+    </span><span style="color:#c594c5;">fun </span><span style="color:#6699cc;">connected</span><span style="color:#cccece;">(</span><span style="color:#f99157;">from</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> E, </span><span style="color:#f99157;">to</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> E)</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">Boolean</span><span style="color:#cccece;"> { </span><span style="color:#5f6364;">// using bfs
+        </span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> (from </span><span style="color:#5fb3b3;">==</span><span style="color:#cccece;"> to) </span><span style="color:#c594c5;">return </span><span style="color:#f99157;">true
+
+        </span><span style="color:#c594c5;">val </span><span style="color:#cccece;">alreadyVisited </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> mutableSetOf&lt;E&gt;()</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">apply { add(from) }
+        </span><span style="color:#c594c5;">val </span><span style="color:#cccece;">queue</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> Deque&lt;E&gt; </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> LinkedList()
+
+        edges[from]?</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">forEach { queue</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">add(it) }
+
+        </span><span style="color:#c594c5;">while</span><span style="color:#cccece;"> (queue</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">isNotEmpty()) {
+            </span><span style="color:#c594c5;">val </span><span style="color:#cccece;">element </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> queue</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">removeFirst()
+
+            </span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> (element </span><span style="color:#5fb3b3;">==</span><span style="color:#cccece;"> to) </span><span style="color:#c594c5;">return </span><span style="color:#f99157;">true
+
+            </span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> (</span><span style="color:#5fb3b3;">!</span><span style="color:#cccece;">alreadyVisited</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">contains(element)) {
+                alreadyVisited</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">add(element)
+                edges[element]?</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">forEach { queue</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">add(it) }
+            }
+        }
+        </span><span style="color:#c594c5;">return </span><span style="color:#f99157;">false</span><span style="color:#cccece;">
+    }
+}
+
+</span></pre><div id="rust"/>
+<h2 id="rust">Rust</h2>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">use </span><span style="color:#cccece;">std</span><span style="color:#5fb3b3;">::</span><span style="color:#cccece;">collections</span><span style="color:#5fb3b3;">::{</span><span style="color:#cccece;">HashMap</span><span style="color:#5fb3b3;">,</span><span style="color:#cccece;"> HashSet</span><span style="color:#5fb3b3;">,</span><span style="color:#cccece;"> VecDeque</span><span style="color:#5fb3b3;">};
+</span><span style="color:#c594c5;">use </span><span style="color:#cccece;">std</span><span style="color:#5fb3b3;">::</span><span style="color:#cccece;">hash</span><span style="color:#5fb3b3;">::</span><span style="color:#cccece;">Hash</span><span style="color:#5fb3b3;">;
+
+</span><span style="color:#5f6364;">// expecting all edges references in the same lifetime scope
+</span><span style="color:#c594c5;">pub struct </span><span style="color:#cccece;">Graph</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#c594c5;">&#39;a</span><span style="color:#cccece;">, T</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> Eq </span><span style="color:#5fb3b3;">+</span><span style="color:#cccece;"> Hash</span><span style="color:#5fb3b3;">&gt; {
+    </span><span style="color:#cccece;">edges</span><span style="color:#5fb3b3;">: </span><span style="color:#cccece;">HashMap</span><span style="color:#5fb3b3;">&lt;&amp;</span><span style="color:#c594c5;">&#39;a</span><span style="color:#cccece;"> T, HashSet</span><span style="color:#5fb3b3;">&lt;&amp;</span><span style="color:#c594c5;">&#39;a</span><span style="color:#cccece;"> T</span><span style="color:#5fb3b3;">&gt;&gt;
+}
+
+</span><span style="color:#c594c5;">impl</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#c594c5;">&#39;a</span><span style="color:#cccece;">, T</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> Eq </span><span style="color:#5fb3b3;">+</span><span style="color:#cccece;"> Hash</span><span style="color:#5fb3b3;">&gt; </span><span style="color:#cccece;">Graph</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#c594c5;">&#39;a</span><span style="color:#cccece;">, T</span><span style="color:#5fb3b3;">&gt; {
+    </span><span style="color:#c594c5;">pub fn </span><span style="color:#6699cc;">new</span><span style="color:#5fb3b3;">() -&gt; </span><span style="color:#c594c5;">Self </span><span style="color:#5fb3b3;">{
+        </span><span style="color:#c594c5;">let</span><span style="color:#cccece;"> edges</span><span style="color:#5fb3b3;">: </span><span style="color:#cccece;">HashMap</span><span style="color:#5fb3b3;">&lt;&amp;</span><span style="color:#c594c5;">&#39;a</span><span style="color:#cccece;"> T, HashSet</span><span style="color:#5fb3b3;">&lt;&amp;</span><span style="color:#c594c5;">&#39;a</span><span style="color:#cccece;"> T</span><span style="color:#5fb3b3;">&gt;&gt; = </span><span style="color:#cccece;">HashMap</span><span style="color:#5fb3b3;">::</span><span style="color:#cccece;">new</span><span style="color:#5fb3b3;">();</span><span style="color:#cccece;">
+        Graph </span><span style="color:#5fb3b3;">{</span><span style="color:#cccece;"> edges </span><span style="color:#5fb3b3;">}
+    }
+
+    </span><span style="color:#c594c5;">pub fn </span><span style="color:#6699cc;">add_both_edges</span><span style="color:#5fb3b3;">(&amp;</span><span style="color:#c594c5;">mut </span><span style="color:#f99157;">self</span><span style="color:#cccece;">, </span><span style="color:#f99157;">from</span><span style="color:#5fb3b3;">: &amp;</span><span style="color:#c594c5;">&#39;a</span><span style="color:#cccece;"> T, </span><span style="color:#f99157;">to</span><span style="color:#5fb3b3;">: &amp;</span><span style="color:#c594c5;">&#39;a</span><span style="color:#cccece;"> T</span><span style="color:#5fb3b3;">) {
+        </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">add_edge</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">from</span><span style="color:#5fb3b3;">,</span><span style="color:#cccece;"> to</span><span style="color:#5fb3b3;">);
+        </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">add_edge</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">to</span><span style="color:#5fb3b3;">,</span><span style="color:#cccece;"> from</span><span style="color:#5fb3b3;">);
+    }
+
+    </span><span style="color:#c594c5;">pub fn </span><span style="color:#6699cc;">add_edge</span><span style="color:#5fb3b3;">(&amp;</span><span style="color:#c594c5;">mut </span><span style="color:#f99157;">self</span><span style="color:#cccece;">, </span><span style="color:#f99157;">from</span><span style="color:#5fb3b3;">: &amp;</span><span style="color:#c594c5;">&#39;a</span><span style="color:#cccece;"> T, </span><span style="color:#f99157;">to</span><span style="color:#5fb3b3;">: &amp;</span><span style="color:#c594c5;">&#39;a</span><span style="color:#cccece;"> T</span><span style="color:#5fb3b3;">) {
+        </span><span style="color:#c594c5;">let</span><span style="color:#cccece;"> connections_maybe </span><span style="color:#5fb3b3;">= </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">edges</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">get_mut</span><span style="color:#5fb3b3;">(&amp;</span><span style="color:#cccece;">from</span><span style="color:#5fb3b3;">);
+        </span><span style="color:#c594c5;">match</span><span style="color:#cccece;"> connections_maybe </span><span style="color:#5fb3b3;">{
+            </span><span style="color:#fac863;">None </span><span style="color:#5fb3b3;">=&gt; {
+                </span><span style="color:#c594c5;">let mut</span><span style="color:#cccece;"> new_connections</span><span style="color:#5fb3b3;">: </span><span style="color:#cccece;">HashSet</span><span style="color:#5fb3b3;">&lt;&amp;</span><span style="color:#c594c5;">&#39;a</span><span style="color:#cccece;"> T</span><span style="color:#5fb3b3;">&gt; = </span><span style="color:#cccece;">HashSet</span><span style="color:#5fb3b3;">::</span><span style="color:#cccece;">new</span><span style="color:#5fb3b3;">();</span><span style="color:#cccece;">
+                new_connections</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">insert</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">to</span><span style="color:#5fb3b3;">);
+                </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">edges</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">insert</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">from</span><span style="color:#5fb3b3;">,</span><span style="color:#cccece;"> new_connections</span><span style="color:#5fb3b3;">);
+            }
+            </span><span style="color:#fac863;">Some</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">connections</span><span style="color:#5fb3b3;">) =&gt; {</span><span style="color:#cccece;">
+                connections</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">insert</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">to</span><span style="color:#5fb3b3;">);
+            }
+        }
+    }
+
+    </span><span style="color:#c594c5;">pub fn </span><span style="color:#6699cc;">collect_elements_dfs</span><span style="color:#5fb3b3;">(&amp;</span><span style="color:#f99157;">self</span><span style="color:#5fb3b3;">) -&gt; </span><span style="color:#cccece;">Vec</span><span style="color:#5fb3b3;">&lt;&amp;</span><span style="color:#c594c5;">&#39;a</span><span style="color:#cccece;"> T</span><span style="color:#5fb3b3;">&gt; {
+        </span><span style="color:#c594c5;">let mut</span><span style="color:#cccece;"> visited</span><span style="color:#5fb3b3;">: </span><span style="color:#cccece;">HashSet</span><span style="color:#5fb3b3;">&lt;&amp;</span><span style="color:#c594c5;">&#39;a</span><span style="color:#cccece;"> T</span><span style="color:#5fb3b3;">&gt; = </span><span style="color:#cccece;">HashSet</span><span style="color:#5fb3b3;">::</span><span style="color:#cccece;">new</span><span style="color:#5fb3b3;">();
+        </span><span style="color:#c594c5;">let mut</span><span style="color:#cccece;"> elements</span><span style="color:#5fb3b3;">: </span><span style="color:#cccece;">Vec</span><span style="color:#5fb3b3;">&lt;&amp;</span><span style="color:#c594c5;">&#39;a</span><span style="color:#cccece;"> T</span><span style="color:#5fb3b3;">&gt; = </span><span style="color:#fac863;">Vec</span><span style="color:#5fb3b3;">::</span><span style="color:#cccece;">new</span><span style="color:#5fb3b3;">();
+
+        </span><span style="color:#c594c5;">for</span><span style="color:#cccece;"> k </span><span style="color:#5fb3b3;">in </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">edges</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">keys</span><span style="color:#5fb3b3;">() {
+            </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">collect_dfs</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">k</span><span style="color:#5fb3b3;">, &amp;</span><span style="color:#c594c5;">mut</span><span style="color:#cccece;"> visited</span><span style="color:#5fb3b3;">, &amp;</span><span style="color:#c594c5;">mut</span><span style="color:#cccece;"> elements</span><span style="color:#5fb3b3;">);
+        }</span><span style="color:#cccece;">
+
+        elements
+    </span><span style="color:#5fb3b3;">}
+
+    </span><span style="color:#c594c5;">pub fn </span><span style="color:#6699cc;">collect_dfs</span><span style="color:#5fb3b3;">(&amp;</span><span style="color:#f99157;">self</span><span style="color:#cccece;">, </span><span style="color:#f99157;">elem</span><span style="color:#5fb3b3;">: &amp;</span><span style="color:#c594c5;">&#39;a</span><span style="color:#cccece;"> T, </span><span style="color:#f99157;">visited</span><span style="color:#5fb3b3;">: &amp;</span><span style="color:#c594c5;">mut </span><span style="color:#cccece;">HashSet</span><span style="color:#5fb3b3;">&lt;&amp;</span><span style="color:#c594c5;">&#39;a</span><span style="color:#cccece;"> T</span><span style="color:#5fb3b3;">&gt;</span><span style="color:#cccece;">, </span><span style="color:#f99157;">elements</span><span style="color:#5fb3b3;">: &amp;</span><span style="color:#c594c5;">mut </span><span style="color:#cccece;">Vec</span><span style="color:#5fb3b3;">&lt;&amp;</span><span style="color:#c594c5;">&#39;a</span><span style="color:#cccece;"> T</span><span style="color:#5fb3b3;">&gt;) {
+        </span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> visited</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">contains</span><span style="color:#5fb3b3;">(&amp;</span><span style="color:#cccece;">elem</span><span style="color:#5fb3b3;">) {
+            </span><span style="color:#c594c5;">return</span><span style="color:#5fb3b3;">;
+        }</span><span style="color:#cccece;">
+        elements</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">push</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">elem</span><span style="color:#5fb3b3;">);</span><span style="color:#cccece;">
+        visited</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">insert</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">elem</span><span style="color:#5fb3b3;">);
+
+        </span><span style="color:#c594c5;">let</span><span style="color:#cccece;"> connection_maybe </span><span style="color:#5fb3b3;">= </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">edges</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">get</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">elem</span><span style="color:#5fb3b3;">);
+        </span><span style="color:#c594c5;">if let </span><span style="color:#fac863;">Some</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">connections</span><span style="color:#5fb3b3;">) =</span><span style="color:#cccece;"> connection_maybe </span><span style="color:#5fb3b3;">{
+            </span><span style="color:#c594c5;">for</span><span style="color:#cccece;"> e </span><span style="color:#5fb3b3;">in</span><span style="color:#cccece;"> connections </span><span style="color:#5fb3b3;">{
+                </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">collect_dfs</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">e</span><span style="color:#5fb3b3;">,</span><span style="color:#cccece;"> visited</span><span style="color:#5fb3b3;">,</span><span style="color:#cccece;"> elements</span><span style="color:#5fb3b3;">);
+            }
+        }
+    }
+
+    </span><span style="color:#c594c5;">pub fn </span><span style="color:#6699cc;">collect_elements_bfs</span><span style="color:#5fb3b3;">(&amp;</span><span style="color:#f99157;">self</span><span style="color:#5fb3b3;">) -&gt; </span><span style="color:#cccece;">Vec</span><span style="color:#5fb3b3;">&lt;&amp;</span><span style="color:#cccece;">T</span><span style="color:#5fb3b3;">&gt; {
+        </span><span style="color:#c594c5;">let mut</span><span style="color:#cccece;"> elements</span><span style="color:#5fb3b3;">: </span><span style="color:#cccece;">Vec</span><span style="color:#5fb3b3;">&lt;&amp;</span><span style="color:#c594c5;">&#39;a</span><span style="color:#cccece;"> T</span><span style="color:#5fb3b3;">&gt; = </span><span style="color:#fac863;">Vec</span><span style="color:#5fb3b3;">::</span><span style="color:#cccece;">new</span><span style="color:#5fb3b3;">();
+        </span><span style="color:#c594c5;">let mut</span><span style="color:#cccece;"> visited</span><span style="color:#5fb3b3;">: </span><span style="color:#cccece;">HashSet</span><span style="color:#5fb3b3;">&lt;&amp;</span><span style="color:#c594c5;">&#39;a</span><span style="color:#cccece;"> T</span><span style="color:#5fb3b3;">&gt; = </span><span style="color:#cccece;">HashSet</span><span style="color:#5fb3b3;">::</span><span style="color:#cccece;">new</span><span style="color:#5fb3b3;">();
+
+        </span><span style="color:#c594c5;">for</span><span style="color:#cccece;"> elem </span><span style="color:#5fb3b3;">in </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">edges</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">keys</span><span style="color:#5fb3b3;">() {
+            </span><span style="color:#c594c5;">let mut</span><span style="color:#cccece;"> queue</span><span style="color:#5fb3b3;">: </span><span style="color:#cccece;">VecDeque</span><span style="color:#5fb3b3;">&lt;&amp;</span><span style="color:#cccece;">T</span><span style="color:#5fb3b3;">&gt; = </span><span style="color:#cccece;">VecDeque</span><span style="color:#5fb3b3;">::</span><span style="color:#cccece;">new</span><span style="color:#5fb3b3;">();</span><span style="color:#cccece;">
+            queue</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">push_front</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">elem</span><span style="color:#5fb3b3;">);
+            </span><span style="color:#c594c5;">while let </span><span style="color:#fac863;">Some</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">cur_element</span><span style="color:#5fb3b3;">) =</span><span style="color:#cccece;"> queue</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">pop_front</span><span style="color:#5fb3b3;">() {
+                </span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> visited</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">contains</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">cur_element</span><span style="color:#5fb3b3;">) {
+                    </span><span style="color:#c594c5;">continue</span><span style="color:#5fb3b3;">;
+                }</span><span style="color:#cccece;">
+                elements</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">push</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">cur_element</span><span style="color:#5fb3b3;">);</span><span style="color:#cccece;">
+                visited</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">insert</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">cur_element</span><span style="color:#5fb3b3;">);
+                </span><span style="color:#c594c5;">if let </span><span style="color:#fac863;">Some</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">connections</span><span style="color:#5fb3b3;">) = </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">edges</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">get</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">cur_element</span><span style="color:#5fb3b3;">) {
+                    </span><span style="color:#c594c5;">for</span><span style="color:#cccece;"> other_element </span><span style="color:#5fb3b3;">in</span><span style="color:#cccece;"> connections </span><span style="color:#5fb3b3;">{</span><span style="color:#cccece;">
+                        queue</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">push_back</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">other_element</span><span style="color:#5fb3b3;">);
+                    }
+                }
+            }
+        }</span><span style="color:#cccece;">
+        elements
+    </span><span style="color:#5fb3b3;">}
+
+    </span><span style="color:#c594c5;">pub fn </span><span style="color:#6699cc;">connected</span><span style="color:#5fb3b3;">(&amp;</span><span style="color:#f99157;">self</span><span style="color:#cccece;">, </span><span style="color:#f99157;">from</span><span style="color:#5fb3b3;">: &amp;</span><span style="color:#c594c5;">&#39;a</span><span style="color:#cccece;"> T, </span><span style="color:#f99157;">to</span><span style="color:#5fb3b3;">: &amp;</span><span style="color:#c594c5;">&#39;a</span><span style="color:#cccece;"> T</span><span style="color:#5fb3b3;">) -&gt; </span><span style="color:#c594c5;">bool </span><span style="color:#5fb3b3;">{
+        </span><span style="color:#c594c5;">let mut</span><span style="color:#cccece;"> visited</span><span style="color:#5fb3b3;">: </span><span style="color:#cccece;">HashSet</span><span style="color:#5fb3b3;">&lt;&amp;</span><span style="color:#cccece;">T</span><span style="color:#5fb3b3;">&gt; = </span><span style="color:#cccece;">HashSet</span><span style="color:#5fb3b3;">::</span><span style="color:#cccece;">new</span><span style="color:#5fb3b3;">();
+        </span><span style="color:#c594c5;">let mut</span><span style="color:#cccece;"> queue</span><span style="color:#5fb3b3;">: </span><span style="color:#cccece;">VecDeque</span><span style="color:#5fb3b3;">&lt;&amp;</span><span style="color:#cccece;">T</span><span style="color:#5fb3b3;">&gt; = </span><span style="color:#cccece;">VecDeque</span><span style="color:#5fb3b3;">::</span><span style="color:#cccece;">new</span><span style="color:#5fb3b3;">();</span><span style="color:#cccece;">
+
+        queue</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">push_front</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">from</span><span style="color:#5fb3b3;">);
+
+        </span><span style="color:#c594c5;">while let </span><span style="color:#fac863;">Some</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">cur_element</span><span style="color:#5fb3b3;">) =</span><span style="color:#cccece;"> queue</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">pop_front</span><span style="color:#5fb3b3;">() {
+            </span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> visited</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">contains</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">cur_element</span><span style="color:#5fb3b3;">) {
+                </span><span style="color:#c594c5;">continue</span><span style="color:#5fb3b3;">;
+            }
+
+            </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">*</span><span style="color:#cccece;">to </span><span style="color:#5fb3b3;">== *</span><span style="color:#cccece;">cur_element </span><span style="color:#5fb3b3;">{
+                </span><span style="color:#c594c5;">return </span><span style="color:#f99157;">true</span><span style="color:#5fb3b3;">;
+            }</span><span style="color:#cccece;">
+
+            visited</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">insert</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">cur_element</span><span style="color:#5fb3b3;">);
+
+            </span><span style="color:#c594c5;">if let </span><span style="color:#fac863;">Some</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">connections</span><span style="color:#5fb3b3;">) = </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">edges</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">get</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">cur_element</span><span style="color:#5fb3b3;">) {
+                </span><span style="color:#c594c5;">for</span><span style="color:#cccece;"> other_element </span><span style="color:#5fb3b3;">in</span><span style="color:#cccece;"> connections </span><span style="color:#5fb3b3;">{</span><span style="color:#cccece;">
+                    queue</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">push_back</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">other_element</span><span style="color:#5fb3b3;">);
+                }
+            }
+        }
+        </span><span style="color:#f99157;">false
+    </span><span style="color:#5fb3b3;">}
+}
+
+#[</span><span style="color:#cccece;">cfg</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">test</span><span style="color:#5fb3b3;">)]
+</span><span style="color:#c594c5;">mod </span><span style="color:#cccece;">tests </span><span style="color:#5fb3b3;">{
+    </span><span style="color:#c594c5;">use super</span><span style="color:#5fb3b3;">::*;
+
+    #[</span><span style="color:#cccece;">test</span><span style="color:#5fb3b3;">]
+    </span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">collect_dfs</span><span style="color:#5fb3b3;">() {
+        </span><span style="color:#c594c5;">let mut</span><span style="color:#cccece;"> graph</span><span style="color:#5fb3b3;">: </span><span style="color:#cccece;">Graph</span><span style="color:#5fb3b3;">&lt;&amp;</span><span style="color:#c594c5;">str</span><span style="color:#5fb3b3;">&gt; = </span><span style="color:#cccece;">Graph</span><span style="color:#5fb3b3;">::</span><span style="color:#cccece;">new</span><span style="color:#5fb3b3;">();
+        </span><span style="color:#c594c5;">let</span><span style="color:#cccece;"> alex </span><span style="color:#5fb3b3;">= &quot;</span><span style="color:#99c794;">Alex</span><span style="color:#5fb3b3;">&quot;;
+        </span><span style="color:#c594c5;">let</span><span style="color:#cccece;"> bob </span><span style="color:#5fb3b3;">= &quot;</span><span style="color:#99c794;">Bob</span><span style="color:#5fb3b3;">&quot;;
+        </span><span style="color:#c594c5;">let</span><span style="color:#cccece;"> michael </span><span style="color:#5fb3b3;">= &quot;</span><span style="color:#99c794;">Michael</span><span style="color:#5fb3b3;">&quot;;
+        </span><span style="color:#c594c5;">let</span><span style="color:#cccece;"> john </span><span style="color:#5fb3b3;">= &quot;</span><span style="color:#99c794;">John</span><span style="color:#5fb3b3;">&quot;;
+        </span><span style="color:#c594c5;">let</span><span style="color:#cccece;"> sara </span><span style="color:#5fb3b3;">= &quot;</span><span style="color:#99c794;">Sara</span><span style="color:#5fb3b3;">&quot;;</span><span style="color:#cccece;">
+
+        graph</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">add_both_edges</span><span style="color:#5fb3b3;">(&amp;</span><span style="color:#cccece;">alex</span><span style="color:#5fb3b3;">, &amp;</span><span style="color:#cccece;">bob</span><span style="color:#5fb3b3;">);</span><span style="color:#cccece;">
+        graph</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">add_edge</span><span style="color:#5fb3b3;">(&amp;</span><span style="color:#cccece;">bob</span><span style="color:#5fb3b3;">, &amp;</span><span style="color:#cccece;">michael</span><span style="color:#5fb3b3;">);</span><span style="color:#cccece;">
+        graph</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">add_edge</span><span style="color:#5fb3b3;">(&amp;</span><span style="color:#cccece;">bob</span><span style="color:#5fb3b3;">, &amp;</span><span style="color:#cccece;">john</span><span style="color:#5fb3b3;">);</span><span style="color:#cccece;">
+        graph</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">add_edge</span><span style="color:#5fb3b3;">(&amp;</span><span style="color:#cccece;">john</span><span style="color:#5fb3b3;">, &amp;</span><span style="color:#cccece;">sara</span><span style="color:#5fb3b3;">);</span><span style="color:#cccece;">
+        graph</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">add_edge</span><span style="color:#5fb3b3;">(&amp;</span><span style="color:#cccece;">sara</span><span style="color:#5fb3b3;">, &amp;</span><span style="color:#cccece;">john</span><span style="color:#5fb3b3;">);
+
+        </span><span style="color:#c594c5;">let mut</span><span style="color:#cccece;"> elements </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> graph</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">collect_elements_dfs</span><span style="color:#5fb3b3;">();</span><span style="color:#cccece;">
+        elements</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">sort</span><span style="color:#5fb3b3;">();
+
+        </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">elements</span><span style="color:#5fb3b3;">, </span><span style="color:#cccece;">vec!</span><span style="color:#5fb3b3;">[&amp;</span><span style="color:#cccece;">alex</span><span style="color:#5fb3b3;">, &amp;</span><span style="color:#cccece;">bob</span><span style="color:#5fb3b3;">, &amp;</span><span style="color:#cccece;">john</span><span style="color:#5fb3b3;">, &amp;</span><span style="color:#cccece;">michael</span><span style="color:#5fb3b3;">, &amp;</span><span style="color:#cccece;">sara</span><span style="color:#5fb3b3;">]);
+    }
+
+    #[</span><span style="color:#cccece;">test</span><span style="color:#5fb3b3;">]
+    </span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">collect_bfs</span><span style="color:#5fb3b3;">() {
+        </span><span style="color:#c594c5;">let mut</span><span style="color:#cccece;"> graph</span><span style="color:#5fb3b3;">: </span><span style="color:#cccece;">Graph</span><span style="color:#5fb3b3;">&lt;&amp;</span><span style="color:#c594c5;">str</span><span style="color:#5fb3b3;">&gt; = </span><span style="color:#cccece;">Graph</span><span style="color:#5fb3b3;">::</span><span style="color:#cccece;">new</span><span style="color:#5fb3b3;">();
+        </span><span style="color:#c594c5;">let</span><span style="color:#cccece;"> alex </span><span style="color:#5fb3b3;">= &quot;</span><span style="color:#99c794;">Alex</span><span style="color:#5fb3b3;">&quot;;
+        </span><span style="color:#c594c5;">let</span><span style="color:#cccece;"> bob </span><span style="color:#5fb3b3;">= &quot;</span><span style="color:#99c794;">Bob</span><span style="color:#5fb3b3;">&quot;;
+        </span><span style="color:#c594c5;">let</span><span style="color:#cccece;"> michael </span><span style="color:#5fb3b3;">= &quot;</span><span style="color:#99c794;">Michael</span><span style="color:#5fb3b3;">&quot;;
+        </span><span style="color:#c594c5;">let</span><span style="color:#cccece;"> john </span><span style="color:#5fb3b3;">= &quot;</span><span style="color:#99c794;">John</span><span style="color:#5fb3b3;">&quot;;
+        </span><span style="color:#c594c5;">let</span><span style="color:#cccece;"> sara </span><span style="color:#5fb3b3;">= &quot;</span><span style="color:#99c794;">Sara</span><span style="color:#5fb3b3;">&quot;;</span><span style="color:#cccece;">
+
+        graph</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">add_both_edges</span><span style="color:#5fb3b3;">(&amp;</span><span style="color:#cccece;">alex</span><span style="color:#5fb3b3;">, &amp;</span><span style="color:#cccece;">bob</span><span style="color:#5fb3b3;">);</span><span style="color:#cccece;">
+        graph</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">add_edge</span><span style="color:#5fb3b3;">(&amp;</span><span style="color:#cccece;">bob</span><span style="color:#5fb3b3;">, &amp;</span><span style="color:#cccece;">michael</span><span style="color:#5fb3b3;">);</span><span style="color:#cccece;">
+        graph</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">add_edge</span><span style="color:#5fb3b3;">(&amp;</span><span style="color:#cccece;">bob</span><span style="color:#5fb3b3;">, &amp;</span><span style="color:#cccece;">john</span><span style="color:#5fb3b3;">);</span><span style="color:#cccece;">
+        graph</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">add_edge</span><span style="color:#5fb3b3;">(&amp;</span><span style="color:#cccece;">john</span><span style="color:#5fb3b3;">, &amp;</span><span style="color:#cccece;">sara</span><span style="color:#5fb3b3;">);</span><span style="color:#cccece;">
+        graph</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">add_edge</span><span style="color:#5fb3b3;">(&amp;</span><span style="color:#cccece;">sara</span><span style="color:#5fb3b3;">, &amp;</span><span style="color:#cccece;">john</span><span style="color:#5fb3b3;">);
+
+        </span><span style="color:#c594c5;">let mut</span><span style="color:#cccece;"> elements </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> graph</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">collect_elements_bfs</span><span style="color:#5fb3b3;">();</span><span style="color:#cccece;">
+        elements</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">sort</span><span style="color:#5fb3b3;">();
+
+        </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">elements</span><span style="color:#5fb3b3;">, </span><span style="color:#cccece;">vec!</span><span style="color:#5fb3b3;">[&amp;</span><span style="color:#cccece;">alex</span><span style="color:#5fb3b3;">, &amp;</span><span style="color:#cccece;">bob</span><span style="color:#5fb3b3;">, &amp;</span><span style="color:#cccece;">john</span><span style="color:#5fb3b3;">, &amp;</span><span style="color:#cccece;">michael</span><span style="color:#5fb3b3;">, &amp;</span><span style="color:#cccece;">sara</span><span style="color:#5fb3b3;">]);
+    }
+
+    #[</span><span style="color:#cccece;">test</span><span style="color:#5fb3b3;">]
+    </span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">check_connected</span><span style="color:#5fb3b3;">() {
+        </span><span style="color:#c594c5;">let mut</span><span style="color:#cccece;"> graph</span><span style="color:#5fb3b3;">: </span><span style="color:#cccece;">Graph</span><span style="color:#5fb3b3;">&lt;&amp;</span><span style="color:#c594c5;">str</span><span style="color:#5fb3b3;">&gt; = </span><span style="color:#cccece;">Graph</span><span style="color:#5fb3b3;">::</span><span style="color:#cccece;">new</span><span style="color:#5fb3b3;">();
+        </span><span style="color:#c594c5;">let</span><span style="color:#cccece;"> alex </span><span style="color:#5fb3b3;">= &quot;</span><span style="color:#99c794;">Alex</span><span style="color:#5fb3b3;">&quot;;
+        </span><span style="color:#c594c5;">let</span><span style="color:#cccece;"> bob </span><span style="color:#5fb3b3;">= &quot;</span><span style="color:#99c794;">Bob</span><span style="color:#5fb3b3;">&quot;;
+        </span><span style="color:#c594c5;">let</span><span style="color:#cccece;"> michael </span><span style="color:#5fb3b3;">= &quot;</span><span style="color:#99c794;">Michael</span><span style="color:#5fb3b3;">&quot;;
+        </span><span style="color:#c594c5;">let</span><span style="color:#cccece;"> john </span><span style="color:#5fb3b3;">= &quot;</span><span style="color:#99c794;">John</span><span style="color:#5fb3b3;">&quot;;
+        </span><span style="color:#c594c5;">let</span><span style="color:#cccece;"> sara </span><span style="color:#5fb3b3;">= &quot;</span><span style="color:#99c794;">Sara</span><span style="color:#5fb3b3;">&quot;;
+
+        </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">graph</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">connected</span><span style="color:#5fb3b3;">(&amp;</span><span style="color:#cccece;">alex</span><span style="color:#5fb3b3;">, &amp;</span><span style="color:#cccece;">bob</span><span style="color:#5fb3b3;">), </span><span style="color:#f99157;">false</span><span style="color:#5fb3b3;">);</span><span style="color:#cccece;">
+
+        graph</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">add_both_edges</span><span style="color:#5fb3b3;">(&amp;</span><span style="color:#cccece;">alex</span><span style="color:#5fb3b3;">, &amp;</span><span style="color:#cccece;">bob</span><span style="color:#5fb3b3;">);
+
+
+        </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">graph</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">connected</span><span style="color:#5fb3b3;">(&amp;</span><span style="color:#cccece;">alex</span><span style="color:#5fb3b3;">, &amp;</span><span style="color:#cccece;">bob</span><span style="color:#5fb3b3;">), </span><span style="color:#f99157;">true</span><span style="color:#5fb3b3;">);</span><span style="color:#cccece;">
+
+        graph</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">add_edge</span><span style="color:#5fb3b3;">(&amp;</span><span style="color:#cccece;">bob</span><span style="color:#5fb3b3;">, &amp;</span><span style="color:#cccece;">michael</span><span style="color:#5fb3b3;">);
+        </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">graph</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">connected</span><span style="color:#5fb3b3;">(&amp;</span><span style="color:#cccece;">alex</span><span style="color:#5fb3b3;">, &amp;</span><span style="color:#cccece;">michael</span><span style="color:#5fb3b3;">), </span><span style="color:#f99157;">true</span><span style="color:#5fb3b3;">);</span><span style="color:#cccece;">
+
+        graph</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">add_both_edges</span><span style="color:#5fb3b3;">(&amp;</span><span style="color:#cccece;">john</span><span style="color:#5fb3b3;">, &amp;</span><span style="color:#cccece;">sara</span><span style="color:#5fb3b3;">);
+        </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">graph</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">connected</span><span style="color:#5fb3b3;">(&amp;</span><span style="color:#cccece;">john</span><span style="color:#5fb3b3;">, &amp;</span><span style="color:#cccece;">sara</span><span style="color:#5fb3b3;">), </span><span style="color:#f99157;">true</span><span style="color:#5fb3b3;">);
+        </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">graph</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">connected</span><span style="color:#5fb3b3;">(&amp;</span><span style="color:#cccece;">alex</span><span style="color:#5fb3b3;">, &amp;</span><span style="color:#cccece;">sara</span><span style="color:#5fb3b3;">), </span><span style="color:#f99157;">false</span><span style="color:#5fb3b3;">);</span><span style="color:#cccece;">
+
+        graph</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">add_edge</span><span style="color:#5fb3b3;">(&amp;</span><span style="color:#cccece;">michael</span><span style="color:#5fb3b3;">, &amp;</span><span style="color:#cccece;">john</span><span style="color:#5fb3b3;">);
+        </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">graph</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">connected</span><span style="color:#5fb3b3;">(&amp;</span><span style="color:#cccece;">alex</span><span style="color:#5fb3b3;">, &amp;</span><span style="color:#cccece;">sara</span><span style="color:#5fb3b3;">), </span><span style="color:#f99157;">true</span><span style="color:#5fb3b3;">);
+    }
+}
+</span></pre>
+
+    </div>
+
+</div>
+
+</body>
+</html>

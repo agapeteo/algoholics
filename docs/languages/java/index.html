@@ -1,0 +1,201 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <meta name="description" content="data structures and algorithms in Java programming languages">
+    <meta name="keywords" content="java, jdk, jvm, explain, tutorial, data structures, algorithms, interview">
+
+    <title> 
+    Java
+ | Practical algorithms and data structures </title>
+    <link rel='stylesheet' href='/styles/styles.css'/>
+</head>
+
+<body>
+
+<div class="rootContainer">
+    <div class="horizontal-menu-box">
+        
+    
+    
+    
+<div class="menu">
+    <!-- ABOUT -->
+    <div class="menuItem">
+        
+        <a href="/index.html" >
+            ABOUT
+        </a>
+        
+
+    </div>
+
+    <!-- FUNDAMENTAL -->
+    <div class="menuItem">
+        
+        <a href="/fundamental/contents" >
+            FUNDAMENTAL
+        </a>
+        
+    </div>
+
+    <!-- BASIC -->
+    <div class="menuItem">
+        
+        <a href="/basic/contents" >
+            BASIC
+        </a>
+        
+    </div>
+
+    <!-- ADVANCED -->
+    <div class="menuItem">
+        
+        <a href="/advanced/contents" >
+            ADVANCED
+        </a>
+        
+    </div>
+
+    <!-- NINJA -->
+    <div class="menuItem">
+
+        
+        <a href="/ninja/contents" >
+            NINJA
+        </a>
+        
+
+    </div>
+
+    <!-- LANGUAGES -->
+    <div class="menuItem">
+        
+        <a href="/languages/contents" >
+            LANGUAGES
+        </a>
+        
+
+    </div>
+
+</div>
+
+
+
+    </div>
+
+    <div class="content">
+        
+    <h1 id="java">Java</h1>
+<h2 id="contents">Contents</h2>
+<hr />
+<ul>
+<li><a href="https://algoholics.io/languages/java/#array">Array</a></li>
+<li><a href="https://algoholics.io/languages/java/#list">List interface</a></li>
+<li><a href="https://algoholics.io/languages/java/#dynamic-array">ArrayList - dynamic array</a></li>
+<li><a href="https://algoholics.io/languages/java/#linked-list">LinkedList</a></li>
+<li><a href="https://algoholics.io/languages/java/#map">Map</a></li>
+<li><a href="https://algoholics.io/languages/java/#set">Set</a></li>
+<li><a href="https://algoholics.io/languages/java/#pros-cons">Not a humble opinion about language</a></li>
+</ul>
+<hr />
+<div id="array"/>
+<h2 id="array">Array</h2>
+<p>create array:</p>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">int[]</span><span style="color:#cccece;"> a </span><span style="color:#5fb3b3;">= </span><span style="color:#c594c5;">new int</span><span style="color:#5fb3b3;">[</span><span style="color:#f99157;">5</span><span style="color:#5fb3b3;">];
+</span><span style="color:#c594c5;">int[]</span><span style="color:#cccece;"> a </span><span style="color:#5fb3b3;">= </span><span style="color:#c594c5;">new int</span><span style="color:#5fb3b3;">[]{</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">3</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">4</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">5</span><span style="color:#5fb3b3;">}; 
+</span></pre><div id="list"/>
+## List interface
+notable methods:
+<ul>
+<li>
+<p><code>get(int index)</code> - <em>returns the element at the specified position in this list</em></p>
+</li>
+<li>
+<p><code>add(E e)</code> - <em>appends the specified element to the end of this list (optional operation)</em></p>
+</li>
+<li>
+<p><code>add(int index, E element)</code> - <em>inserts the specified element at the specified position in this list (optional operation)</em></p>
+</li>
+<li>
+<p><code>set(int index, E element)</code> - <em>replaces the element at the specified position in this list with the specified element (optional operation)</em></p>
+</li>
+<li>
+<p><code>remove(int index)</code> - <em>removes the element at the specified position in this list (optional operation)</em></p>
+</li>
+<li>
+<p><code>remove(Object o)</code> - <em>removes the first occurrence of the specified element from this list, if it is present (optional operation)</em></p>
+</li>
+<li>
+<p><code>size()</code> - <em>returns the number of elements in this list</em></p>
+</li>
+</ul>
+<p>See more details about <code>List</code> interface and list of methods <a href="https://docs.oracle.com/javase/8/docs/api/java/util/List.html">here</a></p>
+<div id="dynamic-array"/>
+<h2 id="arraylist-dynamic-array">ArrayList - dynamic array</h2>
+<p>create array list:</p>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#fac863;">List</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#fac863;">Integer</span><span style="color:#5fb3b3;">&gt;</span><span style="color:#cccece;"> someList </span><span style="color:#5fb3b3;">= </span><span style="color:#c594c5;">new </span><span style="color:#fac863;">ArrayList</span><span style="color:#5fb3b3;">();
+</span></pre><div id="linked-list"/>
+<h2 id="linked-list">Linked list</h2>
+<p>create linked list:</p>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#fac863;">List</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#fac863;">Integer</span><span style="color:#5fb3b3;">&gt;</span><span style="color:#cccece;"> someList </span><span style="color:#5fb3b3;">= </span><span style="color:#c594c5;">new </span><span style="color:#fac863;">LinkedList</span><span style="color:#5fb3b3;">();
+</span></pre><div id="map" />
+<h2 id="map">Map</h2>
+<blockquote>
+<p>Starting <code>Java 8</code> worst case of <code>HashMap</code> changed from <code>O(n^2)</code> to <code>O(log(N))</code>. 
+When Java runtime detects high hash collision it changed <code>linked list</code> to <code>tree</code> for collection of values. </p>
+</blockquote>
+<p>create map:</p>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#fac863;">Map</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#fac863;">String</span><span style="color:#5fb3b3;">, </span><span style="color:#fac863;">Integer</span><span style="color:#5fb3b3;">&gt;</span><span style="color:#cccece;"> dict </span><span style="color:#5fb3b3;">= </span><span style="color:#c594c5;">new </span><span style="color:#fac863;">HashMap</span><span style="color:#5fb3b3;">();
+</span></pre>
+<p>Other implementations:</p>
+<ul>
+<li><code>TreeMap</code> (<em>implements <code>NavigableMap</code></em>)</li>
+<li><code>ConcurrentHashMap</code></li>
+<li><code>ConcurrentSkipListMap</code></li>
+<li><code>SynchronizedMap</code></li>
+<li><code>Hashtable</code> (<em>old, not used now</em>)</li>
+</ul>
+<p>See more details about <code>Map</code> interface and list of methods <a href="https://docs.oracle.com/javase/8/docs/api/java/util/Map.html">here</a></p>
+<div id="set" />
+<h2 id="set">Set</h2>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#fac863;">Set</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#fac863;">Integer</span><span style="color:#5fb3b3;">&gt;</span><span style="color:#cccece;"> s </span><span style="color:#5fb3b3;">= </span><span style="color:#c594c5;">new </span><span style="color:#fac863;">HashSet</span><span style="color:#5fb3b3;">();
+</span></pre>
+<p>other implementations of <code>Set</code>:</p>
+<ul>
+<li><code>TreeSet</code> implements <code>SortedSet</code> and <code>NavigableSet</code> interfaces</li>
+<li><code>ConcurrentSkipListSet</code></li>
+<li><code>CopyOnWriteArraySet</code></li>
+<li><code>SynchronizedSet</code></li>
+<li><code>LinkedHashSet</code></li>
+</ul>
+<p>See more details about <code>Set</code> interface and list of methods <a href="https://docs.oracle.com/javase/8/docs/api/java/util/Set.html">here</a></p>
+<div id="pros-cons" />
+<h2 id="not-a-humble-opinion-about-language">Not a humble opinion about language</h2>
+<p><strong>pros</strong></p>
+<ul>
+<li>easy to find job and developers</li>
+<li>huge choice of libraries</li>
+<li>relatively fast</li>
+<li>platform independence</li>
+<li>can be used for multiple tasks </li>
+</ul>
+<p><strong>cons</strong></p>
+<ul>
+<li>verbose</li>
+<li>too big for simple tasks</li>
+</ul>
+
+
+    </div>
+
+</div>
+
+</body>
+</html>

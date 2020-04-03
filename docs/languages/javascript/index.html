@@ -1,0 +1,170 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <meta name="description" content="data structures and algorithms in JavaScript programming languages">
+    <meta name="keywords" content="JavaScript, explain, tutorial, data structures, algorithms, interview">
+
+    <title> 
+    JavaScript
+ | Practical algorithms and data structures </title>
+    <link rel='stylesheet' href='/styles/styles.css'/>
+</head>
+
+<body>
+
+<div class="rootContainer">
+    <div class="horizontal-menu-box">
+        
+    
+    
+    
+<div class="menu">
+    <!-- ABOUT -->
+    <div class="menuItem">
+        
+        <a href="/index.html" >
+            ABOUT
+        </a>
+        
+
+    </div>
+
+    <!-- FUNDAMENTAL -->
+    <div class="menuItem">
+        
+        <a href="/fundamental/contents" >
+            FUNDAMENTAL
+        </a>
+        
+    </div>
+
+    <!-- BASIC -->
+    <div class="menuItem">
+        
+        <a href="/basic/contents" >
+            BASIC
+        </a>
+        
+    </div>
+
+    <!-- ADVANCED -->
+    <div class="menuItem">
+        
+        <a href="/advanced/contents" >
+            ADVANCED
+        </a>
+        
+    </div>
+
+    <!-- NINJA -->
+    <div class="menuItem">
+
+        
+        <a href="/ninja/contents" >
+            NINJA
+        </a>
+        
+
+    </div>
+
+    <!-- LANGUAGES -->
+    <div class="menuItem">
+        
+        <a href="/languages/contents" >
+            LANGUAGES
+        </a>
+        
+
+    </div>
+
+</div>
+
+
+
+    </div>
+
+    <div class="content">
+        
+    <h1 id="javascript">JavaScript</h1>
+<h2 id="contents">Contents</h2>
+<hr />
+<ul>
+<li><a href="https://algoholics.io/languages/javascript/#array">Array</a></li>
+<li><a href="https://algoholics.io/languages/javascript/#map">Map - associative array</a></li>
+<li><a href="https://algoholics.io/languages/javascript/#set">Set</a></li>
+</ul>
+<hr />
+<div id="array"/>
+<h2 id="javascript-array">JavaScript Array</h2>
+<p>There two array implementation approaches in JavaScript:</p>
+<ul>
+<li><code>Dense arrays</code> are like auto resizing arrays (dynamic array)</li>
+<li><code>Sparse arrays</code> are more similar to <code>hash maps</code></li>
+</ul>
+<p>JavaScript engines choose array implementation in run-time in most cases</p>
+<p>create array example:</p>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">var </span><span style="color:#cccece;">arr </span><span style="color:#5fb3b3;">= [</span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">];
+</span><span style="color:#c594c5;">var </span><span style="color:#cccece;">anotherArray </span><span style="color:#5fb3b3;">= new </span><span style="color:#fac863;">Array</span><span style="color:#5fb3b3;">(&quot;</span><span style="color:#99c794;">a</span><span style="color:#5fb3b3;">&quot;, &quot;</span><span style="color:#99c794;">b</span><span style="color:#5fb3b3;">&quot;, &quot;</span><span style="color:#99c794;">c</span><span style="color:#5fb3b3;">&quot;);
+</span></pre>
+<p>create empty array of specified length:</p>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">const </span><span style="color:#cccece;">arrLength </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">5</span><span style="color:#5fb3b3;">;
+</span><span style="color:#c594c5;">const </span><span style="color:#cccece;">arr </span><span style="color:#5fb3b3;">= </span><span style="color:#fac863;">Array</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">arrLength</span><span style="color:#5fb3b3;">).</span><span style="color:#6699cc;">fill</span><span style="color:#5fb3b3;">({});
+</span><span style="color:#5f6364;">// or
+</span><span style="color:#c594c5;">const </span><span style="color:#cccece;">arr </span><span style="color:#5fb3b3;">= </span><span style="color:#fac863;">Array</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">arrLength</span><span style="color:#5fb3b3;">).</span><span style="color:#6699cc;">fill</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">null</span><span style="color:#5fb3b3;">);
+</span></pre>
+<p>Notable array methods:</p>
+<table><thead><tr><th>method</th><th>description</th><th>returns</th><th>note</th></tr></thead><tbody>
+<tr><td><code>push()</code></td><td>add element(s) to the end</td><td>new array length</td><td>same as <code>push()</code> in <code>Stack</code> and <code>enqueue()</code> in <code>Queue</code></td></tr>
+<tr><td><code>pop()</code></td><td>remove last element</td><td>removed element</td><td>same as <code>pop()</code> in <code>Stack</code></td></tr>
+<tr><td><code>shift()</code></td><td>remove first element</td><td>removed element</td><td>changes the length of the array</td></tr>
+<tr><td><code>unshift()</code></td><td>add element(s) to the beginning of array</td><td>added element</td><td></td></tr>
+<tr><td><code>slice()</code></td><td>create slice of array based on start and end index</td><td>shallow copy of array</td><td>original array won't be changed. <br/> <code>[&quot;a&quot;, &quot;b&quot;, &quot;c&quot;].slice(1) \\ [b, c]</code> <br/> <code>[&quot;a&quot;, &quot;b&quot;, &quot;c&quot;].slice(1, 2) \\ [b]</code></td></tr>
+<tr><td><code>splice()</code></td><td>in place changes the contents of an array by removing or replacing existing elements and/or adding new elements</td><td>array containing the deleted elements</td><td><code>arr = [&quot;a&quot;, &quot;c&quot;];</code> <br/> <code>x = arr.splice(1, 0, &quot;b&quot;)</code> <br/> <code>[&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]</code></td></tr>
+<tr><td><code>every()</code></td><td>check if <strong>all</strong> values satisfy provided test function (predicate)</td><td>Boolean</td><td></td></tr>
+<tr><td><code>some()</code></td><td>check if <strong>at least one</strong> of values satisfy provided test function (predicate)</td><td>Boolean</td><td></td></tr>
+<tr><td><code>sort()</code></td><td>in place sort</td><td>sorted array</td><td>compares sequences of UTF-16 code units values</td></tr>
+<tr><td><code>filter()</code></td><td>filters by test function (predicate)</td><td>new filtered array copy</td><td>original won't be changed</td></tr>
+<tr><td><code>reduce()</code></td><td>applies <strong>reduce</strong> function on each element</td><td>result of reduction</td><td><code>const sum = [1, 2, 3].reduce((sum, n) =&gt; sum += n)</code></td></tr>
+<tr><td><code>forEach()</code></td><td>applies provided function on each element</td><td>undefined</td><td><code>[1,2,3].forEach(i =&gt; console.log(i))</code></td></tr>
+<tr><td><code>map()</code></td><td>creates a new array with the results of applying provided function on each element</td><td>new array</td><td><code>[1,2,3].map(n =&gt; n * 2) \\ [2,4,6]</code></td></tr>
+</tbody></table>
+<p>Check more details about JavaScript arrays <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">here</a></p>
+<div id="map"/>
+<h2 id="map-associative-array">Map - associative array</h2>
+<p>JavaScript <code>objects</code> historically used as a maps. 
+It's implementation also depends on browser engine, 
+but most cases it look like hash based algorithm, so <code>get()</code> and <code>set()</code> is <code>O(1)</code></p>
+<p><code>EcmaScript 6</code> (sometimes called <code>ES2015</code>) and later versions have <code>Map</code> data structure, which similar to JS objects, but has additional features.
+You can read about <code>Map</code> and <code>objects</code> difference <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">here</a></p>
+<h4 id="basic-map-usage">basic Map usage</h4>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">const </span><span style="color:#cccece;">m </span><span style="color:#5fb3b3;">= new </span><span style="color:#fac863;">Map</span><span style="color:#5fb3b3;">();
+</span><span style="color:#cccece;">m</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">set</span><span style="color:#5fb3b3;">(&quot;</span><span style="color:#99c794;">one</span><span style="color:#5fb3b3;">&quot;, </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">); </span><span style="color:#5f6364;">// set valur
+</span><span style="color:#cccece;">m</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">get</span><span style="color:#5fb3b3;">(&quot;</span><span style="color:#99c794;">one</span><span style="color:#5fb3b3;">&quot;) </span><span style="color:#5f6364;">// 1 - read value
+</span><span style="color:#cccece;">m</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">has</span><span style="color:#5fb3b3;">(&quot;</span><span style="color:#99c794;">one</span><span style="color:#5fb3b3;">&quot;) </span><span style="color:#5f6364;">// true - check if key exist
+</span><span style="color:#cccece;">m</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">keys</span><span style="color:#5fb3b3;">()
+
+</span><span style="color:#5f6364;">// using object 
+</span><span style="color:#c594c5;">const </span><span style="color:#cccece;">obj </span><span style="color:#5fb3b3;">= {};
+</span><span style="color:#cccece;">obj</span><span style="color:#5fb3b3;">[&#39;</span><span style="color:#99c794;">one</span><span style="color:#5fb3b3;">&#39;] = </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">;
+</span><span style="color:#cccece;">obj</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">one</span><span style="color:#5fb3b3;">; </span><span style="color:#5f6364;">// 1
+</span></pre>
+<p>see more details about <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">JavaScript Map here</a></p>
+<div id="set"/>
+<h2 id="set">Set</h2>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">const </span><span style="color:#cccece;">s </span><span style="color:#5fb3b3;">= new </span><span style="color:#fac863;">Set</span><span style="color:#5fb3b3;">([</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">3</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">4</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">5</span><span style="color:#5fb3b3;">]);
+
+</span><span style="color:#fac863;">console</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">log</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">s</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">has</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">)); </span><span style="color:#5f6364;">// true
+</span></pre>
+
+    </div>
+
+</div>
+
+</body>
+</html>

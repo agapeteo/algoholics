@@ -1,0 +1,223 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <meta name="description" content="Find maximum">
+    <meta name="keywords" content="Find maximum, learn, explain, tutorial, data structures, algorithms, graph, tree, interview, java, golang, kotlin, python, javascript, rust">
+
+    <title> 
+    Find maximum
+ | Practical algorithms and data structures </title>
+    <link rel='stylesheet' href='/styles/styles.css'/>
+</head>
+
+<body>
+
+<div class="rootContainer">
+    <div class="horizontal-menu-box">
+        
+    
+    
+    
+<div class="menu">
+    <!-- ABOUT -->
+    <div class="menuItem">
+        
+        <a href="/index.html" >
+            ABOUT
+        </a>
+        
+
+    </div>
+
+    <!-- FUNDAMENTAL -->
+    <div class="menuItem">
+        
+        <a href="/fundamental/contents" >
+            FUNDAMENTAL
+        </a>
+        
+    </div>
+
+    <!-- BASIC -->
+    <div class="menuItem">
+        
+        <a href="/basic/contents" >
+            BASIC
+        </a>
+        
+    </div>
+
+    <!-- ADVANCED -->
+    <div class="menuItem">
+        
+        <a href="/advanced/contents" >
+            ADVANCED
+        </a>
+        
+    </div>
+
+    <!-- NINJA -->
+    <div class="menuItem">
+
+        
+        <a href="/ninja/contents" >
+            NINJA
+        </a>
+        
+
+    </div>
+
+    <!-- LANGUAGES -->
+    <div class="menuItem">
+        
+        <a href="/languages/contents" >
+            LANGUAGES
+        </a>
+        
+
+    </div>
+
+</div>
+
+
+
+    </div>
+
+    <div class="content">
+        
+    <h1 id="find-maximum">Find maximum</h1>
+<h2 id="contents">Contents</h2>
+<hr />
+<ul>
+<li><a href="https://algoholics.io/fundamental/find-maximum/#description">Find maximum description</a></li>
+<li><a href="https://algoholics.io/fundamental/find-maximum/#practice">In practice</a></li>
+<li><a href="https://algoholics.io/fundamental/find-maximum/#java">Java</a></li>
+<li><a href="https://algoholics.io/fundamental/find-maximum/#go">Go</a></li>
+<li><a href="https://algoholics.io/fundamental/find-maximum/#python">Python</a></li>
+<li><a href="https://algoholics.io/fundamental/find-maximum/#javascript">JavaScript</a></li>
+<li><a href="https://algoholics.io/fundamental/find-maximum/#kotlin">Kotlin</a></li>
+<li><a href="https://algoholics.io/fundamental/find-maximum/#rust">Rust</a></li>
+</ul>
+<hr />
+<div id="description" />
+<h2 id="find-maximum-1">Find maximum</h2>
+<p>Complexity <code>O(N)</code> - requires iterating through all elements in collection </p>
+<div id="practice"/>
+<h2 id="in-practice">In practice</h2>
+<p>Usually most of languages have build-in function which implements finding maximum</p>
+<div id="java"/>
+<h2 id="java">Java</h2>
+<p><code>java.util.Collections.max()</code> returns max value in collection</p>
+<p>simple old school implementation:</p>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">static int </span><span style="color:#6699cc;">max</span><span style="color:#5fb3b3;">(</span><span style="color:#fac863;">List</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#fac863;">Integer</span><span style="color:#5fb3b3;">&gt;</span><span style="color:#6699cc;"> numbers</span><span style="color:#5fb3b3;">) {
+        </span><span style="color:#c594c5;">int</span><span style="color:#cccece;"> max </span><span style="color:#5fb3b3;">= </span><span style="color:#fac863;">Integer</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">MIN_VALUE</span><span style="color:#5fb3b3;">;
+        </span><span style="color:#c594c5;">for </span><span style="color:#5fb3b3;">(</span><span style="color:#c594c5;">int</span><span style="color:#cccece;"> i </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">;</span><span style="color:#cccece;"> i </span><span style="color:#5fb3b3;">&lt;</span><span style="color:#cccece;"> numbers</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">size</span><span style="color:#5fb3b3;">();</span><span style="color:#cccece;"> i</span><span style="color:#5fb3b3;">++) {
+            </span><span style="color:#c594c5;">int</span><span style="color:#cccece;"> curNumber </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> numbers</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">get</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">i</span><span style="color:#5fb3b3;">);
+            </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">curNumber </span><span style="color:#5fb3b3;">&gt;</span><span style="color:#cccece;"> max</span><span style="color:#5fb3b3;">) {</span><span style="color:#cccece;">
+                max </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> curNumber</span><span style="color:#5fb3b3;">;
+            }
+        }
+        </span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> max</span><span style="color:#5fb3b3;">;
+    }
+</span></pre>
+<p>using streams:</p>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">int</span><span style="color:#cccece;"> max </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> numbers</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">stream</span><span style="color:#5fb3b3;">().</span><span style="color:#6699cc;">max</span><span style="color:#5fb3b3;">(</span><span style="color:#fac863;">Integer</span><span style="color:#5fb3b3;">::</span><span style="color:#6699cc;">compareTo</span><span style="color:#5fb3b3;">).</span><span style="color:#6699cc;">get</span><span style="color:#5fb3b3;">();
+</span></pre>
+<p>using Collections.max:</p>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#fac863;">Collections</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">max</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">numbers</span><span style="color:#5fb3b3;">);
+</span></pre><div id="go"/>
+<h2 id="go">Go</h2>
+<h4 id="find-index-for-element">find index for element:</h4>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">func </span><span style="color:#6699cc;">Max</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">numbers </span><span style="color:#5fb3b3;">[]</span><span style="color:#c594c5;">int</span><span style="color:#5fb3b3;">) </span><span style="color:#c594c5;">int </span><span style="color:#5fb3b3;">{
+	</span><span style="color:#c594c5;">var </span><span style="color:#cccece;">max </span><span style="color:#c594c5;">int
+	for </span><span style="color:#cccece;">idx</span><span style="color:#5fb3b3;">, </span><span style="color:#cccece;">n </span><span style="color:#5fb3b3;">:= </span><span style="color:#c594c5;">range</span><span style="color:#cccece;"> numbers </span><span style="color:#5fb3b3;">{
+		</span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> idx </span><span style="color:#5fb3b3;">== </span><span style="color:#f99157;">0 </span><span style="color:#5fb3b3;">||</span><span style="color:#cccece;"> n </span><span style="color:#5fb3b3;">&lt;</span><span style="color:#cccece;"> max </span><span style="color:#5fb3b3;">{</span><span style="color:#cccece;">
+			max </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> n
+		</span><span style="color:#5fb3b3;">}
+	}
+	</span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> max
+</span><span style="color:#5fb3b3;">}
+</span></pre><div id="python"/>
+<h2 id="python">Python</h2>
+<p>using build-in function <code>max()</code>:</p>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">print </span><span style="color:#6699cc;">max</span><span style="color:#5fb3b3;">([</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">5</span><span style="color:#5fb3b3;">, -</span><span style="color:#f99157;">3</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">11</span><span style="color:#5fb3b3;">]) 
+</span></pre>
+<p>implementing own max_in_list:</p>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">def </span><span style="color:#6699cc;">max_in_list</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">numbers</span><span style="color:#5fb3b3;">):
+    </span><span style="color:#cccece;">maximum </span><span style="color:#5fb3b3;">= </span><span style="color:#cccece;">numbers</span><span style="color:#5fb3b3;">[</span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">]
+    </span><span style="color:#c594c5;">for </span><span style="color:#cccece;">num </span><span style="color:#c594c5;">in </span><span style="color:#cccece;">numbers</span><span style="color:#5fb3b3;">:
+        </span><span style="color:#c594c5;">if </span><span style="color:#cccece;">num </span><span style="color:#5fb3b3;">&gt; </span><span style="color:#cccece;">maximum</span><span style="color:#5fb3b3;">:
+            </span><span style="color:#cccece;">maximum </span><span style="color:#5fb3b3;">= </span><span style="color:#cccece;">num
+    </span><span style="color:#c594c5;">return </span><span style="color:#cccece;">maximum
+</span></pre><div id="javascript"/>
+<h2 id="javascript">JavaScript</h2>
+<p>using JavaScript's <code>Math.max()</code>:</p>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">const </span><span style="color:#cccece;">numbers </span><span style="color:#5fb3b3;">= [</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">22</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">33</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">4</span><span style="color:#5fb3b3;">]
+</span><span style="color:#fac863;">console</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">log</span><span style="color:#5fb3b3;">(</span><span style="color:#fac863;">Math</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">max</span><span style="color:#5fb3b3;">(...</span><span style="color:#cccece;">numbers</span><span style="color:#5fb3b3;">))
+</span></pre>
+<p>custom max:</p>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">const </span><span style="color:#6699cc;">max </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">arr </span><span style="color:#c594c5;">=&gt; </span><span style="color:#5fb3b3;">{
+    </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">(!</span><span style="color:#cccece;">arr</span><span style="color:#5fb3b3;">) {
+        </span><span style="color:#c594c5;">return </span><span style="color:#f99157;">undefined
+    </span><span style="color:#5fb3b3;">}
+    </span><span style="color:#c594c5;">let </span><span style="color:#cccece;">max </span><span style="color:#5fb3b3;">= </span><span style="color:#cccece;">arr</span><span style="color:#5fb3b3;">[</span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">];
+    </span><span style="color:#cccece;">arr</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">forEach</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">n </span><span style="color:#c594c5;">=&gt; </span><span style="color:#5fb3b3;">{
+        </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">n </span><span style="color:#5fb3b3;">&gt; </span><span style="color:#cccece;">max</span><span style="color:#5fb3b3;">) {
+            </span><span style="color:#cccece;">max </span><span style="color:#5fb3b3;">= </span><span style="color:#cccece;">n
+        </span><span style="color:#5fb3b3;">}
+    });
+    </span><span style="color:#c594c5;">return </span><span style="color:#cccece;">max
+</span><span style="color:#5fb3b3;">};
+</span></pre><div id="kotlin"/>
+<h2 id="kotlin">Kotlin</h2>
+<p>Kotlin can use Java's <code>Collections.max()</code></p>
+<p>Custom implementation:</p>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">fun </span><span style="color:#6699cc;">max</span><span style="color:#cccece;">(</span><span style="color:#f99157;">numbers</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">List</span><span style="color:#cccece;">&lt;</span><span style="color:#c594c5;">Int</span><span style="color:#cccece;">&gt;)</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">Int</span><span style="color:#cccece;"> {
+    </span><span style="color:#c594c5;">var </span><span style="color:#cccece;">max </span><span style="color:#5fb3b3;">= </span><span style="color:#c594c5;">Int</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">MIN_VALUE
+    </span><span style="color:#c594c5;">for</span><span style="color:#cccece;"> (n </span><span style="color:#c594c5;">in</span><span style="color:#cccece;"> numbers) {
+        </span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> (n </span><span style="color:#5fb3b3;">&gt;</span><span style="color:#cccece;"> max) {
+            max </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> n
+        }
+    }
+    </span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> max
+}
+</span></pre><div id="rust"/>
+<h2 id="rust">Rust</h2>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#5fb3b3;">#[</span><span style="color:#cccece;">test</span><span style="color:#5fb3b3;">]
+</span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">max</span><span style="color:#5fb3b3;">() {
+    </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#fac863;">Some</span><span style="color:#5fb3b3;">(&amp;</span><span style="color:#f99157;">99</span><span style="color:#5fb3b3;">), [</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">99</span><span style="color:#5fb3b3;">, -</span><span style="color:#f99157;">777</span><span style="color:#5fb3b3;">].</span><span style="color:#6699cc;">iter</span><span style="color:#5fb3b3;">().</span><span style="color:#6699cc;">max</span><span style="color:#5fb3b3;">());
+}
+
+#[</span><span style="color:#cccece;">test</span><span style="color:#5fb3b3;">]
+</span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">max_by_key</span><span style="color:#5fb3b3;">() {
+    </span><span style="color:#c594c5;">struct </span><span style="color:#cccece;">Person </span><span style="color:#5fb3b3;">{ </span><span style="color:#cccece;">name</span><span style="color:#5fb3b3;">: &amp;</span><span style="color:#c594c5;">&#39;static str</span><span style="color:#cccece;">, age</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">usize </span><span style="color:#5fb3b3;">}
+    </span><span style="color:#c594c5;">let</span><span style="color:#cccece;"> people </span><span style="color:#5fb3b3;">= [</span><span style="color:#cccece;">
+        Person </span><span style="color:#5fb3b3;">{</span><span style="color:#cccece;"> name</span><span style="color:#5fb3b3;">: &quot;</span><span style="color:#99c794;">Alex</span><span style="color:#5fb3b3;">&quot;,</span><span style="color:#cccece;"> age</span><span style="color:#5fb3b3;">: </span><span style="color:#f99157;">40 </span><span style="color:#5fb3b3;">},</span><span style="color:#cccece;">
+        Person </span><span style="color:#5fb3b3;">{</span><span style="color:#cccece;"> name</span><span style="color:#5fb3b3;">: &quot;</span><span style="color:#99c794;">John</span><span style="color:#5fb3b3;">&quot;,</span><span style="color:#cccece;"> age</span><span style="color:#5fb3b3;">: </span><span style="color:#f99157;">25 </span><span style="color:#5fb3b3;">},
+    ];
+
+    </span><span style="color:#c594c5;">let</span><span style="color:#cccece;"> oldest </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> people</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">iter</span><span style="color:#5fb3b3;">()
+        .</span><span style="color:#6699cc;">max_by_key</span><span style="color:#5fb3b3;">(|</span><span style="color:#f99157;">p</span><span style="color:#5fb3b3;">| </span><span style="color:#cccece;">p</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">age</span><span style="color:#5fb3b3;">);
+
+    </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(&quot;</span><span style="color:#99c794;">Alex</span><span style="color:#5fb3b3;">&quot;,</span><span style="color:#cccece;"> oldest</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">unwrap</span><span style="color:#5fb3b3;">().</span><span style="color:#cccece;">name</span><span style="color:#5fb3b3;">);
+}
+</span></pre>
+
+    </div>
+
+</div>
+
+</body>
+</html>

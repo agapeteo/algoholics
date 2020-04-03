@@ -1,0 +1,135 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <meta name="description" content="data structures and algorithms in Kotlin programming languages">
+    <meta name="keywords" content="Kotlin, explain, tutorial, data structures, algorithms, interview">
+
+    <title> 
+    Kotlin
+ | Practical algorithms and data structures </title>
+    <link rel='stylesheet' href='/styles/styles.css'/>
+</head>
+
+<body>
+
+<div class="rootContainer">
+    <div class="horizontal-menu-box">
+        
+    
+    
+    
+<div class="menu">
+    <!-- ABOUT -->
+    <div class="menuItem">
+        
+        <a href="/index.html" >
+            ABOUT
+        </a>
+        
+
+    </div>
+
+    <!-- FUNDAMENTAL -->
+    <div class="menuItem">
+        
+        <a href="/fundamental/contents" >
+            FUNDAMENTAL
+        </a>
+        
+    </div>
+
+    <!-- BASIC -->
+    <div class="menuItem">
+        
+        <a href="/basic/contents" >
+            BASIC
+        </a>
+        
+    </div>
+
+    <!-- ADVANCED -->
+    <div class="menuItem">
+        
+        <a href="/advanced/contents" >
+            ADVANCED
+        </a>
+        
+    </div>
+
+    <!-- NINJA -->
+    <div class="menuItem">
+
+        
+        <a href="/ninja/contents" >
+            NINJA
+        </a>
+        
+
+    </div>
+
+    <!-- LANGUAGES -->
+    <div class="menuItem">
+        
+        <a href="/languages/contents" >
+            LANGUAGES
+        </a>
+        
+
+    </div>
+
+</div>
+
+
+
+    </div>
+
+    <div class="content">
+        
+    <h1 id="kotlin">Kotlin</h1>
+<h2 id="contents">Contents</h2>
+<hr />
+<ul>
+<li><a href="https://algoholics.io/languages/kotlin/#array">Array</a></li>
+<li><a href="https://algoholics.io/languages/kotlin/#dynamic-array">List</a></li>
+<li><a href="https://algoholics.io/languages/kotlin/#map">Map</a></li>
+<li><a href="https://algoholics.io/languages/kotlin/#set">Set</a></li>
+</ul>
+<hr />
+<blockquote>
+<p>Kotlin can any data structures from Java. <br/>See more detailed Kotlin collections overview <a href="https://kotlinlang.org/docs/reference/collections-overview.html">here</a></p>
+</blockquote>
+<div id="array" />
+<h2 id="array">Array</h2>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">val </span><span style="color:#cccece;">array </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> arrayOf(</span><span style="color:#f99157;">1</span><span style="color:#cccece;">, </span><span style="color:#f99157;">2</span><span style="color:#cccece;">, </span><span style="color:#f99157;">3</span><span style="color:#cccece;">, </span><span style="color:#f99157;">4</span><span style="color:#cccece;">, </span><span style="color:#f99157;">5</span><span style="color:#cccece;">) </span><span style="color:#5f6364;">// intArrayOf() prefered for int types
+</span><span style="color:#cccece;">println(Arrays</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">toString(array))
+println(array</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">first())
+println(array</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">last())
+println(array</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">indexOf(</span><span style="color:#f99157;">1</span><span style="color:#cccece;">))
+println(array[</span><span style="color:#f99157;">0</span><span style="color:#cccece;">])
+println(array</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">get(</span><span style="color:#f99157;">0</span><span style="color:#cccece;">)) 
+</span></pre><div id="dynamic-array" />
+<h2 id="list">List</h2>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">val </span><span style="color:#cccece;">aList </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> listOf(</span><span style="color:#f99157;">1</span><span style="color:#cccece;">, </span><span style="color:#f99157;">2</span><span style="color:#cccece;">, </span><span style="color:#f99157;">3</span><span style="color:#cccece;">) </span><span style="color:#5f6364;">// immutable by default
+</span><span style="color:#c594c5;">val </span><span style="color:#cccece;">bList </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> mutableListOf(</span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">a</span><span style="color:#5fb3b3;">&quot;</span><span style="color:#cccece;">, </span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">b</span><span style="color:#5fb3b3;">&quot;</span><span style="color:#cccece;">, </span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">c</span><span style="color:#5fb3b3;">&quot;</span><span style="color:#cccece;">) 
+</span></pre><div id="map" />
+<h2 id="map">Map</h2>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">val </span><span style="color:#cccece;">m </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> mapOf(</span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">one</span><span style="color:#5fb3b3;">&quot;</span><span style="color:#cccece;"> to </span><span style="color:#f99157;">1</span><span style="color:#cccece;">, </span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">two</span><span style="color:#5fb3b3;">&quot;</span><span style="color:#cccece;"> to </span><span style="color:#f99157;">2</span><span style="color:#cccece;">, </span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">three</span><span style="color:#5fb3b3;">&quot;</span><span style="color:#cccece;"> to </span><span style="color:#f99157;">3</span><span style="color:#cccece;">, </span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">four</span><span style="color:#5fb3b3;">&quot;</span><span style="color:#cccece;"> to </span><span style="color:#f99157;">1</span><span style="color:#cccece;">) </span><span style="color:#5f6364;">// immutable by default
+</span><span style="color:#c594c5;">val </span><span style="color:#cccece;">mutableMap </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> mutableMapOf(</span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">one</span><span style="color:#5fb3b3;">&quot;</span><span style="color:#cccece;"> to </span><span style="color:#f99157;">1</span><span style="color:#cccece;">, </span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">two</span><span style="color:#5fb3b3;">&quot;</span><span style="color:#cccece;"> to </span><span style="color:#f99157;">2</span><span style="color:#cccece;">, </span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">three</span><span style="color:#5fb3b3;">&quot;</span><span style="color:#cccece;"> to </span><span style="color:#f99157;">3</span><span style="color:#cccece;">, </span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">four</span><span style="color:#5fb3b3;">&quot;</span><span style="color:#cccece;"> to </span><span style="color:#f99157;">1</span><span style="color:#cccece;">)
+
+</span></pre><div id="set" />
+<h2 id="set">Set</h2>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">val </span><span style="color:#cccece;">s </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> setOf(</span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">a</span><span style="color:#5fb3b3;">&quot;</span><span style="color:#cccece;">, </span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">b</span><span style="color:#5fb3b3;">&quot;</span><span style="color:#cccece;">, </span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">c</span><span style="color:#5fb3b3;">&quot;</span><span style="color:#cccece;">)
+</span></pre>
+
+    </div>
+
+</div>
+
+</body>
+</html>

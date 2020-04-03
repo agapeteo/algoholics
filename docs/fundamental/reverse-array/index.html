@@ -1,0 +1,259 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <meta name="description" content="Reverse Array">
+    <meta name="keywords" content="reverse array, array, memory, learn, explain, tutorial, data structures, algorithms, graph, tree, interview, java, golang, kotlin, python, javascript, rust">
+
+    <title> 
+    Reverse Array
+ | Practical algorithms and data structures </title>
+    <link rel='stylesheet' href='/styles/styles.css'/>
+</head>
+
+<body>
+
+<div class="rootContainer">
+    <div class="horizontal-menu-box">
+        
+    
+    
+    
+<div class="menu">
+    <!-- ABOUT -->
+    <div class="menuItem">
+        
+        <a href="/index.html" >
+            ABOUT
+        </a>
+        
+
+    </div>
+
+    <!-- FUNDAMENTAL -->
+    <div class="menuItem">
+        
+        <a href="/fundamental/contents" >
+            FUNDAMENTAL
+        </a>
+        
+    </div>
+
+    <!-- BASIC -->
+    <div class="menuItem">
+        
+        <a href="/basic/contents" >
+            BASIC
+        </a>
+        
+    </div>
+
+    <!-- ADVANCED -->
+    <div class="menuItem">
+        
+        <a href="/advanced/contents" >
+            ADVANCED
+        </a>
+        
+    </div>
+
+    <!-- NINJA -->
+    <div class="menuItem">
+
+        
+        <a href="/ninja/contents" >
+            NINJA
+        </a>
+        
+
+    </div>
+
+    <!-- LANGUAGES -->
+    <div class="menuItem">
+        
+        <a href="/languages/contents" >
+            LANGUAGES
+        </a>
+        
+
+    </div>
+
+</div>
+
+
+
+    </div>
+
+    <div class="content">
+        
+    <h1 id="reverse-array">Reverse array</h1>
+<h2 id="contents">Contents</h2>
+<hr />
+<ul>
+<li><a href="https://algoholics.io/fundamental/reverse-array/#description">Reverse array description</a></li>
+<li><a href="https://algoholics.io/fundamental/reverse-array/#practice">In practice</a></li>
+<li><a href="https://algoholics.io/fundamental/reverse-array/#java">Java</a></li>
+<li><a href="https://algoholics.io/fundamental/reverse-array/#go">Go</a></li>
+<li><a href="https://algoholics.io/fundamental/reverse-array/#python">Python</a></li>
+<li><a href="https://algoholics.io/fundamental/reverse-array/#javascript">JavaScript</a></li>
+<li><a href="https://algoholics.io/fundamental/reverse-array/#kotlin">Kotlin</a></li>
+<li><a href="https://algoholics.io/fundamental/reverse-array/#rust">Rust</a></li>
+</ul>
+<hr />
+<div id="description" />
+<h2 id="reverse-array-1">Reverse array</h2>
+<p>Complexity <code>O(N)</code> - requires iterating through all (or half) elements in collection</p>
+<p>Space complexity is <code>O(1)</code> for in-place approach and <code>O(N)</code> for new copy of array</p>
+<div id="practice"/>
+<h2 id="in-practice">In practice</h2>
+<p>Used for reversing arrays and lists or strings</p>
+<div id="java"/>
+<h2 id="java">Java</h2>
+<p>Use <code>Collections.reverse()</code> to reverse any collection</p>
+<blockquote>
+<p>To convert array to List use <code>Arrays.toList()</code></p>
+</blockquote>
+<p>Using new array (<code>O(N)</code> space complexity):</p>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">int[]</span><span style="color:#cccece;"> srcArr </span><span style="color:#5fb3b3;">= {</span><span style="color:#f99157;">1</span><span style="color:#cccece;">, </span><span style="color:#f99157;">2</span><span style="color:#cccece;">, </span><span style="color:#f99157;">3</span><span style="color:#5fb3b3;">};
+</span><span style="color:#c594c5;">int[]</span><span style="color:#cccece;"> reversedArr </span><span style="color:#5fb3b3;">= </span><span style="color:#c594c5;">new int</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">srcArr</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">length</span><span style="color:#5fb3b3;">];
+
+</span><span style="color:#c594c5;">for </span><span style="color:#5fb3b3;">(</span><span style="color:#c594c5;">int</span><span style="color:#cccece;"> i </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">;</span><span style="color:#cccece;"> i </span><span style="color:#5fb3b3;">&lt;</span><span style="color:#cccece;"> srcArr</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">length</span><span style="color:#5fb3b3;">;</span><span style="color:#cccece;"> i</span><span style="color:#5fb3b3;">++) {</span><span style="color:#cccece;">
+    reversedArr[srcArr</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">length </span><span style="color:#5fb3b3;">-</span><span style="color:#cccece;"> i </span><span style="color:#5fb3b3;">- </span><span style="color:#f99157;">1</span><span style="color:#cccece;">] </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> srcArr[i]</span><span style="color:#5fb3b3;">;
+}
+</span><span style="color:#fac863;">System</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">out</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">println</span><span style="color:#5fb3b3;">(</span><span style="color:#fac863;">Arrays</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">toString</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">reversedArr</span><span style="color:#5fb3b3;">));
+</span></pre>
+<p>In-place reverse (<code>O(1)</code> space complexity):</p>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">int[]</span><span style="color:#cccece;"> arr </span><span style="color:#5fb3b3;">= {</span><span style="color:#f99157;">1</span><span style="color:#cccece;">, </span><span style="color:#f99157;">2</span><span style="color:#cccece;">, </span><span style="color:#f99157;">3</span><span style="color:#5fb3b3;">};
+
+</span><span style="color:#c594c5;">for </span><span style="color:#5fb3b3;">(</span><span style="color:#c594c5;">int</span><span style="color:#cccece;"> i </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">;</span><span style="color:#cccece;"> i </span><span style="color:#5fb3b3;">&lt;=</span><span style="color:#cccece;"> arr</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">length</span><span style="color:#5fb3b3;">/</span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">;</span><span style="color:#cccece;"> i</span><span style="color:#5fb3b3;">++) {
+    </span><span style="color:#c594c5;">int</span><span style="color:#cccece;"> tmp </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> arr[i]</span><span style="color:#5fb3b3;">;</span><span style="color:#cccece;">
+    arr[i] </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> arr[arr</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">length </span><span style="color:#5fb3b3;">-</span><span style="color:#cccece;"> i </span><span style="color:#5fb3b3;">- </span><span style="color:#f99157;">1</span><span style="color:#cccece;">]</span><span style="color:#5fb3b3;">;</span><span style="color:#cccece;">
+    arr[arr</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">length </span><span style="color:#5fb3b3;">-</span><span style="color:#cccece;"> i </span><span style="color:#5fb3b3;">- </span><span style="color:#f99157;">1</span><span style="color:#cccece;">] </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> tmp</span><span style="color:#5fb3b3;">;
+}
+</span><span style="color:#fac863;">System</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">out</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">println</span><span style="color:#5fb3b3;">(</span><span style="color:#fac863;">Arrays</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">toString</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">arr</span><span style="color:#5fb3b3;">));
+</span></pre>
+<blockquote>
+<p>Note: to reverse String use: </p>
+<p><code>new StringBuilder(&quot;someString&quot;).reverse().toString()</code> </p>
+<p>or convert string to char array and than reverse array, for example:</p>
+<p><code>char[] chars = &quot;someString&quot;.toCharArray();</code> </p>
+</blockquote>
+<div id="go"/>
+<h2 id="go">Go</h2>
+<p>approach #1:</p>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#cccece;">numbers </span><span style="color:#5fb3b3;">:= []</span><span style="color:#c594c5;">int</span><span style="color:#5fb3b3;">{</span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">3</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">4</span><span style="color:#5fb3b3;">}
+</span><span style="color:#c594c5;">for </span><span style="color:#cccece;">i </span><span style="color:#5fb3b3;">:= </span><span style="color:#f99157;">0</span><span style="color:#cccece;">; i </span><span style="color:#5fb3b3;">&lt; </span><span style="color:#6699cc;">len</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">numbers</span><span style="color:#5fb3b3;">)/</span><span style="color:#f99157;">2</span><span style="color:#cccece;">; i</span><span style="color:#5fb3b3;">++ {
+    </span><span style="color:#cccece;">opposite </span><span style="color:#5fb3b3;">:= </span><span style="color:#6699cc;">len</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">numbers</span><span style="color:#5fb3b3;">) - </span><span style="color:#f99157;">1 </span><span style="color:#5fb3b3;">-</span><span style="color:#cccece;"> i
+    numbers</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">i</span><span style="color:#5fb3b3;">],</span><span style="color:#cccece;"> numbers</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">opposite</span><span style="color:#5fb3b3;">] =</span><span style="color:#cccece;"> numbers</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">opposite</span><span style="color:#5fb3b3;">],</span><span style="color:#cccece;"> numbers</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">i</span><span style="color:#5fb3b3;">]
+}</span><span style="color:#cccece;">
+fmt</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">Printf</span><span style="color:#5fb3b3;">(&quot;</span><span style="color:#99c794;">numbers: %v</span><span style="color:#5fb3b3;">&quot;,</span><span style="color:#6699cc;"> numbers</span><span style="color:#5fb3b3;">)
+</span></pre>
+<p>approach #2:</p>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#cccece;">numbers </span><span style="color:#5fb3b3;">:= []</span><span style="color:#c594c5;">int</span><span style="color:#5fb3b3;">{</span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">}
+</span><span style="color:#c594c5;">for </span><span style="color:#cccece;">leftIdx</span><span style="color:#5fb3b3;">, </span><span style="color:#cccece;">rightIdx </span><span style="color:#5fb3b3;">:= </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">, </span><span style="color:#6699cc;">len</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">numbers</span><span style="color:#5fb3b3;">)-</span><span style="color:#f99157;">1</span><span style="color:#cccece;">; leftIdx </span><span style="color:#5fb3b3;">&lt;</span><span style="color:#cccece;"> rightIdx; leftIdx</span><span style="color:#5fb3b3;">,</span><span style="color:#cccece;"> rightIdx </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> leftIdx</span><span style="color:#5fb3b3;">+</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">,</span><span style="color:#cccece;"> rightIdx</span><span style="color:#5fb3b3;">-</span><span style="color:#f99157;">1 </span><span style="color:#5fb3b3;">{</span><span style="color:#cccece;">
+    numbers</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">leftIdx</span><span style="color:#5fb3b3;">],</span><span style="color:#cccece;"> numbers</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">rightIdx</span><span style="color:#5fb3b3;">] =</span><span style="color:#cccece;"> numbers</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">rightIdx</span><span style="color:#5fb3b3;">],</span><span style="color:#cccece;"> numbers</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">leftIdx</span><span style="color:#5fb3b3;">]
+}</span><span style="color:#cccece;">
+fmt</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">Printf</span><span style="color:#5fb3b3;">(&quot;</span><span style="color:#99c794;">numbers: %v</span><span style="color:#5fb3b3;">&quot;,</span><span style="color:#6699cc;"> numbers</span><span style="color:#5fb3b3;">)
+</span></pre><div id="python"/>
+<h2 id="python">Python</h2>
+<p>using <code>reverse()</code> (in-place):</p>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#cccece;">numbers </span><span style="color:#5fb3b3;">= [</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">22</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">3</span><span style="color:#5fb3b3;">]
+</span><span style="color:#6699cc;">numbers</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">reverse</span><span style="color:#5fb3b3;">()
+</span><span style="color:#c594c5;">print </span><span style="color:#cccece;">numbers  </span><span style="color:#5f6364;"># [3, 22, 1]
+</span></pre>
+<p>using slices:</p>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#cccece;">numbers </span><span style="color:#5fb3b3;">= [</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">22</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">3</span><span style="color:#5fb3b3;">]
+</span><span style="color:#cccece;">numbers_reversed </span><span style="color:#5fb3b3;">= </span><span style="color:#cccece;">numbers</span><span style="color:#5fb3b3;">[::-</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">]
+</span><span style="color:#c594c5;">print </span><span style="color:#cccece;">numbers_reversed  </span><span style="color:#5f6364;"># [3, 22, 1]
+</span></pre>
+<p>straight forward approach (in-place):</p>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">def </span><span style="color:#6699cc;">reverse_inplace</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">any_list</span><span style="color:#5fb3b3;">):
+    </span><span style="color:#c594c5;">for </span><span style="color:#cccece;">i </span><span style="color:#c594c5;">in </span><span style="color:#6699cc;">range</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">len</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">any_list</span><span style="color:#5fb3b3;">) / </span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">):
+        </span><span style="color:#cccece;">opposite_idx </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">len</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">any_list</span><span style="color:#5fb3b3;">) - </span><span style="color:#cccece;">i </span><span style="color:#5fb3b3;">- </span><span style="color:#f99157;">1
+        </span><span style="color:#cccece;">any_list</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">i</span><span style="color:#5fb3b3;">]</span><span style="color:#cccece;">, any_list</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">opposite_idx</span><span style="color:#5fb3b3;">] = </span><span style="color:#cccece;">any_list</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">opposite_idx</span><span style="color:#5fb3b3;">]</span><span style="color:#cccece;">, any_list</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">i</span><span style="color:#5fb3b3;">]
+
+
+</span><span style="color:#cccece;">numbers </span><span style="color:#5fb3b3;">= [</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">22</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">3</span><span style="color:#5fb3b3;">]
+</span><span style="color:#6699cc;">reverse_inplace</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">numbers</span><span style="color:#5fb3b3;">)
+</span><span style="color:#c594c5;">print </span><span style="color:#cccece;">numbers  </span><span style="color:#5f6364;"># [3, 22, 1]
+</span></pre><div id="javascript"/>
+<h2 id="javascript">JavaScript</h2>
+<p>Use <code>reverse()</code> method for arrays:</p>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#fac863;">console</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">log</span><span style="color:#5fb3b3;">([</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">3</span><span style="color:#5fb3b3;">].</span><span style="color:#6699cc;">reverse</span><span style="color:#5fb3b3;">()) </span><span style="color:#5f6364;">// [3, 2, 1]
+</span></pre>
+<p>implementation example:</p>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">function </span><span style="color:#6699cc;">reverse</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">arr</span><span style="color:#5fb3b3;">) {
+  </span><span style="color:#c594c5;">for </span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">i </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">; </span><span style="color:#cccece;">i </span><span style="color:#5fb3b3;">&lt;= </span><span style="color:#cccece;">arr</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">length</span><span style="color:#5fb3b3;">/</span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">; </span><span style="color:#cccece;">i</span><span style="color:#5fb3b3;">++) {
+    </span><span style="color:#cccece;">tmp </span><span style="color:#5fb3b3;">= </span><span style="color:#cccece;">arr</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">i</span><span style="color:#5fb3b3;">]
+    </span><span style="color:#cccece;">arr</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">i</span><span style="color:#5fb3b3;">] = </span><span style="color:#cccece;">arr</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">arr</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">length </span><span style="color:#5fb3b3;">- </span><span style="color:#cccece;">i </span><span style="color:#5fb3b3;">- </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">]
+    </span><span style="color:#cccece;">arr</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">arr</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">length </span><span style="color:#5fb3b3;">- </span><span style="color:#cccece;">i </span><span style="color:#5fb3b3;">- </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">] = </span><span style="color:#cccece;">tmp
+  </span><span style="color:#5fb3b3;">}
+}
+</span><span style="color:#c594c5;">const </span><span style="color:#cccece;">numbers </span><span style="color:#5fb3b3;">= [</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">22</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">3</span><span style="color:#5fb3b3;">]
+</span><span style="color:#6699cc;">reverse</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">numbers</span><span style="color:#5fb3b3;">)
+
+</span><span style="color:#fac863;">console</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">log</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">numbers</span><span style="color:#5fb3b3;">) </span><span style="color:#5f6364;">// [3, 22, 1]
+</span></pre><div id="kotlin"/>
+<h2 id="kotlin">Kotlin</h2>
+<p>using <code>reversed()</code>:</p>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#cccece;">arrayOf(</span><span style="color:#f99157;">1</span><span style="color:#cccece;">, </span><span style="color:#f99157;">2</span><span style="color:#cccece;">, </span><span style="color:#f99157;">3</span><span style="color:#cccece;">)</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">reversed() </span><span style="color:#5f6364;">// [3, 2, 1]
+</span></pre>
+<p>using <code>asReversed()</code> read-only view:</p>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">val </span><span style="color:#cccece;">reversedView </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> listOf(</span><span style="color:#f99157;">0</span><span style="color:#cccece;">, </span><span style="color:#f99157;">1</span><span style="color:#cccece;">)</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">asReversed()
+println(</span><span style="color:#5fb3b3;">&quot;</span><span style="color:#f99157;">${reversedView.first()}</span><span style="color:#99c794;">, </span><span style="color:#f99157;">${reversedView.last()}</span><span style="color:#5fb3b3;">&quot;</span><span style="color:#cccece;">) </span><span style="color:#5f6364;">//  1, 0
+</span></pre>
+<p>implementing in-place reverse:</p>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">val </span><span style="color:#cccece;">numbers </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> arrayOf(</span><span style="color:#f99157;">1</span><span style="color:#cccece;">, </span><span style="color:#f99157;">22</span><span style="color:#cccece;">, </span><span style="color:#f99157;">3</span><span style="color:#cccece;">)
+    
+</span><span style="color:#c594c5;">for</span><span style="color:#cccece;"> (idx </span><span style="color:#c594c5;">in </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">..</span><span style="color:#cccece;">numbers</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">size </span><span style="color:#5fb3b3;">/ </span><span style="color:#f99157;">2</span><span style="color:#cccece;">) {
+    </span><span style="color:#c594c5;">val </span><span style="color:#cccece;">oppositeIdx </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> numbers</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">size </span><span style="color:#5fb3b3;">-</span><span style="color:#cccece;"> idx </span><span style="color:#5fb3b3;">- </span><span style="color:#f99157;">1
+    </span><span style="color:#c594c5;">val </span><span style="color:#cccece;">tmp </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> numbers[idx]
+    numbers[idx] </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> numbers[oppositeIdx]
+    numbers[oppositeIdx] </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> tmp
+}
+println(</span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">reversed numbers: </span><span style="color:#f99157;">${Arrays.toString(numbers)}</span><span style="color:#5fb3b3;">&quot;</span><span style="color:#cccece;">) </span><span style="color:#5f6364;">// [3, 22, 1]
+</span></pre><div id="rust"/>
+<h2 id="rust">Rust</h2>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#5fb3b3;">#[</span><span style="color:#cccece;">test</span><span style="color:#5fb3b3;">]
+</span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">reverse_array</span><span style="color:#5fb3b3;">() {
+    </span><span style="color:#c594c5;">let mut</span><span style="color:#cccece;"> arr </span><span style="color:#5fb3b3;">= [</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">3</span><span style="color:#5fb3b3;">];</span><span style="color:#cccece;">
+    arr</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">reverse</span><span style="color:#5fb3b3;">(); </span><span style="color:#5f6364;">// same for Vec
+    </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">([</span><span style="color:#f99157;">3</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">],</span><span style="color:#cccece;"> arr</span><span style="color:#5fb3b3;">);
+}
+
+#[</span><span style="color:#cccece;">test</span><span style="color:#5fb3b3;">]
+</span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">reverse_array_brute_force_slow</span><span style="color:#5fb3b3;">() {
+    </span><span style="color:#c594c5;">let mut</span><span style="color:#cccece;"> arr </span><span style="color:#5fb3b3;">= [</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">3</span><span style="color:#5fb3b3;">];
+    </span><span style="color:#c594c5;">let mut</span><span style="color:#cccece;"> i </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">;
+    </span><span style="color:#c594c5;">let mut</span><span style="color:#cccece;"> j </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> arr</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">len</span><span style="color:#5fb3b3;">() - </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">;
+
+    </span><span style="color:#c594c5;">while</span><span style="color:#cccece;"> i </span><span style="color:#5fb3b3;">&lt;</span><span style="color:#cccece;"> j </span><span style="color:#5fb3b3;">{
+        </span><span style="color:#5f6364;">// fast and efficient swap, just swap internal pointer, no extra variables or copies
+</span><span style="color:#cccece;">        arr</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">swap</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">i</span><span style="color:#5fb3b3;">,</span><span style="color:#cccece;"> j</span><span style="color:#5fb3b3;">);</span><span style="color:#cccece;">
+        i </span><span style="color:#5fb3b3;">+= </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">;</span><span style="color:#cccece;">
+        j </span><span style="color:#5fb3b3;">-= </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">;
+    }
+    </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">([</span><span style="color:#f99157;">3</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">],</span><span style="color:#cccece;"> arr</span><span style="color:#5fb3b3;">);
+}
+</span></pre>
+
+    </div>
+
+</div>
+
+</body>
+</html>

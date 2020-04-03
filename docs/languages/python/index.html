@@ -1,0 +1,179 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <meta name="description" content="data structures and algorithms in Python programming languages">
+    <meta name="keywords" content="python, explain, tutorial, data structures, algorithms, interview">
+
+    <title> 
+    Python
+ | Practical algorithms and data structures </title>
+    <link rel='stylesheet' href='/styles/styles.css'/>
+</head>
+
+<body>
+
+<div class="rootContainer">
+    <div class="horizontal-menu-box">
+        
+    
+    
+    
+<div class="menu">
+    <!-- ABOUT -->
+    <div class="menuItem">
+        
+        <a href="/index.html" >
+            ABOUT
+        </a>
+        
+
+    </div>
+
+    <!-- FUNDAMENTAL -->
+    <div class="menuItem">
+        
+        <a href="/fundamental/contents" >
+            FUNDAMENTAL
+        </a>
+        
+    </div>
+
+    <!-- BASIC -->
+    <div class="menuItem">
+        
+        <a href="/basic/contents" >
+            BASIC
+        </a>
+        
+    </div>
+
+    <!-- ADVANCED -->
+    <div class="menuItem">
+        
+        <a href="/advanced/contents" >
+            ADVANCED
+        </a>
+        
+    </div>
+
+    <!-- NINJA -->
+    <div class="menuItem">
+
+        
+        <a href="/ninja/contents" >
+            NINJA
+        </a>
+        
+
+    </div>
+
+    <!-- LANGUAGES -->
+    <div class="menuItem">
+        
+        <a href="/languages/contents" >
+            LANGUAGES
+        </a>
+        
+
+    </div>
+
+</div>
+
+
+
+    </div>
+
+    <div class="content">
+        
+    <h1 id="python">Python</h1>
+<h2 id="contents">Contents</h2>
+<hr />
+<ul>
+<li><a href="https://algoholics.io/languages/python/#array">Tuple - array</a></li>
+<li><a href="https://algoholics.io/languages/python/#dynamic-array">List - dynamic array</a></li>
+<li><a href="https://algoholics.io/languages/python/#map">Dictionary - map, associative array</a></li>
+<li><a href="https://algoholics.io/languages/python/#set">Set</a></li>
+</ul>
+<hr />
+<div id="array" />
+<h2 id="tuple-array">Tuple - array <code>( )</code></h2>
+<p>create tuple: </p>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#cccece;">t </span><span style="color:#5fb3b3;">= (&quot;</span><span style="color:#99c794;">a</span><span style="color:#5fb3b3;">&quot;, &quot;</span><span style="color:#99c794;">b</span><span style="color:#5fb3b3;">&quot;, &quot;</span><span style="color:#99c794;">c</span><span style="color:#5fb3b3;">&quot;)
+</span></pre>
+<p>tuple packing and unpacking:</p>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#cccece;">t </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">1</span><span style="color:#cccece;">,</span><span style="color:#f99157;">2</span><span style="color:#cccece;">,</span><span style="color:#f99157;">3
+</span><span style="color:#cccece;">a, b, c </span><span style="color:#5fb3b3;">= </span><span style="color:#cccece;">t
+</span></pre><div id="dynamic-array" />
+<h2 id="list-dynamic-array">List - dynamic array <code>[ ]</code></h2>
+<p>Python's lists can be used as <code>Stack</code> and <code>Queue</code></p>
+<p>create list:</p>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#cccece;">l </span><span style="color:#5fb3b3;">= [</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">3</span><span style="color:#5fb3b3;">]
+</span></pre>
+<p>create empty list of specified size:</p>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#cccece;">list_size </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">12
+</span><span style="color:#cccece;">some_list </span><span style="color:#5fb3b3;">= [</span><span style="color:#f99157;">None</span><span style="color:#5fb3b3;">] * </span><span style="color:#cccece;">list_size
+</span></pre>
+<p>List of notable methods:</p>
+<table><thead><tr><th>method</th><th>description</th><th>returns</th><th>note</th><th><strong><strong><strong><strong><strong>example</strong></strong></strong></strong></strong></th><th>big O</th></tr></thead><tbody>
+<tr><td><code>append(element)</code></td><td>add element to the end</td><td><code>None</code></td><td></td><td><code>[0, 1].append(2)</code></td><td><code>O(1)</code></td></tr>
+<tr><td><code>extend(iterable)</code></td><td>joins other list in place</td><td><code>None</code></td><td>same as <code>[1,2] + [3,4] </code> <br/> but <code>extend</code> is in place</td><td><code>[0, 1].extend([2, 3])</code></td><td><code>O(k)</code></td></tr>
+<tr><td><code>insert (idx, element)</code></td><td>inserts element at given index</td><td><code>None</code></td><td>in place</td><td><code>[1, 3].insert(1, 2)</code>  <br/> inserts 2 between 1 and 3</td><td><code>O(N)</code></td></tr>
+<tr><td><code>pop(idx)</code></td><td>removes element and index and returns that value</td><td>removed value</td><td>default idx is <code>-1</code> (last)</td><td><code>[1, 2].pop()</code></td><td><code>O(N)</code> <br/> but <code>O(1)</code> for last element</td></tr>
+<tr><td><code>remove(value)</code></td><td>removes value from list</td><td><code>None</code></td><td>raises error if value not found</td><td><code>[1, 2].remove[2]</code></td><td><code>O(N)</code></td></tr>
+<tr><td><code>reverse()</code></td><td>reverses list</td><td><code>None</code></td><td>in place</td><td><code>[0, 1].reverse()</code></td><td><code>O(N)</code></td></tr>
+<tr><td><code>sort()</code></td><td>sorts list <br/> in place</td><td><code>None</code></td><td>optionally specify sort key and/or reverse order, defaults are: (<code>key=None, reverse=False</code>).<br/> Algorithm used: <a href="https://en.wikipedia.org/wiki/Timsort">Timsort</a></td><td><code>[0, 2, 1].sort()</code></td><td><code>O(log(N))</code></td></tr>
+<tr><td><code>index(value)</code></td><td>finds fist index of element</td><td>found index</td><td>raises <code>ValueError</code> if not found</td><td><code>[0, 1].index(1)</code></td><td><code>O(N)</code></td></tr>
+<tr><td><code>count(element)</code></td><td>returns the number of times given element appears in list</td><td>number of repeats</td><td></td><td><code>[&quot;a&quot;, &quot;b&quot;, &quot;a&quot;].count(&quot;a&quot;)</code></td><td><code>O(N)</code></td></tr>
+</tbody></table>
+<p>See other build-in functions like <code>len()</code>, <code>max()</code>, <code>cmp()</code>, <code>filter()</code>, <code>map()</code>, <code>any()</code>, <code>all()</code>, <code>range()</code> etc <a href="https://docs.python.org/3/library/functions.html">here at official Python documentation</a></p>
+<div id="map" />
+<h2 id="dictionary-map-associative-array-key-value">Dictionary - map, associative array <code>{ key: value }</code></h2>
+<p>create dictionary: </p>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#cccece;">d </span><span style="color:#5fb3b3;">= {&quot;</span><span style="color:#99c794;">one</span><span style="color:#5fb3b3;">&quot;: </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">, &quot;</span><span style="color:#99c794;">two</span><span style="color:#5fb3b3;">&quot;: </span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">}  </span><span style="color:#5f6364;"># create dict with initialized data
+
+</span><span style="color:#cccece;">some_dict </span><span style="color:#5fb3b3;">= {}  </span><span style="color:#5f6364;"># create empty dict
+
+</span><span style="color:#cccece;">some_dict</span><span style="color:#5fb3b3;">[&quot;</span><span style="color:#99c794;">three</span><span style="color:#5fb3b3;">&quot;] = </span><span style="color:#f99157;">3  </span><span style="color:#5f6364;"># set/update value
+
+</span><span style="color:#c594c5;">try</span><span style="color:#5fb3b3;">:
+    </span><span style="color:#c594c5;">print </span><span style="color:#cccece;">some_dict</span><span style="color:#5fb3b3;">[&quot;</span><span style="color:#99c794;">four</span><span style="color:#5fb3b3;">&quot;]  </span><span style="color:#5f6364;"># read/get value from dict, throws KeyError if given key is absent
+</span><span style="color:#c594c5;">except </span><span style="color:#fac863;">KeyError</span><span style="color:#5fb3b3;">:
+    </span><span style="color:#c594c5;">print </span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">key does not exist int this dictionary</span><span style="color:#5fb3b3;">&quot;
+
+</span><span style="color:#c594c5;">print </span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">one</span><span style="color:#5fb3b3;">&quot; in </span><span style="color:#cccece;">some_dict  </span><span style="color:#5f6364;"># check if dict contains key, O(1)
+</span></pre>
+<p>Another options: </p>
+<ul>
+<li><a href="https://docs.python.org/3/library/collections.html#collections.UserDict">UserDict</a></li>
+<li><a href="https://docs.python.org/3/library/collections.html#collections.OrderedDict">OrderedDict</a></li>
+<li><a href="https://docs.python.org/3/library/collections.html#collections.ChainMap">ChainMap</a></li>
+</ul>
+<div id="set" />
+<h2 id="set">Set  <code>{ }</code></h2>
+<p>create set:</p>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#cccece;">s </span><span style="color:#5fb3b3;">= {</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">3</span><span style="color:#5fb3b3;">}
+
+</span><span style="color:#cccece;">another_set </span><span style="color:#5fb3b3;">= </span><span style="color:#fac863;">set</span><span style="color:#5fb3b3;">()
+</span><span style="color:#6699cc;">another_set</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">add</span><span style="color:#5fb3b3;">(&quot;</span><span style="color:#99c794;">a</span><span style="color:#5fb3b3;">&quot;)  </span><span style="color:#5f6364;"># add value
+</span><span style="color:#6699cc;">another_set</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">update</span><span style="color:#5fb3b3;">(&quot;</span><span style="color:#99c794;">c</span><span style="color:#5fb3b3;">&quot;, &quot;</span><span style="color:#99c794;">d</span><span style="color:#5fb3b3;">&quot;)  </span><span style="color:#5f6364;"># adding one or more elements
+</span><span style="color:#cccece;">another_set </span><span style="color:#5fb3b3;">= </span><span style="color:#cccece;">another_set </span><span style="color:#5fb3b3;">| {&quot;</span><span style="color:#99c794;">b</span><span style="color:#5fb3b3;">&quot;}  </span><span style="color:#5f6364;"># joining two sets (union)
+</span><span style="color:#6699cc;">another_set</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">remove</span><span style="color:#5fb3b3;">(&quot;</span><span style="color:#99c794;">c</span><span style="color:#5fb3b3;">&quot;)  </span><span style="color:#5f6364;"># remove element
+</span><span style="color:#c594c5;">print </span><span style="color:#cccece;">another_set  </span><span style="color:#5f6364;"># set([&#39;a&#39;, &#39;b&#39;, &#39;d&#39;])
+
+</span><span style="color:#c594c5;">print </span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">&#39;b&#39; found</span><span style="color:#5fb3b3;">&quot; </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">b</span><span style="color:#5fb3b3;">&quot; in </span><span style="color:#cccece;">another_set </span><span style="color:#c594c5;">else </span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">&#39;b&#39; is not found</span><span style="color:#5fb3b3;">&quot;  </span><span style="color:#5f6364;"># check if set contains value
+</span></pre>
+
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,249 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <meta name="description" content="Remove duplicates inplace">
+    <meta name="keywords" content="remove duplicates, deduplication, learn, explain, tutorial, data structures, algorithms, graph, tree, interview, java, golang, kotlin, python, rust, javascript, basic level">
+
+    <title> 
+    Remove duplicates inplace
+ | Practical algorithms and data structures </title>
+    <link rel='stylesheet' href='/styles/styles.css'/>
+</head>
+
+<body>
+
+<div class="rootContainer">
+    <div class="horizontal-menu-box">
+        
+    
+    
+    
+<div class="menu">
+    <!-- ABOUT -->
+    <div class="menuItem">
+        
+        <a href="/index.html" >
+            ABOUT
+        </a>
+        
+
+    </div>
+
+    <!-- FUNDAMENTAL -->
+    <div class="menuItem">
+        
+        <a href="/fundamental/contents" >
+            FUNDAMENTAL
+        </a>
+        
+    </div>
+
+    <!-- BASIC -->
+    <div class="menuItem">
+        
+        <a href="/basic/contents" >
+            BASIC
+        </a>
+        
+    </div>
+
+    <!-- ADVANCED -->
+    <div class="menuItem">
+        
+        <a href="/advanced/contents" >
+            ADVANCED
+        </a>
+        
+    </div>
+
+    <!-- NINJA -->
+    <div class="menuItem">
+
+        
+        <a href="/ninja/contents" >
+            NINJA
+        </a>
+        
+
+    </div>
+
+    <!-- LANGUAGES -->
+    <div class="menuItem">
+        
+        <a href="/languages/contents" >
+            LANGUAGES
+        </a>
+        
+
+    </div>
+
+</div>
+
+
+
+    </div>
+
+    <div class="content">
+        
+    <h1 id="remove-duplicates-in-place">Remove duplicates in-place</h1>
+<h2 id="contents">Contents</h2>
+<hr />
+<ul>
+<li><a href="https://algoholics.io/basic/remove-duplicates-inplace/#java">Java</a></li>
+<li><a href="https://algoholics.io/basic/remove-duplicates-inplace/#go">Go</a></li>
+<li><a href="https://algoholics.io/basic/remove-duplicates-inplace/#python">Python</a></li>
+<li><a href="https://algoholics.io/basic/remove-duplicates-inplace/#javascript">JavaScript</a></li>
+<li><a href="https://algoholics.io/basic/remove-duplicates-inplace/#kotlin">Kotlin</a></li>
+<li><a href="https://algoholics.io/basic/remove-duplicates-inplace/#rust">Rust</a></li>
+</ul>
+<hr />
+<div id="java"/>
+<h2 id="java">Java</h2>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">package </span><span style="color:#cccece;">arrays</span><span style="color:#5fb3b3;">;
+
+</span><span style="color:#c594c5;">import </span><span style="color:#fac863;">java</span><span style="color:#5fb3b3;">.</span><span style="color:#fac863;">util</span><span style="color:#5fb3b3;">.</span><span style="color:#fac863;">Arrays</span><span style="color:#5fb3b3;">;
+
+</span><span style="color:#c594c5;">public class </span><span style="color:#fac863;">InPlaceDuplicateRemoval </span><span style="color:#5fb3b3;">{
+
+    </span><span style="color:#c594c5;">public static int </span><span style="color:#6699cc;">remove</span><span style="color:#5fb3b3;">(</span><span style="color:#fac863;">Object</span><span style="color:#c594c5;">[] </span><span style="color:#f99157;">arr</span><span style="color:#5fb3b3;">) {
+        </span><span style="color:#fac863;">Arrays</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">sort</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">arr</span><span style="color:#5fb3b3;">);
+        </span><span style="color:#c594c5;">int</span><span style="color:#cccece;"> i </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">;
+        </span><span style="color:#c594c5;">for </span><span style="color:#5fb3b3;">(</span><span style="color:#c594c5;">int</span><span style="color:#cccece;"> j </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">;</span><span style="color:#cccece;"> j </span><span style="color:#5fb3b3;">&lt;</span><span style="color:#cccece;"> arr</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">length</span><span style="color:#5fb3b3;">;</span><span style="color:#cccece;"> j</span><span style="color:#5fb3b3;">++) {
+            </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">(!</span><span style="color:#cccece;">arr[j]</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">equals</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">arr[i]</span><span style="color:#5fb3b3;">)) {</span><span style="color:#cccece;">
+                arr[i </span><span style="color:#5fb3b3;">+ </span><span style="color:#f99157;">1</span><span style="color:#cccece;">] </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> arr[j]</span><span style="color:#5fb3b3;">;</span><span style="color:#cccece;">
+                i</span><span style="color:#5fb3b3;">++;
+            }
+        }
+        </span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> i</span><span style="color:#5fb3b3;">;
+    }
+}
+</span></pre><div id="go"/>
+<h2 id="go">Go</h2>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">package</span><span style="color:#cccece;"> arrays
+
+</span><span style="color:#c594c5;">import </span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">sort</span><span style="color:#5fb3b3;">&quot;
+
+</span><span style="color:#c594c5;">func </span><span style="color:#6699cc;">RemoveDuplicates</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">arr </span><span style="color:#5fb3b3;">[]</span><span style="color:#c594c5;">string</span><span style="color:#5fb3b3;">) </span><span style="color:#c594c5;">int </span><span style="color:#5fb3b3;">{</span><span style="color:#cccece;">
+	sort</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">Strings</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">arr</span><span style="color:#5fb3b3;">)
+	</span><span style="color:#cccece;">i </span><span style="color:#5fb3b3;">:= </span><span style="color:#f99157;">0
+	</span><span style="color:#c594c5;">for </span><span style="color:#cccece;">j </span><span style="color:#5fb3b3;">:= </span><span style="color:#f99157;">1</span><span style="color:#cccece;">; j </span><span style="color:#5fb3b3;">&lt; </span><span style="color:#6699cc;">len</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">arr</span><span style="color:#5fb3b3;">)</span><span style="color:#cccece;">; j</span><span style="color:#5fb3b3;">++ {
+		</span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> arr</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">j</span><span style="color:#5fb3b3;">] !=</span><span style="color:#cccece;"> arr</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">i</span><span style="color:#5fb3b3;">] {</span><span style="color:#cccece;">
+			arr</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">i</span><span style="color:#5fb3b3;">+</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">] =</span><span style="color:#cccece;"> arr</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">j</span><span style="color:#5fb3b3;">]</span><span style="color:#cccece;">
+			i</span><span style="color:#5fb3b3;">++
+		}
+	}
+	</span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> i
+</span><span style="color:#5fb3b3;">}
+
+</span></pre><div id="python"/>
+<h2 id="python">Python</h2>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">def </span><span style="color:#6699cc;">inplace_deduplicate</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">in_list</span><span style="color:#5fb3b3;">):
+    </span><span style="color:#6699cc;">in_list</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">sort</span><span style="color:#5fb3b3;">()
+    </span><span style="color:#cccece;">i </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">0
+    </span><span style="color:#c594c5;">for </span><span style="color:#cccece;">j </span><span style="color:#c594c5;">in </span><span style="color:#6699cc;">range</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">, </span><span style="color:#6699cc;">len</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">in_list</span><span style="color:#5fb3b3;">)):
+        </span><span style="color:#c594c5;">if </span><span style="color:#cccece;">in_list</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">j</span><span style="color:#5fb3b3;">] != </span><span style="color:#cccece;">in_list</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">i</span><span style="color:#5fb3b3;">]:
+            </span><span style="color:#cccece;">in_list</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">i </span><span style="color:#5fb3b3;">+ </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">] = </span><span style="color:#cccece;">in_list</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">j</span><span style="color:#5fb3b3;">]
+            </span><span style="color:#cccece;">i </span><span style="color:#5fb3b3;">= </span><span style="color:#cccece;">i </span><span style="color:#5fb3b3;">+ </span><span style="color:#f99157;">1
+    </span><span style="color:#c594c5;">return </span><span style="color:#cccece;">i
+</span></pre><div id="javascript"/>
+<h2 id="javascript">JavaScript</h2>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">const </span><span style="color:#6699cc;">inPlaceRemoval </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">arr </span><span style="color:#c594c5;">=&gt; </span><span style="color:#5fb3b3;">{
+  </span><span style="color:#cccece;">arr</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">sort</span><span style="color:#5fb3b3;">()
+  </span><span style="color:#c594c5;">let </span><span style="color:#cccece;">i </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">0
+  </span><span style="color:#c594c5;">for </span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">j </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">; </span><span style="color:#cccece;">j </span><span style="color:#5fb3b3;">&lt; </span><span style="color:#cccece;">arr</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">length</span><span style="color:#5fb3b3;">; </span><span style="color:#cccece;">j</span><span style="color:#5fb3b3;">++) {
+    </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">arr</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">j</span><span style="color:#5fb3b3;">] != </span><span style="color:#cccece;">arr</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">i</span><span style="color:#5fb3b3;">]) {
+      </span><span style="color:#cccece;">arr</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">i </span><span style="color:#5fb3b3;">+ </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">] = </span><span style="color:#cccece;">arr</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">j</span><span style="color:#5fb3b3;">]
+      </span><span style="color:#cccece;">i</span><span style="color:#5fb3b3;">++
+    }
+  }
+  </span><span style="color:#c594c5;">return </span><span style="color:#cccece;">i
+</span><span style="color:#5fb3b3;">}
+</span></pre><div id="kotlin"/>
+<h2 id="kotlin">Kotlin</h2>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">package </span><span style="color:#cccece;">arrays
+
+object InPlaceDuplicateRemoval {
+    </span><span style="color:#c594c5;">fun</span><span style="color:#cccece;"> &lt;</span><span style="color:#c594c5;">T</span><span style="color:#cccece;">&gt; </span><span style="color:#6699cc;">remove</span><span style="color:#cccece;">(</span><span style="color:#f99157;">arr</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">Array</span><span style="color:#cccece;">&lt;T&gt;)</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">Int</span><span style="color:#cccece;"> {
+        arr</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">sort()
+        </span><span style="color:#c594c5;">var </span><span style="color:#cccece;">i </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">0
+        </span><span style="color:#c594c5;">for</span><span style="color:#cccece;"> (j </span><span style="color:#c594c5;">in </span><span style="color:#f99157;">1</span><span style="color:#cccece;"> until arr</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">size) {
+            </span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> (arr[j] </span><span style="color:#5fb3b3;">!=</span><span style="color:#cccece;"> arr[i]) {
+                arr[i </span><span style="color:#5fb3b3;">+ </span><span style="color:#f99157;">1</span><span style="color:#cccece;">] </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> arr[j]
+                i</span><span style="color:#5fb3b3;">++</span><span style="color:#cccece;">
+            }
+        }
+        </span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> i
+    }
+}
+</span></pre><div id="rust"/>
+<h2 id="rust">Rust</h2>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">fn </span><span style="color:#6699cc;">dedup</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#cccece;">T</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> Ord</span><span style="color:#5fb3b3;">&gt;(</span><span style="color:#f99157;">slice</span><span style="color:#5fb3b3;">: &amp;</span><span style="color:#c594c5;">mut</span><span style="color:#cccece;"> [T]</span><span style="color:#5fb3b3;">) -&gt; </span><span style="color:#c594c5;">usize </span><span style="color:#5fb3b3;">{</span><span style="color:#cccece;">
+    slice</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">sort</span><span style="color:#5fb3b3;">();
+
+    </span><span style="color:#c594c5;">let mut</span><span style="color:#cccece;"> i </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">;
+
+    </span><span style="color:#c594c5;">for</span><span style="color:#cccece;"> j </span><span style="color:#5fb3b3;">in</span><span style="color:#cccece;"> i </span><span style="color:#5fb3b3;">+ </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">..</span><span style="color:#cccece;">slice</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">len</span><span style="color:#5fb3b3;">() {
+        </span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> slice</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">i</span><span style="color:#5fb3b3;">] !=</span><span style="color:#cccece;"> slice</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">j</span><span style="color:#5fb3b3;">] {</span><span style="color:#cccece;">
+            i </span><span style="color:#5fb3b3;">+= </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">;</span><span style="color:#cccece;">
+            slice</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">swap</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">i</span><span style="color:#5fb3b3;">,</span><span style="color:#cccece;"> j</span><span style="color:#5fb3b3;">);
+        }
+    }</span><span style="color:#cccece;">
+    i </span><span style="color:#5fb3b3;">+ </span><span style="color:#f99157;">1
+</span><span style="color:#5fb3b3;">}
+
+#[</span><span style="color:#cccece;">cfg</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">test</span><span style="color:#5fb3b3;">)]
+</span><span style="color:#c594c5;">mod </span><span style="color:#cccece;">tests </span><span style="color:#5fb3b3;">{
+    </span><span style="color:#c594c5;">use super</span><span style="color:#5fb3b3;">::</span><span style="color:#cccece;">dedup</span><span style="color:#5fb3b3;">;
+
+    #[</span><span style="color:#cccece;">test</span><span style="color:#5fb3b3;">]
+    </span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">all_unique</span><span style="color:#5fb3b3;">() {
+        </span><span style="color:#c594c5;">let mut</span><span style="color:#cccece;"> arr </span><span style="color:#5fb3b3;">= [</span><span style="color:#f99157;">5</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">4</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">];
+
+        </span><span style="color:#c594c5;">let</span><span style="color:#cccece;"> last_idx </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">dedup</span><span style="color:#5fb3b3;">(&amp;</span><span style="color:#c594c5;">mut</span><span style="color:#cccece;"> arr</span><span style="color:#5fb3b3;">);
+
+        </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">last_idx</span><span style="color:#5fb3b3;">,</span><span style="color:#cccece;"> arr</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">len</span><span style="color:#5fb3b3;">());
+    }
+
+    #[</span><span style="color:#cccece;">test</span><span style="color:#5fb3b3;">]
+    </span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">all_same</span><span style="color:#5fb3b3;">() {
+        </span><span style="color:#c594c5;">let mut</span><span style="color:#cccece;"> arr </span><span style="color:#5fb3b3;">= [&quot;</span><span style="color:#99c794;">a</span><span style="color:#5fb3b3;">&quot;, &quot;</span><span style="color:#99c794;">a</span><span style="color:#5fb3b3;">&quot;, &quot;</span><span style="color:#99c794;">a</span><span style="color:#5fb3b3;">&quot;, &quot;</span><span style="color:#99c794;">a</span><span style="color:#5fb3b3;">&quot;];
+
+        </span><span style="color:#c594c5;">let</span><span style="color:#cccece;"> last_idx </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">dedup</span><span style="color:#5fb3b3;">(&amp;</span><span style="color:#c594c5;">mut</span><span style="color:#cccece;"> arr</span><span style="color:#5fb3b3;">);
+
+        </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">last_idx</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">);
+    }
+
+    #[</span><span style="color:#cccece;">test</span><span style="color:#5fb3b3;">]
+    </span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">some_dups_2</span><span style="color:#5fb3b3;">() {
+        </span><span style="color:#c594c5;">let mut</span><span style="color:#cccece;"> arr </span><span style="color:#5fb3b3;">= [&quot;</span><span style="color:#99c794;">a</span><span style="color:#5fb3b3;">&quot;, &quot;</span><span style="color:#99c794;">b</span><span style="color:#5fb3b3;">&quot;, &quot;</span><span style="color:#99c794;">a</span><span style="color:#5fb3b3;">&quot;, &quot;</span><span style="color:#99c794;">a</span><span style="color:#5fb3b3;">&quot;];
+
+        </span><span style="color:#c594c5;">let</span><span style="color:#cccece;"> last_idx </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">dedup</span><span style="color:#5fb3b3;">(&amp;</span><span style="color:#c594c5;">mut</span><span style="color:#cccece;"> arr</span><span style="color:#5fb3b3;">);
+
+        </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">last_idx</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">);
+    }
+
+    #[</span><span style="color:#cccece;">test</span><span style="color:#5fb3b3;">]
+    </span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">some_dups_5</span><span style="color:#5fb3b3;">() {
+        </span><span style="color:#c594c5;">let mut</span><span style="color:#cccece;"> arr </span><span style="color:#5fb3b3;">= [&quot;</span><span style="color:#99c794;">a</span><span style="color:#5fb3b3;">&quot;, &quot;</span><span style="color:#99c794;">b</span><span style="color:#5fb3b3;">&quot;, &quot;</span><span style="color:#99c794;">a</span><span style="color:#5fb3b3;">&quot;, &quot;</span><span style="color:#99c794;">b</span><span style="color:#5fb3b3;">&quot;, &quot;</span><span style="color:#99c794;">c</span><span style="color:#5fb3b3;">&quot;, &quot;</span><span style="color:#99c794;">d</span><span style="color:#5fb3b3;">&quot;, &quot;</span><span style="color:#99c794;">d</span><span style="color:#5fb3b3;">&quot;, &quot;</span><span style="color:#99c794;">e</span><span style="color:#5fb3b3;">&quot;];
+
+        </span><span style="color:#c594c5;">let</span><span style="color:#cccece;"> last_idx </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">dedup</span><span style="color:#5fb3b3;">(&amp;</span><span style="color:#c594c5;">mut</span><span style="color:#cccece;"> arr</span><span style="color:#5fb3b3;">);
+
+        </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">last_idx</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">5</span><span style="color:#5fb3b3;">);
+    }
+}
+</span></pre>
+
+    </div>
+
+</div>
+
+</body>
+</html>

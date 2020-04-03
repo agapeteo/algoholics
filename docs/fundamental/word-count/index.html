@@ -1,0 +1,195 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <meta name="description" content="Word count using map">
+    <meta name="keywords" content="word count, map, learn, explain, tutorial, data structures, algorithms, graph, tree, interview, java, golang, kotlin, python, javascript, rust">
+
+    <title> 
+    Word count
+ | Practical algorithms and data structures </title>
+    <link rel='stylesheet' href='/styles/styles.css'/>
+</head>
+
+<body>
+
+<div class="rootContainer">
+    <div class="horizontal-menu-box">
+        
+    
+    
+    
+<div class="menu">
+    <!-- ABOUT -->
+    <div class="menuItem">
+        
+        <a href="/index.html" >
+            ABOUT
+        </a>
+        
+
+    </div>
+
+    <!-- FUNDAMENTAL -->
+    <div class="menuItem">
+        
+        <a href="/fundamental/contents" >
+            FUNDAMENTAL
+        </a>
+        
+    </div>
+
+    <!-- BASIC -->
+    <div class="menuItem">
+        
+        <a href="/basic/contents" >
+            BASIC
+        </a>
+        
+    </div>
+
+    <!-- ADVANCED -->
+    <div class="menuItem">
+        
+        <a href="/advanced/contents" >
+            ADVANCED
+        </a>
+        
+    </div>
+
+    <!-- NINJA -->
+    <div class="menuItem">
+
+        
+        <a href="/ninja/contents" >
+            NINJA
+        </a>
+        
+
+    </div>
+
+    <!-- LANGUAGES -->
+    <div class="menuItem">
+        
+        <a href="/languages/contents" >
+            LANGUAGES
+        </a>
+        
+
+    </div>
+
+</div>
+
+
+
+    </div>
+
+    <div class="content">
+        
+    <h1 id="word-count">Word count</h1>
+<h2 id="contents">Contents</h2>
+<hr />
+<ul>
+<li><a href="https://algoholics.io/fundamental/word-count/#java">Java</a></li>
+<li><a href="https://algoholics.io/fundamental/word-count/#go">Go</a></li>
+<li><a href="https://algoholics.io/fundamental/word-count/#python">Python</a></li>
+<li><a href="https://algoholics.io/fundamental/word-count/#javascript">JavaScript</a></li>
+<li><a href="https://algoholics.io/fundamental/word-count/#kotlin">Kotlin</a></li>
+<li><a href="https://algoholics.io/fundamental/word-count/#rust">Rust</a></li>
+</ul>
+<hr />
+<div id="java"/>
+<h2 id="java">Java</h2>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">public static </span><span style="color:#fac863;">Map</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#fac863;">String</span><span style="color:#5fb3b3;">, </span><span style="color:#fac863;">Integer</span><span style="color:#5fb3b3;">&gt; </span><span style="color:#6699cc;">workCount</span><span style="color:#5fb3b3;">(</span><span style="color:#fac863;">String</span><span style="color:#6699cc;"> text</span><span style="color:#5fb3b3;">) {
+    </span><span style="color:#fac863;">Map</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#fac863;">String</span><span style="color:#5fb3b3;">, </span><span style="color:#fac863;">Integer</span><span style="color:#5fb3b3;">&gt;</span><span style="color:#cccece;"> result </span><span style="color:#5fb3b3;">= </span><span style="color:#c594c5;">new </span><span style="color:#fac863;">HashMap</span><span style="color:#5fb3b3;">&lt;&gt;();
+
+    </span><span style="color:#fac863;">String</span><span style="color:#c594c5;">[]</span><span style="color:#cccece;"> words </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> text</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">split</span><span style="color:#5fb3b3;">(&quot; &quot;);
+
+    </span><span style="color:#c594c5;">for </span><span style="color:#5fb3b3;">(</span><span style="color:#fac863;">String</span><span style="color:#cccece;"> word </span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> words</span><span style="color:#5fb3b3;">) {
+        </span><span style="color:#fac863;">Integer</span><span style="color:#cccece;"> count </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> result</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">get</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">word</span><span style="color:#5fb3b3;">);
+        </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">count </span><span style="color:#5fb3b3;">== </span><span style="color:#f99157;">null</span><span style="color:#5fb3b3;">) {</span><span style="color:#cccece;">
+            result</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">put</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">word</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">);
+        } </span><span style="color:#c594c5;">else </span><span style="color:#5fb3b3;">{</span><span style="color:#cccece;">
+            result</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">put</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">word</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> count </span><span style="color:#5fb3b3;">+ </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">);
+        }
+    }
+    </span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> result</span><span style="color:#5fb3b3;">;
+}
+</span></pre>
+<p>using lambda:</p>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">public static </span><span style="color:#fac863;">Map</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#fac863;">String</span><span style="color:#5fb3b3;">, </span><span style="color:#fac863;">Long</span><span style="color:#5fb3b3;">&gt; </span><span style="color:#6699cc;">lambdaWordCount</span><span style="color:#5fb3b3;">(</span><span style="color:#fac863;">String</span><span style="color:#6699cc;"> text</span><span style="color:#5fb3b3;">) {
+    </span><span style="color:#c594c5;">return </span><span style="color:#fac863;">Arrays</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">asList</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">text</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">split</span><span style="color:#5fb3b3;">(&quot; &quot;))
+            .</span><span style="color:#6699cc;">stream</span><span style="color:#5fb3b3;">()
+            .</span><span style="color:#6699cc;">collect</span><span style="color:#5fb3b3;">(
+                    </span><span style="color:#6699cc;">groupingBy</span><span style="color:#5fb3b3;">(
+                            </span><span style="color:#fac863;">Function</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">identity</span><span style="color:#5fb3b3;">(), </span><span style="color:#6699cc;">counting</span><span style="color:#5fb3b3;">()));
+}
+</span></pre><div id="go"/>
+<h2 id="go">Go</h2>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">func </span><span style="color:#6699cc;">WordCount</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">text </span><span style="color:#c594c5;">string</span><span style="color:#5fb3b3;">) </span><span style="color:#c594c5;">map</span><span style="color:#5fb3b3;">[</span><span style="color:#c594c5;">string</span><span style="color:#5fb3b3;">]</span><span style="color:#c594c5;">int </span><span style="color:#5fb3b3;">{
+	</span><span style="color:#cccece;">words </span><span style="color:#5fb3b3;">:= </span><span style="color:#6699cc;">make</span><span style="color:#5fb3b3;">(</span><span style="color:#c594c5;">map</span><span style="color:#5fb3b3;">[</span><span style="color:#c594c5;">string</span><span style="color:#5fb3b3;">]</span><span style="color:#c594c5;">int</span><span style="color:#5fb3b3;">)
+	</span><span style="color:#c594c5;">for </span><span style="color:#cccece;">_</span><span style="color:#5fb3b3;">, </span><span style="color:#cccece;">w </span><span style="color:#5fb3b3;">:= </span><span style="color:#c594c5;">range</span><span style="color:#cccece;"> strings</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">Split</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">text</span><span style="color:#5fb3b3;">, &quot; &quot;) {
+		</span><span style="color:#cccece;">_</span><span style="color:#5fb3b3;">, </span><span style="color:#cccece;">ok </span><span style="color:#5fb3b3;">:=</span><span style="color:#cccece;"> words</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">w</span><span style="color:#5fb3b3;">]
+		</span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> ok </span><span style="color:#5fb3b3;">{</span><span style="color:#cccece;">
+			words</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">w</span><span style="color:#5fb3b3;">] += </span><span style="color:#f99157;">1
+		</span><span style="color:#5fb3b3;">} </span><span style="color:#c594c5;">else </span><span style="color:#5fb3b3;">{</span><span style="color:#cccece;">
+			words</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">w</span><span style="color:#5fb3b3;">] = </span><span style="color:#f99157;">1
+		</span><span style="color:#5fb3b3;">}
+	}
+	</span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> words
+</span><span style="color:#5fb3b3;">}
+</span></pre><div id="python"/>
+<h2 id="python">Python</h2>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">def </span><span style="color:#6699cc;">word_count</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">in_text</span><span style="color:#5fb3b3;">):
+    </span><span style="color:#cccece;">words </span><span style="color:#5fb3b3;">= {}
+    </span><span style="color:#c594c5;">for </span><span style="color:#cccece;">word </span><span style="color:#c594c5;">in </span><span style="color:#6699cc;">in_text</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">split</span><span style="color:#5fb3b3;">():
+        </span><span style="color:#c594c5;">if </span><span style="color:#cccece;">word </span><span style="color:#5fb3b3;">in </span><span style="color:#cccece;">words</span><span style="color:#5fb3b3;">:
+            </span><span style="color:#cccece;">words</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">word</span><span style="color:#5fb3b3;">] += </span><span style="color:#f99157;">1
+        </span><span style="color:#c594c5;">else</span><span style="color:#5fb3b3;">:
+            </span><span style="color:#cccece;">words</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">word</span><span style="color:#5fb3b3;">] = </span><span style="color:#f99157;">1
+    </span><span style="color:#c594c5;">return </span><span style="color:#cccece;">words
+</span></pre><div id="javascript"/>
+<h2 id="javascript">JavaScript</h2>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">function </span><span style="color:#6699cc;">wordCount</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">text</span><span style="color:#5fb3b3;">) {
+  </span><span style="color:#c594c5;">const </span><span style="color:#cccece;">words </span><span style="color:#5fb3b3;">= new </span><span style="color:#fac863;">Map</span><span style="color:#5fb3b3;">()
+  </span><span style="color:#c594c5;">for </span><span style="color:#5fb3b3;">(</span><span style="color:#c594c5;">const </span><span style="color:#cccece;">word </span><span style="color:#5fb3b3;">of </span><span style="color:#cccece;">text</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">split</span><span style="color:#5fb3b3;">(&quot; &quot;)) {
+    </span><span style="color:#c594c5;">const </span><span style="color:#cccece;">count </span><span style="color:#5fb3b3;">= </span><span style="color:#cccece;">words</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">word</span><span style="color:#5fb3b3;">]
+    </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">count</span><span style="color:#5fb3b3;">) {
+      </span><span style="color:#cccece;">words</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">word</span><span style="color:#5fb3b3;">] = </span><span style="color:#cccece;">count </span><span style="color:#5fb3b3;">+ </span><span style="color:#f99157;">1
+    </span><span style="color:#5fb3b3;">} </span><span style="color:#c594c5;">else </span><span style="color:#5fb3b3;">{
+      </span><span style="color:#cccece;">words</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">word</span><span style="color:#5fb3b3;">] = </span><span style="color:#f99157;">1
+    </span><span style="color:#5fb3b3;">}
+  }
+  </span><span style="color:#c594c5;">return </span><span style="color:#cccece;">words
+</span><span style="color:#5fb3b3;">}
+</span></pre><div id="kotlin"/>
+<h2 id="kotlin">Kotlin</h2>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">fun </span><span style="color:#6699cc;">wordCount</span><span style="color:#cccece;">(</span><span style="color:#f99157;">text</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">String</span><span style="color:#cccece;">)</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">Map</span><span style="color:#cccece;">&lt;</span><span style="color:#c594c5;">String</span><span style="color:#cccece;">, </span><span style="color:#c594c5;">Int</span><span style="color:#cccece;">&gt; {
+    </span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> text</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">split(</span><span style="color:#5fb3b3;">&quot; &quot;</span><span style="color:#cccece;">)</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">groupingBy { it }</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">eachCount()
+}
+</span></pre><div id="rust"/>
+<h2 id="rust">Rust</h2>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">fn </span><span style="color:#6699cc;">word_count</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">text</span><span style="color:#5fb3b3;">: &amp;</span><span style="color:#c594c5;">str</span><span style="color:#5fb3b3;">) -&gt; </span><span style="color:#cccece;">HashMap</span><span style="color:#5fb3b3;">&lt;&amp;</span><span style="color:#c594c5;">str</span><span style="color:#cccece;">, </span><span style="color:#c594c5;">i32</span><span style="color:#5fb3b3;">&gt; {
+    </span><span style="color:#c594c5;">let mut</span><span style="color:#cccece;"> map </span><span style="color:#5fb3b3;">= </span><span style="color:#cccece;">HashMap</span><span style="color:#5fb3b3;">::</span><span style="color:#cccece;">new</span><span style="color:#5fb3b3;">();
+
+    </span><span style="color:#c594c5;">for</span><span style="color:#cccece;"> word </span><span style="color:#5fb3b3;">in</span><span style="color:#cccece;"> text</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">split_whitespace</span><span style="color:#5fb3b3;">() {
+        *</span><span style="color:#cccece;">map</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">entry</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">word</span><span style="color:#5fb3b3;">).</span><span style="color:#6699cc;">or_insert</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">) += </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">;
+    }</span><span style="color:#cccece;">
+    map
+</span><span style="color:#5fb3b3;">}
+</span></pre>
+
+    </div>
+
+</div>
+
+</body>
+</html>

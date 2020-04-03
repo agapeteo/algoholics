@@ -1,0 +1,640 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <meta name="description" content="Quick sort">
+    <meta name="keywords" content="quick sort, sorting, learn, explain, tutorial, data structures, algorithms, graph, tree, interview, java, golang, kotlin, python, rust, javascript, basic level">
+
+    <title> 
+    Quick sort
+ | Practical algorithms and data structures </title>
+    <link rel='stylesheet' href='/styles/styles.css'/>
+</head>
+
+<body>
+
+<div class="rootContainer">
+    <div class="horizontal-menu-box">
+        
+    
+    
+    
+<div class="menu">
+    <!-- ABOUT -->
+    <div class="menuItem">
+        
+        <a href="/index.html" >
+            ABOUT
+        </a>
+        
+
+    </div>
+
+    <!-- FUNDAMENTAL -->
+    <div class="menuItem">
+        
+        <a href="/fundamental/contents" >
+            FUNDAMENTAL
+        </a>
+        
+    </div>
+
+    <!-- BASIC -->
+    <div class="menuItem">
+        
+        <a href="/basic/contents" >
+            BASIC
+        </a>
+        
+    </div>
+
+    <!-- ADVANCED -->
+    <div class="menuItem">
+        
+        <a href="/advanced/contents" >
+            ADVANCED
+        </a>
+        
+    </div>
+
+    <!-- NINJA -->
+    <div class="menuItem">
+
+        
+        <a href="/ninja/contents" >
+            NINJA
+        </a>
+        
+
+    </div>
+
+    <!-- LANGUAGES -->
+    <div class="menuItem">
+        
+        <a href="/languages/contents" >
+            LANGUAGES
+        </a>
+        
+
+    </div>
+
+</div>
+
+
+
+    </div>
+
+    <div class="content">
+        
+    <h1 id="quick-sort">Quick sort</h1>
+<h2 id="contents">Contents</h2>
+<hr />
+<ul>
+<li><a href="https://algoholics.io/basic/quick-sort/#description">Description</a></li>
+<li><a href="https://algoholics.io/basic/quick-sort/#complexity">Complexity</a></li>
+<li><a href="https://algoholics.io/basic/quick-sort/#practice">In practice</a></li>
+<li><a href="https://algoholics.io/basic/quick-sort/#java">Java</a></li>
+<li><a href="https://algoholics.io/basic/quick-sort/#go">Go</a></li>
+<li><a href="https://algoholics.io/basic/quick-sort/#python">Python</a></li>
+<li><a href="https://algoholics.io/basic/quick-sort/#javascript">JavaScript</a></li>
+<li><a href="https://algoholics.io/basic/quick-sort/#kotlin">Kotlin</a></li>
+<li><a href="https://algoholics.io/basic/quick-sort/#rust">Rust</a></li>
+</ul>
+<hr />
+<div id="description"/>
+<h2 id="description">Description</h2>
+<p>Not stable</p>
+<p>Very popular and really fast sorting algorithm</p>
+<p>More details on <a href="https://en.wikipedia.org/wiki/Quicksort">wikipedia on Quick sort</a></p>
+<p>2 approaches:</p>
+<ul>
+<li><a href="https://upload.wikimedia.org/wikipedia/commons/8/84/Lomuto_animated.gif">Lomuto</a></li>
+<li>Hoare</li>
+</ul>
+<p>Hoare's approach is used more often in practice than Lomuto's because it causes less swaps.
+But Hoare's approach is very very error prone. It's easy to get into infinite loop or incorrectly treat duplicate values, especially last swap</p>
+<p>see more details about <a href="https://cs.stackexchange.com/questions/11458/quicksort-partitioning-hoare-vs-lomuto">Hoare vs Lomuto</a></p>
+<p>Other optimization:</p>
+<ul>
+<li>using insertion sort for small array ranges, f.e. less than 20</li>
+<li>choosing pivot as median in sort range</li>
+<li>3-way partition - partition array range into 3 parts: less than pivot, equal to pivot and more than pivot</li>
+</ul>
+<div id="complexity"/>
+<h2 id="complexity">Complexity</h2>
+<p><code>O(N log(N))</code></p>
+<p>Worst case - <code>O(N^2)</code></p>
+<div id="practice"/>
+<h2 id="in-practice">In practice</h2>
+<p><code>Quick sort</code> is very popular and often used in practice for primitive types</p>
+<div id="java"/>
+<h2 id="java">Java</h2>
+<p>Lomuto:</p>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">package </span><span style="color:#cccece;">sort</span><span style="color:#5fb3b3;">;
+
+</span><span style="color:#c594c5;">public class </span><span style="color:#fac863;">LomutoQuickSort </span><span style="color:#5fb3b3;">{
+
+    </span><span style="color:#c594c5;">public static void </span><span style="color:#6699cc;">sort</span><span style="color:#5fb3b3;">(</span><span style="color:#c594c5;">int[] </span><span style="color:#f99157;">array</span><span style="color:#5fb3b3;">) {
+        </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">array </span><span style="color:#5fb3b3;">== </span><span style="color:#f99157;">null </span><span style="color:#5fb3b3;">||</span><span style="color:#cccece;"> array</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">length </span><span style="color:#5fb3b3;">&lt; </span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">) </span><span style="color:#c594c5;">return</span><span style="color:#5fb3b3;">;
+
+        </span><span style="color:#6699cc;">sort</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">array</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> array</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">length </span><span style="color:#5fb3b3;">- </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">);
+    }
+
+    </span><span style="color:#c594c5;">private static void </span><span style="color:#6699cc;">sort</span><span style="color:#5fb3b3;">(</span><span style="color:#c594c5;">int[] </span><span style="color:#f99157;">array</span><span style="color:#5fb3b3;">, </span><span style="color:#c594c5;">int </span><span style="color:#f99157;">lowIdx</span><span style="color:#5fb3b3;">, </span><span style="color:#c594c5;">int </span><span style="color:#f99157;">highIdx</span><span style="color:#5fb3b3;">) {
+        </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">lowIdx </span><span style="color:#5fb3b3;">&gt;=</span><span style="color:#cccece;"> highIdx</span><span style="color:#5fb3b3;">) </span><span style="color:#c594c5;">return</span><span style="color:#5fb3b3;">;
+
+        </span><span style="color:#c594c5;">int</span><span style="color:#cccece;"> partitionIdx </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">partition</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">array</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> lowIdx</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> highIdx</span><span style="color:#5fb3b3;">);
+        </span><span style="color:#6699cc;">sort</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">array</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> lowIdx</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> partitionIdx </span><span style="color:#5fb3b3;">- </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">);
+        </span><span style="color:#6699cc;">sort</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">array</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> partitionIdx </span><span style="color:#5fb3b3;">+ </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> highIdx</span><span style="color:#5fb3b3;">);
+    }
+
+    </span><span style="color:#c594c5;">private static int </span><span style="color:#6699cc;">partition</span><span style="color:#5fb3b3;">(</span><span style="color:#c594c5;">int[] </span><span style="color:#f99157;">array</span><span style="color:#5fb3b3;">, </span><span style="color:#c594c5;">int </span><span style="color:#f99157;">lowIdx</span><span style="color:#5fb3b3;">, </span><span style="color:#c594c5;">int </span><span style="color:#f99157;">highIdx</span><span style="color:#5fb3b3;">) {
+        </span><span style="color:#c594c5;">int</span><span style="color:#cccece;"> pivotValue </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> array[highIdx]</span><span style="color:#5fb3b3;">;
+        </span><span style="color:#c594c5;">int</span><span style="color:#cccece;"> i </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> lowIdx</span><span style="color:#5fb3b3;">;
+        </span><span style="color:#c594c5;">int</span><span style="color:#cccece;"> j </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> i</span><span style="color:#5fb3b3;">;
+
+        </span><span style="color:#c594c5;">while </span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">j </span><span style="color:#5fb3b3;">&lt;</span><span style="color:#cccece;"> highIdx</span><span style="color:#5fb3b3;">) {
+            </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">array[j] </span><span style="color:#5fb3b3;">&lt;=</span><span style="color:#cccece;"> pivotValue</span><span style="color:#5fb3b3;">) {
+                </span><span style="color:#6699cc;">swap</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">array</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> i</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> j</span><span style="color:#5fb3b3;">);</span><span style="color:#cccece;">
+                i</span><span style="color:#5fb3b3;">++;
+            }</span><span style="color:#cccece;">
+            j</span><span style="color:#5fb3b3;">++;
+        }
+        </span><span style="color:#6699cc;">swap</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">array</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> highIdx</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> i</span><span style="color:#5fb3b3;">);
+        </span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> i</span><span style="color:#5fb3b3;">;
+    }
+
+    </span><span style="color:#c594c5;">private static void </span><span style="color:#6699cc;">swap</span><span style="color:#5fb3b3;">(</span><span style="color:#c594c5;">int[] </span><span style="color:#f99157;">array</span><span style="color:#5fb3b3;">, </span><span style="color:#c594c5;">int </span><span style="color:#f99157;">i</span><span style="color:#5fb3b3;">, </span><span style="color:#c594c5;">int </span><span style="color:#f99157;">j</span><span style="color:#5fb3b3;">) {
+        </span><span style="color:#c594c5;">int</span><span style="color:#cccece;"> tmp </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> array[i]</span><span style="color:#5fb3b3;">;</span><span style="color:#cccece;">
+        array[i] </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> array[j]</span><span style="color:#5fb3b3;">;</span><span style="color:#cccece;">
+        array[j] </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> tmp</span><span style="color:#5fb3b3;">;
+    }
+}
+</span></pre>
+<p>Hoare (simplified version from Sedgewick's book):</p>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">package </span><span style="color:#cccece;">sort</span><span style="color:#5fb3b3;">;
+
+</span><span style="color:#c594c5;">public class </span><span style="color:#fac863;">HoareQuickSort </span><span style="color:#5fb3b3;">{
+
+    </span><span style="color:#c594c5;">public static void </span><span style="color:#6699cc;">sort</span><span style="color:#5fb3b3;">(</span><span style="color:#c594c5;">int[] </span><span style="color:#f99157;">array</span><span style="color:#5fb3b3;">) {
+        </span><span style="color:#6699cc;">sort</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">array</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> array</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">length </span><span style="color:#5fb3b3;">- </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">);
+    }
+
+    </span><span style="color:#c594c5;">private static void </span><span style="color:#6699cc;">sort</span><span style="color:#5fb3b3;">(</span><span style="color:#c594c5;">int[] </span><span style="color:#f99157;">array</span><span style="color:#5fb3b3;">, </span><span style="color:#c594c5;">int </span><span style="color:#f99157;">lowIdx</span><span style="color:#5fb3b3;">, </span><span style="color:#c594c5;">int </span><span style="color:#f99157;">highIdx</span><span style="color:#5fb3b3;">) {
+        </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">lowIdx </span><span style="color:#5fb3b3;">&gt;=</span><span style="color:#cccece;"> highIdx</span><span style="color:#5fb3b3;">) </span><span style="color:#c594c5;">return</span><span style="color:#5fb3b3;">;
+
+        </span><span style="color:#c594c5;">int</span><span style="color:#cccece;"> partitionIdx </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">partition</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">array</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> lowIdx</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> highIdx</span><span style="color:#5fb3b3;">);
+        </span><span style="color:#6699cc;">sort</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">array</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> lowIdx</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> partitionIdx </span><span style="color:#5fb3b3;">- </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">);
+        </span><span style="color:#6699cc;">sort</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">array</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> partitionIdx </span><span style="color:#5fb3b3;">+ </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> highIdx</span><span style="color:#5fb3b3;">);
+    }
+
+    </span><span style="color:#c594c5;">private static int </span><span style="color:#6699cc;">partition</span><span style="color:#5fb3b3;">(</span><span style="color:#c594c5;">int[] </span><span style="color:#f99157;">array</span><span style="color:#5fb3b3;">, </span><span style="color:#c594c5;">int </span><span style="color:#f99157;">lowIdx</span><span style="color:#5fb3b3;">, </span><span style="color:#c594c5;">int </span><span style="color:#f99157;">highIdx</span><span style="color:#5fb3b3;">) {
+        </span><span style="color:#c594c5;">int</span><span style="color:#cccece;"> pivotValue </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> array[lowIdx]</span><span style="color:#5fb3b3;">;
+        </span><span style="color:#c594c5;">int</span><span style="color:#cccece;"> leftIdx </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> lowIdx</span><span style="color:#5fb3b3;">;
+        </span><span style="color:#c594c5;">int</span><span style="color:#cccece;"> rightIdx </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> highIdx </span><span style="color:#5fb3b3;">+ </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">;
+
+        </span><span style="color:#c594c5;">while </span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">true</span><span style="color:#5fb3b3;">) {
+            </span><span style="color:#c594c5;">do </span><span style="color:#5fb3b3;">{</span><span style="color:#cccece;">
+                leftIdx</span><span style="color:#5fb3b3;">++;
+                </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">leftIdx </span><span style="color:#5fb3b3;">==</span><span style="color:#cccece;"> highIdx</span><span style="color:#5fb3b3;">) </span><span style="color:#c594c5;">break</span><span style="color:#5fb3b3;">;
+            } </span><span style="color:#c594c5;">while </span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">array[leftIdx] </span><span style="color:#5fb3b3;">&lt;</span><span style="color:#cccece;"> pivotValue</span><span style="color:#5fb3b3;">);
+
+            </span><span style="color:#c594c5;">do </span><span style="color:#5fb3b3;">{</span><span style="color:#cccece;">
+                rightIdx</span><span style="color:#5fb3b3;">--;
+                </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">rightIdx </span><span style="color:#5fb3b3;">==</span><span style="color:#cccece;"> lowIdx</span><span style="color:#5fb3b3;">) </span><span style="color:#c594c5;">break</span><span style="color:#5fb3b3;">;
+            } </span><span style="color:#c594c5;">while </span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">array[rightIdx] </span><span style="color:#5fb3b3;">&gt;</span><span style="color:#cccece;"> pivotValue</span><span style="color:#5fb3b3;">);
+
+            </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">leftIdx </span><span style="color:#5fb3b3;">&gt;=</span><span style="color:#cccece;"> rightIdx</span><span style="color:#5fb3b3;">) </span><span style="color:#c594c5;">break</span><span style="color:#5fb3b3;">;
+
+            </span><span style="color:#6699cc;">swap</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">array</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> leftIdx</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> rightIdx</span><span style="color:#5fb3b3;">);
+        }
+        </span><span style="color:#6699cc;">swap</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">array</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> lowIdx</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> rightIdx</span><span style="color:#5fb3b3;">); </span><span style="color:#5f6364;">// put pivot value to final pivot index
+        </span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> rightIdx</span><span style="color:#5fb3b3;">;
+    }
+
+    </span><span style="color:#c594c5;">private static void </span><span style="color:#6699cc;">swap</span><span style="color:#5fb3b3;">(</span><span style="color:#c594c5;">int[] </span><span style="color:#f99157;">array</span><span style="color:#5fb3b3;">, </span><span style="color:#c594c5;">int </span><span style="color:#f99157;">leftIdx</span><span style="color:#5fb3b3;">, </span><span style="color:#c594c5;">int </span><span style="color:#f99157;">rightIdx</span><span style="color:#5fb3b3;">) {
+        </span><span style="color:#c594c5;">int</span><span style="color:#cccece;"> tmpValue </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> array[leftIdx]</span><span style="color:#5fb3b3;">;</span><span style="color:#cccece;">
+        array[leftIdx] </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> array[rightIdx]</span><span style="color:#5fb3b3;">;</span><span style="color:#cccece;">
+        array[rightIdx] </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> tmpValue</span><span style="color:#5fb3b3;">;
+    }
+}
+
+</span></pre><div id="go"/>
+<h2 id="go">Go</h2>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">package</span><span style="color:#cccece;"> sort
+
+</span><span style="color:#c594c5;">type </span><span style="color:#cccece;">QuickSortingStrategy </span><span style="color:#c594c5;">int
+
+const </span><span style="color:#5fb3b3;">(
+	</span><span style="color:#cccece;">Lomuto QuickSortingStrategy </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">iota
+	</span><span style="color:#cccece;">Hoare
+</span><span style="color:#5fb3b3;">)
+
+</span><span style="color:#c594c5;">var </span><span style="color:#cccece;">PickedQuickSortStrategy </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> Lomuto
+
+</span><span style="color:#c594c5;">func </span><span style="color:#6699cc;">QuickSort</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">arr </span><span style="color:#5fb3b3;">[]</span><span style="color:#c594c5;">int</span><span style="color:#5fb3b3;">) {
+	</span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> arr </span><span style="color:#5fb3b3;">== </span><span style="color:#f99157;">nil </span><span style="color:#5fb3b3;">|| </span><span style="color:#6699cc;">len</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">arr</span><span style="color:#5fb3b3;">) &lt; </span><span style="color:#f99157;">2 </span><span style="color:#5fb3b3;">{
+		</span><span style="color:#c594c5;">return
+	</span><span style="color:#5fb3b3;">}
+	</span><span style="color:#6699cc;">quickSortRange</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">arr</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">, </span><span style="color:#6699cc;">len</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">arr</span><span style="color:#5fb3b3;">)-</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">)
+}
+
+</span><span style="color:#c594c5;">func </span><span style="color:#6699cc;">quickSortRange</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">arr </span><span style="color:#5fb3b3;">[]</span><span style="color:#c594c5;">int</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">lowIdx</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">highIdx </span><span style="color:#c594c5;">int</span><span style="color:#5fb3b3;">) {
+	</span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> lowIdx </span><span style="color:#5fb3b3;">&gt;=</span><span style="color:#cccece;"> highIdx </span><span style="color:#5fb3b3;">{
+		</span><span style="color:#c594c5;">return
+	</span><span style="color:#5fb3b3;">}
+
+	</span><span style="color:#c594c5;">var </span><span style="color:#cccece;">partitionIdx </span><span style="color:#5fb3b3;">= -</span><span style="color:#f99157;">1
+
+	</span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> PickedQuickSortStrategy </span><span style="color:#5fb3b3;">==</span><span style="color:#cccece;"> Lomuto </span><span style="color:#5fb3b3;">{</span><span style="color:#cccece;">
+		partitionIdx </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">partitionLomuto</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">arr</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> lowIdx</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> highIdx</span><span style="color:#5fb3b3;">)
+	}
+	</span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> PickedQuickSortStrategy </span><span style="color:#5fb3b3;">==</span><span style="color:#cccece;"> Hoare </span><span style="color:#5fb3b3;">{</span><span style="color:#cccece;">
+		partitionIdx </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">partitionHoare</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">arr</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> lowIdx</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> highIdx</span><span style="color:#5fb3b3;">)
+	}
+	</span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> partitionIdx </span><span style="color:#5fb3b3;">== -</span><span style="color:#f99157;">1 </span><span style="color:#5fb3b3;">{
+		</span><span style="color:#6699cc;">panic</span><span style="color:#5fb3b3;">(&quot;</span><span style="color:#99c794;">PickedQuickSortStrategy not defined</span><span style="color:#5fb3b3;">&quot;)
+	}
+
+	</span><span style="color:#6699cc;">quickSortRange</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">arr</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> lowIdx</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> partitionIdx</span><span style="color:#5fb3b3;">-</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">)
+	</span><span style="color:#6699cc;">quickSortRange</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">arr</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> partitionIdx</span><span style="color:#5fb3b3;">+</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> highIdx</span><span style="color:#5fb3b3;">)
+}
+
+</span><span style="color:#c594c5;">func </span><span style="color:#6699cc;">partitionLomuto</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">arr </span><span style="color:#5fb3b3;">[]</span><span style="color:#c594c5;">int</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">lowIdx</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">highIdx </span><span style="color:#c594c5;">int</span><span style="color:#5fb3b3;">) </span><span style="color:#c594c5;">int </span><span style="color:#5fb3b3;">{
+	</span><span style="color:#cccece;">pivot </span><span style="color:#5fb3b3;">:=</span><span style="color:#cccece;"> arr</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">highIdx</span><span style="color:#5fb3b3;">]
+	</span><span style="color:#cccece;">i </span><span style="color:#5fb3b3;">:=</span><span style="color:#cccece;"> lowIdx
+
+	</span><span style="color:#c594c5;">for </span><span style="color:#cccece;">j </span><span style="color:#5fb3b3;">:=</span><span style="color:#cccece;"> lowIdx; j </span><span style="color:#5fb3b3;">&lt;</span><span style="color:#cccece;"> highIdx; j</span><span style="color:#5fb3b3;">++ {
+		</span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> arr</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">j</span><span style="color:#5fb3b3;">] &lt;=</span><span style="color:#cccece;"> pivot </span><span style="color:#5fb3b3;">{</span><span style="color:#cccece;">
+			arr</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">i</span><span style="color:#5fb3b3;">],</span><span style="color:#cccece;"> arr</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">j</span><span style="color:#5fb3b3;">] =</span><span style="color:#cccece;"> arr</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">j</span><span style="color:#5fb3b3;">],</span><span style="color:#cccece;"> arr</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">i</span><span style="color:#5fb3b3;">]</span><span style="color:#cccece;">
+			i</span><span style="color:#5fb3b3;">++
+		}
+	}</span><span style="color:#cccece;">
+	arr</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">highIdx</span><span style="color:#5fb3b3;">],</span><span style="color:#cccece;"> arr</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">i</span><span style="color:#5fb3b3;">] =</span><span style="color:#cccece;"> arr</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">i</span><span style="color:#5fb3b3;">],</span><span style="color:#cccece;"> arr</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">highIdx</span><span style="color:#5fb3b3;">]
+	</span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> i
+</span><span style="color:#5fb3b3;">}
+
+</span><span style="color:#c594c5;">func </span><span style="color:#6699cc;">partitionHoare</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">arr </span><span style="color:#5fb3b3;">[]</span><span style="color:#c594c5;">int</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">lowIdx</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">highIdx </span><span style="color:#c594c5;">int</span><span style="color:#5fb3b3;">) </span><span style="color:#c594c5;">int </span><span style="color:#5fb3b3;">{
+	</span><span style="color:#cccece;">pivot </span><span style="color:#5fb3b3;">:=</span><span style="color:#cccece;"> arr</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">lowIdx</span><span style="color:#5fb3b3;">]
+	</span><span style="color:#cccece;">leftIdx </span><span style="color:#5fb3b3;">:=</span><span style="color:#cccece;"> lowIdx
+	rightIdx </span><span style="color:#5fb3b3;">:=</span><span style="color:#cccece;"> highIdx </span><span style="color:#5fb3b3;">+ </span><span style="color:#f99157;">1
+
+	</span><span style="color:#c594c5;">for </span><span style="color:#5fb3b3;">{
+		</span><span style="color:#c594c5;">for </span><span style="color:#5fb3b3;">{</span><span style="color:#cccece;">
+			leftIdx</span><span style="color:#5fb3b3;">++
+			</span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> leftIdx </span><span style="color:#5fb3b3;">==</span><span style="color:#cccece;"> highIdx </span><span style="color:#5fb3b3;">||</span><span style="color:#cccece;"> arr</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">leftIdx</span><span style="color:#5fb3b3;">] &gt;=</span><span style="color:#cccece;"> pivot </span><span style="color:#5fb3b3;">{
+				</span><span style="color:#c594c5;">break
+			</span><span style="color:#5fb3b3;">}
+		}
+		</span><span style="color:#c594c5;">for </span><span style="color:#5fb3b3;">{</span><span style="color:#cccece;">
+			rightIdx</span><span style="color:#5fb3b3;">--
+			</span><span style="color:#c594c5;">if</span><span style="color:#cccece;">  rightIdx </span><span style="color:#5fb3b3;">==</span><span style="color:#cccece;"> lowIdx </span><span style="color:#5fb3b3;">||</span><span style="color:#cccece;"> arr</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">rightIdx</span><span style="color:#5fb3b3;">] &lt;=</span><span style="color:#cccece;"> pivot</span><span style="color:#5fb3b3;">{
+				</span><span style="color:#c594c5;">break
+			</span><span style="color:#5fb3b3;">}
+		}
+		</span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> leftIdx </span><span style="color:#5fb3b3;">&gt;=</span><span style="color:#cccece;"> rightIdx </span><span style="color:#5fb3b3;">{
+			</span><span style="color:#c594c5;">break
+		</span><span style="color:#5fb3b3;">}</span><span style="color:#cccece;">
+		arr</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">leftIdx</span><span style="color:#5fb3b3;">],</span><span style="color:#cccece;"> arr</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">rightIdx</span><span style="color:#5fb3b3;">] =</span><span style="color:#cccece;"> arr</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">rightIdx</span><span style="color:#5fb3b3;">],</span><span style="color:#cccece;"> arr</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">leftIdx</span><span style="color:#5fb3b3;">]
+	}</span><span style="color:#cccece;">
+	arr</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">rightIdx</span><span style="color:#5fb3b3;">],</span><span style="color:#cccece;"> arr</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">lowIdx</span><span style="color:#5fb3b3;">] =</span><span style="color:#cccece;"> arr</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">lowIdx</span><span style="color:#5fb3b3;">],</span><span style="color:#cccece;"> arr</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">rightIdx</span><span style="color:#5fb3b3;">]
+	</span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> rightIdx
+</span><span style="color:#5fb3b3;">}
+
+</span></pre>
+<p>see also Go's implementation of quick sort in <a href="https://golang.org/src/sort/sort.go">sort package</a></p>
+<div id="python"/>
+<h2 id="python">Python</h2>
+<p>Lomuto:</p>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">def </span><span style="color:#6699cc;">partition</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">input_list</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">low_idx</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">high_idx</span><span style="color:#5fb3b3;">):
+    </span><span style="color:#cccece;">pivot_value </span><span style="color:#5fb3b3;">= </span><span style="color:#cccece;">input_list</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">high_idx</span><span style="color:#5fb3b3;">]
+    </span><span style="color:#cccece;">i </span><span style="color:#5fb3b3;">= </span><span style="color:#cccece;">low_idx
+
+    </span><span style="color:#c594c5;">for </span><span style="color:#cccece;">j </span><span style="color:#c594c5;">in </span><span style="color:#6699cc;">range</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">i</span><span style="color:#5fb3b3;">, </span><span style="color:#6699cc;">high_idx</span><span style="color:#5fb3b3;">):
+        </span><span style="color:#c594c5;">if </span><span style="color:#cccece;">input_list</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">j</span><span style="color:#5fb3b3;">] &lt;= </span><span style="color:#cccece;">pivot_value</span><span style="color:#5fb3b3;">:
+            </span><span style="color:#cccece;">input_list</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">i</span><span style="color:#5fb3b3;">]</span><span style="color:#cccece;">, input_list</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">j</span><span style="color:#5fb3b3;">] = </span><span style="color:#cccece;">input_list</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">j</span><span style="color:#5fb3b3;">]</span><span style="color:#cccece;">, input_list</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">i</span><span style="color:#5fb3b3;">]
+            </span><span style="color:#cccece;">i </span><span style="color:#5fb3b3;">= </span><span style="color:#cccece;">i </span><span style="color:#5fb3b3;">+ </span><span style="color:#f99157;">1
+    </span><span style="color:#cccece;">input_list</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">high_idx</span><span style="color:#5fb3b3;">]</span><span style="color:#cccece;">, input_list</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">i</span><span style="color:#5fb3b3;">] = </span><span style="color:#cccece;">input_list</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">i</span><span style="color:#5fb3b3;">]</span><span style="color:#cccece;">, input_list</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">high_idx</span><span style="color:#5fb3b3;">]
+    </span><span style="color:#c594c5;">return </span><span style="color:#cccece;">i
+
+
+</span><span style="color:#c594c5;">def </span><span style="color:#6699cc;">_sort_range</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">input_list</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">low_idx</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">high_idx</span><span style="color:#5fb3b3;">):
+    </span><span style="color:#c594c5;">if </span><span style="color:#cccece;">low_idx </span><span style="color:#5fb3b3;">&gt;= </span><span style="color:#cccece;">high_idx</span><span style="color:#5fb3b3;">:
+        </span><span style="color:#c594c5;">return
+
+    </span><span style="color:#cccece;">partition_idx </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">partition</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">input_list</span><span style="color:#5fb3b3;">, </span><span style="color:#6699cc;">low_idx</span><span style="color:#5fb3b3;">, </span><span style="color:#6699cc;">high_idx</span><span style="color:#5fb3b3;">)
+    </span><span style="color:#6699cc;">_sort_range</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">input_list</span><span style="color:#5fb3b3;">, </span><span style="color:#6699cc;">low_idx</span><span style="color:#5fb3b3;">, </span><span style="color:#6699cc;">partition_idx </span><span style="color:#5fb3b3;">- </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">)
+    </span><span style="color:#6699cc;">_sort_range</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">input_list</span><span style="color:#5fb3b3;">, </span><span style="color:#6699cc;">partition_idx </span><span style="color:#5fb3b3;">+ </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">, </span><span style="color:#6699cc;">high_idx</span><span style="color:#5fb3b3;">)
+
+
+</span><span style="color:#c594c5;">def </span><span style="color:#6699cc;">sort</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">input_list</span><span style="color:#5fb3b3;">):
+    </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">not </span><span style="color:#cccece;">input_list </span><span style="color:#5fb3b3;">or </span><span style="color:#6699cc;">len</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">input_list</span><span style="color:#5fb3b3;">) &lt; </span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">:
+        </span><span style="color:#c594c5;">return
+    </span><span style="color:#6699cc;">_sort_range</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">input_list</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">, </span><span style="color:#6699cc;">len</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">input_list</span><span style="color:#5fb3b3;">) - </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">)
+</span></pre>
+<p>Hoare:</p>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">def </span><span style="color:#6699cc;">partition</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">input_list</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">low_idx</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">high_idx</span><span style="color:#5fb3b3;">):
+    </span><span style="color:#cccece;">pivot_value </span><span style="color:#5fb3b3;">= </span><span style="color:#cccece;">input_list</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">low_idx</span><span style="color:#5fb3b3;">]
+    </span><span style="color:#cccece;">left_idx </span><span style="color:#5fb3b3;">= </span><span style="color:#cccece;">low_idx
+    right_idx </span><span style="color:#5fb3b3;">= </span><span style="color:#cccece;">high_idx </span><span style="color:#5fb3b3;">+ </span><span style="color:#f99157;">1
+
+    </span><span style="color:#c594c5;">while </span><span style="color:#f99157;">True</span><span style="color:#5fb3b3;">:
+
+        </span><span style="color:#c594c5;">while </span><span style="color:#f99157;">True</span><span style="color:#5fb3b3;">:
+            </span><span style="color:#cccece;">left_idx </span><span style="color:#5fb3b3;">= </span><span style="color:#cccece;">left_idx </span><span style="color:#5fb3b3;">+ </span><span style="color:#f99157;">1
+            </span><span style="color:#c594c5;">if </span><span style="color:#cccece;">left_idx </span><span style="color:#5fb3b3;">== </span><span style="color:#cccece;">high_idx </span><span style="color:#5fb3b3;">or </span><span style="color:#cccece;">input_list</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">left_idx</span><span style="color:#5fb3b3;">] &gt;= </span><span style="color:#cccece;">pivot_value</span><span style="color:#5fb3b3;">:
+                </span><span style="color:#c594c5;">break
+
+        while </span><span style="color:#f99157;">True</span><span style="color:#5fb3b3;">:
+            </span><span style="color:#cccece;">right_idx </span><span style="color:#5fb3b3;">= </span><span style="color:#cccece;">right_idx </span><span style="color:#5fb3b3;">- </span><span style="color:#f99157;">1
+            </span><span style="color:#c594c5;">if </span><span style="color:#cccece;">right_idx </span><span style="color:#5fb3b3;">== </span><span style="color:#cccece;">low_idx </span><span style="color:#5fb3b3;">or </span><span style="color:#cccece;">input_list</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">right_idx</span><span style="color:#5fb3b3;">] &lt;= </span><span style="color:#cccece;">pivot_value</span><span style="color:#5fb3b3;">:
+                </span><span style="color:#c594c5;">break
+
+        if </span><span style="color:#cccece;">left_idx </span><span style="color:#5fb3b3;">&gt;= </span><span style="color:#cccece;">right_idx</span><span style="color:#5fb3b3;">:
+            </span><span style="color:#c594c5;">break
+
+        </span><span style="color:#cccece;">input_list</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">left_idx</span><span style="color:#5fb3b3;">]</span><span style="color:#cccece;">, input_list</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">right_idx</span><span style="color:#5fb3b3;">] = </span><span style="color:#cccece;">input_list</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">right_idx</span><span style="color:#5fb3b3;">]</span><span style="color:#cccece;">, input_list</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">left_idx</span><span style="color:#5fb3b3;">]
+
+    </span><span style="color:#cccece;">input_list</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">low_idx</span><span style="color:#5fb3b3;">]</span><span style="color:#cccece;">, input_list</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">right_idx</span><span style="color:#5fb3b3;">] = </span><span style="color:#cccece;">input_list</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">right_idx</span><span style="color:#5fb3b3;">]</span><span style="color:#cccece;">, input_list</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">low_idx</span><span style="color:#5fb3b3;">]
+    </span><span style="color:#c594c5;">return </span><span style="color:#cccece;">right_idx
+
+
+</span><span style="color:#c594c5;">def </span><span style="color:#6699cc;">_sort_range</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">input_list</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">low_idx</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">high_idx</span><span style="color:#5fb3b3;">):
+    </span><span style="color:#c594c5;">if </span><span style="color:#cccece;">low_idx </span><span style="color:#5fb3b3;">&gt;= </span><span style="color:#cccece;">high_idx</span><span style="color:#5fb3b3;">:
+        </span><span style="color:#c594c5;">return
+
+    </span><span style="color:#cccece;">partition_idx </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">partition</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">input_list</span><span style="color:#5fb3b3;">, </span><span style="color:#6699cc;">low_idx</span><span style="color:#5fb3b3;">, </span><span style="color:#6699cc;">high_idx</span><span style="color:#5fb3b3;">)
+    </span><span style="color:#6699cc;">_sort_range</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">input_list</span><span style="color:#5fb3b3;">, </span><span style="color:#6699cc;">low_idx</span><span style="color:#5fb3b3;">, </span><span style="color:#6699cc;">partition_idx </span><span style="color:#5fb3b3;">- </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">)
+    </span><span style="color:#6699cc;">_sort_range</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">input_list</span><span style="color:#5fb3b3;">, </span><span style="color:#6699cc;">partition_idx </span><span style="color:#5fb3b3;">+ </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">, </span><span style="color:#6699cc;">high_idx</span><span style="color:#5fb3b3;">)
+
+
+</span><span style="color:#c594c5;">def </span><span style="color:#6699cc;">sort</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">input_list</span><span style="color:#5fb3b3;">):
+    </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">not </span><span style="color:#cccece;">input_list </span><span style="color:#5fb3b3;">or </span><span style="color:#6699cc;">len</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">input_list</span><span style="color:#5fb3b3;">) &lt; </span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">:
+        </span><span style="color:#c594c5;">return
+    </span><span style="color:#6699cc;">_sort_range</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">input_list</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">, </span><span style="color:#6699cc;">len</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">input_list</span><span style="color:#5fb3b3;">) - </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">)
+</span></pre><div id="javascript"/>
+<h2 id="javascript">JavaScript</h2>
+<p>Lomuto:</p>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">function </span><span style="color:#6699cc;">sort</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">arr</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">lowIdx </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">highIdx </span><span style="color:#5fb3b3;">= </span><span style="color:#cccece;">arr</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">length </span><span style="color:#5fb3b3;">- </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">) {
+  </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">(!</span><span style="color:#cccece;">arr </span><span style="color:#5fb3b3;">|| </span><span style="color:#cccece;">lowIdx </span><span style="color:#5fb3b3;">&gt;= </span><span style="color:#cccece;">highIdx </span><span style="color:#5fb3b3;">|| </span><span style="color:#cccece;">arr</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">length </span><span style="color:#5fb3b3;">&lt; </span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">) </span><span style="color:#c594c5;">return
+
+  const </span><span style="color:#cccece;">partitionIdx </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">partition</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">arr</span><span style="color:#5fb3b3;">, </span><span style="color:#cccece;">lowIdx</span><span style="color:#5fb3b3;">, </span><span style="color:#cccece;">highIdx</span><span style="color:#5fb3b3;">)
+  </span><span style="color:#6699cc;">sort</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">arr</span><span style="color:#5fb3b3;">, </span><span style="color:#cccece;">lowIdx</span><span style="color:#5fb3b3;">, </span><span style="color:#cccece;">partitionIdx </span><span style="color:#5fb3b3;">- </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">)
+  </span><span style="color:#6699cc;">sort</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">arr</span><span style="color:#5fb3b3;">, </span><span style="color:#cccece;">partitionIdx </span><span style="color:#5fb3b3;">+ </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">, </span><span style="color:#cccece;">highIdx</span><span style="color:#5fb3b3;">)
+}
+
+</span><span style="color:#c594c5;">function </span><span style="color:#6699cc;">partition</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">arr</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">lowIdx</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">highIdx</span><span style="color:#5fb3b3;">) {
+  </span><span style="color:#c594c5;">const </span><span style="color:#cccece;">pivotValue </span><span style="color:#5fb3b3;">= </span><span style="color:#cccece;">arr</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">highIdx</span><span style="color:#5fb3b3;">]
+  </span><span style="color:#c594c5;">let </span><span style="color:#cccece;">i </span><span style="color:#5fb3b3;">= </span><span style="color:#cccece;">lowIdx
+
+  </span><span style="color:#c594c5;">for </span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">j </span><span style="color:#5fb3b3;">= </span><span style="color:#cccece;">i</span><span style="color:#5fb3b3;">; </span><span style="color:#cccece;">j </span><span style="color:#5fb3b3;">&lt; </span><span style="color:#cccece;">highIdx</span><span style="color:#5fb3b3;">; </span><span style="color:#cccece;">j</span><span style="color:#5fb3b3;">++) {
+    </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">arr</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">j</span><span style="color:#5fb3b3;">] &lt;= </span><span style="color:#cccece;">pivotValue</span><span style="color:#5fb3b3;">) {
+      </span><span style="color:#6699cc;">swap</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">arr</span><span style="color:#5fb3b3;">, </span><span style="color:#cccece;">i</span><span style="color:#5fb3b3;">, </span><span style="color:#cccece;">j</span><span style="color:#5fb3b3;">)
+      </span><span style="color:#cccece;">i</span><span style="color:#5fb3b3;">++
+    }
+  }
+  </span><span style="color:#6699cc;">swap</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">arr</span><span style="color:#5fb3b3;">, </span><span style="color:#cccece;">highIdx</span><span style="color:#5fb3b3;">, </span><span style="color:#cccece;">i</span><span style="color:#5fb3b3;">)
+  </span><span style="color:#c594c5;">return </span><span style="color:#cccece;">i
+</span><span style="color:#5fb3b3;">}
+
+</span><span style="color:#c594c5;">function </span><span style="color:#6699cc;">swap</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">arr</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">i</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">j</span><span style="color:#5fb3b3;">) {
+  </span><span style="color:#c594c5;">const </span><span style="color:#cccece;">tmp </span><span style="color:#5fb3b3;">= </span><span style="color:#cccece;">arr</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">i</span><span style="color:#5fb3b3;">]
+  </span><span style="color:#cccece;">arr</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">i</span><span style="color:#5fb3b3;">] = </span><span style="color:#cccece;">arr</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">j</span><span style="color:#5fb3b3;">]
+  </span><span style="color:#cccece;">arr</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">j</span><span style="color:#5fb3b3;">] = </span><span style="color:#cccece;">tmp
+</span><span style="color:#5fb3b3;">}
+</span></pre>
+<p>Hoare:</p>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">function </span><span style="color:#6699cc;">sort</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">arr</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">lowIdx </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">highIdx </span><span style="color:#5fb3b3;">= </span><span style="color:#cccece;">arr</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">length </span><span style="color:#5fb3b3;">- </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">) {
+  </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">(!</span><span style="color:#cccece;">arr </span><span style="color:#5fb3b3;">|| </span><span style="color:#cccece;">lowIdx </span><span style="color:#5fb3b3;">&gt;= </span><span style="color:#cccece;">highIdx </span><span style="color:#5fb3b3;">|| </span><span style="color:#cccece;">arr</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">length </span><span style="color:#5fb3b3;">&lt; </span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">) </span><span style="color:#c594c5;">return
+
+  const </span><span style="color:#cccece;">partitionIdx </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">partition</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">arr</span><span style="color:#5fb3b3;">, </span><span style="color:#cccece;">lowIdx</span><span style="color:#5fb3b3;">, </span><span style="color:#cccece;">highIdx</span><span style="color:#5fb3b3;">)
+  </span><span style="color:#6699cc;">sort</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">arr</span><span style="color:#5fb3b3;">, </span><span style="color:#cccece;">lowIdx</span><span style="color:#5fb3b3;">, </span><span style="color:#cccece;">partitionIdx </span><span style="color:#5fb3b3;">- </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">)
+  </span><span style="color:#6699cc;">sort</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">arr</span><span style="color:#5fb3b3;">, </span><span style="color:#cccece;">partitionIdx </span><span style="color:#5fb3b3;">+ </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">, </span><span style="color:#cccece;">highIdx</span><span style="color:#5fb3b3;">)
+}
+
+</span><span style="color:#c594c5;">function </span><span style="color:#6699cc;">partition</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">arr</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">lowIdx</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">highIdx</span><span style="color:#5fb3b3;">) {
+  </span><span style="color:#c594c5;">const </span><span style="color:#cccece;">pivotValue </span><span style="color:#5fb3b3;">= </span><span style="color:#cccece;">arr</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">lowIdx</span><span style="color:#5fb3b3;">]
+  </span><span style="color:#c594c5;">let </span><span style="color:#cccece;">leftIdx </span><span style="color:#5fb3b3;">= </span><span style="color:#cccece;">lowIdx
+  </span><span style="color:#c594c5;">let </span><span style="color:#cccece;">rightIdx </span><span style="color:#5fb3b3;">= </span><span style="color:#cccece;">highIdx </span><span style="color:#5fb3b3;">+ </span><span style="color:#f99157;">1
+
+  </span><span style="color:#c594c5;">while</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">true</span><span style="color:#5fb3b3;">) {
+    </span><span style="color:#c594c5;">do </span><span style="color:#5fb3b3;">{
+       </span><span style="color:#cccece;">leftIdx</span><span style="color:#5fb3b3;">++;
+       </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">leftIdx </span><span style="color:#5fb3b3;">== </span><span style="color:#cccece;">highIdx</span><span style="color:#5fb3b3;">) {
+         </span><span style="color:#c594c5;">break</span><span style="color:#5fb3b3;">;
+       }
+    } 
+    </span><span style="color:#c594c5;">while</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">arr</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">leftIdx</span><span style="color:#5fb3b3;">] &lt; </span><span style="color:#cccece;">pivotValue</span><span style="color:#5fb3b3;">);
+
+    </span><span style="color:#c594c5;">do </span><span style="color:#5fb3b3;">{
+      </span><span style="color:#cccece;">rightIdx</span><span style="color:#5fb3b3;">--;
+      </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">rightIdx </span><span style="color:#5fb3b3;">== </span><span style="color:#cccece;">lowIdx</span><span style="color:#5fb3b3;">) {
+        </span><span style="color:#c594c5;">break</span><span style="color:#5fb3b3;">;
+      }
+    }
+    </span><span style="color:#c594c5;">while </span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">arr</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">rightIdx</span><span style="color:#5fb3b3;">] &gt; </span><span style="color:#cccece;">pivotValue</span><span style="color:#5fb3b3;">);
+
+    </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">leftIdx </span><span style="color:#5fb3b3;">&gt;= </span><span style="color:#cccece;">rightIdx</span><span style="color:#5fb3b3;">) {
+      </span><span style="color:#c594c5;">break</span><span style="color:#5fb3b3;">;
+    }
+    </span><span style="color:#6699cc;">swap</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">arr</span><span style="color:#5fb3b3;">, </span><span style="color:#cccece;">leftIdx</span><span style="color:#5fb3b3;">, </span><span style="color:#cccece;">rightIdx</span><span style="color:#5fb3b3;">)
+  }
+
+  </span><span style="color:#6699cc;">swap</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">arr</span><span style="color:#5fb3b3;">, </span><span style="color:#cccece;">lowIdx</span><span style="color:#5fb3b3;">, </span><span style="color:#cccece;">rightIdx</span><span style="color:#5fb3b3;">)
+  </span><span style="color:#c594c5;">return </span><span style="color:#cccece;">rightIdx
+</span><span style="color:#5fb3b3;">}
+
+</span><span style="color:#c594c5;">function </span><span style="color:#6699cc;">swap</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">arr</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">i</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">j</span><span style="color:#5fb3b3;">) {
+  </span><span style="color:#c594c5;">const </span><span style="color:#cccece;">tmp </span><span style="color:#5fb3b3;">= </span><span style="color:#cccece;">arr</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">i</span><span style="color:#5fb3b3;">]
+  </span><span style="color:#cccece;">arr</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">i</span><span style="color:#5fb3b3;">] = </span><span style="color:#cccece;">arr</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">j</span><span style="color:#5fb3b3;">]
+  </span><span style="color:#cccece;">arr</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">j</span><span style="color:#5fb3b3;">] = </span><span style="color:#cccece;">tmp
+</span><span style="color:#5fb3b3;">}
+</span></pre><div id="kotlin"/>
+<h2 id="kotlin">Kotlin</h2>
+<p>Lomuto:</p>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">package </span><span style="color:#cccece;">sort
+
+class LomutoQuickSort {
+    </span><span style="color:#c594c5;">companion </span><span style="color:#cccece;">object {
+        </span><span style="color:#c594c5;">fun</span><span style="color:#cccece;"> &lt;</span><span style="color:#c594c5;">T </span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> Comparable&lt;</span><span style="color:#c594c5;">in</span><span style="color:#cccece;"> T&gt;&gt; </span><span style="color:#6699cc;">sort</span><span style="color:#cccece;">(</span><span style="color:#f99157;">array</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">Array</span><span style="color:#cccece;">&lt;T&gt;, </span><span style="color:#f99157;">lowIdx</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">Int </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">0</span><span style="color:#cccece;">, </span><span style="color:#f99157;">highIdx</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">Int </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> array</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">size </span><span style="color:#5fb3b3;">- </span><span style="color:#f99157;">1</span><span style="color:#cccece;">) {
+            </span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> (array</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">size </span><span style="color:#5fb3b3;">&lt; </span><span style="color:#f99157;">2 </span><span style="color:#5fb3b3;">||</span><span style="color:#cccece;"> lowIdx </span><span style="color:#5fb3b3;">&gt;=</span><span style="color:#cccece;"> highIdx) </span><span style="color:#c594c5;">return
+
+            val </span><span style="color:#cccece;">partitionIdx </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> partition(array, lowIdx, highIdx)
+            sort(array, lowIdx, partitionIdx </span><span style="color:#5fb3b3;">- </span><span style="color:#f99157;">1</span><span style="color:#cccece;">)
+            sort(array, partitionIdx </span><span style="color:#5fb3b3;">+ </span><span style="color:#f99157;">1</span><span style="color:#cccece;">, highIdx)
+        }
+
+        </span><span style="color:#c594c5;">private fun</span><span style="color:#cccece;"> &lt;</span><span style="color:#c594c5;">T </span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> Comparable&lt;</span><span style="color:#c594c5;">in</span><span style="color:#cccece;"> T&gt;&gt; </span><span style="color:#6699cc;">partition</span><span style="color:#cccece;">(</span><span style="color:#f99157;">array</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">Array</span><span style="color:#cccece;">&lt;T&gt;, </span><span style="color:#f99157;">lowIdx</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">Int</span><span style="color:#cccece;">, </span><span style="color:#f99157;">highIdx</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">Int</span><span style="color:#cccece;">)</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">Int</span><span style="color:#cccece;"> {
+            </span><span style="color:#c594c5;">val </span><span style="color:#cccece;">pivot </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> array[highIdx]
+            </span><span style="color:#c594c5;">var </span><span style="color:#cccece;">i </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> lowIdx
+
+            </span><span style="color:#c594c5;">for</span><span style="color:#cccece;"> (j </span><span style="color:#c594c5;">in</span><span style="color:#cccece;"> i until highIdx) {
+                </span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> (array[j] </span><span style="color:#5fb3b3;">&lt;=</span><span style="color:#cccece;"> pivot) {
+                    swap(array, i, j)
+                    i</span><span style="color:#5fb3b3;">++</span><span style="color:#cccece;">
+                }
+            }
+            swap(array, highIdx, i)
+            </span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> i
+        }
+
+        </span><span style="color:#c594c5;">private fun</span><span style="color:#cccece;"> &lt;</span><span style="color:#c594c5;">T</span><span style="color:#cccece;">&gt; </span><span style="color:#6699cc;">swap</span><span style="color:#cccece;">(</span><span style="color:#f99157;">array</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">Array</span><span style="color:#cccece;">&lt;T&gt;, </span><span style="color:#f99157;">i</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">Int</span><span style="color:#cccece;">, </span><span style="color:#f99157;">j</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">Int</span><span style="color:#cccece;">) {
+            </span><span style="color:#c594c5;">val </span><span style="color:#cccece;">tmp </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> array[i]
+            array[i] </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> array[j]
+            array[j] </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> tmp
+        }
+    }
+}
+
+</span></pre>
+<p>Hoare:</p>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">package </span><span style="color:#cccece;">sort
+
+class HoareQuickSort {
+    </span><span style="color:#c594c5;">companion </span><span style="color:#cccece;">object {
+        </span><span style="color:#c594c5;">fun</span><span style="color:#cccece;"> &lt;</span><span style="color:#c594c5;">T </span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> Comparable&lt;</span><span style="color:#c594c5;">in</span><span style="color:#cccece;"> T&gt;&gt; </span><span style="color:#6699cc;">sort</span><span style="color:#cccece;">(</span><span style="color:#f99157;">array</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">Array</span><span style="color:#cccece;">&lt;T&gt;, </span><span style="color:#f99157;">lowIdx</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">Int </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">0</span><span style="color:#cccece;">, </span><span style="color:#f99157;">highIdx</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">Int </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> array</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">size </span><span style="color:#5fb3b3;">- </span><span style="color:#f99157;">1</span><span style="color:#cccece;">) {
+            </span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> (array</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">size </span><span style="color:#5fb3b3;">&lt; </span><span style="color:#f99157;">2 </span><span style="color:#5fb3b3;">||</span><span style="color:#cccece;"> lowIdx </span><span style="color:#5fb3b3;">&gt;=</span><span style="color:#cccece;"> highIdx) </span><span style="color:#c594c5;">return
+
+            val </span><span style="color:#cccece;">partitionIdx </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> partition(array, lowIdx, highIdx)
+            sort(array, lowIdx, partitionIdx </span><span style="color:#5fb3b3;">- </span><span style="color:#f99157;">1</span><span style="color:#cccece;">)
+            sort(array, partitionIdx </span><span style="color:#5fb3b3;">+ </span><span style="color:#f99157;">1</span><span style="color:#cccece;">, highIdx)
+        }
+
+        </span><span style="color:#c594c5;">private fun</span><span style="color:#cccece;"> &lt;</span><span style="color:#c594c5;">T </span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> Comparable&lt;</span><span style="color:#c594c5;">in</span><span style="color:#cccece;"> T&gt;&gt; </span><span style="color:#6699cc;">partition</span><span style="color:#cccece;">(</span><span style="color:#f99157;">array</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">Array</span><span style="color:#cccece;">&lt;T&gt;, </span><span style="color:#f99157;">lowIdx</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">Int</span><span style="color:#cccece;">, </span><span style="color:#f99157;">highIdx</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">Int</span><span style="color:#cccece;">)</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">Int</span><span style="color:#cccece;"> {
+            </span><span style="color:#c594c5;">val </span><span style="color:#cccece;">pivotValue </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> array[lowIdx]
+            </span><span style="color:#c594c5;">var </span><span style="color:#cccece;">leftIdx </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> lowIdx
+            </span><span style="color:#c594c5;">var </span><span style="color:#cccece;">rightIdx </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> highIdx </span><span style="color:#5fb3b3;">+ </span><span style="color:#f99157;">1
+
+            </span><span style="color:#c594c5;">while</span><span style="color:#cccece;"> (</span><span style="color:#f99157;">true</span><span style="color:#cccece;">) {
+                </span><span style="color:#c594c5;">do</span><span style="color:#cccece;"> {
+                    leftIdx</span><span style="color:#5fb3b3;">++
+                    </span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> (leftIdx </span><span style="color:#5fb3b3;">==</span><span style="color:#cccece;"> highIdx) </span><span style="color:#c594c5;">break</span><span style="color:#cccece;">
+                } </span><span style="color:#c594c5;">while</span><span style="color:#cccece;"> (array[leftIdx] </span><span style="color:#5fb3b3;">&lt;</span><span style="color:#cccece;"> pivotValue)
+
+                </span><span style="color:#c594c5;">do</span><span style="color:#cccece;"> {
+                    rightIdx</span><span style="color:#5fb3b3;">--
+                    </span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> (rightIdx </span><span style="color:#5fb3b3;">==</span><span style="color:#cccece;"> lowIdx) </span><span style="color:#c594c5;">break</span><span style="color:#cccece;">
+                } </span><span style="color:#c594c5;">while</span><span style="color:#cccece;"> (array[rightIdx] </span><span style="color:#5fb3b3;">&gt;</span><span style="color:#cccece;"> pivotValue)
+
+                </span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> (leftIdx </span><span style="color:#5fb3b3;">&gt;=</span><span style="color:#cccece;"> rightIdx) </span><span style="color:#c594c5;">break</span><span style="color:#cccece;">
+
+                swap(array, leftIdx, rightIdx)
+            }
+
+            swap(array, lowIdx, rightIdx)
+            </span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> rightIdx
+        }
+
+        </span><span style="color:#c594c5;">private fun</span><span style="color:#cccece;"> &lt;</span><span style="color:#c594c5;">T</span><span style="color:#cccece;">&gt; </span><span style="color:#6699cc;">swap</span><span style="color:#cccece;">(</span><span style="color:#f99157;">array</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">Array</span><span style="color:#cccece;">&lt;T&gt;, </span><span style="color:#f99157;">i</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">Int</span><span style="color:#cccece;">, </span><span style="color:#f99157;">j</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">Int</span><span style="color:#cccece;">) {
+            </span><span style="color:#c594c5;">val </span><span style="color:#cccece;">tmp </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> array[i]
+            array[i] </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> array[j]
+            array[j] </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> tmp
+        }
+    }
+}
+</span></pre><div id="rust"/>
+<h2 id="rust">Rust</h2>
+<p>Lomuto:</p>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">use </span><span style="color:#cccece;">rand</span><span style="color:#5fb3b3;">::</span><span style="color:#cccece;">prelude</span><span style="color:#5fb3b3;">::*;
+
+</span><span style="color:#c594c5;">pub fn </span><span style="color:#6699cc;">sort</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#cccece;">T</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> Ord</span><span style="color:#5fb3b3;">&gt;(</span><span style="color:#f99157;">slice</span><span style="color:#5fb3b3;">: &amp;</span><span style="color:#c594c5;">mut</span><span style="color:#cccece;"> [T]</span><span style="color:#5fb3b3;">) {
+    </span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> slice</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">len</span><span style="color:#5fb3b3;">() &lt; </span><span style="color:#f99157;">2 </span><span style="color:#5fb3b3;">{
+        </span><span style="color:#c594c5;">return</span><span style="color:#5fb3b3;">;
+    }</span><span style="color:#cccece;">
+    slice</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">shuffle</span><span style="color:#5fb3b3;">(&amp;</span><span style="color:#c594c5;">mut </span><span style="color:#cccece;">rand</span><span style="color:#5fb3b3;">::</span><span style="color:#cccece;">thread_rng</span><span style="color:#5fb3b3;">());
+
+    </span><span style="color:#6699cc;">sort_range</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">slice</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">,</span><span style="color:#cccece;"> slice</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">len</span><span style="color:#5fb3b3;">() - </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">);
+}
+
+</span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">sort_range</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#cccece;">T</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> Ord</span><span style="color:#5fb3b3;">&gt;(</span><span style="color:#f99157;">slice</span><span style="color:#5fb3b3;">: &amp;</span><span style="color:#c594c5;">mut</span><span style="color:#cccece;"> [T], </span><span style="color:#f99157;">lo_idx</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">usize</span><span style="color:#cccece;">, </span><span style="color:#f99157;">hi_idx</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">usize</span><span style="color:#5fb3b3;">) {
+    </span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> lo_idx </span><span style="color:#5fb3b3;">&gt;=</span><span style="color:#cccece;"> hi_idx </span><span style="color:#5fb3b3;">{
+        </span><span style="color:#c594c5;">return</span><span style="color:#5fb3b3;">;
+    }
+    </span><span style="color:#c594c5;">let</span><span style="color:#cccece;"> partition_idx </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">partition</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">slice</span><span style="color:#5fb3b3;">,</span><span style="color:#cccece;"> lo_idx</span><span style="color:#5fb3b3;">,</span><span style="color:#cccece;"> hi_idx</span><span style="color:#5fb3b3;">);
+    </span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> partition_idx </span><span style="color:#5fb3b3;">&gt; </span><span style="color:#f99157;">0 </span><span style="color:#5fb3b3;">{
+        </span><span style="color:#6699cc;">sort_range</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">slice</span><span style="color:#5fb3b3;">,</span><span style="color:#cccece;"> lo_idx</span><span style="color:#5fb3b3;">,</span><span style="color:#cccece;"> partition_idx </span><span style="color:#5fb3b3;">- </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">);
+    }
+    </span><span style="color:#6699cc;">sort_range</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">slice</span><span style="color:#5fb3b3;">,</span><span style="color:#cccece;"> partition_idx </span><span style="color:#5fb3b3;">+ </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">,</span><span style="color:#cccece;"> hi_idx</span><span style="color:#5fb3b3;">);
+}
+
+</span><span style="color:#c594c5;">pub fn </span><span style="color:#6699cc;">partition</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#cccece;">T</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> Ord</span><span style="color:#5fb3b3;">&gt;(</span><span style="color:#f99157;">slice</span><span style="color:#5fb3b3;">: &amp;</span><span style="color:#c594c5;">mut</span><span style="color:#cccece;"> [T], </span><span style="color:#f99157;">lo_idx</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">usize</span><span style="color:#cccece;">, </span><span style="color:#f99157;">hi_idx</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">usize</span><span style="color:#5fb3b3;">) -&gt; </span><span style="color:#c594c5;">usize </span><span style="color:#5fb3b3;">{
+    </span><span style="color:#c594c5;">let mut</span><span style="color:#cccece;"> i </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> lo_idx</span><span style="color:#5fb3b3;">;
+    </span><span style="color:#c594c5;">for</span><span style="color:#cccece;"> j </span><span style="color:#5fb3b3;">in</span><span style="color:#cccece;"> i</span><span style="color:#5fb3b3;">..</span><span style="color:#cccece;">hi_idx </span><span style="color:#5fb3b3;">{
+        </span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> slice</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">j</span><span style="color:#5fb3b3;">] &lt;=</span><span style="color:#cccece;"> slice</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">hi_idx</span><span style="color:#5fb3b3;">] {</span><span style="color:#cccece;">
+            slice</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">swap</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">i</span><span style="color:#5fb3b3;">,</span><span style="color:#cccece;"> j</span><span style="color:#5fb3b3;">);</span><span style="color:#cccece;">
+            i </span><span style="color:#5fb3b3;">+= </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">;
+        }
+    }</span><span style="color:#cccece;">
+    slice</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">swap</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">hi_idx</span><span style="color:#5fb3b3;">,</span><span style="color:#cccece;"> i</span><span style="color:#5fb3b3;">);</span><span style="color:#cccece;">
+    i
+</span><span style="color:#5fb3b3;">}
+</span></pre>
+<p>Hoare: </p>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">use </span><span style="color:#cccece;">rand</span><span style="color:#5fb3b3;">::</span><span style="color:#cccece;">prelude</span><span style="color:#5fb3b3;">::*;
+
+</span><span style="color:#c594c5;">pub fn </span><span style="color:#6699cc;">sort</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#cccece;">T</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> Ord</span><span style="color:#5fb3b3;">&gt;(</span><span style="color:#f99157;">slice</span><span style="color:#5fb3b3;">: &amp;</span><span style="color:#c594c5;">mut</span><span style="color:#cccece;"> [T]</span><span style="color:#5fb3b3;">) {
+    </span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> slice</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">len</span><span style="color:#5fb3b3;">() &lt; </span><span style="color:#f99157;">2 </span><span style="color:#5fb3b3;">{
+        </span><span style="color:#c594c5;">return</span><span style="color:#5fb3b3;">;
+    }</span><span style="color:#cccece;">
+    slice</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">shuffle</span><span style="color:#5fb3b3;">(&amp;</span><span style="color:#c594c5;">mut </span><span style="color:#cccece;">rand</span><span style="color:#5fb3b3;">::</span><span style="color:#cccece;">thread_rng</span><span style="color:#5fb3b3;">());
+
+    </span><span style="color:#6699cc;">sort_range</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">slice</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">,</span><span style="color:#cccece;"> slice</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">len</span><span style="color:#5fb3b3;">() - </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">);
+}
+
+</span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">sort_range</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#cccece;">T</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> Ord</span><span style="color:#5fb3b3;">&gt;(</span><span style="color:#f99157;">slice</span><span style="color:#5fb3b3;">: &amp;</span><span style="color:#c594c5;">mut</span><span style="color:#cccece;"> [T], </span><span style="color:#f99157;">lo_idx</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">usize</span><span style="color:#cccece;">, </span><span style="color:#f99157;">hi_idx</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">usize</span><span style="color:#5fb3b3;">) {
+    </span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> lo_idx </span><span style="color:#5fb3b3;">&gt;=</span><span style="color:#cccece;"> hi_idx </span><span style="color:#5fb3b3;">{
+        </span><span style="color:#c594c5;">return</span><span style="color:#5fb3b3;">;
+    }
+    </span><span style="color:#c594c5;">let</span><span style="color:#cccece;"> partition_idx </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">partition</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">slice</span><span style="color:#5fb3b3;">,</span><span style="color:#cccece;"> lo_idx</span><span style="color:#5fb3b3;">,</span><span style="color:#cccece;"> hi_idx</span><span style="color:#5fb3b3;">);
+    </span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> partition_idx </span><span style="color:#5fb3b3;">&gt; </span><span style="color:#f99157;">0 </span><span style="color:#5fb3b3;">{
+        </span><span style="color:#6699cc;">sort_range</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">slice</span><span style="color:#5fb3b3;">,</span><span style="color:#cccece;"> lo_idx</span><span style="color:#5fb3b3;">,</span><span style="color:#cccece;"> partition_idx </span><span style="color:#5fb3b3;">- </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">);
+    }
+    </span><span style="color:#6699cc;">sort_range</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">slice</span><span style="color:#5fb3b3;">,</span><span style="color:#cccece;"> partition_idx </span><span style="color:#5fb3b3;">+ </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">,</span><span style="color:#cccece;"> hi_idx</span><span style="color:#5fb3b3;">);
+}
+
+</span><span style="color:#c594c5;">pub fn </span><span style="color:#6699cc;">partition</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#cccece;">T</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> Ord</span><span style="color:#5fb3b3;">&gt;(</span><span style="color:#f99157;">slice</span><span style="color:#5fb3b3;">: &amp;</span><span style="color:#c594c5;">mut</span><span style="color:#cccece;"> [T], </span><span style="color:#f99157;">lo_idx</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">usize</span><span style="color:#cccece;">, </span><span style="color:#f99157;">hi_idx</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">usize</span><span style="color:#5fb3b3;">) -&gt; </span><span style="color:#c594c5;">usize </span><span style="color:#5fb3b3;">{
+    </span><span style="color:#c594c5;">let mut</span><span style="color:#cccece;"> left_idx </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> lo_idx</span><span style="color:#5fb3b3;">;
+    </span><span style="color:#c594c5;">let mut</span><span style="color:#cccece;"> right_idx </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> hi_idx </span><span style="color:#5fb3b3;">+ </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">;
+
+    </span><span style="color:#c594c5;">loop </span><span style="color:#5fb3b3;">{
+        </span><span style="color:#c594c5;">loop </span><span style="color:#5fb3b3;">{</span><span style="color:#cccece;">
+            left_idx </span><span style="color:#5fb3b3;">+= </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">;
+            </span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> left_idx </span><span style="color:#5fb3b3;">==</span><span style="color:#cccece;"> hi_idx </span><span style="color:#5fb3b3;">||</span><span style="color:#cccece;"> slice</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">left_idx</span><span style="color:#5fb3b3;">] &gt;=</span><span style="color:#cccece;"> slice</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">lo_idx</span><span style="color:#5fb3b3;">] {
+                </span><span style="color:#c594c5;">break</span><span style="color:#5fb3b3;">;
+            }
+        }
+        </span><span style="color:#c594c5;">loop </span><span style="color:#5fb3b3;">{</span><span style="color:#cccece;">
+            right_idx </span><span style="color:#5fb3b3;">-= </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">;
+            </span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> right_idx </span><span style="color:#5fb3b3;">==</span><span style="color:#cccece;"> lo_idx </span><span style="color:#5fb3b3;">||</span><span style="color:#cccece;"> slice</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">right_idx</span><span style="color:#5fb3b3;">] &lt;=</span><span style="color:#cccece;"> slice</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">lo_idx</span><span style="color:#5fb3b3;">] {
+                </span><span style="color:#c594c5;">break</span><span style="color:#5fb3b3;">;
+            }
+        }
+        </span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> left_idx </span><span style="color:#5fb3b3;">&gt;=</span><span style="color:#cccece;"> right_idx </span><span style="color:#5fb3b3;">{
+            </span><span style="color:#c594c5;">break</span><span style="color:#5fb3b3;">;
+        }</span><span style="color:#cccece;">
+        slice</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">swap</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">left_idx</span><span style="color:#5fb3b3;">,</span><span style="color:#cccece;"> right_idx</span><span style="color:#5fb3b3;">);
+    }</span><span style="color:#cccece;">
+    slice</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">swap</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">lo_idx</span><span style="color:#5fb3b3;">,</span><span style="color:#cccece;"> right_idx</span><span style="color:#5fb3b3;">);</span><span style="color:#cccece;">
+
+    right_idx
+</span><span style="color:#5fb3b3;">}
+</span></pre>
+
+    </div>
+
+</div>
+
+</body>
+</html>

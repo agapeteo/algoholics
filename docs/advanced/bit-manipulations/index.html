@@ -1,0 +1,437 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <meta name="description" content="Bit manipulations">
+    <meta name="keywords" content="bit manipulations, learn, explain, tutorial, data structures, algorithms, graph, tree, interview, java, golang, kotlin, python, rust, javascript, advanced">
+
+    <title> 
+    Bit manipulations
+ | Practical algorithms and data structures </title>
+    <link rel='stylesheet' href='/styles/styles.css'/>
+</head>
+
+<body>
+
+<div class="rootContainer">
+    <div class="horizontal-menu-box">
+        
+    
+    
+    
+<div class="menu">
+    <!-- ABOUT -->
+    <div class="menuItem">
+        
+        <a href="/index.html" >
+            ABOUT
+        </a>
+        
+
+    </div>
+
+    <!-- FUNDAMENTAL -->
+    <div class="menuItem">
+        
+        <a href="/fundamental/contents" >
+            FUNDAMENTAL
+        </a>
+        
+    </div>
+
+    <!-- BASIC -->
+    <div class="menuItem">
+        
+        <a href="/basic/contents" >
+            BASIC
+        </a>
+        
+    </div>
+
+    <!-- ADVANCED -->
+    <div class="menuItem">
+        
+        <a href="/advanced/contents" >
+            ADVANCED
+        </a>
+        
+    </div>
+
+    <!-- NINJA -->
+    <div class="menuItem">
+
+        
+        <a href="/ninja/contents" >
+            NINJA
+        </a>
+        
+
+    </div>
+
+    <!-- LANGUAGES -->
+    <div class="menuItem">
+        
+        <a href="/languages/contents" >
+            LANGUAGES
+        </a>
+        
+
+    </div>
+
+</div>
+
+
+
+    </div>
+
+    <div class="content">
+        
+    <h1 id="bit-manipulations">Bit manipulations</h1>
+<h2 id="contents">Contents</h2>
+<hr />
+<ul>
+<li><a href="https://algoholics.io/advanced/bit-manipulations/#description">Description</a></li>
+<li><a href="https://algoholics.io/advanced/bit-manipulations/#practice">In practice</a></li>
+<li><a href="https://algoholics.io/advanced/bit-manipulations/#java">Java</a></li>
+<li><a href="https://algoholics.io/advanced/bit-manipulations/#go">Go</a></li>
+<li><a href="https://algoholics.io/advanced/bit-manipulations/#python">Python</a></li>
+<li><a href="https://algoholics.io/advanced/bit-manipulations/#javascript">JavaScript</a></li>
+<li><a href="https://algoholics.io/advanced/bit-manipulations/#kotlin">Kotlin</a></li>
+<li><a href="https://algoholics.io/advanced/bit-manipulations/#rust">Rust</a></li>
+</ul>
+<hr />
+<div id="description" />
+<h2 id="description">Description</h2>
+<p><code>TODO</code> </p>
+<div id="practice"/>
+<h2 id="in-practice">In practice</h2>
+<p>Usually should not be used for regular business logic 
+Sometime used for:</p>
+<ul>
+<li>fast multiplying or dividing by 2</li>
+<li>hash calculations</li>
+<li>as as compact and fast options check</li>
+<li>etc</li>
+</ul>
+<div id="java"/>
+<h2 id="java">Java</h2>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">package </span><span style="color:#cccece;">bits</span><span style="color:#5fb3b3;">;
+
+</span><span style="color:#c594c5;">public class </span><span style="color:#fac863;">BitManipulations </span><span style="color:#5fb3b3;">{
+
+    </span><span style="color:#c594c5;">public static int </span><span style="color:#6699cc;">twoInBinary</span><span style="color:#5fb3b3;">() {
+        </span><span style="color:#c594c5;">return </span><span style="color:#5fb3b3;">0b</span><span style="color:#f99157;">10</span><span style="color:#5fb3b3;">;
+    }
+
+    </span><span style="color:#c594c5;">public static </span><span style="color:#fac863;">String </span><span style="color:#6699cc;">toBinaryStr</span><span style="color:#5fb3b3;">(</span><span style="color:#c594c5;">int </span><span style="color:#f99157;">number</span><span style="color:#5fb3b3;">) {
+        </span><span style="color:#c594c5;">return </span><span style="color:#fac863;">Integer</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">toBinaryString</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">number</span><span style="color:#5fb3b3;">);
+    }
+
+    </span><span style="color:#c594c5;">public static boolean </span><span style="color:#6699cc;">checkBitSet</span><span style="color:#5fb3b3;">(</span><span style="color:#c594c5;">int </span><span style="color:#f99157;">idx</span><span style="color:#5fb3b3;">, </span><span style="color:#c594c5;">int </span><span style="color:#f99157;">number</span><span style="color:#5fb3b3;">) {
+        </span><span style="color:#c594c5;">int</span><span style="color:#cccece;"> mask </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">1 </span><span style="color:#5fb3b3;">&lt;&lt;</span><span style="color:#cccece;"> idx</span><span style="color:#5fb3b3;">;
+        </span><span style="color:#c594c5;">return </span><span style="color:#5fb3b3;">((</span><span style="color:#cccece;">number </span><span style="color:#5fb3b3;">&amp;</span><span style="color:#cccece;"> mask</span><span style="color:#5fb3b3;">) != </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">);
+    }
+
+    </span><span style="color:#c594c5;">public static int </span><span style="color:#6699cc;">setBit</span><span style="color:#5fb3b3;">(</span><span style="color:#c594c5;">int </span><span style="color:#f99157;">idx</span><span style="color:#5fb3b3;">, </span><span style="color:#c594c5;">int </span><span style="color:#f99157;">number</span><span style="color:#5fb3b3;">) {
+        </span><span style="color:#c594c5;">int</span><span style="color:#cccece;"> mask </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">1 </span><span style="color:#5fb3b3;">&lt;&lt;</span><span style="color:#cccece;"> idx</span><span style="color:#5fb3b3;">;
+        </span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> number </span><span style="color:#5fb3b3;">|</span><span style="color:#cccece;"> mask</span><span style="color:#5fb3b3;">;
+    }
+
+    </span><span style="color:#c594c5;">public static int </span><span style="color:#6699cc;">clearBit</span><span style="color:#5fb3b3;">(</span><span style="color:#c594c5;">int </span><span style="color:#f99157;">idx</span><span style="color:#5fb3b3;">, </span><span style="color:#c594c5;">int </span><span style="color:#f99157;">number</span><span style="color:#5fb3b3;">) {
+        </span><span style="color:#c594c5;">int</span><span style="color:#cccece;"> mask </span><span style="color:#5fb3b3;">= ~(</span><span style="color:#f99157;">1 </span><span style="color:#5fb3b3;">&lt;&lt;</span><span style="color:#cccece;"> idx</span><span style="color:#5fb3b3;">);
+        </span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> number </span><span style="color:#5fb3b3;">&amp;</span><span style="color:#cccece;"> mask</span><span style="color:#5fb3b3;">;
+    }
+
+    </span><span style="color:#c594c5;">public static int </span><span style="color:#6699cc;">toggleBit</span><span style="color:#5fb3b3;">(</span><span style="color:#c594c5;">int </span><span style="color:#f99157;">idx</span><span style="color:#5fb3b3;">, </span><span style="color:#c594c5;">int </span><span style="color:#f99157;">number</span><span style="color:#5fb3b3;">) {
+        </span><span style="color:#c594c5;">int</span><span style="color:#cccece;"> mask </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">1 </span><span style="color:#5fb3b3;">&lt;&lt;</span><span style="color:#cccece;"> idx</span><span style="color:#5fb3b3;">;
+        </span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> number </span><span style="color:#5fb3b3;">^</span><span style="color:#cccece;"> mask</span><span style="color:#5fb3b3;">;
+    }
+
+    </span><span style="color:#c594c5;">public static boolean </span><span style="color:#6699cc;">isEven</span><span style="color:#5fb3b3;">(</span><span style="color:#c594c5;">int </span><span style="color:#f99157;">number</span><span style="color:#5fb3b3;">) {
+        </span><span style="color:#c594c5;">return </span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">number </span><span style="color:#5fb3b3;">&amp; </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">) == </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">;
+    }
+}
+</span></pre><div id="go"/>
+<h2 id="go">Go</h2>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">package</span><span style="color:#cccece;"> bits
+
+</span><span style="color:#c594c5;">import </span><span style="color:#5fb3b3;">(
+	&quot;</span><span style="color:#99c794;">fmt</span><span style="color:#5fb3b3;">&quot;
+	&quot;</span><span style="color:#99c794;">strconv</span><span style="color:#5fb3b3;">&quot;
+)
+
+</span><span style="color:#c594c5;">func </span><span style="color:#6699cc;">TwoInBinary</span><span style="color:#5fb3b3;">() </span><span style="color:#c594c5;">int64 </span><span style="color:#5fb3b3;">{
+	</span><span style="color:#cccece;">base </span><span style="color:#5fb3b3;">:= </span><span style="color:#f99157;">2
+	</span><span style="color:#cccece;">bitSize </span><span style="color:#5fb3b3;">:= </span><span style="color:#f99157;">8
+
+	</span><span style="color:#cccece;">n</span><span style="color:#5fb3b3;">, </span><span style="color:#cccece;">_ </span><span style="color:#5fb3b3;">:=</span><span style="color:#cccece;"> strconv</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">ParseInt</span><span style="color:#5fb3b3;">(&quot;</span><span style="color:#99c794;">10</span><span style="color:#5fb3b3;">&quot;,</span><span style="color:#6699cc;"> base</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> bitSize</span><span style="color:#5fb3b3;">)
+	</span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> n
+</span><span style="color:#5fb3b3;">}
+
+</span><span style="color:#c594c5;">func </span><span style="color:#6699cc;">IntToBinaryStr</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">number </span><span style="color:#c594c5;">int64</span><span style="color:#5fb3b3;">) </span><span style="color:#c594c5;">string </span><span style="color:#5fb3b3;">{
+	</span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> fmt</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">Sprintf</span><span style="color:#5fb3b3;">(&quot;</span><span style="color:#99c794;">%b</span><span style="color:#5fb3b3;">&quot;,</span><span style="color:#6699cc;"> number</span><span style="color:#5fb3b3;">)
+}
+
+</span><span style="color:#c594c5;">func </span><span style="color:#6699cc;">IntToBinaryStrconv</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">number </span><span style="color:#c594c5;">int64</span><span style="color:#5fb3b3;">) </span><span style="color:#c594c5;">string </span><span style="color:#5fb3b3;">{
+	</span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> strconv</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">FormatInt</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">number</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">)
+}
+
+</span><span style="color:#c594c5;">func </span><span style="color:#6699cc;">CheckBitSet</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">idx </span><span style="color:#c594c5;">uint</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">n </span><span style="color:#c594c5;">int</span><span style="color:#5fb3b3;">) </span><span style="color:#c594c5;">bool </span><span style="color:#5fb3b3;">{
+	</span><span style="color:#cccece;">mask </span><span style="color:#5fb3b3;">:= </span><span style="color:#f99157;">1 </span><span style="color:#5fb3b3;">&lt;&lt;</span><span style="color:#cccece;"> idx
+	</span><span style="color:#c594c5;">return </span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">n </span><span style="color:#5fb3b3;">&amp;</span><span style="color:#cccece;"> mask</span><span style="color:#5fb3b3;">) != </span><span style="color:#f99157;">0
+</span><span style="color:#5fb3b3;">}
+
+</span><span style="color:#c594c5;">func </span><span style="color:#6699cc;">SetBit</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">idx </span><span style="color:#c594c5;">uint</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">n </span><span style="color:#c594c5;">int</span><span style="color:#5fb3b3;">) </span><span style="color:#c594c5;">int </span><span style="color:#5fb3b3;">{
+	</span><span style="color:#cccece;">mask </span><span style="color:#5fb3b3;">:= </span><span style="color:#f99157;">1 </span><span style="color:#5fb3b3;">&lt;&lt;</span><span style="color:#cccece;"> idx
+	</span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> n </span><span style="color:#5fb3b3;">|</span><span style="color:#cccece;"> mask
+</span><span style="color:#5fb3b3;">}
+
+</span><span style="color:#c594c5;">func </span><span style="color:#6699cc;">ClearBit</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">idx </span><span style="color:#c594c5;">uint</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">n </span><span style="color:#c594c5;">int</span><span style="color:#5fb3b3;">) </span><span style="color:#c594c5;">int </span><span style="color:#5fb3b3;">{
+	</span><span style="color:#cccece;">mask </span><span style="color:#5fb3b3;">:= ^(</span><span style="color:#f99157;">1 </span><span style="color:#5fb3b3;">&lt;&lt;</span><span style="color:#cccece;"> idx</span><span style="color:#5fb3b3;">)
+	</span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> n </span><span style="color:#5fb3b3;">&amp;</span><span style="color:#cccece;"> mask
+</span><span style="color:#5fb3b3;">}
+
+</span><span style="color:#c594c5;">func </span><span style="color:#6699cc;">toggleBit</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">idx </span><span style="color:#c594c5;">uint</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">n </span><span style="color:#c594c5;">int</span><span style="color:#5fb3b3;">) </span><span style="color:#c594c5;">int </span><span style="color:#5fb3b3;">{
+	</span><span style="color:#cccece;">mask </span><span style="color:#5fb3b3;">:= </span><span style="color:#f99157;">1 </span><span style="color:#5fb3b3;">&lt;&lt;</span><span style="color:#cccece;"> idx
+	</span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> n </span><span style="color:#5fb3b3;">^</span><span style="color:#cccece;"> mask
+</span><span style="color:#5fb3b3;">}
+
+</span><span style="color:#c594c5;">func </span><span style="color:#6699cc;">IsEven</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">n </span><span style="color:#c594c5;">int</span><span style="color:#5fb3b3;">) </span><span style="color:#c594c5;">bool </span><span style="color:#5fb3b3;">{
+	</span><span style="color:#c594c5;">return </span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">1 </span><span style="color:#5fb3b3;">&amp;</span><span style="color:#cccece;"> n</span><span style="color:#5fb3b3;">) == </span><span style="color:#f99157;">0
+</span><span style="color:#5fb3b3;">}
+
+</span></pre><div id="python"/>
+<h2 id="python">Python</h2>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">def </span><span style="color:#6699cc;">two_in_binary</span><span style="color:#5fb3b3;">():
+    </span><span style="color:#c594c5;">return </span><span style="color:#5fb3b3;">0b</span><span style="color:#f99157;">10
+
+
+</span><span style="color:#c594c5;">def </span><span style="color:#6699cc;">two_in_binary_2</span><span style="color:#5fb3b3;">():
+    </span><span style="color:#c594c5;">return </span><span style="color:#fac863;">int</span><span style="color:#5fb3b3;">(&quot;</span><span style="color:#99c794;">10</span><span style="color:#5fb3b3;">&quot;, </span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">)
+
+
+</span><span style="color:#c594c5;">def </span><span style="color:#6699cc;">number_to_binary_str</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">in_number</span><span style="color:#5fb3b3;">):
+    </span><span style="color:#c594c5;">return </span><span style="color:#6699cc;">format</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">in_number</span><span style="color:#5fb3b3;">, &quot;</span><span style="color:#99c794;">b</span><span style="color:#5fb3b3;">&quot;)
+
+
+</span><span style="color:#c594c5;">def </span><span style="color:#6699cc;">number_to_binary_str_2</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">in_number</span><span style="color:#5fb3b3;">):
+    </span><span style="color:#c594c5;">return </span><span style="color:#5fb3b3;">&quot;{</span><span style="color:#99c794;">0:b</span><span style="color:#5fb3b3;">}&quot;.</span><span style="color:#6699cc;">format</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">in_number</span><span style="color:#5fb3b3;">)
+
+
+</span><span style="color:#c594c5;">def </span><span style="color:#6699cc;">check_bit</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">idx</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">in_number</span><span style="color:#5fb3b3;">):
+    </span><span style="color:#cccece;">mask </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">1 </span><span style="color:#5fb3b3;">&lt;&lt; </span><span style="color:#cccece;">idx
+    </span><span style="color:#c594c5;">return </span><span style="color:#cccece;">mask </span><span style="color:#5fb3b3;">&amp; </span><span style="color:#cccece;">in_number </span><span style="color:#5fb3b3;">!= </span><span style="color:#f99157;">0
+
+
+</span><span style="color:#c594c5;">def </span><span style="color:#6699cc;">set_bit</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">idx</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">in_number</span><span style="color:#5fb3b3;">):
+    </span><span style="color:#cccece;">mask </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">1 </span><span style="color:#5fb3b3;">&lt;&lt; </span><span style="color:#cccece;">idx
+    </span><span style="color:#c594c5;">return </span><span style="color:#cccece;">mask </span><span style="color:#5fb3b3;">| </span><span style="color:#cccece;">in_number
+
+
+</span><span style="color:#c594c5;">def </span><span style="color:#6699cc;">clear_bit</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">idx</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">in_number</span><span style="color:#5fb3b3;">):
+    </span><span style="color:#cccece;">mask </span><span style="color:#5fb3b3;">= ~(</span><span style="color:#f99157;">1 </span><span style="color:#5fb3b3;">&lt;&lt; </span><span style="color:#cccece;">idx</span><span style="color:#5fb3b3;">)
+    </span><span style="color:#c594c5;">return </span><span style="color:#cccece;">in_number </span><span style="color:#5fb3b3;">&amp; </span><span style="color:#cccece;">mask
+
+
+</span><span style="color:#c594c5;">def </span><span style="color:#6699cc;">toggle_bit</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">idx</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">in_number</span><span style="color:#5fb3b3;">):
+    </span><span style="color:#cccece;">mask </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">1 </span><span style="color:#5fb3b3;">&lt;&lt; </span><span style="color:#cccece;">idx
+    </span><span style="color:#c594c5;">return </span><span style="color:#cccece;">in_number </span><span style="color:#5fb3b3;">^ </span><span style="color:#cccece;">mask
+
+
+</span><span style="color:#c594c5;">def </span><span style="color:#6699cc;">is_even</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">in_number</span><span style="color:#5fb3b3;">):
+    </span><span style="color:#c594c5;">return </span><span style="color:#cccece;">in_number </span><span style="color:#5fb3b3;">&amp; </span><span style="color:#f99157;">1 </span><span style="color:#5fb3b3;">== </span><span style="color:#f99157;">0
+</span></pre><div id="javascript"/>
+<h2 id="javascript">JavaScript</h2>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">function </span><span style="color:#6699cc;">twoInBinary</span><span style="color:#5fb3b3;">() {
+    </span><span style="color:#c594c5;">return </span><span style="color:#5fb3b3;">0b</span><span style="color:#f99157;">10
+</span><span style="color:#5fb3b3;">}
+
+</span><span style="color:#c594c5;">function </span><span style="color:#6699cc;">twoInBinary2</span><span style="color:#5fb3b3;">() {
+    </span><span style="color:#c594c5;">return </span><span style="color:#6699cc;">parseInt</span><span style="color:#5fb3b3;">(&quot;</span><span style="color:#99c794;">10</span><span style="color:#5fb3b3;">&quot;, </span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">)
+}
+
+</span><span style="color:#c594c5;">function </span><span style="color:#6699cc;">numberToBinaryStr</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">number</span><span style="color:#5fb3b3;">) {
+    </span><span style="color:#c594c5;">return </span><span style="color:#cccece;">number</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">toString</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">)
+}
+
+</span><span style="color:#c594c5;">function </span><span style="color:#6699cc;">checkBit</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">idx</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">number</span><span style="color:#5fb3b3;">) {
+    </span><span style="color:#c594c5;">const </span><span style="color:#cccece;">mask </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">1 </span><span style="color:#5fb3b3;">&lt;&lt; </span><span style="color:#cccece;">idx</span><span style="color:#5fb3b3;">;
+    </span><span style="color:#c594c5;">return </span><span style="color:#5fb3b3;">((</span><span style="color:#cccece;">number </span><span style="color:#5fb3b3;">&amp; </span><span style="color:#cccece;">mask</span><span style="color:#5fb3b3;">) != </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">)
+}
+
+</span><span style="color:#c594c5;">function </span><span style="color:#6699cc;">setBit</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">idx</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">number</span><span style="color:#5fb3b3;">) {
+    </span><span style="color:#c594c5;">const </span><span style="color:#cccece;">mask </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">1 </span><span style="color:#5fb3b3;">&lt;&lt; </span><span style="color:#cccece;">idx</span><span style="color:#5fb3b3;">;
+    </span><span style="color:#c594c5;">return </span><span style="color:#cccece;">number </span><span style="color:#5fb3b3;">| </span><span style="color:#cccece;">mask
+</span><span style="color:#5fb3b3;">}
+
+</span><span style="color:#c594c5;">function </span><span style="color:#6699cc;">clearBit</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">idx</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">number</span><span style="color:#5fb3b3;">) {
+    </span><span style="color:#c594c5;">const </span><span style="color:#cccece;">mask </span><span style="color:#5fb3b3;">= ~(</span><span style="color:#f99157;">1 </span><span style="color:#5fb3b3;">&lt;&lt; </span><span style="color:#cccece;">idx</span><span style="color:#5fb3b3;">);
+    </span><span style="color:#c594c5;">return </span><span style="color:#cccece;">number </span><span style="color:#5fb3b3;">&amp; </span><span style="color:#cccece;">mask
+</span><span style="color:#5fb3b3;">}
+
+</span><span style="color:#c594c5;">function </span><span style="color:#6699cc;">toggleBit</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">idx</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">number</span><span style="color:#5fb3b3;">) {
+    </span><span style="color:#c594c5;">const </span><span style="color:#cccece;">mask </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">1 </span><span style="color:#5fb3b3;">&lt;&lt; </span><span style="color:#cccece;">idx</span><span style="color:#5fb3b3;">;
+    </span><span style="color:#c594c5;">return </span><span style="color:#cccece;">number </span><span style="color:#5fb3b3;">^ </span><span style="color:#cccece;">mask
+</span><span style="color:#5fb3b3;">}
+
+</span><span style="color:#c594c5;">function </span><span style="color:#6699cc;">isEven</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">number</span><span style="color:#5fb3b3;">) {
+    </span><span style="color:#c594c5;">return </span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">1 </span><span style="color:#5fb3b3;">&amp; </span><span style="color:#cccece;">number</span><span style="color:#5fb3b3;">) == </span><span style="color:#f99157;">0
+</span><span style="color:#5fb3b3;">}
+</span></pre><div id="kotlin"/>
+<h2 id="kotlin">Kotlin</h2>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">package </span><span style="color:#cccece;">bits
+
+object BitManipulations {
+    </span><span style="color:#c594c5;">fun </span><span style="color:#6699cc;">twoInBinary</span><span style="color:#cccece;">()</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">Int</span><span style="color:#cccece;"> {
+        </span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> 0b10
+    }
+
+    </span><span style="color:#c594c5;">fun </span><span style="color:#6699cc;">numberToBinaryStr</span><span style="color:#cccece;">(</span><span style="color:#f99157;">number</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">Int</span><span style="color:#cccece;">)</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">String</span><span style="color:#cccece;"> {
+        </span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> number</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">toString(</span><span style="color:#f99157;">2</span><span style="color:#cccece;">)
+    }
+
+    </span><span style="color:#c594c5;">fun </span><span style="color:#6699cc;">checkBit</span><span style="color:#cccece;">(</span><span style="color:#f99157;">idx</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">Int</span><span style="color:#cccece;">, </span><span style="color:#f99157;">number</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">Int</span><span style="color:#cccece;">)</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">Boolean</span><span style="color:#cccece;"> {
+        </span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> number and (</span><span style="color:#f99157;">1</span><span style="color:#cccece;"> shl idx) </span><span style="color:#5fb3b3;">!= </span><span style="color:#f99157;">0</span><span style="color:#cccece;">
+    }
+
+    </span><span style="color:#c594c5;">fun </span><span style="color:#6699cc;">setBit</span><span style="color:#cccece;">(</span><span style="color:#f99157;">idx</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">Int</span><span style="color:#cccece;">, </span><span style="color:#f99157;">number</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">Int</span><span style="color:#cccece;">)</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">Int</span><span style="color:#cccece;"> {
+        </span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> number or (</span><span style="color:#f99157;">1</span><span style="color:#cccece;"> shl idx)
+    }
+
+    </span><span style="color:#c594c5;">fun </span><span style="color:#6699cc;">clearBit</span><span style="color:#cccece;">(</span><span style="color:#f99157;">idx</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">Int</span><span style="color:#cccece;">, </span><span style="color:#f99157;">number</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">Int</span><span style="color:#cccece;">)</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">Int</span><span style="color:#cccece;"> {
+        </span><span style="color:#c594c5;">val </span><span style="color:#cccece;">mask </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> (</span><span style="color:#f99157;">1</span><span style="color:#cccece;"> shl idx)</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">inv()
+        </span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> number and mask
+    }
+
+    </span><span style="color:#c594c5;">fun </span><span style="color:#6699cc;">toggleBit</span><span style="color:#cccece;">(</span><span style="color:#f99157;">idx</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">Int</span><span style="color:#cccece;">, </span><span style="color:#f99157;">number</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">Int</span><span style="color:#cccece;">)</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">Int</span><span style="color:#cccece;"> {
+        </span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> number xor (</span><span style="color:#f99157;">1</span><span style="color:#cccece;"> shl idx)
+    }
+
+    </span><span style="color:#c594c5;">fun </span><span style="color:#6699cc;">isEven</span><span style="color:#cccece;">(</span><span style="color:#f99157;">number</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">Int</span><span style="color:#cccece;">)</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">Boolean</span><span style="color:#cccece;"> {
+        </span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> (</span><span style="color:#f99157;">1</span><span style="color:#cccece;"> and number) </span><span style="color:#5fb3b3;">== </span><span style="color:#f99157;">0</span><span style="color:#cccece;">
+    }
+}
+</span></pre><div id="rust"/>
+<h2 id="rust">Rust</h2>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">fn </span><span style="color:#6699cc;">two_in_binary_format</span><span style="color:#5fb3b3;">() -&gt; </span><span style="color:#c594c5;">usize </span><span style="color:#5fb3b3;">{
+    </span><span style="color:#f99157;">0b10
+</span><span style="color:#5fb3b3;">}
+
+</span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">to_binary_str</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">n</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">u8</span><span style="color:#5fb3b3;">) -&gt;</span><span style="color:#cccece;"> String </span><span style="color:#5fb3b3;">{
+    </span><span style="color:#cccece;">format!</span><span style="color:#5fb3b3;">(&quot;</span><span style="color:#99c794;">{:08b}</span><span style="color:#5fb3b3;">&quot;,</span><span style="color:#cccece;"> n</span><span style="color:#5fb3b3;">)
+}
+
+</span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">check_bit_set</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">n</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">usize</span><span style="color:#cccece;">, </span><span style="color:#f99157;">idx</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">usize</span><span style="color:#5fb3b3;">) -&gt; </span><span style="color:#c594c5;">bool </span><span style="color:#5fb3b3;">{
+    ((</span><span style="color:#f99157;">1 </span><span style="color:#5fb3b3;">&lt;&lt;</span><span style="color:#cccece;"> idx</span><span style="color:#5fb3b3;">) &amp;</span><span style="color:#cccece;"> n</span><span style="color:#5fb3b3;">) != </span><span style="color:#f99157;">0
+</span><span style="color:#5fb3b3;">}
+
+</span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">set_bit</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">n</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">usize</span><span style="color:#cccece;">, </span><span style="color:#f99157;">idx</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">usize</span><span style="color:#5fb3b3;">) -&gt; </span><span style="color:#c594c5;">usize </span><span style="color:#5fb3b3;">{
+    (</span><span style="color:#f99157;">1 </span><span style="color:#5fb3b3;">&lt;&lt;</span><span style="color:#cccece;"> idx</span><span style="color:#5fb3b3;">) |</span><span style="color:#cccece;"> n
+</span><span style="color:#5fb3b3;">}
+
+</span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">clear_bit</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">n</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">usize</span><span style="color:#cccece;">, </span><span style="color:#f99157;">idx</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">usize</span><span style="color:#5fb3b3;">) -&gt; </span><span style="color:#c594c5;">usize </span><span style="color:#5fb3b3;">{
+    </span><span style="color:#c594c5;">let</span><span style="color:#cccece;"> mask </span><span style="color:#5fb3b3;">= !(</span><span style="color:#f99157;">1 </span><span style="color:#5fb3b3;">&lt;&lt;</span><span style="color:#cccece;"> idx</span><span style="color:#5fb3b3;">);</span><span style="color:#cccece;">
+    n </span><span style="color:#5fb3b3;">&amp;</span><span style="color:#cccece;"> mask
+</span><span style="color:#5fb3b3;">}
+
+</span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">toggle_bit</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">n</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">usize</span><span style="color:#cccece;">, </span><span style="color:#f99157;">idx</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">usize</span><span style="color:#5fb3b3;">) -&gt; </span><span style="color:#c594c5;">usize </span><span style="color:#5fb3b3;">{
+    (</span><span style="color:#f99157;">1 </span><span style="color:#5fb3b3;">&lt;&lt;</span><span style="color:#cccece;"> idx</span><span style="color:#5fb3b3;">) ^</span><span style="color:#cccece;"> n
+</span><span style="color:#5fb3b3;">}
+
+</span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">is_even</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">n</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">usize</span><span style="color:#5fb3b3;">) -&gt; </span><span style="color:#c594c5;">bool </span><span style="color:#5fb3b3;">{
+    (</span><span style="color:#cccece;">n </span><span style="color:#5fb3b3;">&amp; </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">) != </span><span style="color:#f99157;">1
+</span><span style="color:#5fb3b3;">}
+
+#[</span><span style="color:#cccece;">cfg</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">test</span><span style="color:#5fb3b3;">)]
+</span><span style="color:#c594c5;">mod </span><span style="color:#cccece;">tests </span><span style="color:#5fb3b3;">{
+    </span><span style="color:#c594c5;">use super</span><span style="color:#5fb3b3;">::*;
+
+    #[</span><span style="color:#cccece;">test</span><span style="color:#5fb3b3;">]
+    </span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">test_two_in_binary_format</span><span style="color:#5fb3b3;">() {
+        </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">two_in_binary_format</span><span style="color:#5fb3b3;">(), </span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">);
+    }
+
+    #[</span><span style="color:#cccece;">test</span><span style="color:#5fb3b3;">]
+    </span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">test_to_binary_str</span><span style="color:#5fb3b3;">() {
+        </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">to_binary_str</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">), &quot;</span><span style="color:#99c794;">00000010</span><span style="color:#5fb3b3;">&quot;)
+    }
+
+    #[</span><span style="color:#cccece;">test</span><span style="color:#5fb3b3;">]
+    </span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">test_check_bit_set</span><span style="color:#5fb3b3;">() {
+        </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">check_bit_set</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">), </span><span style="color:#f99157;">true</span><span style="color:#5fb3b3;">);
+        </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">check_bit_set</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">), </span><span style="color:#f99157;">false</span><span style="color:#5fb3b3;">);
+
+        </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">check_bit_set</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">), </span><span style="color:#f99157;">false</span><span style="color:#5fb3b3;">);
+        </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">check_bit_set</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">), </span><span style="color:#f99157;">true</span><span style="color:#5fb3b3;">);
+        </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">check_bit_set</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">), </span><span style="color:#f99157;">false</span><span style="color:#5fb3b3;">);
+
+        </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">check_bit_set</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">3</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">), </span><span style="color:#f99157;">true</span><span style="color:#5fb3b3;">);
+        </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">check_bit_set</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">3</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">), </span><span style="color:#f99157;">true</span><span style="color:#5fb3b3;">);
+        </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">check_bit_set</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">3</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">), </span><span style="color:#f99157;">false</span><span style="color:#5fb3b3;">);
+
+        </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">check_bit_set</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">4</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">), </span><span style="color:#f99157;">false</span><span style="color:#5fb3b3;">);
+        </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">check_bit_set</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">4</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">), </span><span style="color:#f99157;">false</span><span style="color:#5fb3b3;">);
+        </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">check_bit_set</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">4</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">), </span><span style="color:#f99157;">true</span><span style="color:#5fb3b3;">);
+    }
+
+    #[</span><span style="color:#cccece;">test</span><span style="color:#5fb3b3;">]
+    </span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">test_set_bit</span><span style="color:#5fb3b3;">() {
+        </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">set_bit</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">), </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">);
+        </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">set_bit</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">), </span><span style="color:#f99157;">3</span><span style="color:#5fb3b3;">);
+
+        </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">set_bit</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">), </span><span style="color:#f99157;">3</span><span style="color:#5fb3b3;">);
+        </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">set_bit</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">), </span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">);
+        </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">set_bit</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">), </span><span style="color:#f99157;">6</span><span style="color:#5fb3b3;">);
+
+        </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">set_bit</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">3</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">), </span><span style="color:#f99157;">3</span><span style="color:#5fb3b3;">);
+        </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">set_bit</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">3</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">), </span><span style="color:#f99157;">3</span><span style="color:#5fb3b3;">);
+        </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">set_bit</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">3</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">), </span><span style="color:#f99157;">7</span><span style="color:#5fb3b3;">);
+    }
+
+    #[</span><span style="color:#cccece;">test</span><span style="color:#5fb3b3;">]
+    </span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">test_toggle_bit</span><span style="color:#5fb3b3;">() {
+        </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">toggle_bit</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">), </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">);
+        </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">toggle_bit</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">), </span><span style="color:#f99157;">3</span><span style="color:#5fb3b3;">);
+
+        </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">toggle_bit</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">), </span><span style="color:#f99157;">3</span><span style="color:#5fb3b3;">);
+        </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">toggle_bit</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">), </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">);
+        </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">toggle_bit</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">), </span><span style="color:#f99157;">6</span><span style="color:#5fb3b3;">);
+
+        </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">toggle_bit</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">3</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">), </span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">);
+        </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">toggle_bit</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">3</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">), </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">);
+        </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">toggle_bit</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">3</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">), </span><span style="color:#f99157;">7</span><span style="color:#5fb3b3;">);
+    }
+
+
+    #[</span><span style="color:#cccece;">test</span><span style="color:#5fb3b3;">]
+    </span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">test_is_even</span><span style="color:#5fb3b3;">() {
+        </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">is_even</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">), </span><span style="color:#f99157;">true</span><span style="color:#5fb3b3;">);
+        </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">is_even</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">), </span><span style="color:#f99157;">false</span><span style="color:#5fb3b3;">);
+        </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">is_even</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">), </span><span style="color:#f99157;">true</span><span style="color:#5fb3b3;">);
+        </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">is_even</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">3</span><span style="color:#5fb3b3;">), </span><span style="color:#f99157;">false</span><span style="color:#5fb3b3;">);
+        </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">is_even</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">4</span><span style="color:#5fb3b3;">), </span><span style="color:#f99157;">true</span><span style="color:#5fb3b3;">);
+        </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">is_even</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">11</span><span style="color:#5fb3b3;">), </span><span style="color:#f99157;">false</span><span style="color:#5fb3b3;">);
+    }
+
+    #[</span><span style="color:#cccece;">test</span><span style="color:#5fb3b3;">]
+    </span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">test_clear_bit</span><span style="color:#5fb3b3;">() {
+        </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">clear_bit</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">), </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">);
+        </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">clear_bit</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">), </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">);
+        </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">clear_bit</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">7</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">), </span><span style="color:#f99157;">5</span><span style="color:#5fb3b3;">);
+    }
+}
+</span></pre>
+
+    </div>
+
+</div>
+
+</body>
+</html>

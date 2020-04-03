@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}
+    {{ page.title }}
+{% endblock title %}
+
+{% block header %}
+    {% set cur_menu_item = page.extra.menu_item | default(value="none") %}
+    {% set menu_item = cur_menu_item %}
+    {% include "header.html" %}
+{% endblock header %}
+
+{% block seo_meta %}
+    <meta name="description" content="{{ page.description }}">
+    <meta name="keywords" content="{{ page.extra.keywords }}">
+{% endblock seo_meta %}
+
+
+{% block content %}
+    {{ page.content | safe }}
+{% endblock content %}

@@ -1,0 +1,427 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <meta name="description" content="Validate single parentheses">
+    <meta name="keywords" content="Validate single parentheses, learn, explain, tutorial, data structures, algorithms, graph, tree, interview, java, golang, kotlin, python, javascript, rust">
+
+    <title> 
+    Validate single parentheses
+ | Practical algorithms and data structures </title>
+    <link rel='stylesheet' href='/styles/styles.css'/>
+</head>
+
+<body>
+
+<div class="rootContainer">
+    <div class="horizontal-menu-box">
+        
+    
+    
+    
+<div class="menu">
+    <!-- ABOUT -->
+    <div class="menuItem">
+        
+        <a href="/index.html" >
+            ABOUT
+        </a>
+        
+
+    </div>
+
+    <!-- FUNDAMENTAL -->
+    <div class="menuItem">
+        
+        <a href="/fundamental/contents" >
+            FUNDAMENTAL
+        </a>
+        
+    </div>
+
+    <!-- BASIC -->
+    <div class="menuItem">
+        
+        <a href="/basic/contents" >
+            BASIC
+        </a>
+        
+    </div>
+
+    <!-- ADVANCED -->
+    <div class="menuItem">
+        
+        <a href="/advanced/contents" >
+            ADVANCED
+        </a>
+        
+    </div>
+
+    <!-- NINJA -->
+    <div class="menuItem">
+
+        
+        <a href="/ninja/contents" >
+            NINJA
+        </a>
+        
+
+    </div>
+
+    <!-- LANGUAGES -->
+    <div class="menuItem">
+        
+        <a href="/languages/contents" >
+            LANGUAGES
+        </a>
+        
+
+    </div>
+
+</div>
+
+
+
+    </div>
+
+    <div class="content">
+        
+    <h1 id="validate-single-parentheses">Validate single parentheses</h1>
+<h2 id="contents">Contents</h2>
+<hr />
+<ul>
+<li><a href="https://algoholics.io/fundamental/validate-single-parentheses/#description">Description</a></li>
+<li><a href="https://algoholics.io/fundamental/validate-single-parentheses/#complexity">Complexity</a></li>
+<li><a href="https://algoholics.io/fundamental/validate-single-parentheses/#java">Java</a></li>
+<li><a href="https://algoholics.io/fundamental/validate-single-parentheses/#go">Go</a></li>
+<li><a href="https://algoholics.io/fundamental/validate-single-parentheses/#python">Python</a></li>
+<li><a href="https://algoholics.io/fundamental/validate-single-parentheses/#javascript">JavaScript</a></li>
+<li><a href="https://algoholics.io/fundamental/validate-single-parentheses/#kotlin">Kotlin</a></li>
+<li><a href="https://algoholics.io/fundamental/validate-single-parentheses/#rust">Rust</a></li>
+</ul>
+<hr />
+<div id="description"/>
+<h2 id="description">Description</h2>
+<p>Unlike <a href="/validate-multiple-parentheses.html">multiple parentheses</a>, single parentheses validation doesn't require <code>Stack</code> data structure.</p>
+<p>Using simple counter is enough: </p>
+<ul>
+<li>for open parenthesis, like <code>(</code>, <strong>increment counter</strong></li>
+<li>for close parenthesis, like <code>)</code>, <strong>decrement counter</strong></li>
+</ul>
+<p>To avoid invalid cases like <code>)(</code> or <code>())(</code> check if <code>counter == 0</code>, if so - return <code>false</code></p>
+<p>After checking each character return <code>true</code> if <code>counter == 0</code>, otherwise return <code>false</code></p>
+<div id="complexity"/>
+<h2 id="complexity">Complexity</h2>
+<p><code>O(N)</code></p>
+<div id="java"/>
+<h2 id="java">Java</h2>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">package </span><span style="color:#cccece;">arrays</span><span style="color:#5fb3b3;">;
+
+</span><span style="color:#c594c5;">public class </span><span style="color:#fac863;">JavaSingleParenthesesValidator </span><span style="color:#5fb3b3;">{
+    </span><span style="color:#c594c5;">private final char </span><span style="color:#cccece;">open</span><span style="color:#5fb3b3;">;
+    </span><span style="color:#c594c5;">private final char </span><span style="color:#cccece;">close</span><span style="color:#5fb3b3;">;
+    </span><span style="color:#c594c5;">private int </span><span style="color:#cccece;">counter</span><span style="color:#5fb3b3;">;
+
+    </span><span style="color:#c594c5;">public </span><span style="color:#6699cc;">JavaSingleParenthesesValidator</span><span style="color:#5fb3b3;">(</span><span style="color:#c594c5;">char </span><span style="color:#f99157;">open</span><span style="color:#5fb3b3;">, </span><span style="color:#c594c5;">char </span><span style="color:#f99157;">close</span><span style="color:#5fb3b3;">) {
+        </span><span style="color:#ec5f67;">this</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">open </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> open</span><span style="color:#5fb3b3;">;
+        </span><span style="color:#ec5f67;">this</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">close </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> close</span><span style="color:#5fb3b3;">;
+    }
+
+    </span><span style="color:#c594c5;">public boolean </span><span style="color:#6699cc;">validate</span><span style="color:#5fb3b3;">(</span><span style="color:#fac863;">String </span><span style="color:#f99157;">str</span><span style="color:#5fb3b3;">) {
+        </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">str </span><span style="color:#5fb3b3;">== </span><span style="color:#f99157;">null </span><span style="color:#5fb3b3;">||</span><span style="color:#cccece;"> str</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">isEmpty</span><span style="color:#5fb3b3;">()) </span><span style="color:#c594c5;">return </span><span style="color:#f99157;">false</span><span style="color:#5fb3b3;">;
+
+        </span><span style="color:#c594c5;">char[]</span><span style="color:#cccece;"> chars </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> str</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">toCharArray</span><span style="color:#5fb3b3;">();
+
+        </span><span style="color:#c594c5;">for </span><span style="color:#5fb3b3;">(</span><span style="color:#c594c5;">int</span><span style="color:#cccece;"> i </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">;</span><span style="color:#cccece;"> i </span><span style="color:#5fb3b3;">&lt;</span><span style="color:#cccece;"> chars</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">length</span><span style="color:#5fb3b3;">;</span><span style="color:#cccece;"> i</span><span style="color:#5fb3b3;">++) {
+            </span><span style="color:#c594c5;">char</span><span style="color:#cccece;"> curChar </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> chars[i]</span><span style="color:#5fb3b3;">;
+            </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">curChar </span><span style="color:#5fb3b3;">==</span><span style="color:#cccece;"> open</span><span style="color:#5fb3b3;">) {</span><span style="color:#cccece;">
+                counter</span><span style="color:#5fb3b3;">++;
+            } </span><span style="color:#c594c5;">else if </span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">curChar </span><span style="color:#5fb3b3;">==</span><span style="color:#cccece;"> close</span><span style="color:#5fb3b3;">) {
+                </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">counter </span><span style="color:#5fb3b3;">== </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">) </span><span style="color:#c594c5;">return </span><span style="color:#f99157;">false</span><span style="color:#5fb3b3;">;</span><span style="color:#cccece;">
+
+                counter</span><span style="color:#5fb3b3;">--;
+            }
+        }
+        </span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> counter </span><span style="color:#5fb3b3;">== </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">;
+    }
+}
+</span></pre>
+<p>Test:</p>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">package </span><span style="color:#cccece;">arrays</span><span style="color:#5fb3b3;">;
+
+
+</span><span style="color:#c594c5;">import </span><span style="color:#fac863;">org</span><span style="color:#5fb3b3;">.</span><span style="color:#fac863;">junit</span><span style="color:#5fb3b3;">.</span><span style="color:#fac863;">jupiter</span><span style="color:#5fb3b3;">.</span><span style="color:#fac863;">api</span><span style="color:#5fb3b3;">.</span><span style="color:#fac863;">Test</span><span style="color:#5fb3b3;">;
+
+</span><span style="color:#c594c5;">import static </span><span style="color:#fac863;">org</span><span style="color:#5fb3b3;">.</span><span style="color:#fac863;">junit</span><span style="color:#5fb3b3;">.</span><span style="color:#fac863;">jupiter</span><span style="color:#5fb3b3;">.</span><span style="color:#fac863;">api</span><span style="color:#5fb3b3;">.</span><span style="color:#fac863;">Assertions</span><span style="color:#5fb3b3;">.*;
+
+</span><span style="color:#c594c5;">class </span><span style="color:#fac863;">JavaSingleParenthesesValidatorTest </span><span style="color:#5fb3b3;">{
+
+    @</span><span style="color:#cccece;">Test
+    </span><span style="color:#c594c5;">public void </span><span style="color:#6699cc;">validateCorrect</span><span style="color:#5fb3b3;">() {
+        </span><span style="color:#5f6364;">// given
+        </span><span style="color:#fac863;">JavaSingleParenthesesValidator</span><span style="color:#cccece;"> validator </span><span style="color:#5fb3b3;">= </span><span style="color:#c594c5;">new </span><span style="color:#fac863;">JavaSingleParenthesesValidator</span><span style="color:#5fb3b3;">(&#39;</span><span style="color:#99c794;">(</span><span style="color:#5fb3b3;">&#39;</span><span style="color:#cccece;">, </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">)</span><span style="color:#5fb3b3;">&#39;);
+
+        </span><span style="color:#5f6364;">// when
+        </span><span style="color:#c594c5;">boolean</span><span style="color:#cccece;"> actual </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> validator</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">validate</span><span style="color:#5fb3b3;">(&quot;</span><span style="color:#99c794;">to ((be)) or (not) to be</span><span style="color:#5fb3b3;">&quot;);
+
+        </span><span style="color:#5f6364;">// then
+        </span><span style="color:#6699cc;">assertTrue</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">actual</span><span style="color:#5fb3b3;">);
+    }
+
+    @</span><span style="color:#cccece;">Test
+    </span><span style="color:#c594c5;">public void </span><span style="color:#6699cc;">validateIncorrect</span><span style="color:#5fb3b3;">() {
+        </span><span style="color:#5f6364;">// given
+        </span><span style="color:#fac863;">JavaSingleParenthesesValidator</span><span style="color:#cccece;"> validator </span><span style="color:#5fb3b3;">= </span><span style="color:#c594c5;">new </span><span style="color:#fac863;">JavaSingleParenthesesValidator</span><span style="color:#5fb3b3;">(&#39;</span><span style="color:#99c794;">(</span><span style="color:#5fb3b3;">&#39;</span><span style="color:#cccece;">, </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">)</span><span style="color:#5fb3b3;">&#39;);
+
+        </span><span style="color:#5f6364;">// when
+        </span><span style="color:#c594c5;">boolean</span><span style="color:#cccece;"> actual </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> validator</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">validate</span><span style="color:#5fb3b3;">(&quot;</span><span style="color:#99c794;">to ((be)(or) not</span><span style="color:#5fb3b3;">&quot;);
+
+        </span><span style="color:#5f6364;">// then
+        </span><span style="color:#6699cc;">assertFalse</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">actual</span><span style="color:#5fb3b3;">);
+    }
+
+    @</span><span style="color:#cccece;">Test
+    </span><span style="color:#c594c5;">public void </span><span style="color:#6699cc;">startsClosedShouldFail</span><span style="color:#5fb3b3;">() {
+        </span><span style="color:#5f6364;">// given
+        </span><span style="color:#fac863;">JavaSingleParenthesesValidator</span><span style="color:#cccece;"> validator </span><span style="color:#5fb3b3;">= </span><span style="color:#c594c5;">new </span><span style="color:#fac863;">JavaSingleParenthesesValidator</span><span style="color:#5fb3b3;">(&#39;</span><span style="color:#99c794;">(</span><span style="color:#5fb3b3;">&#39;</span><span style="color:#cccece;">, </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">)</span><span style="color:#5fb3b3;">&#39;);
+
+        </span><span style="color:#5f6364;">// when
+        </span><span style="color:#c594c5;">boolean</span><span style="color:#cccece;"> actual </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> validator</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">validate</span><span style="color:#5fb3b3;">(&quot;</span><span style="color:#99c794;">)(</span><span style="color:#5fb3b3;">&quot;);
+
+        </span><span style="color:#5f6364;">// then
+        </span><span style="color:#6699cc;">assertFalse</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">actual</span><span style="color:#5fb3b3;">);
+    }
+
+    @</span><span style="color:#cccece;">Test
+    </span><span style="color:#c594c5;">public void </span><span style="color:#6699cc;">notValidClosedPositionInTheMiddle</span><span style="color:#5fb3b3;">() {
+        </span><span style="color:#5f6364;">// given
+        </span><span style="color:#fac863;">JavaSingleParenthesesValidator</span><span style="color:#cccece;"> validator </span><span style="color:#5fb3b3;">= </span><span style="color:#c594c5;">new </span><span style="color:#fac863;">JavaSingleParenthesesValidator</span><span style="color:#5fb3b3;">(&#39;</span><span style="color:#99c794;">(</span><span style="color:#5fb3b3;">&#39;</span><span style="color:#cccece;">, </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">)</span><span style="color:#5fb3b3;">&#39;);
+
+        </span><span style="color:#5f6364;">// when
+        </span><span style="color:#c594c5;">boolean</span><span style="color:#cccece;"> actual </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> validator</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">validate</span><span style="color:#5fb3b3;">(&quot;</span><span style="color:#99c794;">to (be)) or (</span><span style="color:#5fb3b3;">&quot;);
+
+        </span><span style="color:#5f6364;">// then
+        </span><span style="color:#6699cc;">assertFalse</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">actual</span><span style="color:#5fb3b3;">);
+    }
+
+}
+</span></pre><div id="go"/>
+<h2 id="go">Go</h2>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">package</span><span style="color:#cccece;"> arrays
+
+</span><span style="color:#c594c5;">func </span><span style="color:#6699cc;">validate</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">open </span><span style="color:#c594c5;">rune</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">close </span><span style="color:#c594c5;">rune</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">str </span><span style="color:#c594c5;">string</span><span style="color:#5fb3b3;">) </span><span style="color:#c594c5;">bool </span><span style="color:#5fb3b3;">{
+	</span><span style="color:#cccece;">counter </span><span style="color:#5fb3b3;">:= </span><span style="color:#f99157;">0
+	</span><span style="color:#cccece;">runes </span><span style="color:#5fb3b3;">:= []</span><span style="color:#c594c5;">rune</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">str</span><span style="color:#5fb3b3;">)
+	</span><span style="color:#c594c5;">for </span><span style="color:#cccece;">_</span><span style="color:#5fb3b3;">, </span><span style="color:#cccece;">rune </span><span style="color:#5fb3b3;">:= </span><span style="color:#c594c5;">range</span><span style="color:#cccece;"> runes </span><span style="color:#5fb3b3;">{
+		</span><span style="color:#c594c5;">if rune </span><span style="color:#5fb3b3;">==</span><span style="color:#cccece;"> open </span><span style="color:#5fb3b3;">{</span><span style="color:#cccece;">
+			counter</span><span style="color:#5fb3b3;">++
+		} </span><span style="color:#c594c5;">else if rune </span><span style="color:#5fb3b3;">== </span><span style="color:#6699cc;">close </span><span style="color:#5fb3b3;">{
+			</span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> counter </span><span style="color:#5fb3b3;">== </span><span style="color:#f99157;">0 </span><span style="color:#5fb3b3;">{
+				</span><span style="color:#c594c5;">return </span><span style="color:#f99157;">false
+			</span><span style="color:#5fb3b3;">}</span><span style="color:#cccece;">
+			counter</span><span style="color:#5fb3b3;">--
+		}
+	}
+	</span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> counter </span><span style="color:#5fb3b3;">== </span><span style="color:#f99157;">0
+</span><span style="color:#5fb3b3;">}
+</span></pre>
+<p>Test:</p>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">package</span><span style="color:#cccece;"> arrays
+
+</span><span style="color:#c594c5;">import </span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">testing</span><span style="color:#5fb3b3;">&quot;
+
+</span><span style="color:#c594c5;">func </span><span style="color:#6699cc;">Test_validate</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">t </span><span style="color:#5fb3b3;">*</span><span style="color:#cccece;">testing.T</span><span style="color:#5fb3b3;">) {
+	</span><span style="color:#c594c5;">type </span><span style="color:#cccece;">args </span><span style="color:#c594c5;">struct </span><span style="color:#5fb3b3;">{
+		</span><span style="color:#cccece;">open  </span><span style="color:#c594c5;">rune
+		</span><span style="color:#cccece;">close </span><span style="color:#c594c5;">rune
+		</span><span style="color:#cccece;">str   </span><span style="color:#c594c5;">string
+	</span><span style="color:#5fb3b3;">}
+	</span><span style="color:#cccece;">tests </span><span style="color:#5fb3b3;">:= []</span><span style="color:#c594c5;">struct </span><span style="color:#5fb3b3;">{</span><span style="color:#cccece;">
+		name </span><span style="color:#c594c5;">string</span><span style="color:#cccece;">
+		args args
+		want </span><span style="color:#c594c5;">bool
+	</span><span style="color:#5fb3b3;">}{
+		{&quot;</span><span style="color:#99c794;">valid case</span><span style="color:#5fb3b3;">&quot;,</span><span style="color:#cccece;"> args</span><span style="color:#5fb3b3;">{</span><span style="color:#c594c5;">rune</span><span style="color:#5fb3b3;">(&#39;</span><span style="color:#99c794;">(</span><span style="color:#5fb3b3;">&#39;), </span><span style="color:#c594c5;">rune</span><span style="color:#5fb3b3;">(&#39;</span><span style="color:#99c794;">)</span><span style="color:#5fb3b3;">&#39;), &quot;</span><span style="color:#99c794;">to ((be)) or (not) to be</span><span style="color:#5fb3b3;">&quot;}, </span><span style="color:#f99157;">true</span><span style="color:#5fb3b3;">},
+		{&quot;</span><span style="color:#99c794;">not valid case</span><span style="color:#5fb3b3;">&quot;,</span><span style="color:#cccece;"> args</span><span style="color:#5fb3b3;">{</span><span style="color:#c594c5;">rune</span><span style="color:#5fb3b3;">(&#39;</span><span style="color:#99c794;">(</span><span style="color:#5fb3b3;">&#39;), </span><span style="color:#c594c5;">rune</span><span style="color:#5fb3b3;">(&#39;</span><span style="color:#99c794;">)</span><span style="color:#5fb3b3;">&#39;), &quot;</span><span style="color:#99c794;">to ((be)(or) not</span><span style="color:#5fb3b3;">&quot;}, </span><span style="color:#f99157;">false</span><span style="color:#5fb3b3;">},
+		{&quot;</span><span style="color:#99c794;">should not start with closed</span><span style="color:#5fb3b3;">&quot;,</span><span style="color:#cccece;"> args</span><span style="color:#5fb3b3;">{</span><span style="color:#c594c5;">rune</span><span style="color:#5fb3b3;">(&#39;</span><span style="color:#99c794;">(</span><span style="color:#5fb3b3;">&#39;), </span><span style="color:#c594c5;">rune</span><span style="color:#5fb3b3;">(&#39;</span><span style="color:#99c794;">)</span><span style="color:#5fb3b3;">&#39;), &quot;</span><span style="color:#99c794;">)(</span><span style="color:#5fb3b3;">&quot;}, </span><span style="color:#f99157;">false</span><span style="color:#5fb3b3;">},
+		{&quot;</span><span style="color:#99c794;">not valid closed at the end</span><span style="color:#5fb3b3;">&quot;,</span><span style="color:#cccece;"> args</span><span style="color:#5fb3b3;">{</span><span style="color:#c594c5;">rune</span><span style="color:#5fb3b3;">(&#39;</span><span style="color:#99c794;">(</span><span style="color:#5fb3b3;">&#39;), </span><span style="color:#c594c5;">rune</span><span style="color:#5fb3b3;">(&#39;</span><span style="color:#99c794;">)</span><span style="color:#5fb3b3;">&#39;), &quot;</span><span style="color:#99c794;">to (be)) or (</span><span style="color:#5fb3b3;">&quot;}, </span><span style="color:#f99157;">false</span><span style="color:#5fb3b3;">},
+	}
+	</span><span style="color:#c594c5;">for </span><span style="color:#cccece;">_</span><span style="color:#5fb3b3;">, </span><span style="color:#cccece;">tt </span><span style="color:#5fb3b3;">:= </span><span style="color:#c594c5;">range</span><span style="color:#cccece;"> tests </span><span style="color:#5fb3b3;">{</span><span style="color:#cccece;">
+		t</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">Run</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">tt</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">name</span><span style="color:#5fb3b3;">, </span><span style="color:#c594c5;">func</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">t </span><span style="color:#5fb3b3;">*</span><span style="color:#6699cc;">testing.T</span><span style="color:#5fb3b3;">) {
+			</span><span style="color:#c594c5;">if </span><span style="color:#cccece;">got </span><span style="color:#5fb3b3;">:= </span><span style="color:#6699cc;">validate</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">tt</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">args</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">open</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> tt</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">args</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">close</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> tt</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">args</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">str</span><span style="color:#5fb3b3;">)</span><span style="color:#6699cc;">; got </span><span style="color:#5fb3b3;">!=</span><span style="color:#6699cc;"> tt</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">want </span><span style="color:#5fb3b3;">{</span><span style="color:#6699cc;">
+				t</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">Errorf</span><span style="color:#5fb3b3;">(&quot;</span><span style="color:#99c794;">validate() = %v, want %v</span><span style="color:#5fb3b3;">&quot;,</span><span style="color:#6699cc;"> got</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> tt</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">want</span><span style="color:#5fb3b3;">)
+			}
+		})
+	}
+}
+</span></pre><div id="python"/>
+<h2 id="python">Python</h2>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">def </span><span style="color:#6699cc;">validate</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">input_str</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">open_str</span><span style="color:#5fb3b3;">=&quot;</span><span style="color:#99c794;">(</span><span style="color:#5fb3b3;">&quot;, </span><span style="color:#f99157;">closed_str</span><span style="color:#5fb3b3;">=&quot;</span><span style="color:#99c794;">)</span><span style="color:#5fb3b3;">&quot;):
+    </span><span style="color:#cccece;">counter </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">0
+    </span><span style="color:#c594c5;">for </span><span style="color:#cccece;">c </span><span style="color:#c594c5;">in </span><span style="color:#cccece;">input_str</span><span style="color:#5fb3b3;">:
+        </span><span style="color:#c594c5;">if </span><span style="color:#cccece;">c </span><span style="color:#5fb3b3;">== </span><span style="color:#cccece;">open_str</span><span style="color:#5fb3b3;">:
+            </span><span style="color:#cccece;">counter </span><span style="color:#5fb3b3;">+= </span><span style="color:#f99157;">1
+        </span><span style="color:#c594c5;">elif </span><span style="color:#cccece;">c </span><span style="color:#5fb3b3;">== </span><span style="color:#cccece;">closed_str</span><span style="color:#5fb3b3;">:
+            </span><span style="color:#c594c5;">if </span><span style="color:#cccece;">counter </span><span style="color:#5fb3b3;">== </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">:
+                </span><span style="color:#c594c5;">return </span><span style="color:#f99157;">False
+            </span><span style="color:#cccece;">counter </span><span style="color:#5fb3b3;">-= </span><span style="color:#f99157;">1
+    </span><span style="color:#c594c5;">return </span><span style="color:#cccece;">counter </span><span style="color:#5fb3b3;">== </span><span style="color:#f99157;">0
+
+
+</span><span style="color:#c594c5;">def </span><span style="color:#6699cc;">test_validation</span><span style="color:#5fb3b3;">():
+    </span><span style="color:#c594c5;">assert </span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">validate</span><span style="color:#5fb3b3;">(&quot;</span><span style="color:#99c794;">to ((be)) or (not) to be</span><span style="color:#5fb3b3;">&quot;))</span><span style="color:#cccece;">, </span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">should be valid</span><span style="color:#5fb3b3;">&quot;
+    </span><span style="color:#c594c5;">assert </span><span style="color:#5fb3b3;">(not </span><span style="color:#6699cc;">validate</span><span style="color:#5fb3b3;">(&quot;</span><span style="color:#99c794;">to ((be)(or) not</span><span style="color:#5fb3b3;">&quot;))</span><span style="color:#cccece;">, </span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">should be not valid</span><span style="color:#5fb3b3;">&quot;
+    </span><span style="color:#c594c5;">assert </span><span style="color:#5fb3b3;">(not </span><span style="color:#6699cc;">validate</span><span style="color:#5fb3b3;">(&quot;</span><span style="color:#99c794;">)(</span><span style="color:#5fb3b3;">&quot;))</span><span style="color:#cccece;">, </span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">should be not valid</span><span style="color:#5fb3b3;">&quot;
+    </span><span style="color:#c594c5;">assert </span><span style="color:#5fb3b3;">(not </span><span style="color:#6699cc;">validate</span><span style="color:#5fb3b3;">(&quot;</span><span style="color:#99c794;">to (be)) or (</span><span style="color:#5fb3b3;">&quot;))</span><span style="color:#cccece;">, </span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">should be not valid</span><span style="color:#5fb3b3;">&quot;
+
+
+</span><span style="color:#c594c5;">if </span><span style="color:#cccece;">__name__ </span><span style="color:#5fb3b3;">== &quot;</span><span style="color:#99c794;">__main__</span><span style="color:#5fb3b3;">&quot;:
+    </span><span style="color:#6699cc;">test_validation</span><span style="color:#5fb3b3;">()
+
+</span></pre><div id="javascript"/>
+<h2 id="javascript">JavaScript</h2>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">function </span><span style="color:#6699cc;">validate</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">open</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">closed</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">str</span><span style="color:#5fb3b3;">) {
+    </span><span style="color:#c594c5;">let </span><span style="color:#cccece;">counter </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">;
+    </span><span style="color:#c594c5;">for </span><span style="color:#5fb3b3;">(</span><span style="color:#c594c5;">let </span><span style="color:#cccece;">i </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">; </span><span style="color:#cccece;">i </span><span style="color:#5fb3b3;">&lt; </span><span style="color:#cccece;">str</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">length</span><span style="color:#5fb3b3;">; </span><span style="color:#cccece;">i</span><span style="color:#5fb3b3;">++) {
+        </span><span style="color:#c594c5;">let </span><span style="color:#cccece;">c </span><span style="color:#5fb3b3;">= </span><span style="color:#cccece;">str</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">charAt</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">i</span><span style="color:#5fb3b3;">);
+        </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">c </span><span style="color:#5fb3b3;">== </span><span style="color:#cccece;">open</span><span style="color:#5fb3b3;">) {
+            </span><span style="color:#cccece;">counter</span><span style="color:#5fb3b3;">++
+        } </span><span style="color:#c594c5;">else if </span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">c </span><span style="color:#5fb3b3;">== </span><span style="color:#cccece;">closed</span><span style="color:#5fb3b3;">) {
+            </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">counter </span><span style="color:#5fb3b3;">== </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">) </span><span style="color:#c594c5;">return </span><span style="color:#f99157;">false</span><span style="color:#5fb3b3;">;
+            </span><span style="color:#cccece;">counter</span><span style="color:#5fb3b3;">--
+        }
+    }
+    </span><span style="color:#c594c5;">return </span><span style="color:#cccece;">counter </span><span style="color:#5fb3b3;">== </span><span style="color:#f99157;">0
+</span><span style="color:#5fb3b3;">}
+
+</span><span style="color:#fac863;">console</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">log</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">validate</span><span style="color:#5fb3b3;">(&quot;</span><span style="color:#99c794;">(</span><span style="color:#5fb3b3;">&quot;, &quot;</span><span style="color:#99c794;">)</span><span style="color:#5fb3b3;">&quot;, &quot;</span><span style="color:#99c794;">to ((be)) or (not) to be</span><span style="color:#5fb3b3;">&quot;)); </span><span style="color:#5f6364;">// true
+</span><span style="color:#fac863;">console</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">log</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">validate</span><span style="color:#5fb3b3;">(&quot;</span><span style="color:#99c794;">(</span><span style="color:#5fb3b3;">&quot;, &quot;</span><span style="color:#99c794;">)</span><span style="color:#5fb3b3;">&quot;, &quot;</span><span style="color:#99c794;">to ((be)(or) not</span><span style="color:#5fb3b3;">&quot;)); </span><span style="color:#5f6364;">// false
+</span><span style="color:#fac863;">console</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">log</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">validate</span><span style="color:#5fb3b3;">(&quot;</span><span style="color:#99c794;">(</span><span style="color:#5fb3b3;">&quot;, &quot;</span><span style="color:#99c794;">)</span><span style="color:#5fb3b3;">&quot;, &quot;</span><span style="color:#99c794;">)(</span><span style="color:#5fb3b3;">&quot;)); </span><span style="color:#5f6364;">// false
+</span><span style="color:#fac863;">console</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">log</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">validate</span><span style="color:#5fb3b3;">(&quot;</span><span style="color:#99c794;">(</span><span style="color:#5fb3b3;">&quot;, &quot;</span><span style="color:#99c794;">)</span><span style="color:#5fb3b3;">&quot;, &quot;</span><span style="color:#99c794;">to (be)) or (</span><span style="color:#5fb3b3;">&quot;)); </span><span style="color:#5f6364;">// false
+
+</span></pre><div id="kotlin"/>
+<h2 id="kotlin">Kotlin</h2>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">package </span><span style="color:#cccece;">arrays
+
+class SingleParenthesesValidator(</span><span style="color:#c594c5;">val open</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">Char</span><span style="color:#cccece;">, </span><span style="color:#c594c5;">val</span><span style="color:#cccece;"> closed</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">Char</span><span style="color:#cccece;">) {
+
+    </span><span style="color:#c594c5;">fun </span><span style="color:#6699cc;">validate</span><span style="color:#cccece;">(</span><span style="color:#f99157;">str</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">String</span><span style="color:#cccece;">)</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">Boolean</span><span style="color:#cccece;"> {
+        </span><span style="color:#c594c5;">var </span><span style="color:#cccece;">counter </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">0
+        </span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> (str</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">isBlank()) </span><span style="color:#c594c5;">return </span><span style="color:#f99157;">false</span><span style="color:#5fb3b3;">;
+
+        </span><span style="color:#c594c5;">for</span><span style="color:#cccece;"> (i </span><span style="color:#c594c5;">in </span><span style="color:#f99157;">0</span><span style="color:#cccece;"> until str</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">length) {
+            </span><span style="color:#c594c5;">val </span><span style="color:#cccece;">char </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> str[i]
+            </span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> (char </span><span style="color:#5fb3b3;">== </span><span style="color:#c594c5;">open</span><span style="color:#cccece;">) {
+                counter</span><span style="color:#5fb3b3;">++</span><span style="color:#cccece;">
+            } </span><span style="color:#c594c5;">else if</span><span style="color:#cccece;"> (char </span><span style="color:#5fb3b3;">==</span><span style="color:#cccece;"> closed) {
+                </span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> (counter </span><span style="color:#5fb3b3;">== </span><span style="color:#f99157;">0</span><span style="color:#cccece;">) </span><span style="color:#c594c5;">return </span><span style="color:#f99157;">false</span><span style="color:#cccece;">
+                counter</span><span style="color:#5fb3b3;">--</span><span style="color:#cccece;">
+            }
+        }
+        </span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> counter </span><span style="color:#5fb3b3;">== </span><span style="color:#f99157;">0</span><span style="color:#cccece;">
+    }
+}
+</span></pre>
+<p>Test:</p>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">package </span><span style="color:#cccece;">arrays
+
+import org</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">junit</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">jupiter</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">api</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">Assertions</span><span style="color:#5fb3b3;">.*
+</span><span style="color:#c594c5;">import</span><span style="color:#cccece;"> org.junit.jupiter.api.Test
+
+internal class </span><span style="color:#fac863;">SingleParenthesesValidatorTest</span><span style="color:#cccece;"> {
+
+    @Test
+    </span><span style="color:#c594c5;">fun </span><span style="color:#6699cc;">validateCorrect</span><span style="color:#cccece;">() {
+        </span><span style="color:#5f6364;">// given
+        </span><span style="color:#c594c5;">val </span><span style="color:#cccece;">validator </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> SingleParenthesesValidator(</span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">(</span><span style="color:#5fb3b3;">&#39;</span><span style="color:#cccece;">, </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">)</span><span style="color:#5fb3b3;">&#39;</span><span style="color:#cccece;">)
+
+        </span><span style="color:#5f6364;">// when
+        </span><span style="color:#c594c5;">val </span><span style="color:#cccece;">actual </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> validator.validate(&quot;to ((be)) or (not) to be&quot;)
+
+        </span><span style="color:#5f6364;">// then
+</span><span style="color:#cccece;">        assertTrue(actual)
+    }
+
+    @Test
+    </span><span style="color:#c594c5;">fun </span><span style="color:#6699cc;">validateIncorrect</span><span style="color:#cccece;">() {
+        </span><span style="color:#5f6364;">// given
+        </span><span style="color:#c594c5;">val </span><span style="color:#cccece;">validator </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> SingleParenthesesValidator(</span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">(</span><span style="color:#5fb3b3;">&#39;</span><span style="color:#cccece;">, </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">)</span><span style="color:#5fb3b3;">&#39;</span><span style="color:#cccece;">)
+
+        </span><span style="color:#5f6364;">// when
+        </span><span style="color:#c594c5;">val </span><span style="color:#cccece;">actual </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> validator.validate(&quot;to ((be)(or) not&quot;)
+
+        </span><span style="color:#5f6364;">// then
+</span><span style="color:#cccece;">        assertFalse(actual)
+    }
+
+    @Test
+    </span><span style="color:#c594c5;">fun </span><span style="color:#6699cc;">startsClosedShouldFail</span><span style="color:#cccece;">() {
+        </span><span style="color:#5f6364;">// given
+        </span><span style="color:#c594c5;">val </span><span style="color:#cccece;">validator </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> SingleParenthesesValidator(</span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">(</span><span style="color:#5fb3b3;">&#39;</span><span style="color:#cccece;">, </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">)</span><span style="color:#5fb3b3;">&#39;</span><span style="color:#cccece;">)
+
+        </span><span style="color:#5f6364;">// when
+        </span><span style="color:#c594c5;">val </span><span style="color:#cccece;">actual </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> validator.validate(&quot;)(&quot;)
+
+        </span><span style="color:#5f6364;">// then
+</span><span style="color:#cccece;">        assertFalse(actual)
+    }
+
+    @Test
+    </span><span style="color:#c594c5;">fun </span><span style="color:#6699cc;">notValidClosedPositionInTheMiddle</span><span style="color:#cccece;">() {
+        </span><span style="color:#5f6364;">// given
+        </span><span style="color:#c594c5;">val </span><span style="color:#cccece;">validator </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> SingleParenthesesValidator(</span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">(</span><span style="color:#5fb3b3;">&#39;</span><span style="color:#cccece;">, </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">)</span><span style="color:#5fb3b3;">&#39;</span><span style="color:#cccece;">)
+
+        </span><span style="color:#5f6364;">// when
+        </span><span style="color:#c594c5;">val </span><span style="color:#cccece;">actual </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> validator.validate(&quot;to (be)) or (&quot;)
+
+        </span><span style="color:#5f6364;">// then
+</span><span style="color:#cccece;">        assertFalse(actual)
+    }
+}
+
+</span></pre><div id="rust"/>
+<h2 id="rust">Rust</h2>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">fn </span><span style="color:#6699cc;">validate_single_parentheses</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">open</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">char</span><span style="color:#cccece;">, </span><span style="color:#f99157;">close</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">char</span><span style="color:#cccece;">, </span><span style="color:#f99157;">str</span><span style="color:#5fb3b3;">: &amp;</span><span style="color:#c594c5;">str</span><span style="color:#5fb3b3;">) -&gt; </span><span style="color:#c594c5;">bool </span><span style="color:#5fb3b3;">{
+    </span><span style="color:#c594c5;">let mut</span><span style="color:#cccece;"> count</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">usize </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">;
+
+    </span><span style="color:#c594c5;">for char </span><span style="color:#5fb3b3;">in </span><span style="color:#c594c5;">str</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">chars</span><span style="color:#5fb3b3;">() {
+        </span><span style="color:#c594c5;">if char </span><span style="color:#5fb3b3;">==</span><span style="color:#cccece;"> open </span><span style="color:#5fb3b3;">{</span><span style="color:#cccece;">
+            count </span><span style="color:#5fb3b3;">+= </span><span style="color:#f99157;">1
+        </span><span style="color:#5fb3b3;">}
+        </span><span style="color:#c594c5;">if char </span><span style="color:#5fb3b3;">==</span><span style="color:#cccece;"> close </span><span style="color:#5fb3b3;">{
+            </span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> count </span><span style="color:#5fb3b3;">== </span><span style="color:#f99157;">0 </span><span style="color:#5fb3b3;">{
+                </span><span style="color:#c594c5;">return </span><span style="color:#f99157;">false</span><span style="color:#5fb3b3;">;
+            }</span><span style="color:#cccece;">
+            count </span><span style="color:#5fb3b3;">-= </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">;
+        }
+    }</span><span style="color:#cccece;">
+    count </span><span style="color:#5fb3b3;">== </span><span style="color:#f99157;">0
+</span><span style="color:#5fb3b3;">}
+
+#[</span><span style="color:#cccece;">test</span><span style="color:#5fb3b3;">]
+</span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">test</span><span style="color:#5fb3b3;">() {
+    </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">validate_single_parentheses</span><span style="color:#5fb3b3;">(&#39;</span><span style="color:#99c794;">(</span><span style="color:#5fb3b3;">&#39;, &#39;</span><span style="color:#99c794;">)</span><span style="color:#5fb3b3;">&#39;, &quot;</span><span style="color:#99c794;">to ((be)) or (not) to be</span><span style="color:#5fb3b3;">&quot;), </span><span style="color:#f99157;">true</span><span style="color:#5fb3b3;">);
+    </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">validate_single_parentheses</span><span style="color:#5fb3b3;">(&#39;</span><span style="color:#99c794;">(</span><span style="color:#5fb3b3;">&#39;, &#39;</span><span style="color:#99c794;">)</span><span style="color:#5fb3b3;">&#39;, &quot;</span><span style="color:#99c794;">to ((be)(or) not</span><span style="color:#5fb3b3;">&quot;), </span><span style="color:#f99157;">false</span><span style="color:#5fb3b3;">);
+    </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">validate_single_parentheses</span><span style="color:#5fb3b3;">(&#39;</span><span style="color:#99c794;">(</span><span style="color:#5fb3b3;">&#39;, &#39;</span><span style="color:#99c794;">)</span><span style="color:#5fb3b3;">&#39;, &quot;</span><span style="color:#99c794;">)(</span><span style="color:#5fb3b3;">&quot;), </span><span style="color:#f99157;">false</span><span style="color:#5fb3b3;">);
+    </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">validate_single_parentheses</span><span style="color:#5fb3b3;">(&#39;</span><span style="color:#99c794;">(</span><span style="color:#5fb3b3;">&#39;, &#39;</span><span style="color:#99c794;">)</span><span style="color:#5fb3b3;">&#39;, &quot;</span><span style="color:#99c794;">to (be)) or (</span><span style="color:#5fb3b3;">&quot;), </span><span style="color:#f99157;">false</span><span style="color:#5fb3b3;">);
+    </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">validate_single_parentheses</span><span style="color:#5fb3b3;">(&#39;</span><span style="color:#99c794;">(</span><span style="color:#5fb3b3;">&#39;, &#39;</span><span style="color:#99c794;">)</span><span style="color:#5fb3b3;">&#39;, &quot;&quot;), </span><span style="color:#f99157;">true</span><span style="color:#5fb3b3;">);
+    </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">validate_single_parentheses</span><span style="color:#5fb3b3;">(&#39;</span><span style="color:#99c794;">(</span><span style="color:#5fb3b3;">&#39;, &#39;</span><span style="color:#99c794;">)</span><span style="color:#5fb3b3;">&#39;, &quot;</span><span style="color:#99c794;">()</span><span style="color:#5fb3b3;">&quot;), </span><span style="color:#f99157;">true</span><span style="color:#5fb3b3;">);
+}
+</span></pre>
+
+    </div>
+
+</div>
+
+</body>
+</html>

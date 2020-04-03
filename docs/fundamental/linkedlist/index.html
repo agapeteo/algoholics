@@ -1,0 +1,184 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <meta name="description" content="Linked list">
+    <meta name="keywords" content="Linked list, learn, explain, tutorial, data structures, algorithms, graph, tree, interview, java, golang, kotlin, python, javascript, rust">
+
+    <title> 
+    Linked list
+ | Practical algorithms and data structures </title>
+    <link rel='stylesheet' href='/styles/styles.css'/>
+</head>
+
+<body>
+
+<div class="rootContainer">
+    <div class="horizontal-menu-box">
+        
+    
+    
+    
+<div class="menu">
+    <!-- ABOUT -->
+    <div class="menuItem">
+        
+        <a href="/index.html" >
+            ABOUT
+        </a>
+        
+
+    </div>
+
+    <!-- FUNDAMENTAL -->
+    <div class="menuItem">
+        
+        <a href="/fundamental/contents" >
+            FUNDAMENTAL
+        </a>
+        
+    </div>
+
+    <!-- BASIC -->
+    <div class="menuItem">
+        
+        <a href="/basic/contents" >
+            BASIC
+        </a>
+        
+    </div>
+
+    <!-- ADVANCED -->
+    <div class="menuItem">
+        
+        <a href="/advanced/contents" >
+            ADVANCED
+        </a>
+        
+    </div>
+
+    <!-- NINJA -->
+    <div class="menuItem">
+
+        
+        <a href="/ninja/contents" >
+            NINJA
+        </a>
+        
+
+    </div>
+
+    <!-- LANGUAGES -->
+    <div class="menuItem">
+        
+        <a href="/languages/contents" >
+            LANGUAGES
+        </a>
+        
+
+    </div>
+
+</div>
+
+
+
+    </div>
+
+    <div class="content">
+        
+    <h1 id="linked-list">Linked list</h1>
+<h2 id="contents">Contents</h2>
+<hr />
+<ul>
+<li><a href="https://algoholics.io/fundamental/linkedlist/#description">Linked list description</a></li>
+<li><a href="https://algoholics.io/fundamental/linkedlist/#practice">In practice</a></li>
+<li><a href="https://algoholics.io/fundamental/linkedlist/#java">Java</a></li>
+<li><a href="https://algoholics.io/fundamental/linkedlist/#go">Go</a></li>
+<li><a href="https://algoholics.io/fundamental/linkedlist/#python">Python</a></li>
+<li><a href="https://algoholics.io/fundamental/linkedlist/#javascript">JavaScript</a></li>
+<li><a href="https://algoholics.io/fundamental/linkedlist/#kotlin">Kotlin</a></li>
+<li><a href="https://algoholics.io/fundamental/linkedlist/#rust">Rust</a></li>
+</ul>
+<hr />
+<div id="description"    />
+<h2 id="linked-list-description">Linked list description</h2>
+<p>Linked list is collection of not fixed number of items liked to each other by reference/pointer</p>
+<p><code>TODO: more details</code> </p>
+<div id="practice"/>
+<h2 id="in-practice">In practice</h2>
+<p>For list of elements when most operation changing collection size <strong>and</strong> no searched by index required</p>
+<p>Comparing to dynamic array linked list is used less often due to poor cache locality</p>
+<p><code>TODO: array list vs linked list</code></p>
+<div id="java"/>
+<h2 id="java">Java</h2>
+<p><code>Java</code> provides build-in implementation of linked list called <code>LinkedList</code> (surprise?)</p>
+<p>Here is simplified version of LinkedList in <code>Java</code> which also implements <code>Stack</code> and <code>Queue</code>:</p>
+<script src="https://gist.github.com/agapeteo/40e8764a5da58bb54b9a8501feedd725.js"></script>
+<div id="go"/>
+<h2 id="go">Go</h2>
+<p>If you need to use linked list or stack/queue based linked list in production prefer using [Go's container/list] (https://golang.org/pkg/container/list/)</p>
+<br/>
+Another version of simple `Linked list` which also implements `Stack` and `Queue`:
+<script src="https://gist.github.com/agapeteo/04a1542bf6c691c0464f8e002024484f.js"></script>
+<div id="python" />
+<h2 id="python">Python</h2>
+<p>See Python's <a href="https://docs.python.org/3/library/collections.html#collections.deque">collections.deque</a> which is implemented based on <code>Linked list</code> and has methods for <code>Stack</code> and <code>Queue</code></p>
+<div id="javascript" />
+<h2 id="javascript">JavaScript</h2>
+<p><a href="https://humanwhocodes.com/blog/2019/02/computer-science-in-javascript-doubly-linked-lists/">Check explanation here</a></p>
+<p><a href="https://github.com/humanwhocodes/computer-science-in-javascript/blob/master/src/data-structures/doubly-linked-list/doubly-linked-list.js">and code example here</a></p>
+<div id="kotlin" />
+<h2 id="kotlin">Kotlin</h2>
+<p>Example of simplified version of <code>LinkedList</code> in Kotlin (also implements <code>Stack</code> and <code>Queue</code>)</p>
+<script src="https://gist.github.com/agapeteo/15d80043e9b1454a7d57e102ea849ef4.js"></script>
+<div id="rust" />
+<h2 id="rust">Rust</h2>
+<p>See example of build-in <a href="/languages/rust#linked-list">LinkedList</a></p>
+<p>You can find Rust's optimized implementation of Linked List <a href="https://github.com/rust-lang/rust/blob/master/src/liballoc/collections/linked_list.rs">here</a></p>
+<p>Simple implementation of Cons List as alternative version of linked List (not that useful in practice)</p>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">use </span><span style="color:#cccece;">std</span><span style="color:#5fb3b3;">::</span><span style="color:#cccece;">fmt</span><span style="color:#5fb3b3;">::{</span><span style="color:#cccece;">Display</span><span style="color:#5fb3b3;">};
+
+</span><span style="color:#c594c5;">enum </span><span style="color:#cccece;">ConsList&lt;T&gt; </span><span style="color:#5fb3b3;">{</span><span style="color:#cccece;">
+    Empty</span><span style="color:#5fb3b3;">,</span><span style="color:#cccece;">
+    Elem</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">T</span><span style="color:#5fb3b3;">, </span><span style="color:#cccece;">Box</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#cccece;">ConsList</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#cccece;">T</span><span style="color:#5fb3b3;">&gt;&gt;),
+}
+
+</span><span style="color:#c594c5;">impl</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#cccece;">T</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> PartialEq </span><span style="color:#5fb3b3;">+</span><span style="color:#cccece;"> Display</span><span style="color:#5fb3b3;">&gt; </span><span style="color:#cccece;">ConsList</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#cccece;">T</span><span style="color:#5fb3b3;">&gt; {
+    </span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">new</span><span style="color:#5fb3b3;">() -&gt; </span><span style="color:#c594c5;">Self </span><span style="color:#5fb3b3;">{
+        </span><span style="color:#cccece;">ConsList</span><span style="color:#5fb3b3;">::</span><span style="color:#cccece;">Empty
+    </span><span style="color:#5fb3b3;">}
+
+    </span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">print_elements</span><span style="color:#5fb3b3;">(&amp;</span><span style="color:#f99157;">self</span><span style="color:#5fb3b3;">) {
+        </span><span style="color:#c594c5;">let mut</span><span style="color:#cccece;"> cur_list </span><span style="color:#5fb3b3;">= </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">;
+        </span><span style="color:#c594c5;">while let </span><span style="color:#cccece;">ConsList</span><span style="color:#5fb3b3;">::</span><span style="color:#cccece;">Elem</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">elem</span><span style="color:#5fb3b3;">,</span><span style="color:#cccece;"> boxed_list</span><span style="color:#5fb3b3;">) =</span><span style="color:#cccece;"> cur_list </span><span style="color:#5fb3b3;">{
+            </span><span style="color:#cccece;">println!</span><span style="color:#5fb3b3;">(&quot;</span><span style="color:#99c794;">elem: {}</span><span style="color:#5fb3b3;">&quot;,</span><span style="color:#cccece;"> elem</span><span style="color:#5fb3b3;">);</span><span style="color:#cccece;">
+            cur_list </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> boxed_list</span><span style="color:#5fb3b3;">;
+        }
+    }
+}
+
+#[</span><span style="color:#cccece;">cfg</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">test</span><span style="color:#5fb3b3;">)]
+</span><span style="color:#c594c5;">mod </span><span style="color:#cccece;">test </span><span style="color:#5fb3b3;">{
+    </span><span style="color:#c594c5;">use super</span><span style="color:#5fb3b3;">::*;
+
+    #[</span><span style="color:#cccece;">test</span><span style="color:#5fb3b3;">]
+    </span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">test</span><span style="color:#5fb3b3;">() {
+        </span><span style="color:#c594c5;">let</span><span style="color:#cccece;"> list_1</span><span style="color:#5fb3b3;">: </span><span style="color:#cccece;">ConsList</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#c594c5;">i32</span><span style="color:#5fb3b3;">&gt; = </span><span style="color:#cccece;">ConsList</span><span style="color:#5fb3b3;">::</span><span style="color:#cccece;">Elem</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">,
+                                                   </span><span style="color:#fac863;">Box</span><span style="color:#5fb3b3;">::</span><span style="color:#cccece;">new</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">ConsList</span><span style="color:#5fb3b3;">::</span><span style="color:#cccece;">Elem</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">,
+                                                                           </span><span style="color:#fac863;">Box</span><span style="color:#5fb3b3;">::</span><span style="color:#cccece;">new</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">ConsList</span><span style="color:#5fb3b3;">::</span><span style="color:#cccece;">Elem</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">,
+                                                                                                   </span><span style="color:#fac863;">Box</span><span style="color:#5fb3b3;">::</span><span style="color:#cccece;">new</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">ConsList</span><span style="color:#5fb3b3;">::</span><span style="color:#cccece;">Empty</span><span style="color:#5fb3b3;">))))));</span><span style="color:#cccece;">
+        list_1</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">print_elements</span><span style="color:#5fb3b3;">();
+    }
+}
+</span></pre>
+<p>See also about journey/tutorial on how to implement linked list in <a href="https://rust-unofficial.github.io/too-many-lists/">Learn Rust With Entirely Too Many Linked Lists</a> </p>
+
+
+    </div>
+
+</div>
+
+</body>
+</html>

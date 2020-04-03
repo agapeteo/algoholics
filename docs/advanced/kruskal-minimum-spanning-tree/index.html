@@ -1,0 +1,325 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <meta name="description" content="Kruskal minimum spanning tree">
+    <meta name="keywords" content="Kruskal minimum spanning tree, MST, graph, learn, explain, tutorial, data structures, algorithms, graph, tree, interview, java, golang, kotlin, python, rust, javascript, advanced">
+
+    <title> 
+    Kruskal minimum spanning tree
+ | Practical algorithms and data structures </title>
+    <link rel='stylesheet' href='/styles/styles.css'/>
+</head>
+
+<body>
+
+<div class="rootContainer">
+    <div class="horizontal-menu-box">
+        
+    
+    
+    
+<div class="menu">
+    <!-- ABOUT -->
+    <div class="menuItem">
+        
+        <a href="/index.html" >
+            ABOUT
+        </a>
+        
+
+    </div>
+
+    <!-- FUNDAMENTAL -->
+    <div class="menuItem">
+        
+        <a href="/fundamental/contents" >
+            FUNDAMENTAL
+        </a>
+        
+    </div>
+
+    <!-- BASIC -->
+    <div class="menuItem">
+        
+        <a href="/basic/contents" >
+            BASIC
+        </a>
+        
+    </div>
+
+    <!-- ADVANCED -->
+    <div class="menuItem">
+        
+        <a href="/advanced/contents" >
+            ADVANCED
+        </a>
+        
+    </div>
+
+    <!-- NINJA -->
+    <div class="menuItem">
+
+        
+        <a href="/ninja/contents" >
+            NINJA
+        </a>
+        
+
+    </div>
+
+    <!-- LANGUAGES -->
+    <div class="menuItem">
+        
+        <a href="/languages/contents" >
+            LANGUAGES
+        </a>
+        
+
+    </div>
+
+</div>
+
+
+
+    </div>
+
+    <div class="content">
+        
+    <h1 id="minimum-spanning-tree">Minimum Spanning Tree</h1>
+<h2 id="contents">Contents</h2>
+<hr />
+<ul>
+<li><a href="https://algoholics.io/advanced/kruskal-minimum-spanning-tree/#minimum-spanning-tree">Minimum Spanning Tree</a>
+<ul>
+<li><a href="https://algoholics.io/advanced/kruskal-minimum-spanning-tree/#contents">Contents</a></li>
+<li><a href="https://algoholics.io/advanced/kruskal-minimum-spanning-tree/#java">Java</a></li>
+</ul>
+</li>
+</ul>
+<hr />
+<div id="java"/>
+<h2 id="java">Java</h2>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">package </span><span style="color:#cccece;">io</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">algoholics</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">graph</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">mst</span><span style="color:#5fb3b3;">;
+
+</span><span style="color:#c594c5;">import </span><span style="color:#fac863;">java</span><span style="color:#5fb3b3;">.</span><span style="color:#fac863;">util</span><span style="color:#5fb3b3;">.</span><span style="color:#fac863;">Collection</span><span style="color:#5fb3b3;">;
+</span><span style="color:#c594c5;">import </span><span style="color:#fac863;">java</span><span style="color:#5fb3b3;">.</span><span style="color:#fac863;">util</span><span style="color:#5fb3b3;">.</span><span style="color:#fac863;">HashMap</span><span style="color:#5fb3b3;">;
+</span><span style="color:#c594c5;">import </span><span style="color:#fac863;">java</span><span style="color:#5fb3b3;">.</span><span style="color:#fac863;">util</span><span style="color:#5fb3b3;">.</span><span style="color:#fac863;">Map</span><span style="color:#5fb3b3;">;
+</span><span style="color:#c594c5;">import </span><span style="color:#fac863;">java</span><span style="color:#5fb3b3;">.</span><span style="color:#fac863;">util</span><span style="color:#5fb3b3;">.</span><span style="color:#fac863;">stream</span><span style="color:#5fb3b3;">.</span><span style="color:#fac863;">Collectors</span><span style="color:#5fb3b3;">;
+
+</span><span style="color:#c594c5;">public class </span><span style="color:#fac863;">DisjointSet</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#f99157;">T</span><span style="color:#5fb3b3;">&gt; {
+    </span><span style="color:#c594c5;">private final </span><span style="color:#fac863;">Map</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#fac863;">T</span><span style="color:#5fb3b3;">, </span><span style="color:#fac863;">T</span><span style="color:#5fb3b3;">&gt; </span><span style="color:#cccece;">parents</span><span style="color:#5fb3b3;">;
+    </span><span style="color:#c594c5;">private final </span><span style="color:#fac863;">Map</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#fac863;">T</span><span style="color:#5fb3b3;">, </span><span style="color:#fac863;">Integer</span><span style="color:#5fb3b3;">&gt; </span><span style="color:#cccece;">heights</span><span style="color:#5fb3b3;">;
+    </span><span style="color:#c594c5;">private int </span><span style="color:#cccece;">count</span><span style="color:#5fb3b3;">;
+
+    </span><span style="color:#c594c5;">public </span><span style="color:#6699cc;">DisjointSet</span><span style="color:#5fb3b3;">() {
+        </span><span style="color:#ec5f67;">this</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">null</span><span style="color:#5fb3b3;">);
+    }
+
+    </span><span style="color:#c594c5;">public </span><span style="color:#6699cc;">DisjointSet</span><span style="color:#5fb3b3;">(</span><span style="color:#fac863;">Collection</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#fac863;">T</span><span style="color:#5fb3b3;">&gt; </span><span style="color:#f99157;">elements</span><span style="color:#5fb3b3;">) {
+        </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">null </span><span style="color:#5fb3b3;">==</span><span style="color:#cccece;"> elements </span><span style="color:#5fb3b3;">||</span><span style="color:#cccece;"> elements</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">isEmpty</span><span style="color:#5fb3b3;">()) {</span><span style="color:#cccece;">
+            parents </span><span style="color:#5fb3b3;">= </span><span style="color:#c594c5;">new </span><span style="color:#fac863;">HashMap</span><span style="color:#5fb3b3;">&lt;&gt;();</span><span style="color:#cccece;">
+            heights </span><span style="color:#5fb3b3;">= </span><span style="color:#c594c5;">new </span><span style="color:#fac863;">HashMap</span><span style="color:#5fb3b3;">&lt;&gt;();</span><span style="color:#cccece;">
+            count </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">;
+        } </span><span style="color:#c594c5;">else </span><span style="color:#5fb3b3;">{</span><span style="color:#cccece;">
+            parents </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> elements</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">stream</span><span style="color:#5fb3b3;">().</span><span style="color:#6699cc;">collect</span><span style="color:#5fb3b3;">(</span><span style="color:#fac863;">Collectors</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">toMap</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">p </span><span style="color:#c594c5;">-&gt;</span><span style="color:#6699cc;"> p, </span><span style="color:#f99157;">p </span><span style="color:#c594c5;">-&gt;</span><span style="color:#6699cc;"> p</span><span style="color:#5fb3b3;">));</span><span style="color:#cccece;">
+            heights </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> elements</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">stream</span><span style="color:#5fb3b3;">().</span><span style="color:#6699cc;">collect</span><span style="color:#5fb3b3;">(</span><span style="color:#fac863;">Collectors</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">toMap</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">p </span><span style="color:#c594c5;">-&gt;</span><span style="color:#6699cc;"> p, </span><span style="color:#f99157;">p </span><span style="color:#c594c5;">-&gt; </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">));</span><span style="color:#cccece;">
+            count </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> elements</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">size</span><span style="color:#5fb3b3;">();
+        }
+    }
+
+    </span><span style="color:#c594c5;">public int </span><span style="color:#6699cc;">getCount</span><span style="color:#5fb3b3;">() {
+        </span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> count</span><span style="color:#5fb3b3;">;
+    }
+
+    </span><span style="color:#c594c5;">public </span><span style="color:#fac863;">T </span><span style="color:#6699cc;">find</span><span style="color:#5fb3b3;">(</span><span style="color:#fac863;">T </span><span style="color:#f99157;">element</span><span style="color:#5fb3b3;">) {
+        </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">(!</span><span style="color:#cccece;">parents</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">containsKey</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">element</span><span style="color:#5fb3b3;">)) {</span><span style="color:#cccece;">
+            parents</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">put</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">element</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> element</span><span style="color:#5fb3b3;">);</span><span style="color:#cccece;">
+            heights</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">put</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">element</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">);</span><span style="color:#cccece;">
+            count</span><span style="color:#5fb3b3;">++;
+            </span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> element</span><span style="color:#5fb3b3;">;
+        }
+
+        </span><span style="color:#c594c5;">while </span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">element </span><span style="color:#5fb3b3;">!=</span><span style="color:#cccece;"> parents</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">get</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">element</span><span style="color:#5fb3b3;">)) {</span><span style="color:#cccece;">
+            parents</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">put</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">element</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> parents</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">get</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">parents</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">get</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">element</span><span style="color:#5fb3b3;">)));</span><span style="color:#cccece;">
+            element </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> parents</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">get</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">element</span><span style="color:#5fb3b3;">);
+        }
+        </span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> element</span><span style="color:#5fb3b3;">;
+    }
+
+    </span><span style="color:#c594c5;">public boolean </span><span style="color:#6699cc;">connected</span><span style="color:#5fb3b3;">(</span><span style="color:#fac863;">T </span><span style="color:#f99157;">element1</span><span style="color:#5fb3b3;">, </span><span style="color:#fac863;">T </span><span style="color:#f99157;">element2</span><span style="color:#5fb3b3;">) {
+        </span><span style="color:#c594c5;">return </span><span style="color:#6699cc;">find</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">element1</span><span style="color:#5fb3b3;">) == </span><span style="color:#6699cc;">find</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">element2</span><span style="color:#5fb3b3;">);
+    }
+
+    </span><span style="color:#c594c5;">public boolean </span><span style="color:#6699cc;">union</span><span style="color:#5fb3b3;">(</span><span style="color:#fac863;">T </span><span style="color:#f99157;">element1</span><span style="color:#5fb3b3;">, </span><span style="color:#fac863;">T </span><span style="color:#f99157;">element2</span><span style="color:#5fb3b3;">) {
+        </span><span style="color:#c594c5;">final </span><span style="color:#fac863;">T</span><span style="color:#cccece;"> rootElement1 </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">find</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">element1</span><span style="color:#5fb3b3;">);
+        </span><span style="color:#c594c5;">final </span><span style="color:#fac863;">T</span><span style="color:#cccece;"> rootElement2 </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">find</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">element2</span><span style="color:#5fb3b3;">);
+
+        </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">rootElement1 </span><span style="color:#5fb3b3;">==</span><span style="color:#cccece;"> rootElement2</span><span style="color:#5fb3b3;">)
+            </span><span style="color:#c594c5;">return </span><span style="color:#f99157;">false</span><span style="color:#5fb3b3;">;
+
+        </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">heights</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">get</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">rootElement1</span><span style="color:#5fb3b3;">) &lt;</span><span style="color:#cccece;"> heights</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">get</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">rootElement2</span><span style="color:#5fb3b3;">)) {</span><span style="color:#cccece;">
+            parents</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">put</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">rootElement1</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> rootElement2</span><span style="color:#5fb3b3;">);
+        } </span><span style="color:#c594c5;">else if </span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">heights</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">get</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">rootElement1</span><span style="color:#5fb3b3;">) &gt;</span><span style="color:#cccece;"> heights</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">get</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">rootElement2</span><span style="color:#5fb3b3;">)) {</span><span style="color:#cccece;">
+            parents</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">put</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">rootElement2</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> rootElement1</span><span style="color:#5fb3b3;">);
+        } </span><span style="color:#c594c5;">else </span><span style="color:#5fb3b3;">{</span><span style="color:#cccece;">
+            parents</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">put</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">rootElement2</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> rootElement1</span><span style="color:#5fb3b3;">);</span><span style="color:#cccece;">
+            heights</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">merge</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">rootElement1</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">, </span><span style="color:#fac863;">Integer</span><span style="color:#5fb3b3;">::</span><span style="color:#6699cc;">sum</span><span style="color:#5fb3b3;">);
+        }</span><span style="color:#cccece;">
+
+        count</span><span style="color:#5fb3b3;">--;
+        </span><span style="color:#c594c5;">return </span><span style="color:#f99157;">true</span><span style="color:#5fb3b3;">;
+    }
+}
+</span></pre><pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">package </span><span style="color:#cccece;">io</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">algoholics</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">graph</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">mst</span><span style="color:#5fb3b3;">;
+
+</span><span style="color:#c594c5;">import </span><span style="color:#fac863;">java</span><span style="color:#5fb3b3;">.</span><span style="color:#fac863;">util</span><span style="color:#5fb3b3;">.</span><span style="color:#fac863;">Objects</span><span style="color:#5fb3b3;">;
+</span><span style="color:#c594c5;">import </span><span style="color:#fac863;">java</span><span style="color:#5fb3b3;">.</span><span style="color:#fac863;">util</span><span style="color:#5fb3b3;">.</span><span style="color:#fac863;">StringJoiner</span><span style="color:#5fb3b3;">;
+
+</span><span style="color:#c594c5;">public class </span><span style="color:#fac863;">Edge</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#f99157;">T</span><span style="color:#5fb3b3;">&gt; {
+    </span><span style="color:#c594c5;">private final </span><span style="color:#fac863;">T </span><span style="color:#cccece;">source</span><span style="color:#5fb3b3;">;
+    </span><span style="color:#c594c5;">private final </span><span style="color:#fac863;">T </span><span style="color:#cccece;">target</span><span style="color:#5fb3b3;">;
+    </span><span style="color:#c594c5;">private final double </span><span style="color:#cccece;">weight</span><span style="color:#5fb3b3;">;
+
+    </span><span style="color:#c594c5;">public </span><span style="color:#6699cc;">Edge</span><span style="color:#5fb3b3;">(</span><span style="color:#fac863;">T </span><span style="color:#f99157;">source</span><span style="color:#5fb3b3;">, </span><span style="color:#fac863;">T </span><span style="color:#f99157;">target</span><span style="color:#5fb3b3;">, </span><span style="color:#c594c5;">double </span><span style="color:#f99157;">weight</span><span style="color:#5fb3b3;">) {
+        </span><span style="color:#ec5f67;">this</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">source </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> source</span><span style="color:#5fb3b3;">;
+        </span><span style="color:#ec5f67;">this</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">target </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> target</span><span style="color:#5fb3b3;">;
+        </span><span style="color:#ec5f67;">this</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">weight </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> weight</span><span style="color:#5fb3b3;">;
+    }
+
+    </span><span style="color:#c594c5;">public </span><span style="color:#fac863;">T </span><span style="color:#6699cc;">getSource</span><span style="color:#5fb3b3;">() {
+        </span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> source</span><span style="color:#5fb3b3;">;
+    }
+
+    </span><span style="color:#c594c5;">public </span><span style="color:#fac863;">T </span><span style="color:#6699cc;">getTarget</span><span style="color:#5fb3b3;">() {
+        </span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> target</span><span style="color:#5fb3b3;">;
+    }
+
+    </span><span style="color:#c594c5;">public double </span><span style="color:#6699cc;">getWeight</span><span style="color:#5fb3b3;">() {
+        </span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> weight</span><span style="color:#5fb3b3;">;
+    }
+
+    </span><span style="color:#c594c5;">public </span><span style="color:#fac863;">T </span><span style="color:#6699cc;">getOther</span><span style="color:#5fb3b3;">(</span><span style="color:#fac863;">T </span><span style="color:#f99157;">vertex</span><span style="color:#5fb3b3;">) {
+        </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">source</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">equals</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">vertex</span><span style="color:#5fb3b3;">)) {
+            </span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> target</span><span style="color:#5fb3b3;">;
+        }
+        </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">target</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">equals</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">vertex</span><span style="color:#5fb3b3;">)) {
+            </span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> source</span><span style="color:#5fb3b3;">;
+        }
+        </span><span style="color:#c594c5;">throw new </span><span style="color:#fac863;">IllegalArgumentException</span><span style="color:#5fb3b3;">(</span><span style="color:#fac863;">String</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">format</span><span style="color:#5fb3b3;">(&quot;</span><span style="color:#99c794;">No vertex %s in the edge %s</span><span style="color:#5fb3b3;">&quot;,</span><span style="color:#6699cc;"> vertex</span><span style="color:#5fb3b3;">, </span><span style="color:#ec5f67;">this</span><span style="color:#5fb3b3;">));
+    }
+
+    @</span><span style="color:#cccece;">Override
+    </span><span style="color:#c594c5;">public boolean </span><span style="color:#6699cc;">equals</span><span style="color:#5fb3b3;">(</span><span style="color:#fac863;">Object </span><span style="color:#f99157;">o</span><span style="color:#5fb3b3;">) {
+        </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">(</span><span style="color:#ec5f67;">this </span><span style="color:#5fb3b3;">==</span><span style="color:#cccece;"> o</span><span style="color:#5fb3b3;">) </span><span style="color:#c594c5;">return </span><span style="color:#f99157;">true</span><span style="color:#5fb3b3;">;
+        </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">o </span><span style="color:#5fb3b3;">== </span><span style="color:#f99157;">null </span><span style="color:#5fb3b3;">|| </span><span style="color:#6699cc;">getClass</span><span style="color:#5fb3b3;">() !=</span><span style="color:#cccece;"> o</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">getClass</span><span style="color:#5fb3b3;">()) </span><span style="color:#c594c5;">return </span><span style="color:#f99157;">false</span><span style="color:#5fb3b3;">;
+        </span><span style="color:#fac863;">Edge</span><span style="color:#5fb3b3;">&lt;?&gt;</span><span style="color:#cccece;"> edge </span><span style="color:#5fb3b3;">= (</span><span style="color:#fac863;">Edge</span><span style="color:#5fb3b3;">&lt;?&gt;)</span><span style="color:#cccece;"> o</span><span style="color:#5fb3b3;">;
+        </span><span style="color:#c594c5;">return </span><span style="color:#fac863;">Double</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">compare</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">edge</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">weight</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> weight</span><span style="color:#5fb3b3;">) == </span><span style="color:#f99157;">0 </span><span style="color:#5fb3b3;">&amp;&amp;
+                </span><span style="color:#fac863;">Objects</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">equals</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">source</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> edge</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">source</span><span style="color:#5fb3b3;">) &amp;&amp;
+                </span><span style="color:#fac863;">Objects</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">equals</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">target</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> edge</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">target</span><span style="color:#5fb3b3;">);
+    }
+
+    @</span><span style="color:#cccece;">Override
+    </span><span style="color:#c594c5;">public int </span><span style="color:#6699cc;">hashCode</span><span style="color:#5fb3b3;">() {
+        </span><span style="color:#c594c5;">return </span><span style="color:#fac863;">Objects</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">hash</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">source</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> target</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> weight</span><span style="color:#5fb3b3;">);
+    }
+
+    @</span><span style="color:#cccece;">Override
+    </span><span style="color:#c594c5;">public </span><span style="color:#fac863;">String </span><span style="color:#6699cc;">toString</span><span style="color:#5fb3b3;">() {
+        </span><span style="color:#c594c5;">return new </span><span style="color:#fac863;">StringJoiner</span><span style="color:#5fb3b3;">(&quot;</span><span style="color:#99c794;">, </span><span style="color:#5fb3b3;">&quot;</span><span style="color:#cccece;">, </span><span style="color:#fac863;">Edge</span><span style="color:#5fb3b3;">.</span><span style="color:#ec5f67;">class</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">getSimpleName</span><span style="color:#5fb3b3;">() + &quot;</span><span style="color:#99c794;">[</span><span style="color:#5fb3b3;">&quot;</span><span style="color:#cccece;">, </span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">]</span><span style="color:#5fb3b3;">&quot;)
+                .</span><span style="color:#6699cc;">add</span><span style="color:#5fb3b3;">(&quot;</span><span style="color:#99c794;">source=</span><span style="color:#5fb3b3;">&quot; +</span><span style="color:#6699cc;"> source</span><span style="color:#5fb3b3;">)
+                .</span><span style="color:#6699cc;">add</span><span style="color:#5fb3b3;">(&quot;</span><span style="color:#99c794;">target=</span><span style="color:#5fb3b3;">&quot; +</span><span style="color:#6699cc;"> target</span><span style="color:#5fb3b3;">)
+                .</span><span style="color:#6699cc;">add</span><span style="color:#5fb3b3;">(&quot;</span><span style="color:#99c794;">weight=</span><span style="color:#5fb3b3;">&quot; +</span><span style="color:#6699cc;"> weight</span><span style="color:#5fb3b3;">)
+                .</span><span style="color:#6699cc;">toString</span><span style="color:#5fb3b3;">();
+    }
+}
+</span></pre><pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">package </span><span style="color:#cccece;">io</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">algoholics</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">graph</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">mst</span><span style="color:#5fb3b3;">;
+
+</span><span style="color:#c594c5;">import </span><span style="color:#fac863;">java</span><span style="color:#5fb3b3;">.</span><span style="color:#fac863;">util</span><span style="color:#5fb3b3;">.*;
+</span><span style="color:#c594c5;">import </span><span style="color:#fac863;">java</span><span style="color:#5fb3b3;">.</span><span style="color:#fac863;">util</span><span style="color:#5fb3b3;">.</span><span style="color:#fac863;">stream</span><span style="color:#5fb3b3;">.</span><span style="color:#fac863;">Collectors</span><span style="color:#5fb3b3;">;
+
+</span><span style="color:#c594c5;">public class </span><span style="color:#fac863;">Graph</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#f99157;">T</span><span style="color:#5fb3b3;">&gt; {
+    </span><span style="color:#c594c5;">private final </span><span style="color:#fac863;">Map</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#fac863;">T</span><span style="color:#5fb3b3;">, </span><span style="color:#fac863;">List</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#fac863;">Edge</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#fac863;">T</span><span style="color:#5fb3b3;">&gt;&gt;&gt; </span><span style="color:#cccece;">adjacencyList</span><span style="color:#5fb3b3;">;
+    </span><span style="color:#c594c5;">private int </span><span style="color:#cccece;">edgesCount</span><span style="color:#5fb3b3;">;
+
+    </span><span style="color:#c594c5;">public </span><span style="color:#6699cc;">Graph</span><span style="color:#5fb3b3;">(</span><span style="color:#c594c5;">final </span><span style="color:#fac863;">Map</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#fac863;">T</span><span style="color:#5fb3b3;">, </span><span style="color:#fac863;">List</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#fac863;">Edge</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#fac863;">T</span><span style="color:#5fb3b3;">&gt;&gt;&gt; </span><span style="color:#f99157;">adjacencyList</span><span style="color:#5fb3b3;">) {
+        </span><span style="color:#ec5f67;">this</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">adjacencyList </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> adjacencyList</span><span style="color:#5fb3b3;">;
+        </span><span style="color:#ec5f67;">this</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">edgesCount </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">getEdges</span><span style="color:#5fb3b3;">().</span><span style="color:#6699cc;">size</span><span style="color:#5fb3b3;">();
+    }
+
+    </span><span style="color:#c594c5;">public </span><span style="color:#6699cc;">Graph</span><span style="color:#5fb3b3;">() {
+        </span><span style="color:#ec5f67;">this</span><span style="color:#5fb3b3;">(</span><span style="color:#c594c5;">new </span><span style="color:#fac863;">HashMap</span><span style="color:#5fb3b3;">&lt;&gt;());
+    }
+
+    </span><span style="color:#c594c5;">public void </span><span style="color:#6699cc;">addEdge</span><span style="color:#5fb3b3;">(</span><span style="color:#c594c5;">final </span><span style="color:#fac863;">Edge</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#fac863;">T</span><span style="color:#5fb3b3;">&gt; </span><span style="color:#f99157;">edge</span><span style="color:#5fb3b3;">) {</span><span style="color:#cccece;">
+        adjacencyList</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">merge</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">edge</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">getSource</span><span style="color:#5fb3b3;">(), </span><span style="color:#c594c5;">new </span><span style="color:#fac863;">ArrayList</span><span style="color:#5fb3b3;">&lt;&gt;(</span><span style="color:#fac863;">Collections</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">singletonList</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">edge</span><span style="color:#5fb3b3;">)), (</span><span style="color:#f99157;">oldVal</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">newVal</span><span style="color:#5fb3b3;">) </span><span style="color:#c594c5;">-&gt; </span><span style="color:#5fb3b3;">{</span><span style="color:#6699cc;">
+            oldVal</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">addAll</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">newVal</span><span style="color:#5fb3b3;">);
+            </span><span style="color:#c594c5;">return</span><span style="color:#6699cc;"> oldVal</span><span style="color:#5fb3b3;">;
+        });</span><span style="color:#cccece;">
+        adjacencyList</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">merge</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">edge</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">getTarget</span><span style="color:#5fb3b3;">(), </span><span style="color:#c594c5;">new </span><span style="color:#fac863;">ArrayList</span><span style="color:#5fb3b3;">&lt;&gt;(</span><span style="color:#fac863;">Collections</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">singletonList</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">edge</span><span style="color:#5fb3b3;">)), (</span><span style="color:#f99157;">oldVal</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">newVal</span><span style="color:#5fb3b3;">) </span><span style="color:#c594c5;">-&gt; </span><span style="color:#5fb3b3;">{</span><span style="color:#6699cc;">
+            oldVal</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">addAll</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">newVal</span><span style="color:#5fb3b3;">);
+            </span><span style="color:#c594c5;">return</span><span style="color:#6699cc;"> oldVal</span><span style="color:#5fb3b3;">;
+        });</span><span style="color:#cccece;">
+        edgesCount</span><span style="color:#5fb3b3;">++;
+    }
+
+    </span><span style="color:#c594c5;">public </span><span style="color:#fac863;">List</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#fac863;">Edge</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#fac863;">T</span><span style="color:#5fb3b3;">&gt;&gt; </span><span style="color:#6699cc;">getEdges</span><span style="color:#5fb3b3;">() {
+        </span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> adjacencyList</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">entrySet</span><span style="color:#5fb3b3;">().</span><span style="color:#6699cc;">stream</span><span style="color:#5fb3b3;">().</span><span style="color:#6699cc;">flatMap</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">p </span><span style="color:#c594c5;">-&gt;</span><span style="color:#6699cc;"> p</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">getValue</span><span style="color:#5fb3b3;">().</span><span style="color:#6699cc;">stream</span><span style="color:#5fb3b3;">()).</span><span style="color:#6699cc;">distinct</span><span style="color:#5fb3b3;">().</span><span style="color:#6699cc;">collect</span><span style="color:#5fb3b3;">(</span><span style="color:#fac863;">Collectors</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">toList</span><span style="color:#5fb3b3;">());
+    }
+
+    </span><span style="color:#c594c5;">public </span><span style="color:#fac863;">List</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#fac863;">Edge</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#fac863;">T</span><span style="color:#5fb3b3;">&gt;&gt; </span><span style="color:#6699cc;">getEdges</span><span style="color:#5fb3b3;">(</span><span style="color:#fac863;">T </span><span style="color:#f99157;">vertex</span><span style="color:#5fb3b3;">) {
+        </span><span style="color:#c594c5;">return new </span><span style="color:#fac863;">ArrayList</span><span style="color:#5fb3b3;">&lt;&gt;(</span><span style="color:#cccece;">adjacencyList</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">get</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">vertex</span><span style="color:#5fb3b3;">));
+    }
+
+    </span><span style="color:#c594c5;">public </span><span style="color:#fac863;">List</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#fac863;">T</span><span style="color:#5fb3b3;">&gt; </span><span style="color:#6699cc;">getVertices</span><span style="color:#5fb3b3;">() {
+        </span><span style="color:#c594c5;">return new </span><span style="color:#fac863;">ArrayList</span><span style="color:#5fb3b3;">&lt;&gt;(</span><span style="color:#cccece;">adjacencyList</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">keySet</span><span style="color:#5fb3b3;">());
+    }
+}
+</span></pre><pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">package </span><span style="color:#cccece;">io</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">algoholics</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">graph</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">mst</span><span style="color:#5fb3b3;">;
+
+</span><span style="color:#c594c5;">import </span><span style="color:#fac863;">java</span><span style="color:#5fb3b3;">.</span><span style="color:#fac863;">util</span><span style="color:#5fb3b3;">.</span><span style="color:#fac863;">Comparator</span><span style="color:#5fb3b3;">;
+</span><span style="color:#c594c5;">import </span><span style="color:#fac863;">java</span><span style="color:#5fb3b3;">.</span><span style="color:#fac863;">util</span><span style="color:#5fb3b3;">.</span><span style="color:#fac863;">HashSet</span><span style="color:#5fb3b3;">;
+</span><span style="color:#c594c5;">import </span><span style="color:#fac863;">java</span><span style="color:#5fb3b3;">.</span><span style="color:#fac863;">util</span><span style="color:#5fb3b3;">.</span><span style="color:#fac863;">PriorityQueue</span><span style="color:#5fb3b3;">;
+</span><span style="color:#c594c5;">import </span><span style="color:#fac863;">java</span><span style="color:#5fb3b3;">.</span><span style="color:#fac863;">util</span><span style="color:#5fb3b3;">.</span><span style="color:#fac863;">Set</span><span style="color:#5fb3b3;">;
+
+</span><span style="color:#c594c5;">public class </span><span style="color:#fac863;">KuskalMst </span><span style="color:#5fb3b3;">{
+
+    </span><span style="color:#c594c5;">private static final class </span><span style="color:#fac863;">EdgeComparator</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#f99157;">T</span><span style="color:#5fb3b3;">&gt; </span><span style="color:#c594c5;">implements </span><span style="color:#99c794;">Comparator</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#fac863;">Edge</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#fac863;">T</span><span style="color:#5fb3b3;">&gt;&gt; {
+
+        @</span><span style="color:#cccece;">Override
+        </span><span style="color:#c594c5;">public int </span><span style="color:#6699cc;">compare</span><span style="color:#5fb3b3;">(</span><span style="color:#fac863;">Edge</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#fac863;">T</span><span style="color:#5fb3b3;">&gt; </span><span style="color:#f99157;">t1</span><span style="color:#5fb3b3;">, </span><span style="color:#fac863;">Edge</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#fac863;">T</span><span style="color:#5fb3b3;">&gt; </span><span style="color:#f99157;">t2</span><span style="color:#5fb3b3;">) {
+            </span><span style="color:#c594c5;">return </span><span style="color:#fac863;">Double</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">compare</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">t1</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">getWeight</span><span style="color:#5fb3b3;">(),</span><span style="color:#6699cc;"> t2</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">getWeight</span><span style="color:#5fb3b3;">());
+        }
+    }
+
+    </span><span style="color:#c594c5;">public </span><span style="color:#5fb3b3;">&lt;</span><span style="color:#f99157;">T</span><span style="color:#5fb3b3;">&gt; </span><span style="color:#fac863;">Set</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#fac863;">Edge</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#fac863;">T</span><span style="color:#5fb3b3;">&gt;&gt; </span><span style="color:#6699cc;">mst</span><span style="color:#5fb3b3;">(</span><span style="color:#c594c5;">final </span><span style="color:#fac863;">Graph</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#fac863;">T</span><span style="color:#5fb3b3;">&gt; </span><span style="color:#f99157;">graph</span><span style="color:#5fb3b3;">) {
+        </span><span style="color:#c594c5;">final </span><span style="color:#fac863;">Set</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#fac863;">Edge</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#fac863;">T</span><span style="color:#5fb3b3;">&gt;&gt;</span><span style="color:#cccece;"> mst </span><span style="color:#5fb3b3;">= </span><span style="color:#c594c5;">new </span><span style="color:#fac863;">HashSet</span><span style="color:#5fb3b3;">&lt;&gt;();
+        </span><span style="color:#c594c5;">final </span><span style="color:#fac863;">DisjointSet</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#fac863;">T</span><span style="color:#5fb3b3;">&gt;</span><span style="color:#cccece;"> connected </span><span style="color:#5fb3b3;">= </span><span style="color:#c594c5;">new </span><span style="color:#fac863;">DisjointSet</span><span style="color:#5fb3b3;">&lt;&gt;(</span><span style="color:#cccece;">graph</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">getVertices</span><span style="color:#5fb3b3;">());
+        </span><span style="color:#c594c5;">final int</span><span style="color:#cccece;"> vertexCount </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> connected</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">getCount</span><span style="color:#5fb3b3;">();
+        </span><span style="color:#c594c5;">final </span><span style="color:#fac863;">PriorityQueue</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#fac863;">Edge</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#fac863;">T</span><span style="color:#5fb3b3;">&gt;&gt;</span><span style="color:#cccece;"> pq </span><span style="color:#5fb3b3;">= </span><span style="color:#c594c5;">new </span><span style="color:#fac863;">PriorityQueue</span><span style="color:#5fb3b3;">&lt;&gt;(</span><span style="color:#c594c5;">new </span><span style="color:#fac863;">EdgeComparator</span><span style="color:#5fb3b3;">&lt;&gt;());</span><span style="color:#cccece;">
+
+        pq</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">addAll</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">graph</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">getEdges</span><span style="color:#5fb3b3;">());
+
+        </span><span style="color:#c594c5;">while </span><span style="color:#5fb3b3;">(!</span><span style="color:#cccece;">pq</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">isEmpty</span><span style="color:#5fb3b3;">() &amp;&amp;</span><span style="color:#cccece;"> mst</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">size</span><span style="color:#5fb3b3;">() &lt;</span><span style="color:#cccece;"> vertexCount </span><span style="color:#5fb3b3;">- </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">) {
+            </span><span style="color:#c594c5;">final </span><span style="color:#fac863;">Edge</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#fac863;">T</span><span style="color:#5fb3b3;">&gt;</span><span style="color:#cccece;"> edge </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> pq</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">poll</span><span style="color:#5fb3b3;">();
+            </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">connected</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">union</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">edge</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">getSource</span><span style="color:#5fb3b3;">(),</span><span style="color:#6699cc;"> edge</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">getTarget</span><span style="color:#5fb3b3;">())) {</span><span style="color:#cccece;">
+                mst</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">add</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">edge</span><span style="color:#5fb3b3;">);
+            }
+        }
+
+        </span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> mst</span><span style="color:#5fb3b3;">;
+    }
+}
+</span></pre>
+
+    </div>
+
+</div>
+
+</body>
+</html>

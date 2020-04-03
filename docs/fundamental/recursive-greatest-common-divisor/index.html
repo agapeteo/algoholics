@@ -1,0 +1,173 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <meta name="description" content="Greatest common divisor, GCD, recursive">
+    <meta name="keywords" content="Greatest common divisor, GCD, recursion, learn, explain, tutorial, data structures, algorithms, graph, tree, interview, java, golang, kotlin, python, javascript, rust">
+
+    <title> 
+    Greatest common divisor recursive
+ | Practical algorithms and data structures </title>
+    <link rel='stylesheet' href='/styles/styles.css'/>
+</head>
+
+<body>
+
+<div class="rootContainer">
+    <div class="horizontal-menu-box">
+        
+    
+    
+    
+<div class="menu">
+    <!-- ABOUT -->
+    <div class="menuItem">
+        
+        <a href="/index.html" >
+            ABOUT
+        </a>
+        
+
+    </div>
+
+    <!-- FUNDAMENTAL -->
+    <div class="menuItem">
+        
+        <a href="/fundamental/contents" >
+            FUNDAMENTAL
+        </a>
+        
+    </div>
+
+    <!-- BASIC -->
+    <div class="menuItem">
+        
+        <a href="/basic/contents" >
+            BASIC
+        </a>
+        
+    </div>
+
+    <!-- ADVANCED -->
+    <div class="menuItem">
+        
+        <a href="/advanced/contents" >
+            ADVANCED
+        </a>
+        
+    </div>
+
+    <!-- NINJA -->
+    <div class="menuItem">
+
+        
+        <a href="/ninja/contents" >
+            NINJA
+        </a>
+        
+
+    </div>
+
+    <!-- LANGUAGES -->
+    <div class="menuItem">
+        
+        <a href="/languages/contents" >
+            LANGUAGES
+        </a>
+        
+
+    </div>
+
+</div>
+
+
+
+    </div>
+
+    <div class="content">
+        
+    <h1 id="greatest-common-divisor">Greatest common divisor</h1>
+<h2 id="contents">Contents</h2>
+<hr />
+<ul>
+<li><a href="https://algoholics.io/fundamental/recursive-greatest-common-divisor/#java">Java</a></li>
+<li><a href="https://algoholics.io/fundamental/recursive-greatest-common-divisor/#go">Go</a></li>
+<li><a href="https://algoholics.io/fundamental/recursive-greatest-common-divisor/#python">Python</a></li>
+<li><a href="https://algoholics.io/fundamental/recursive-greatest-common-divisor/#javascript">JavaScript</a></li>
+<li><a href="https://algoholics.io/fundamental/recursive-greatest-common-divisor/#kotlin">Kotlin</a></li>
+<li><a href="https://algoholics.io/fundamental/recursive-greatest-common-divisor/#rust">Rust</a></li>
+</ul>
+<hr />
+<div id="java"/>
+<h2 id="java">Java</h2>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">package </span><span style="color:#cccece;">recursion</span><span style="color:#5fb3b3;">;
+
+</span><span style="color:#c594c5;">public class </span><span style="color:#fac863;">GreatestCommonDivisor </span><span style="color:#5fb3b3;">{
+    </span><span style="color:#c594c5;">public static int </span><span style="color:#6699cc;">gcd</span><span style="color:#5fb3b3;">(</span><span style="color:#c594c5;">int </span><span style="color:#f99157;">a</span><span style="color:#5fb3b3;">, </span><span style="color:#c594c5;">int </span><span style="color:#f99157;">b</span><span style="color:#5fb3b3;">) {
+        </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">b </span><span style="color:#5fb3b3;">== </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">) </span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> a</span><span style="color:#5fb3b3;">;
+        </span><span style="color:#c594c5;">return </span><span style="color:#6699cc;">gcd</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">b</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> a </span><span style="color:#5fb3b3;">%</span><span style="color:#6699cc;"> b</span><span style="color:#5fb3b3;">);
+    }
+}
+</span></pre><div id="go"/>
+<h2 id="go">Go</h2>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">package</span><span style="color:#cccece;"> recursion
+
+</span><span style="color:#c594c5;">func </span><span style="color:#6699cc;">Gcd</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">a</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">b </span><span style="color:#c594c5;">int</span><span style="color:#5fb3b3;">) </span><span style="color:#c594c5;">int </span><span style="color:#5fb3b3;">{
+	</span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> b </span><span style="color:#5fb3b3;">== </span><span style="color:#f99157;">0 </span><span style="color:#5fb3b3;">{
+		</span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> a
+	</span><span style="color:#5fb3b3;">}
+	</span><span style="color:#c594c5;">return </span><span style="color:#6699cc;">Gcd</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">b</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> a</span><span style="color:#5fb3b3;">%</span><span style="color:#6699cc;">b</span><span style="color:#5fb3b3;">)
+}
+</span></pre><div id="python"/>
+<h2 id="python">Python</h2>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">def </span><span style="color:#6699cc;">gcd</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">a</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">b</span><span style="color:#5fb3b3;">):
+    </span><span style="color:#c594c5;">if </span><span style="color:#cccece;">b </span><span style="color:#5fb3b3;">== </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">:
+        </span><span style="color:#c594c5;">return </span><span style="color:#cccece;">a
+    </span><span style="color:#c594c5;">return </span><span style="color:#6699cc;">gcd</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">b</span><span style="color:#5fb3b3;">, </span><span style="color:#6699cc;">a </span><span style="color:#5fb3b3;">% </span><span style="color:#6699cc;">b</span><span style="color:#5fb3b3;">)
+
+</span></pre><div id="javascript"/>
+<h2 id="javascript">JavaScript</h2>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">const </span><span style="color:#6699cc;">gcd </span><span style="color:#5fb3b3;">= (</span><span style="color:#f99157;">a</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">b</span><span style="color:#5fb3b3;">) </span><span style="color:#c594c5;">=&gt; </span><span style="color:#5fb3b3;">{
+    </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">b </span><span style="color:#5fb3b3;">== </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">) {
+        </span><span style="color:#c594c5;">return </span><span style="color:#cccece;">a
+    </span><span style="color:#5fb3b3;">}
+    </span><span style="color:#c594c5;">return </span><span style="color:#6699cc;">gcd</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">b</span><span style="color:#5fb3b3;">, </span><span style="color:#cccece;">a </span><span style="color:#5fb3b3;">% </span><span style="color:#cccece;">b</span><span style="color:#5fb3b3;">)
+}
+</span></pre><div id="kotlin"/>
+<h2 id="kotlin">Kotlin</h2>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">package </span><span style="color:#cccece;">recursion
+
+fun gcd(a</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">Int</span><span style="color:#cccece;">, b</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">Int</span><span style="color:#cccece;">)</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">Int</span><span style="color:#cccece;"> {
+    </span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> (b </span><span style="color:#5fb3b3;">== </span><span style="color:#f99157;">0</span><span style="color:#cccece;">) </span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> a
+    </span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> gcd(b, a </span><span style="color:#5fb3b3;">%</span><span style="color:#cccece;"> b)
+}
+</span></pre><div id="rust"/>
+<h2 id="rust">Rust</h2>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">fn </span><span style="color:#6699cc;">gcd</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">a</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">usize</span><span style="color:#cccece;">, </span><span style="color:#f99157;">b</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">usize</span><span style="color:#5fb3b3;">) -&gt; </span><span style="color:#c594c5;">usize </span><span style="color:#5fb3b3;">{
+    </span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> b </span><span style="color:#5fb3b3;">== </span><span style="color:#f99157;">0 </span><span style="color:#5fb3b3;">{
+        </span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> a</span><span style="color:#5fb3b3;">;
+    }
+    </span><span style="color:#6699cc;">gcd</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">b</span><span style="color:#5fb3b3;">,</span><span style="color:#cccece;"> a </span><span style="color:#5fb3b3;">%</span><span style="color:#cccece;"> b</span><span style="color:#5fb3b3;">)
+}
+
+#[</span><span style="color:#cccece;">test</span><span style="color:#5fb3b3;">]
+</span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">test</span><span style="color:#5fb3b3;">() {
+    </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">gcd</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">12</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">6</span><span style="color:#5fb3b3;">), </span><span style="color:#f99157;">6</span><span style="color:#5fb3b3;">);
+    </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">gcd</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">12</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">8</span><span style="color:#5fb3b3;">), </span><span style="color:#f99157;">4</span><span style="color:#5fb3b3;">);
+    </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">gcd</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">9</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">11</span><span style="color:#5fb3b3;">), </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">);
+}
+</span></pre>
+
+    </div>
+
+</div>
+
+</body>
+</html>

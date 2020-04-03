@@ -1,0 +1,731 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <meta name="description" content="Binary heap data structure">
+    <meta name="keywords" content="Binary heap, learn, explain, tutorial, data structures, algorithms, graph, tree, interview, java, golang, kotlin, python, rust, javascript, advanced">
+
+    <title> 
+    Binary heap
+ | Practical algorithms and data structures </title>
+    <link rel='stylesheet' href='/styles/styles.css'/>
+</head>
+
+<body>
+
+<div class="rootContainer">
+    <div class="horizontal-menu-box">
+        
+    
+    
+    
+<div class="menu">
+    <!-- ABOUT -->
+    <div class="menuItem">
+        
+        <a href="/index.html" >
+            ABOUT
+        </a>
+        
+
+    </div>
+
+    <!-- FUNDAMENTAL -->
+    <div class="menuItem">
+        
+        <a href="/fundamental/contents" >
+            FUNDAMENTAL
+        </a>
+        
+    </div>
+
+    <!-- BASIC -->
+    <div class="menuItem">
+        
+        <a href="/basic/contents" >
+            BASIC
+        </a>
+        
+    </div>
+
+    <!-- ADVANCED -->
+    <div class="menuItem">
+        
+        <a href="/advanced/contents" >
+            ADVANCED
+        </a>
+        
+    </div>
+
+    <!-- NINJA -->
+    <div class="menuItem">
+
+        
+        <a href="/ninja/contents" >
+            NINJA
+        </a>
+        
+
+    </div>
+
+    <!-- LANGUAGES -->
+    <div class="menuItem">
+        
+        <a href="/languages/contents" >
+            LANGUAGES
+        </a>
+        
+
+    </div>
+
+</div>
+
+
+
+    </div>
+
+    <div class="content">
+        
+    <h1 id="binary-heap">Binary heap</h1>
+<h2 id="contents">Contents</h2>
+<hr />
+<ul>
+<li><a href="https://algoholics.io/advanced/binary-heap/#description">Binary heap description</a></li>
+<li><a href="https://algoholics.io/advanced/binary-heap/#java">Java</a></li>
+<li><a href="https://algoholics.io/advanced/binary-heap/#go">Go</a></li>
+<li><a href="https://algoholics.io/advanced/binary-heap/#python">Python</a></li>
+<li><a href="https://algoholics.io/advanced/binary-heap/#javascript">JavaScript</a></li>
+<li><a href="https://algoholics.io/advanced/binary-heap/#kotlin">Kotlin</a></li>
+<li><a href="https://algoholics.io/advanced/binary-heap/#rust">Rust</a></li>
+</ul>
+<hr />
+<div id="description" />
+<h2 id="binary-heap-1">Binary heap</h2>
+<ul>
+<li>
+<p>push - <code>O log(N)</code></p>
+</li>
+<li>
+<p>pop (get and delete maximum/minimum) - <code>O log(N)</code></p>
+</li>
+<li>
+<p>peek (get maximum/minimum) - <code>O(1)</code></p>
+</li>
+</ul>
+<div id="java"/>
+<h2 id="java">Java</h2>
+<p>interface:</p>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">package </span><span style="color:#cccece;">tree</span><span style="color:#5fb3b3;">;
+
+</span><span style="color:#c594c5;">import </span><span style="color:#fac863;">java</span><span style="color:#5fb3b3;">.</span><span style="color:#fac863;">util</span><span style="color:#5fb3b3;">.</span><span style="color:#fac863;">Collection</span><span style="color:#5fb3b3;">;
+
+</span><span style="color:#c594c5;">public interface </span><span style="color:#fac863;">Heap</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#f99157;">E </span><span style="color:#c594c5;">extends </span><span style="color:#fac863;">Comparable</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#fac863;">E</span><span style="color:#5fb3b3;">&gt;&gt; {
+    </span><span style="color:#fac863;">E </span><span style="color:#6699cc;">peak</span><span style="color:#5fb3b3;">()</span><span style="color:#cccece;">;
+
+    </span><span style="color:#fac863;">E </span><span style="color:#6699cc;">pop</span><span style="color:#5fb3b3;">()</span><span style="color:#cccece;">;
+
+    </span><span style="color:#c594c5;">void </span><span style="color:#6699cc;">push</span><span style="color:#5fb3b3;">(</span><span style="color:#fac863;">E </span><span style="color:#f99157;">element</span><span style="color:#5fb3b3;">)</span><span style="color:#cccece;">;
+
+    </span><span style="color:#c594c5;">int </span><span style="color:#6699cc;">size</span><span style="color:#5fb3b3;">()</span><span style="color:#cccece;">;
+
+    </span><span style="color:#fac863;">Collection</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#fac863;">E</span><span style="color:#5fb3b3;">&gt; </span><span style="color:#6699cc;">elements</span><span style="color:#5fb3b3;">()</span><span style="color:#cccece;">;
+
+</span><span style="color:#5fb3b3;">}
+</span></pre>
+<p>implementation:</p>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">package </span><span style="color:#cccece;">tree</span><span style="color:#5fb3b3;">;
+
+</span><span style="color:#c594c5;">import </span><span style="color:#fac863;">java</span><span style="color:#5fb3b3;">.</span><span style="color:#fac863;">util</span><span style="color:#5fb3b3;">.</span><span style="color:#fac863;">ArrayList</span><span style="color:#5fb3b3;">;
+</span><span style="color:#c594c5;">import </span><span style="color:#fac863;">java</span><span style="color:#5fb3b3;">.</span><span style="color:#fac863;">util</span><span style="color:#5fb3b3;">.</span><span style="color:#fac863;">Collection</span><span style="color:#5fb3b3;">;
+</span><span style="color:#c594c5;">import </span><span style="color:#fac863;">java</span><span style="color:#5fb3b3;">.</span><span style="color:#fac863;">util</span><span style="color:#5fb3b3;">.</span><span style="color:#fac863;">List</span><span style="color:#5fb3b3;">;
+
+</span><span style="color:#c594c5;">public class </span><span style="color:#fac863;">MaxBinaryHeap</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#f99157;">E </span><span style="color:#c594c5;">extends </span><span style="color:#fac863;">Comparable</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#fac863;">E</span><span style="color:#5fb3b3;">&gt;&gt; </span><span style="color:#c594c5;">implements </span><span style="color:#99c794;">Heap</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#fac863;">E</span><span style="color:#5fb3b3;">&gt; {
+    </span><span style="color:#c594c5;">private final </span><span style="color:#fac863;">List</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#fac863;">E</span><span style="color:#5fb3b3;">&gt; </span><span style="color:#cccece;">container</span><span style="color:#5fb3b3;">;
+
+    </span><span style="color:#c594c5;">public </span><span style="color:#6699cc;">MaxBinaryHeap</span><span style="color:#5fb3b3;">() {</span><span style="color:#cccece;">
+        container </span><span style="color:#5fb3b3;">= </span><span style="color:#c594c5;">new </span><span style="color:#fac863;">ArrayList</span><span style="color:#5fb3b3;">&lt;&gt;();
+    }
+
+    @</span><span style="color:#cccece;">Override
+    </span><span style="color:#c594c5;">public </span><span style="color:#fac863;">E </span><span style="color:#6699cc;">peak</span><span style="color:#5fb3b3;">() {
+        </span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> container</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">size</span><span style="color:#5fb3b3;">() &gt; </span><span style="color:#f99157;">0 </span><span style="color:#5fb3b3;">?</span><span style="color:#cccece;"> container</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">get</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">container</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">size</span><span style="color:#5fb3b3;">() - </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">) : </span><span style="color:#f99157;">null</span><span style="color:#5fb3b3;">;
+    }
+
+    @</span><span style="color:#cccece;">Override
+    </span><span style="color:#c594c5;">public </span><span style="color:#fac863;">E </span><span style="color:#6699cc;">pop</span><span style="color:#5fb3b3;">() {
+        </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">container</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">isEmpty</span><span style="color:#5fb3b3;">()) </span><span style="color:#c594c5;">return </span><span style="color:#f99157;">null</span><span style="color:#5fb3b3;">;
+
+        </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">container</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">size</span><span style="color:#5fb3b3;">() == </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">) {
+            </span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> container</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">remove</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">);
+        }
+
+        </span><span style="color:#fac863;">E</span><span style="color:#cccece;"> result </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> container</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">get</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">);
+        </span><span style="color:#fac863;">E</span><span style="color:#cccece;"> latest </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> container</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">get</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">container</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">size</span><span style="color:#5fb3b3;">() - </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">);</span><span style="color:#cccece;">
+        container</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">remove</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">container</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">size</span><span style="color:#5fb3b3;">() - </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">);</span><span style="color:#cccece;">
+        container</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">set</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> latest</span><span style="color:#5fb3b3;">);
+
+        </span><span style="color:#6699cc;">siftDown</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">);
+
+        </span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> result</span><span style="color:#5fb3b3;">;
+    }
+
+    </span><span style="color:#c594c5;">private void </span><span style="color:#6699cc;">siftDown</span><span style="color:#5fb3b3;">(</span><span style="color:#c594c5;">int </span><span style="color:#f99157;">idx</span><span style="color:#5fb3b3;">) {
+        </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">idx </span><span style="color:#5fb3b3;">&lt; </span><span style="color:#f99157;">0 </span><span style="color:#5fb3b3;">||</span><span style="color:#cccece;"> idx </span><span style="color:#5fb3b3;">&gt;=</span><span style="color:#cccece;"> container</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">size</span><span style="color:#5fb3b3;">() / </span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">) </span><span style="color:#c594c5;">return</span><span style="color:#5fb3b3;">;
+
+        </span><span style="color:#c594c5;">int</span><span style="color:#cccece;"> leftIdx </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">leftChildIdx</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">idx</span><span style="color:#5fb3b3;">);
+        </span><span style="color:#c594c5;">int</span><span style="color:#cccece;"> rightIdx </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">rightChildIdx</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">idx</span><span style="color:#5fb3b3;">);
+
+        </span><span style="color:#c594c5;">int</span><span style="color:#cccece;"> largerChildIdx</span><span style="color:#5fb3b3;">;
+        </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">rightIdx </span><span style="color:#5fb3b3;">&lt;</span><span style="color:#cccece;"> container</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">size</span><span style="color:#5fb3b3;">() &amp;&amp;</span><span style="color:#cccece;"> container</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">get</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">rightIdx</span><span style="color:#5fb3b3;">).</span><span style="color:#6699cc;">compareTo</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">container</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">get</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">leftIdx</span><span style="color:#5fb3b3;">)) &gt; </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">) {</span><span style="color:#cccece;">
+            largerChildIdx </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> rightIdx</span><span style="color:#5fb3b3;">;
+        } </span><span style="color:#c594c5;">else </span><span style="color:#5fb3b3;">{</span><span style="color:#cccece;">
+            largerChildIdx </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> leftIdx</span><span style="color:#5fb3b3;">;
+        }
+
+        </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">container</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">get</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">largerChildIdx</span><span style="color:#5fb3b3;">).</span><span style="color:#6699cc;">compareTo</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">container</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">get</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">idx</span><span style="color:#5fb3b3;">)) &gt; </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">) {
+            </span><span style="color:#6699cc;">swap</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">idx</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> largerChildIdx</span><span style="color:#5fb3b3;">);
+            </span><span style="color:#6699cc;">siftDown</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">largerChildIdx</span><span style="color:#5fb3b3;">);
+        }
+    }
+
+    @</span><span style="color:#cccece;">Override
+    </span><span style="color:#c594c5;">public void </span><span style="color:#6699cc;">push</span><span style="color:#5fb3b3;">(</span><span style="color:#fac863;">E </span><span style="color:#f99157;">element</span><span style="color:#5fb3b3;">) {
+        </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">element </span><span style="color:#5fb3b3;">== </span><span style="color:#f99157;">null</span><span style="color:#5fb3b3;">) {
+            </span><span style="color:#c594c5;">throw new </span><span style="color:#fac863;">IllegalArgumentException</span><span style="color:#5fb3b3;">(&quot;</span><span style="color:#99c794;">null values are not valid elements</span><span style="color:#5fb3b3;">&quot;);
+        }</span><span style="color:#cccece;">
+        container</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">add</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">element</span><span style="color:#5fb3b3;">);
+        </span><span style="color:#6699cc;">siftUp</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">container</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">size</span><span style="color:#5fb3b3;">() - </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">);
+    }
+
+    </span><span style="color:#c594c5;">private void </span><span style="color:#6699cc;">siftUp</span><span style="color:#5fb3b3;">(</span><span style="color:#c594c5;">int </span><span style="color:#f99157;">idx</span><span style="color:#5fb3b3;">) {
+        </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">idx </span><span style="color:#5fb3b3;">&lt;= </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">) </span><span style="color:#c594c5;">return</span><span style="color:#5fb3b3;">;
+
+        </span><span style="color:#c594c5;">int</span><span style="color:#cccece;"> parentIdx </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">parentIdx</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">idx</span><span style="color:#5fb3b3;">);
+        </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">container</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">get</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">idx</span><span style="color:#5fb3b3;">).</span><span style="color:#6699cc;">compareTo</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">container</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">get</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">parentIdx</span><span style="color:#5fb3b3;">)) &gt; </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">) {
+            </span><span style="color:#6699cc;">swap</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">idx</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> parentIdx</span><span style="color:#5fb3b3;">);
+            </span><span style="color:#6699cc;">siftUp</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">parentIdx</span><span style="color:#5fb3b3;">);
+        }
+    }
+
+    </span><span style="color:#c594c5;">private void </span><span style="color:#6699cc;">swap</span><span style="color:#5fb3b3;">(</span><span style="color:#c594c5;">int </span><span style="color:#f99157;">i</span><span style="color:#5fb3b3;">, </span><span style="color:#c594c5;">int </span><span style="color:#f99157;">j</span><span style="color:#5fb3b3;">) {
+        </span><span style="color:#fac863;">E</span><span style="color:#cccece;"> tmp </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> container</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">get</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">i</span><span style="color:#5fb3b3;">);</span><span style="color:#cccece;">
+        container</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">set</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">i</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> container</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">get</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">j</span><span style="color:#5fb3b3;">));</span><span style="color:#cccece;">
+        container</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">set</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">j</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> tmp</span><span style="color:#5fb3b3;">);
+    }
+
+    @</span><span style="color:#cccece;">Override
+    </span><span style="color:#c594c5;">public int </span><span style="color:#6699cc;">size</span><span style="color:#5fb3b3;">() {
+        </span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> container</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">size</span><span style="color:#5fb3b3;">();
+    }
+
+    @</span><span style="color:#cccece;">Override
+    </span><span style="color:#c594c5;">public </span><span style="color:#fac863;">Collection</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#fac863;">E</span><span style="color:#5fb3b3;">&gt; </span><span style="color:#6699cc;">elements</span><span style="color:#5fb3b3;">() {
+        </span><span style="color:#fac863;">List</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#fac863;">E</span><span style="color:#5fb3b3;">&gt;</span><span style="color:#cccece;"> result </span><span style="color:#5fb3b3;">= </span><span style="color:#c594c5;">new </span><span style="color:#fac863;">ArrayList</span><span style="color:#5fb3b3;">&lt;&gt;(</span><span style="color:#cccece;">container</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">size</span><span style="color:#5fb3b3;">());</span><span style="color:#cccece;">
+        result</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">addAll</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">container</span><span style="color:#5fb3b3;">);
+        </span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> result</span><span style="color:#5fb3b3;">;
+    }
+
+    </span><span style="color:#c594c5;">private int </span><span style="color:#6699cc;">parentIdx</span><span style="color:#5fb3b3;">(</span><span style="color:#c594c5;">int </span><span style="color:#f99157;">idx</span><span style="color:#5fb3b3;">) {
+        </span><span style="color:#c594c5;">return </span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">idx </span><span style="color:#5fb3b3;">- </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">) / </span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">;
+    }
+
+    </span><span style="color:#c594c5;">private int </span><span style="color:#6699cc;">leftChildIdx</span><span style="color:#5fb3b3;">(</span><span style="color:#c594c5;">int </span><span style="color:#f99157;">idx</span><span style="color:#5fb3b3;">) {
+        </span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> idx </span><span style="color:#5fb3b3;">* </span><span style="color:#f99157;">2 </span><span style="color:#5fb3b3;">+ </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">;
+    }
+
+    </span><span style="color:#c594c5;">private int </span><span style="color:#6699cc;">rightChildIdx</span><span style="color:#5fb3b3;">(</span><span style="color:#c594c5;">int </span><span style="color:#f99157;">idx</span><span style="color:#5fb3b3;">) {
+        </span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> idx </span><span style="color:#5fb3b3;">* </span><span style="color:#f99157;">2 </span><span style="color:#5fb3b3;">+ </span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">;
+    }
+}
+</span></pre><div id="go"/>
+<h2 id="go">Go</h2>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">package</span><span style="color:#cccece;"> tree
+
+</span><span style="color:#c594c5;">import </span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">errors</span><span style="color:#5fb3b3;">&quot;
+
+</span><span style="color:#c594c5;">var </span><span style="color:#cccece;">NoSuchElementError </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> errors</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">New</span><span style="color:#5fb3b3;">(&quot;</span><span style="color:#99c794;">no such element</span><span style="color:#5fb3b3;">&quot;)
+
+</span><span style="color:#c594c5;">type </span><span style="color:#cccece;">MaxHeap </span><span style="color:#c594c5;">struct </span><span style="color:#5fb3b3;">{
+	</span><span style="color:#cccece;">elm </span><span style="color:#5fb3b3;">[]</span><span style="color:#c594c5;">int
+</span><span style="color:#5fb3b3;">}
+
+</span><span style="color:#c594c5;">func </span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">H </span><span style="color:#5fb3b3;">*</span><span style="color:#cccece;">MaxHeap</span><span style="color:#5fb3b3;">) </span><span style="color:#6699cc;">Peak</span><span style="color:#5fb3b3;">() (</span><span style="color:#c594c5;">int</span><span style="color:#5fb3b3;">, </span><span style="color:#c594c5;">error</span><span style="color:#5fb3b3;">) {
+	</span><span style="color:#c594c5;">if </span><span style="color:#6699cc;">len</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">H</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">elm</span><span style="color:#5fb3b3;">) == </span><span style="color:#f99157;">0 </span><span style="color:#5fb3b3;">{
+		</span><span style="color:#c594c5;">return </span><span style="color:#5fb3b3;">-</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">,</span><span style="color:#cccece;"> NoSuchElementError
+	</span><span style="color:#5fb3b3;">}
+	</span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> H</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">elm</span><span style="color:#5fb3b3;">[</span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">], </span><span style="color:#f99157;">nil
+</span><span style="color:#5fb3b3;">}
+
+</span><span style="color:#c594c5;">func </span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">H </span><span style="color:#5fb3b3;">*</span><span style="color:#cccece;">MaxHeap</span><span style="color:#5fb3b3;">) </span><span style="color:#6699cc;">Pop</span><span style="color:#5fb3b3;">() (</span><span style="color:#c594c5;">int</span><span style="color:#5fb3b3;">, </span><span style="color:#c594c5;">error</span><span style="color:#5fb3b3;">) {
+	</span><span style="color:#c594c5;">if </span><span style="color:#6699cc;">len</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">H</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">elm</span><span style="color:#5fb3b3;">) == </span><span style="color:#f99157;">0 </span><span style="color:#5fb3b3;">{
+		</span><span style="color:#c594c5;">return </span><span style="color:#5fb3b3;">-</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">,</span><span style="color:#cccece;"> NoSuchElementError
+	</span><span style="color:#5fb3b3;">}
+
+	</span><span style="color:#c594c5;">var </span><span style="color:#cccece;">result </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> H</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">elm</span><span style="color:#5fb3b3;">[</span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">]
+
+	</span><span style="color:#c594c5;">if </span><span style="color:#6699cc;">len</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">H</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">elm</span><span style="color:#5fb3b3;">) == </span><span style="color:#f99157;">1 </span><span style="color:#5fb3b3;">{</span><span style="color:#cccece;">
+		H</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">elm </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">make</span><span style="color:#5fb3b3;">([]</span><span style="color:#c594c5;">int</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">)
+		</span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> result</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">nil
+	</span><span style="color:#5fb3b3;">}</span><span style="color:#cccece;">
+
+	H</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">elm</span><span style="color:#5fb3b3;">[</span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">] =</span><span style="color:#cccece;"> H</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">elm</span><span style="color:#5fb3b3;">[</span><span style="color:#6699cc;">len</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">H</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">elm</span><span style="color:#5fb3b3;">)-</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">] </span><span style="color:#5f6364;">// put last to first
+</span><span style="color:#cccece;">	H</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">elm </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> H</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">elm</span><span style="color:#5fb3b3;">[:</span><span style="color:#6699cc;">len</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">H</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">elm</span><span style="color:#5fb3b3;">)-</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">]   </span><span style="color:#5f6364;">// trim last element in slice
+
+	</span><span style="color:#6699cc;">siftDown</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> H</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">elm</span><span style="color:#5fb3b3;">)
+
+	</span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> result</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">nil
+</span><span style="color:#5fb3b3;">}
+
+</span><span style="color:#c594c5;">func </span><span style="color:#6699cc;">siftDown</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">i </span><span style="color:#c594c5;">int</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">e </span><span style="color:#5fb3b3;">[]</span><span style="color:#c594c5;">int</span><span style="color:#5fb3b3;">) {
+	</span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> i </span><span style="color:#5fb3b3;">&lt; </span><span style="color:#f99157;">0 </span><span style="color:#5fb3b3;">||</span><span style="color:#cccece;"> i </span><span style="color:#5fb3b3;">&gt;= </span><span style="color:#6699cc;">len</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">e</span><span style="color:#5fb3b3;">)/</span><span style="color:#f99157;">2 </span><span style="color:#5fb3b3;">{
+		</span><span style="color:#c594c5;">return </span><span style="color:#5f6364;">// no need to sift down leaf elements
+	</span><span style="color:#5fb3b3;">}
+
+	</span><span style="color:#c594c5;">var </span><span style="color:#cccece;">l </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">leftChildIdx</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">i</span><span style="color:#5fb3b3;">)
+	</span><span style="color:#c594c5;">var </span><span style="color:#cccece;">r </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">rightChildIdx</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">i</span><span style="color:#5fb3b3;">)
+
+	</span><span style="color:#c594c5;">var </span><span style="color:#cccece;">largerChild </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> l
+	</span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> r </span><span style="color:#5fb3b3;">&lt; </span><span style="color:#6699cc;">len</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">e</span><span style="color:#5fb3b3;">) &amp;&amp;</span><span style="color:#cccece;"> e</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">r</span><span style="color:#5fb3b3;">] &gt;</span><span style="color:#cccece;"> e</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">l</span><span style="color:#5fb3b3;">] {</span><span style="color:#cccece;">
+		largerChild </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> r
+	</span><span style="color:#5fb3b3;">}
+
+	</span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> e</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">largerChild</span><span style="color:#5fb3b3;">] &gt;</span><span style="color:#cccece;"> e</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">i</span><span style="color:#5fb3b3;">] {
+		</span><span style="color:#6699cc;">swap</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">i</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> largerChild</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> e</span><span style="color:#5fb3b3;">)
+		</span><span style="color:#6699cc;">siftDown</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">largerChild</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> e</span><span style="color:#5fb3b3;">)
+	}
+}
+
+</span><span style="color:#c594c5;">func </span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">H </span><span style="color:#5fb3b3;">*</span><span style="color:#cccece;">MaxHeap</span><span style="color:#5fb3b3;">) </span><span style="color:#6699cc;">Push</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">v </span><span style="color:#c594c5;">int</span><span style="color:#5fb3b3;">) {
+	</span><span style="color:#c594c5;">if </span><span style="color:#6699cc;">len</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">H</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">elm</span><span style="color:#5fb3b3;">) == </span><span style="color:#f99157;">0 </span><span style="color:#5fb3b3;">{</span><span style="color:#cccece;">
+		H</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">elm </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">append</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">H</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">elm</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> v</span><span style="color:#5fb3b3;">)
+		</span><span style="color:#c594c5;">return
+	</span><span style="color:#5fb3b3;">}</span><span style="color:#cccece;">
+
+	H</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">elm </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">append</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">H</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">elm</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> v</span><span style="color:#5fb3b3;">)
+
+	</span><span style="color:#6699cc;">siftUp</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">len</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">H</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">elm</span><span style="color:#5fb3b3;">)-</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> H</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">elm</span><span style="color:#5fb3b3;">)
+}
+
+</span><span style="color:#c594c5;">func </span><span style="color:#6699cc;">siftUp</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">i </span><span style="color:#c594c5;">int</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">e </span><span style="color:#5fb3b3;">[]</span><span style="color:#c594c5;">int</span><span style="color:#5fb3b3;">) {
+	</span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> i </span><span style="color:#5fb3b3;">&lt;= </span><span style="color:#f99157;">0 </span><span style="color:#5fb3b3;">{
+		</span><span style="color:#c594c5;">return
+	</span><span style="color:#5fb3b3;">}
+	</span><span style="color:#c594c5;">var </span><span style="color:#cccece;">p </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">parentIdx</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">i</span><span style="color:#5fb3b3;">)
+
+	</span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> e</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">i</span><span style="color:#5fb3b3;">] &gt;</span><span style="color:#cccece;"> e</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">p</span><span style="color:#5fb3b3;">] {
+		</span><span style="color:#6699cc;">swap</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">i</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> p</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> e</span><span style="color:#5fb3b3;">)
+		</span><span style="color:#6699cc;">siftUp</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">p</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> e</span><span style="color:#5fb3b3;">)
+	}
+}
+
+</span><span style="color:#c594c5;">func </span><span style="color:#6699cc;">swap</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">i </span><span style="color:#c594c5;">int</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">j </span><span style="color:#c594c5;">int</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">e </span><span style="color:#5fb3b3;">[]</span><span style="color:#c594c5;">int</span><span style="color:#5fb3b3;">) {</span><span style="color:#cccece;">
+	e</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">i</span><span style="color:#5fb3b3;">],</span><span style="color:#cccece;"> e</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">j</span><span style="color:#5fb3b3;">] =</span><span style="color:#cccece;"> e</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">j</span><span style="color:#5fb3b3;">],</span><span style="color:#cccece;"> e</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">i</span><span style="color:#5fb3b3;">]
+}
+
+</span><span style="color:#c594c5;">func </span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">H </span><span style="color:#5fb3b3;">*</span><span style="color:#cccece;">MaxHeap</span><span style="color:#5fb3b3;">) </span><span style="color:#6699cc;">Elements</span><span style="color:#5fb3b3;">() []</span><span style="color:#c594c5;">int </span><span style="color:#5fb3b3;">{
+	</span><span style="color:#c594c5;">var </span><span style="color:#cccece;">result </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">make</span><span style="color:#5fb3b3;">([]</span><span style="color:#c594c5;">int</span><span style="color:#5fb3b3;">, </span><span style="color:#6699cc;">len</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">H</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">elm</span><span style="color:#5fb3b3;">))
+	</span><span style="color:#6699cc;">copy</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">result</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> H</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">elm</span><span style="color:#5fb3b3;">)
+	</span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> result
+</span><span style="color:#5fb3b3;">}
+
+</span><span style="color:#c594c5;">func </span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">H </span><span style="color:#5fb3b3;">*</span><span style="color:#cccece;">MaxHeap</span><span style="color:#5fb3b3;">) </span><span style="color:#6699cc;">Size</span><span style="color:#5fb3b3;">() </span><span style="color:#c594c5;">int </span><span style="color:#5fb3b3;">{
+	</span><span style="color:#c594c5;">return </span><span style="color:#6699cc;">len</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">H</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">elm</span><span style="color:#5fb3b3;">)
+}
+
+</span><span style="color:#c594c5;">func </span><span style="color:#6699cc;">leftChildIdx</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">i </span><span style="color:#c594c5;">int</span><span style="color:#5fb3b3;">) </span><span style="color:#c594c5;">int </span><span style="color:#5fb3b3;">{
+	</span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> i</span><span style="color:#5fb3b3;">*</span><span style="color:#f99157;">2 </span><span style="color:#5fb3b3;">+ </span><span style="color:#f99157;">1
+</span><span style="color:#5fb3b3;">}
+
+</span><span style="color:#c594c5;">func </span><span style="color:#6699cc;">rightChildIdx</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">i </span><span style="color:#c594c5;">int</span><span style="color:#5fb3b3;">) </span><span style="color:#c594c5;">int </span><span style="color:#5fb3b3;">{
+	</span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> i</span><span style="color:#5fb3b3;">*</span><span style="color:#f99157;">2 </span><span style="color:#5fb3b3;">+ </span><span style="color:#f99157;">2
+</span><span style="color:#5fb3b3;">}
+
+</span><span style="color:#c594c5;">func </span><span style="color:#6699cc;">parentIdx</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">i </span><span style="color:#c594c5;">int</span><span style="color:#5fb3b3;">) </span><span style="color:#c594c5;">int </span><span style="color:#5fb3b3;">{
+	</span><span style="color:#c594c5;">return </span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">i </span><span style="color:#5fb3b3;">- </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">) / </span><span style="color:#f99157;">2
+</span><span style="color:#5fb3b3;">}
+</span></pre><div id="python"/>
+<h2 id="python">Python</h2>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">class </span><span style="color:#fac863;">Heap</span><span style="color:#5fb3b3;">:
+    </span><span style="color:#c594c5;">def </span><span style="color:#6699cc;">__init__</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">self</span><span style="color:#5fb3b3;">):
+        </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">container </span><span style="color:#5fb3b3;">= []
+
+    </span><span style="color:#c594c5;">def </span><span style="color:#6699cc;">peek</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">self</span><span style="color:#5fb3b3;">):
+        </span><span style="color:#c594c5;">if </span><span style="color:#6699cc;">len</span><span style="color:#5fb3b3;">(</span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">container</span><span style="color:#5fb3b3;">) == </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">:
+            </span><span style="color:#c594c5;">return </span><span style="color:#f99157;">None
+        </span><span style="color:#c594c5;">return </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">container</span><span style="color:#5fb3b3;">[</span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">]
+
+    </span><span style="color:#c594c5;">def </span><span style="color:#6699cc;">pop</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">self</span><span style="color:#5fb3b3;">):
+        </span><span style="color:#c594c5;">if </span><span style="color:#6699cc;">len</span><span style="color:#5fb3b3;">(</span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">container</span><span style="color:#5fb3b3;">) == </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">:
+            </span><span style="color:#c594c5;">return </span><span style="color:#f99157;">None
+
+        </span><span style="color:#c594c5;">if </span><span style="color:#6699cc;">len</span><span style="color:#5fb3b3;">(</span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">container</span><span style="color:#5fb3b3;">) == </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">:
+            </span><span style="color:#c594c5;">return </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">container</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">pop</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">)
+
+        </span><span style="color:#cccece;">result </span><span style="color:#5fb3b3;">= </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">container</span><span style="color:#5fb3b3;">[</span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">]
+        </span><span style="color:#cccece;">last </span><span style="color:#5fb3b3;">= </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">container</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">pop</span><span style="color:#5fb3b3;">()
+        </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">container</span><span style="color:#5fb3b3;">[</span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">] = </span><span style="color:#cccece;">last
+        </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">_sift_down</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">)
+        </span><span style="color:#c594c5;">return </span><span style="color:#cccece;">result
+
+    </span><span style="color:#c594c5;">def </span><span style="color:#6699cc;">push</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">self</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">element</span><span style="color:#5fb3b3;">):
+        </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">container</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">append</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">element</span><span style="color:#5fb3b3;">)
+        </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">_sift_up</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">len</span><span style="color:#5fb3b3;">(</span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">container</span><span style="color:#5fb3b3;">) - </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">)
+
+    </span><span style="color:#c594c5;">def </span><span style="color:#6699cc;">__len__</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">self</span><span style="color:#5fb3b3;">):
+        </span><span style="color:#c594c5;">return </span><span style="color:#6699cc;">len</span><span style="color:#5fb3b3;">(</span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">container</span><span style="color:#5fb3b3;">)
+
+    </span><span style="color:#c594c5;">def </span><span style="color:#6699cc;">_sift_up</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">self</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">idx</span><span style="color:#5fb3b3;">):
+        </span><span style="color:#c594c5;">if </span><span style="color:#cccece;">idx </span><span style="color:#5fb3b3;">== </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">:
+            </span><span style="color:#c594c5;">return
+        </span><span style="color:#cccece;">parent_idx </span><span style="color:#5fb3b3;">= </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">parent_idx</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">idx</span><span style="color:#5fb3b3;">)
+        </span><span style="color:#c594c5;">if </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">container</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">idx</span><span style="color:#5fb3b3;">] &gt; </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">container</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">parent_idx</span><span style="color:#5fb3b3;">]:
+            </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">_swap</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">idx</span><span style="color:#5fb3b3;">, </span><span style="color:#6699cc;">parent_idx</span><span style="color:#5fb3b3;">)
+            </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">_sift_up</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">parent_idx</span><span style="color:#5fb3b3;">)
+
+    </span><span style="color:#c594c5;">def </span><span style="color:#6699cc;">_sift_down</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">self</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">idx</span><span style="color:#5fb3b3;">):
+        </span><span style="color:#c594c5;">if </span><span style="color:#cccece;">idx </span><span style="color:#5fb3b3;">&gt;= </span><span style="color:#6699cc;">len</span><span style="color:#5fb3b3;">(</span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">container</span><span style="color:#5fb3b3;">) // </span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">:
+            </span><span style="color:#c594c5;">return
+
+        </span><span style="color:#cccece;">right_child_idx </span><span style="color:#5fb3b3;">= </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">right_child_idx</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">idx</span><span style="color:#5fb3b3;">)
+        </span><span style="color:#cccece;">left_child_idx </span><span style="color:#5fb3b3;">= </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">left_child_idx</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">idx</span><span style="color:#5fb3b3;">)
+        </span><span style="color:#cccece;">greater_child_idx </span><span style="color:#5fb3b3;">= </span><span style="color:#cccece;">left_child_idx
+
+        </span><span style="color:#c594c5;">if </span><span style="color:#cccece;">right_child_idx </span><span style="color:#5fb3b3;">&lt; </span><span style="color:#6699cc;">len</span><span style="color:#5fb3b3;">(</span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">container</span><span style="color:#5fb3b3;">) and </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">container</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">right_child_idx</span><span style="color:#5fb3b3;">] &gt; </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">container</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">left_child_idx</span><span style="color:#5fb3b3;">]:
+            </span><span style="color:#cccece;">greater_child_idx </span><span style="color:#5fb3b3;">= </span><span style="color:#cccece;">right_child_idx
+
+        </span><span style="color:#c594c5;">if </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">container</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">greater_child_idx</span><span style="color:#5fb3b3;">] &gt; </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">container</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">idx</span><span style="color:#5fb3b3;">]:
+            </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">_swap</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">idx</span><span style="color:#5fb3b3;">, </span><span style="color:#6699cc;">greater_child_idx</span><span style="color:#5fb3b3;">)
+            </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">_sift_down</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">greater_child_idx</span><span style="color:#5fb3b3;">)
+
+    </span><span style="color:#c594c5;">def </span><span style="color:#6699cc;">_swap</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">self</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">i</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">j</span><span style="color:#5fb3b3;">):
+        </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">container</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">i</span><span style="color:#5fb3b3;">]</span><span style="color:#cccece;">, </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">container</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">j</span><span style="color:#5fb3b3;">] = </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">container</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">j</span><span style="color:#5fb3b3;">]</span><span style="color:#cccece;">, </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">container</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">i</span><span style="color:#5fb3b3;">]
+
+    @</span><span style="color:#6699cc;">staticmethod
+    </span><span style="color:#c594c5;">def </span><span style="color:#6699cc;">parent_idx</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">idx</span><span style="color:#5fb3b3;">):
+        </span><span style="color:#c594c5;">return </span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">idx </span><span style="color:#5fb3b3;">- </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">) // </span><span style="color:#f99157;">2
+
+    </span><span style="color:#5fb3b3;">@</span><span style="color:#6699cc;">staticmethod
+    </span><span style="color:#c594c5;">def </span><span style="color:#6699cc;">left_child_idx</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">idx</span><span style="color:#5fb3b3;">):
+        </span><span style="color:#c594c5;">return </span><span style="color:#cccece;">idx </span><span style="color:#5fb3b3;">* </span><span style="color:#f99157;">2 </span><span style="color:#5fb3b3;">+ </span><span style="color:#f99157;">1
+
+    </span><span style="color:#5fb3b3;">@</span><span style="color:#6699cc;">staticmethod
+    </span><span style="color:#c594c5;">def </span><span style="color:#6699cc;">right_child_idx</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">idx</span><span style="color:#5fb3b3;">):
+        </span><span style="color:#c594c5;">return </span><span style="color:#cccece;">idx </span><span style="color:#5fb3b3;">* </span><span style="color:#f99157;">2 </span><span style="color:#5fb3b3;">+ </span><span style="color:#f99157;">2
+</span></pre><div id="javascript"/>
+<h2 id="javascript">JavaScript</h2>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">class </span><span style="color:#fac863;">MaxBinaryHeap </span><span style="color:#5fb3b3;">{
+    </span><span style="color:#6699cc;">constructor</span><span style="color:#5fb3b3;">() {
+        </span><span style="color:#ec5f67;">this</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">container </span><span style="color:#5fb3b3;">= [];
+    }
+
+    </span><span style="color:#6699cc;">size</span><span style="color:#5fb3b3;">() {
+        </span><span style="color:#c594c5;">return </span><span style="color:#ec5f67;">this</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">container</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">length</span><span style="color:#5fb3b3;">;
+    }
+
+    </span><span style="color:#6699cc;">peek</span><span style="color:#5fb3b3;">() {
+        </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">(</span><span style="color:#ec5f67;">this</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">container</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">length </span><span style="color:#5fb3b3;">== </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">) {
+            </span><span style="color:#c594c5;">return </span><span style="color:#f99157;">undefined</span><span style="color:#5fb3b3;">;
+        }
+        </span><span style="color:#c594c5;">return </span><span style="color:#ec5f67;">this</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">container</span><span style="color:#5fb3b3;">[</span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">];
+    }
+
+    </span><span style="color:#6699cc;">push</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">element</span><span style="color:#5fb3b3;">) {
+        </span><span style="color:#ec5f67;">this</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">container</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">push</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">element</span><span style="color:#5fb3b3;">);
+        </span><span style="color:#ec5f67;">this</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">siftUp</span><span style="color:#5fb3b3;">(</span><span style="color:#ec5f67;">this</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">container</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">length </span><span style="color:#5fb3b3;">- </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">);
+    }
+
+    </span><span style="color:#6699cc;">pop</span><span style="color:#5fb3b3;">() {
+        </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">(</span><span style="color:#ec5f67;">this</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">container</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">length </span><span style="color:#5fb3b3;">== </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">) {
+            </span><span style="color:#c594c5;">return </span><span style="color:#f99157;">undefined</span><span style="color:#5fb3b3;">;
+        }
+        </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">(</span><span style="color:#ec5f67;">this</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">container</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">length </span><span style="color:#5fb3b3;">== </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">) {
+            </span><span style="color:#c594c5;">return </span><span style="color:#ec5f67;">this</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">container</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">pop</span><span style="color:#5fb3b3;">();
+        }
+        </span><span style="color:#c594c5;">const </span><span style="color:#cccece;">result </span><span style="color:#5fb3b3;">= </span><span style="color:#ec5f67;">this</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">container</span><span style="color:#5fb3b3;">[</span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">];
+        </span><span style="color:#c594c5;">const </span><span style="color:#cccece;">last </span><span style="color:#5fb3b3;">= </span><span style="color:#ec5f67;">this</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">container</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">pop</span><span style="color:#5fb3b3;">();
+        </span><span style="color:#ec5f67;">this</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">container</span><span style="color:#5fb3b3;">[</span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">] = </span><span style="color:#cccece;">last</span><span style="color:#5fb3b3;">;
+        </span><span style="color:#ec5f67;">this</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">siftDown</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">);
+
+        </span><span style="color:#c594c5;">return </span><span style="color:#cccece;">result</span><span style="color:#5fb3b3;">;
+    }
+
+    </span><span style="color:#6699cc;">siftUp</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">idx</span><span style="color:#5fb3b3;">) {
+        </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">idx </span><span style="color:#5fb3b3;">== </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">) </span><span style="color:#c594c5;">return</span><span style="color:#5fb3b3;">;
+
+        </span><span style="color:#c594c5;">const </span><span style="color:#cccece;">parentIdx </span><span style="color:#5fb3b3;">= </span><span style="color:#fac863;">MaxBinaryHeap</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">parentIdx</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">idx</span><span style="color:#5fb3b3;">);
+        </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">(</span><span style="color:#ec5f67;">this</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">container</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">idx</span><span style="color:#5fb3b3;">] &gt; </span><span style="color:#ec5f67;">this</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">container</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">parentIdx</span><span style="color:#5fb3b3;">]) {
+            </span><span style="color:#ec5f67;">this</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">swap</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">idx</span><span style="color:#5fb3b3;">, </span><span style="color:#cccece;">parentIdx</span><span style="color:#5fb3b3;">);
+            </span><span style="color:#ec5f67;">this</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">siftUp</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">parentIdx</span><span style="color:#5fb3b3;">);
+        }
+    }
+
+    </span><span style="color:#6699cc;">siftDown</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">idx</span><span style="color:#5fb3b3;">) {
+        </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">idx </span><span style="color:#5fb3b3;">&gt;= </span><span style="color:#fac863;">Math</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">floor</span><span style="color:#5fb3b3;">(</span><span style="color:#ec5f67;">this</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">container</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">length </span><span style="color:#5fb3b3;">/ </span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">)) {
+            </span><span style="color:#c594c5;">return
+        </span><span style="color:#5fb3b3;">}
+        </span><span style="color:#c594c5;">const </span><span style="color:#cccece;">leftChildIdx </span><span style="color:#5fb3b3;">= </span><span style="color:#fac863;">MaxBinaryHeap</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">leftChildIdx</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">idx</span><span style="color:#5fb3b3;">);
+        </span><span style="color:#c594c5;">const </span><span style="color:#cccece;">rightChildIdx </span><span style="color:#5fb3b3;">= </span><span style="color:#fac863;">MaxBinaryHeap</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">rightChildIdx</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">idx</span><span style="color:#5fb3b3;">);
+        </span><span style="color:#c594c5;">let </span><span style="color:#cccece;">greaterChildIdx </span><span style="color:#5fb3b3;">= </span><span style="color:#cccece;">leftChildIdx</span><span style="color:#5fb3b3;">;
+        </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">rightChildIdx </span><span style="color:#5fb3b3;">&lt; </span><span style="color:#ec5f67;">this</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">container</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">length </span><span style="color:#5fb3b3;">&amp;&amp; </span><span style="color:#ec5f67;">this</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">container</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">rightChildIdx</span><span style="color:#5fb3b3;">] &gt; </span><span style="color:#ec5f67;">this</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">container</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">leftChildIdx</span><span style="color:#5fb3b3;">]) {
+            </span><span style="color:#cccece;">greaterChildIdx </span><span style="color:#5fb3b3;">= </span><span style="color:#cccece;">rightChildIdx</span><span style="color:#5fb3b3;">;
+        }
+        </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">(</span><span style="color:#ec5f67;">this</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">container</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">greaterChildIdx</span><span style="color:#5fb3b3;">] &gt; </span><span style="color:#ec5f67;">this</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">container</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">idx</span><span style="color:#5fb3b3;">]) {
+            </span><span style="color:#ec5f67;">this</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">swap</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">greaterChildIdx</span><span style="color:#5fb3b3;">, </span><span style="color:#cccece;">idx</span><span style="color:#5fb3b3;">);
+            </span><span style="color:#ec5f67;">this</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">siftDown</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">greaterChildIdx</span><span style="color:#5fb3b3;">);
+        }
+    }
+
+    </span><span style="color:#6699cc;">swap</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">i</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">j</span><span style="color:#5fb3b3;">) {
+        [</span><span style="color:#ec5f67;">this</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">container</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">i</span><span style="color:#5fb3b3;">], </span><span style="color:#ec5f67;">this</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">container</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">j</span><span style="color:#5fb3b3;">]] = [</span><span style="color:#ec5f67;">this</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">container</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">j</span><span style="color:#5fb3b3;">], </span><span style="color:#ec5f67;">this</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">container</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">i</span><span style="color:#5fb3b3;">]]
+    }
+
+    </span><span style="color:#c594c5;">static </span><span style="color:#6699cc;">parentIdx</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">idx</span><span style="color:#5fb3b3;">) {
+        </span><span style="color:#c594c5;">return </span><span style="color:#fac863;">Math</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">floor</span><span style="color:#5fb3b3;">((</span><span style="color:#cccece;">idx </span><span style="color:#5fb3b3;">- </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">) / </span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">)
+    }
+
+    </span><span style="color:#c594c5;">static </span><span style="color:#6699cc;">rightChildIdx</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">idx</span><span style="color:#5fb3b3;">) {
+        </span><span style="color:#c594c5;">return </span><span style="color:#cccece;">idx </span><span style="color:#5fb3b3;">* </span><span style="color:#f99157;">2 </span><span style="color:#5fb3b3;">+ </span><span style="color:#f99157;">2
+    </span><span style="color:#5fb3b3;">}
+
+    </span><span style="color:#c594c5;">static </span><span style="color:#6699cc;">leftChildIdx</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">idx</span><span style="color:#5fb3b3;">) {
+        </span><span style="color:#c594c5;">return </span><span style="color:#cccece;">idx </span><span style="color:#5fb3b3;">* </span><span style="color:#f99157;">2 </span><span style="color:#5fb3b3;">+ </span><span style="color:#f99157;">1
+    </span><span style="color:#5fb3b3;">}
+}
+</span></pre><div id="kotlin"/>
+<h2 id="kotlin">Kotlin</h2>
+<p>interface:</p>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">package </span><span style="color:#cccece;">tree
+
+interface Heap&lt;E </span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> Comparable&lt;E&gt;&gt; {
+
+    </span><span style="color:#c594c5;">fun </span><span style="color:#6699cc;">peek</span><span style="color:#cccece;">()</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> E
+    </span><span style="color:#c594c5;">fun </span><span style="color:#6699cc;">pop</span><span style="color:#cccece;">()</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> E
+    </span><span style="color:#c594c5;">fun </span><span style="color:#6699cc;">push</span><span style="color:#cccece;">(</span><span style="color:#f99157;">value</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> E)
+
+    </span><span style="color:#c594c5;">fun </span><span style="color:#6699cc;">elements</span><span style="color:#cccece;">()</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">List</span><span style="color:#cccece;">&lt;E&gt;
+    </span><span style="color:#c594c5;">fun </span><span style="color:#6699cc;">size</span><span style="color:#cccece;">()</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">Int</span><span style="color:#cccece;">
+}
+</span></pre>
+<p>implementation:</p>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#cccece;"> </span><span style="color:#c594c5;">package </span><span style="color:#cccece;">tree
+ 
+ class </span><span style="color:#fac863;">BinaryHeap</span><span style="color:#cccece;">&lt;</span><span style="color:#c594c5;">E </span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> Comparable&lt;E&gt;&gt; </span><span style="color:#5fb3b3;">: </span><span style="color:#99c794;">Heap</span><span style="color:#cccece;">&lt;</span><span style="color:#99c794;">E</span><span style="color:#cccece;">&gt; {
+ 
+     </span><span style="color:#c594c5;">private val </span><span style="color:#cccece;">elements </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> mutableListOf&lt;E&gt;()
+ 
+     </span><span style="color:#c594c5;">override fun </span><span style="color:#6699cc;">size</span><span style="color:#cccece;">()</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">Int</span><span style="color:#cccece;"> {
+         </span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> elements</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">size
+     }
+ 
+     </span><span style="color:#c594c5;">override fun </span><span style="color:#6699cc;">peek</span><span style="color:#cccece;">()</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> E {
+         </span><span style="color:#5fb3b3;">assert</span><span style="color:#cccece;"> (elements</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">isNotEmpty() ) { </span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">heap is empty</span><span style="color:#5fb3b3;">&quot;</span><span style="color:#cccece;"> }
+         </span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> elements[</span><span style="color:#f99157;">0</span><span style="color:#cccece;">]
+     }
+ 
+     </span><span style="color:#c594c5;">override fun </span><span style="color:#6699cc;">pop</span><span style="color:#cccece;">()</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> E {
+         </span><span style="color:#5fb3b3;">assert</span><span style="color:#cccece;"> (elements</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">isNotEmpty() ) { </span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">heap is empty</span><span style="color:#5fb3b3;">&quot;</span><span style="color:#cccece;"> }
+ 
+         </span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> (elements</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">size </span><span style="color:#5fb3b3;">== </span><span style="color:#f99157;">1</span><span style="color:#cccece;">){
+             </span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> elements</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">removeAt(</span><span style="color:#f99157;">0</span><span style="color:#cccece;">)
+         }
+ 
+         </span><span style="color:#c594c5;">val </span><span style="color:#cccece;">result </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> elements[</span><span style="color:#f99157;">0</span><span style="color:#cccece;">]
+         </span><span style="color:#c594c5;">val </span><span style="color:#cccece;">latest </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> elements</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">removeAt(elements</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">size </span><span style="color:#5fb3b3;">- </span><span style="color:#f99157;">1</span><span style="color:#cccece;">)
+         elements[</span><span style="color:#f99157;">0</span><span style="color:#cccece;">] </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> latest
+ 
+         siftDown(</span><span style="color:#f99157;">0</span><span style="color:#cccece;">)
+ 
+         </span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> result
+     }
+ 
+     </span><span style="color:#c594c5;">private fun </span><span style="color:#6699cc;">siftDown</span><span style="color:#cccece;">(</span><span style="color:#f99157;">idx</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">Int</span><span style="color:#cccece;">) {
+         </span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> (idx </span><span style="color:#5fb3b3;">&lt; </span><span style="color:#f99157;">0 </span><span style="color:#5fb3b3;">||</span><span style="color:#cccece;"> idx </span><span style="color:#5fb3b3;">&gt;=</span><span style="color:#cccece;"> elements</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">size</span><span style="color:#5fb3b3;">/</span><span style="color:#f99157;">2</span><span style="color:#cccece;">) </span><span style="color:#c594c5;">return
+ 
+         val </span><span style="color:#cccece;">leftIdx </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> leftChildIdx(idx)
+         </span><span style="color:#c594c5;">val </span><span style="color:#cccece;">rightIdx </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> rightChildIdx(idx)
+ 
+         </span><span style="color:#c594c5;">val </span><span style="color:#cccece;">largerChildIdx </span><span style="color:#5fb3b3;">= </span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> (rightIdx </span><span style="color:#5fb3b3;">&lt;</span><span style="color:#cccece;"> elements</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">size </span><span style="color:#5fb3b3;">&amp;&amp;</span><span style="color:#cccece;"> elements[rightIdx] </span><span style="color:#5fb3b3;">&gt;</span><span style="color:#cccece;"> elements[leftIdx]) {
+             rightIdx
+         } </span><span style="color:#c594c5;">else</span><span style="color:#cccece;"> {
+             leftIdx
+         }
+ 
+         </span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> (elements[largerChildIdx] </span><span style="color:#5fb3b3;">&gt;</span><span style="color:#cccece;"> elements[idx]){
+             swap(idx, largerChildIdx)
+             siftDown(largerChildIdx)
+         }
+     }
+ 
+     </span><span style="color:#c594c5;">override fun </span><span style="color:#6699cc;">push</span><span style="color:#cccece;">(</span><span style="color:#f99157;">value</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> E) {
+         elements</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">add(value)
+ 
+         siftUp(elements</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">size </span><span style="color:#5fb3b3;">- </span><span style="color:#f99157;">1</span><span style="color:#cccece;">)
+     }
+ 
+     </span><span style="color:#c594c5;">private fun </span><span style="color:#6699cc;">siftUp</span><span style="color:#cccece;">(</span><span style="color:#f99157;">idx</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">Int</span><span style="color:#cccece;">) {
+         </span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> (idx </span><span style="color:#5fb3b3;">&lt;= </span><span style="color:#f99157;">0</span><span style="color:#cccece;">) </span><span style="color:#c594c5;">return
+ 
+         val </span><span style="color:#cccece;">parentIdx </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> parentIdx(idx)
+ 
+         </span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> (elements[idx] </span><span style="color:#5fb3b3;">&gt;</span><span style="color:#cccece;"> elements[parentIdx]){
+             swap(idx, parentIdx)
+             siftUp(parentIdx)
+         }
+     }
+ 
+     </span><span style="color:#c594c5;">override fun </span><span style="color:#6699cc;">elements</span><span style="color:#cccece;">()</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">List</span><span style="color:#cccece;">&lt;E&gt; {
+         </span><span style="color:#c594c5;">val </span><span style="color:#cccece;">result </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> mutableListOf&lt;E&gt;()
+ 
+         result</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">addAll(elements)
+ 
+         </span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> result
+     }
+ 
+     </span><span style="color:#c594c5;">private fun </span><span style="color:#6699cc;">swap</span><span style="color:#cccece;">(</span><span style="color:#f99157;">idxI</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">Int</span><span style="color:#cccece;">, </span><span style="color:#f99157;">idxJ</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">Int</span><span style="color:#cccece;">){
+         </span><span style="color:#c594c5;">val </span><span style="color:#cccece;">tmp</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> E </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> elements[idxI]
+         elements[idxI] </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> elements[idxJ]
+         elements[idxJ] </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> tmp
+     }
+ 
+     </span><span style="color:#c594c5;">private fun </span><span style="color:#6699cc;">leftChildIdx</span><span style="color:#cccece;">(</span><span style="color:#f99157;">idx</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">Int</span><span style="color:#cccece;">)</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">Int </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> idx </span><span style="color:#5fb3b3;">* </span><span style="color:#f99157;">2 </span><span style="color:#5fb3b3;">+ </span><span style="color:#f99157;">1
+     </span><span style="color:#c594c5;">private fun </span><span style="color:#6699cc;">rightChildIdx</span><span style="color:#cccece;">(</span><span style="color:#f99157;">idx</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">Int</span><span style="color:#cccece;">)</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">Int </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> idx </span><span style="color:#5fb3b3;">* </span><span style="color:#f99157;">2 </span><span style="color:#5fb3b3;">+ </span><span style="color:#f99157;">2
+     </span><span style="color:#c594c5;">private fun </span><span style="color:#6699cc;">parentIdx</span><span style="color:#cccece;">(</span><span style="color:#f99157;">idx</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">Int</span><span style="color:#cccece;">)</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">Int </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> (idx </span><span style="color:#5fb3b3;">- </span><span style="color:#f99157;">1</span><span style="color:#cccece;">) </span><span style="color:#5fb3b3;">/ </span><span style="color:#f99157;">2</span><span style="color:#cccece;">
+ }
+</span></pre><div id="rust"/>
+<h2 id="rust">Rust</h2>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">use </span><span style="color:#cccece;">std</span><span style="color:#5fb3b3;">::</span><span style="color:#cccece;">collections</span><span style="color:#5fb3b3;">::</span><span style="color:#cccece;">VecDeque</span><span style="color:#5fb3b3;">;
+
+</span><span style="color:#c594c5;">pub struct </span><span style="color:#cccece;">BinaryHeap</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#c594c5;">&#39;a</span><span style="color:#cccece;">, T</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> Ord</span><span style="color:#5fb3b3;">&gt; {
+    </span><span style="color:#cccece;">vec</span><span style="color:#5fb3b3;">: </span><span style="color:#cccece;">VecDeque</span><span style="color:#5fb3b3;">&lt;&amp;</span><span style="color:#c594c5;">&#39;a</span><span style="color:#cccece;"> T</span><span style="color:#5fb3b3;">&gt;
+}
+
+</span><span style="color:#c594c5;">impl</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#c594c5;">&#39;a</span><span style="color:#cccece;">, T</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> Ord</span><span style="color:#5fb3b3;">&gt; </span><span style="color:#cccece;">BinaryHeap</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#c594c5;">&#39;a</span><span style="color:#cccece;">, T</span><span style="color:#5fb3b3;">&gt; {
+    </span><span style="color:#c594c5;">pub fn </span><span style="color:#6699cc;">new</span><span style="color:#5fb3b3;">() -&gt; </span><span style="color:#c594c5;">Self </span><span style="color:#5fb3b3;">{</span><span style="color:#cccece;">
+        BinaryHeap </span><span style="color:#5fb3b3;">{</span><span style="color:#cccece;"> vec</span><span style="color:#5fb3b3;">: </span><span style="color:#cccece;">VecDeque</span><span style="color:#5fb3b3;">::</span><span style="color:#cccece;">new</span><span style="color:#5fb3b3;">() }
+    }
+
+    </span><span style="color:#c594c5;">pub fn </span><span style="color:#6699cc;">peek_min</span><span style="color:#5fb3b3;">(&amp;</span><span style="color:#f99157;">self</span><span style="color:#5fb3b3;">) -&gt; </span><span style="color:#cccece;">Option</span><span style="color:#5fb3b3;">&lt;&amp;</span><span style="color:#cccece;">T</span><span style="color:#5fb3b3;">&gt; {
+        </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">vec</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">get</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">).</span><span style="color:#6699cc;">copied</span><span style="color:#5fb3b3;">()
+    }
+
+    </span><span style="color:#c594c5;">pub fn </span><span style="color:#6699cc;">push</span><span style="color:#5fb3b3;">(&amp;</span><span style="color:#c594c5;">mut </span><span style="color:#f99157;">self</span><span style="color:#cccece;">, </span><span style="color:#f99157;">element</span><span style="color:#5fb3b3;">: &amp;</span><span style="color:#c594c5;">&#39;a</span><span style="color:#cccece;"> T</span><span style="color:#5fb3b3;">) {
+        </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">vec</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">push_back</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">element</span><span style="color:#5fb3b3;">);
+        </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">sift_up</span><span style="color:#5fb3b3;">(</span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">vec</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">len</span><span style="color:#5fb3b3;">() - </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">);
+    }
+
+    </span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">sift_up</span><span style="color:#5fb3b3;">(&amp;</span><span style="color:#c594c5;">mut </span><span style="color:#f99157;">self</span><span style="color:#cccece;">, </span><span style="color:#f99157;">idx</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">usize</span><span style="color:#5fb3b3;">) {
+        </span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> idx </span><span style="color:#5fb3b3;">== </span><span style="color:#f99157;">0 </span><span style="color:#5fb3b3;">{
+            </span><span style="color:#c594c5;">return</span><span style="color:#5fb3b3;">;
+        }
+        </span><span style="color:#c594c5;">let</span><span style="color:#cccece;"> parent_idx </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">parent_idx</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">idx</span><span style="color:#5fb3b3;">);
+        </span><span style="color:#c594c5;">if </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">vec</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">parent_idx</span><span style="color:#5fb3b3;">] &gt; </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">vec</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">idx</span><span style="color:#5fb3b3;">] {
+            </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">vec</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">swap</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">parent_idx</span><span style="color:#5fb3b3;">,</span><span style="color:#cccece;"> idx</span><span style="color:#5fb3b3;">);
+            </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">sift_up</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">parent_idx</span><span style="color:#5fb3b3;">);
+        }
+    }
+
+    </span><span style="color:#c594c5;">pub fn </span><span style="color:#6699cc;">pop_min</span><span style="color:#5fb3b3;">(&amp;</span><span style="color:#c594c5;">mut </span><span style="color:#f99157;">self</span><span style="color:#5fb3b3;">) -&gt; </span><span style="color:#cccece;">Option</span><span style="color:#5fb3b3;">&lt;&amp;</span><span style="color:#cccece;">T</span><span style="color:#5fb3b3;">&gt; {
+        </span><span style="color:#c594c5;">let</span><span style="color:#cccece;"> result </span><span style="color:#5fb3b3;">= </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">vec</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">pop_front</span><span style="color:#5fb3b3;">();
+
+        </span><span style="color:#c594c5;">if </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">vec</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">len</span><span style="color:#5fb3b3;">() &gt; </span><span style="color:#f99157;">1 </span><span style="color:#5fb3b3;">{
+            </span><span style="color:#c594c5;">let</span><span style="color:#cccece;"> last </span><span style="color:#5fb3b3;">= </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">vec</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">pop_back</span><span style="color:#5fb3b3;">().</span><span style="color:#6699cc;">unwrap</span><span style="color:#5fb3b3;">();
+            </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">vec</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">push_front</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">last</span><span style="color:#5fb3b3;">);
+            </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">sift_down</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">);
+        }</span><span style="color:#cccece;">
+        result
+    </span><span style="color:#5fb3b3;">}
+
+    </span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">sift_down</span><span style="color:#5fb3b3;">(&amp;</span><span style="color:#c594c5;">mut </span><span style="color:#f99157;">self</span><span style="color:#cccece;">, </span><span style="color:#f99157;">idx</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">usize</span><span style="color:#5fb3b3;">) {
+        </span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> idx </span><span style="color:#5fb3b3;">&gt;= </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">vec</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">len</span><span style="color:#5fb3b3;">() / </span><span style="color:#f99157;">2 </span><span style="color:#5fb3b3;">{
+            </span><span style="color:#c594c5;">return</span><span style="color:#5fb3b3;">;
+        }
+
+        </span><span style="color:#c594c5;">let</span><span style="color:#cccece;"> left_child_idx </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">left_child_idx</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">idx</span><span style="color:#5fb3b3;">);
+        </span><span style="color:#c594c5;">let</span><span style="color:#cccece;"> right_child_idx </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">right_child_idx</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">idx</span><span style="color:#5fb3b3;">);
+
+        </span><span style="color:#c594c5;">let</span><span style="color:#cccece;"> smaller_child_idx </span><span style="color:#5fb3b3;">=
+            </span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> right_child_idx </span><span style="color:#5fb3b3;">&lt; </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">vec</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">len</span><span style="color:#5fb3b3;">() &amp;&amp; </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">vec</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">right_child_idx</span><span style="color:#5fb3b3;">] &lt; </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">vec</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">left_child_idx</span><span style="color:#5fb3b3;">] {</span><span style="color:#cccece;">
+                right_child_idx
+            </span><span style="color:#5fb3b3;">} </span><span style="color:#c594c5;">else </span><span style="color:#5fb3b3;">{</span><span style="color:#cccece;">
+                left_child_idx
+            </span><span style="color:#5fb3b3;">};
+
+        </span><span style="color:#c594c5;">if </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">vec</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">smaller_child_idx</span><span style="color:#5fb3b3;">] &lt; </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">vec</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">idx</span><span style="color:#5fb3b3;">] {
+            </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">vec</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">swap</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">idx</span><span style="color:#5fb3b3;">,</span><span style="color:#cccece;"> smaller_child_idx</span><span style="color:#5fb3b3;">);
+            </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">sift_down</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">smaller_child_idx</span><span style="color:#5fb3b3;">);
+        }
+    }
+
+    </span><span style="color:#c594c5;">pub fn </span><span style="color:#6699cc;">len</span><span style="color:#5fb3b3;">(&amp;</span><span style="color:#f99157;">self</span><span style="color:#5fb3b3;">) -&gt; </span><span style="color:#c594c5;">usize </span><span style="color:#5fb3b3;">{
+        </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">vec</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">len</span><span style="color:#5fb3b3;">()
+    }
+
+    </span><span style="color:#c594c5;">pub fn </span><span style="color:#6699cc;">is_empty</span><span style="color:#5fb3b3;">(&amp;</span><span style="color:#f99157;">self</span><span style="color:#5fb3b3;">) -&gt; </span><span style="color:#c594c5;">bool </span><span style="color:#5fb3b3;">{
+        </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">vec</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">is_empty</span><span style="color:#5fb3b3;">()
+    }
+}
+
+</span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">parent_idx</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">idx</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">usize</span><span style="color:#5fb3b3;">) -&gt; </span><span style="color:#c594c5;">usize </span><span style="color:#5fb3b3;">{
+    (</span><span style="color:#cccece;">idx </span><span style="color:#5fb3b3;">- </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">) / </span><span style="color:#f99157;">2
+</span><span style="color:#5fb3b3;">}
+
+</span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">left_child_idx</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">idx</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">usize</span><span style="color:#5fb3b3;">) -&gt; </span><span style="color:#c594c5;">usize </span><span style="color:#5fb3b3;">{</span><span style="color:#cccece;">
+    idx </span><span style="color:#5fb3b3;">* </span><span style="color:#f99157;">2 </span><span style="color:#5fb3b3;">+ </span><span style="color:#f99157;">1
+</span><span style="color:#5fb3b3;">}
+
+</span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">right_child_idx</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">idx</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">usize</span><span style="color:#5fb3b3;">) -&gt; </span><span style="color:#c594c5;">usize </span><span style="color:#5fb3b3;">{</span><span style="color:#cccece;">
+    idx </span><span style="color:#5fb3b3;">* </span><span style="color:#f99157;">2 </span><span style="color:#5fb3b3;">+ </span><span style="color:#f99157;">2
+</span><span style="color:#5fb3b3;">}
+
+#[</span><span style="color:#cccece;">test</span><span style="color:#5fb3b3;">]
+</span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">test</span><span style="color:#5fb3b3;">() {
+    </span><span style="color:#c594c5;">let mut</span><span style="color:#cccece;"> heap</span><span style="color:#5fb3b3;">: </span><span style="color:#cccece;">BinaryHeap</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#c594c5;">i32</span><span style="color:#5fb3b3;">&gt; = </span><span style="color:#cccece;">BinaryHeap</span><span style="color:#5fb3b3;">::</span><span style="color:#cccece;">new</span><span style="color:#5fb3b3;">();
+
+    </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">heap</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">is_empty</span><span style="color:#5fb3b3;">(), </span><span style="color:#f99157;">true</span><span style="color:#5fb3b3;">);
+    </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">heap</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">peek_min</span><span style="color:#5fb3b3;">(), </span><span style="color:#fac863;">None</span><span style="color:#5fb3b3;">);</span><span style="color:#cccece;">
+
+    heap</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">push</span><span style="color:#5fb3b3;">(&amp;-</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">);
+    </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">heap</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">len</span><span style="color:#5fb3b3;">(), </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">);
+
+    </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">heap</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">peek_min</span><span style="color:#5fb3b3;">(), </span><span style="color:#fac863;">Some</span><span style="color:#5fb3b3;">(&amp;-</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">));
+    </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">heap</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">pop_min</span><span style="color:#5fb3b3;">(), </span><span style="color:#fac863;">Some</span><span style="color:#5fb3b3;">(&amp;-</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">));
+    </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">heap</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">is_empty</span><span style="color:#5fb3b3;">(), </span><span style="color:#f99157;">true</span><span style="color:#5fb3b3;">);</span><span style="color:#cccece;">
+
+    heap</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">push</span><span style="color:#5fb3b3;">(&amp;-</span><span style="color:#f99157;">99</span><span style="color:#5fb3b3;">);</span><span style="color:#cccece;">
+    heap</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">push</span><span style="color:#5fb3b3;">(&amp;</span><span style="color:#f99157;">12</span><span style="color:#5fb3b3;">);</span><span style="color:#cccece;">
+    heap</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">push</span><span style="color:#5fb3b3;">(&amp;</span><span style="color:#f99157;">5</span><span style="color:#5fb3b3;">);</span><span style="color:#cccece;">
+    heap</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">push</span><span style="color:#5fb3b3;">(&amp;</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">);</span><span style="color:#cccece;">
+    heap</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">push</span><span style="color:#5fb3b3;">(&amp;</span><span style="color:#f99157;">4</span><span style="color:#5fb3b3;">);</span><span style="color:#cccece;">
+    heap</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">push</span><span style="color:#5fb3b3;">(&amp;</span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">);</span><span style="color:#cccece;">
+    heap</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">push</span><span style="color:#5fb3b3;">(&amp;-</span><span style="color:#f99157;">9</span><span style="color:#5fb3b3;">);
+
+    </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">heap</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">pop_min</span><span style="color:#5fb3b3;">(), </span><span style="color:#fac863;">Some</span><span style="color:#5fb3b3;">(&amp;-</span><span style="color:#f99157;">99</span><span style="color:#5fb3b3;">));
+    </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">heap</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">pop_min</span><span style="color:#5fb3b3;">(), </span><span style="color:#fac863;">Some</span><span style="color:#5fb3b3;">(&amp;-</span><span style="color:#f99157;">9</span><span style="color:#5fb3b3;">));</span><span style="color:#cccece;">
+
+    heap</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">push</span><span style="color:#5fb3b3;">(&amp;</span><span style="color:#f99157;">10</span><span style="color:#5fb3b3;">);
+
+    </span><span style="color:#c594c5;">let mut</span><span style="color:#cccece;"> actual </span><span style="color:#5fb3b3;">= </span><span style="color:#cccece;">vec!</span><span style="color:#5fb3b3;">[];
+
+    </span><span style="color:#c594c5;">while let </span><span style="color:#fac863;">Some</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">e</span><span style="color:#5fb3b3;">) =</span><span style="color:#cccece;"> heap</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">pop_min</span><span style="color:#5fb3b3;">() {</span><span style="color:#cccece;">
+        actual</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">push</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">e</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">clone</span><span style="color:#5fb3b3;">());
+    }
+
+    </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">actual</span><span style="color:#5fb3b3;">, [</span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">4</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">5</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">10</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">12</span><span style="color:#5fb3b3;">]);
+}
+</span></pre>
+
+    </div>
+
+</div>
+
+</body>
+</html>

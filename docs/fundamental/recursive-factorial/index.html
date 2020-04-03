@@ -1,0 +1,163 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <meta name="description" content="Recursive factorial">
+    <meta name="keywords" content="Recursive factorial, recursion, factorial, learn, explain, tutorial, data structures, algorithms, graph, tree, interview, java, golang, kotlin, python, javascript, rust">
+
+    <title> 
+    Recursive factorial
+ | Practical algorithms and data structures </title>
+    <link rel='stylesheet' href='/styles/styles.css'/>
+</head>
+
+<body>
+
+<div class="rootContainer">
+    <div class="horizontal-menu-box">
+        
+    
+    
+    
+<div class="menu">
+    <!-- ABOUT -->
+    <div class="menuItem">
+        
+        <a href="/index.html" >
+            ABOUT
+        </a>
+        
+
+    </div>
+
+    <!-- FUNDAMENTAL -->
+    <div class="menuItem">
+        
+        <a href="/fundamental/contents" >
+            FUNDAMENTAL
+        </a>
+        
+    </div>
+
+    <!-- BASIC -->
+    <div class="menuItem">
+        
+        <a href="/basic/contents" >
+            BASIC
+        </a>
+        
+    </div>
+
+    <!-- ADVANCED -->
+    <div class="menuItem">
+        
+        <a href="/advanced/contents" >
+            ADVANCED
+        </a>
+        
+    </div>
+
+    <!-- NINJA -->
+    <div class="menuItem">
+
+        
+        <a href="/ninja/contents" >
+            NINJA
+        </a>
+        
+
+    </div>
+
+    <!-- LANGUAGES -->
+    <div class="menuItem">
+        
+        <a href="/languages/contents" >
+            LANGUAGES
+        </a>
+        
+
+    </div>
+
+</div>
+
+
+
+    </div>
+
+    <div class="content">
+        
+    <h1 id="recursive-factorial">Recursive factorial</h1>
+<h2 id="contents">Contents</h2>
+<hr />
+<ul>
+<li><a href="https://algoholics.io/fundamental/recursive-factorial/#java">Java</a></li>
+<li><a href="https://algoholics.io/fundamental/recursive-factorial/#go">Go</a></li>
+<li><a href="https://algoholics.io/fundamental/recursive-factorial/#python">Python</a></li>
+<li><a href="https://algoholics.io/fundamental/recursive-factorial/#javascript">JavaScript</a></li>
+<li><a href="https://algoholics.io/fundamental/recursive-factorial/#kotlin">Kotlin</a></li>
+<li><a href="https://algoholics.io/fundamental/recursive-factorial/#rust">Rust</a></li>
+</ul>
+<hr />
+<div id="java"/>
+<h2 id="java">Java</h2>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">static int </span><span style="color:#6699cc;">recursiveFactorial</span><span style="color:#5fb3b3;">(</span><span style="color:#c594c5;">int</span><span style="color:#6699cc;"> n</span><span style="color:#5fb3b3;">) {
+    </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">n </span><span style="color:#5fb3b3;">== </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">) </span><span style="color:#c594c5;">return </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">;
+    </span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> n </span><span style="color:#5fb3b3;">* </span><span style="color:#6699cc;">recursiveFactorial</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">n </span><span style="color:#5fb3b3;">- </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">);
+}
+</span></pre><div id="go"/>
+<h2 id="go">Go</h2>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">func </span><span style="color:#6699cc;">recursiveFactorial</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">n </span><span style="color:#c594c5;">int</span><span style="color:#5fb3b3;">) </span><span style="color:#c594c5;">int </span><span style="color:#5fb3b3;">{
+	</span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> n </span><span style="color:#5fb3b3;">== </span><span style="color:#f99157;">1 </span><span style="color:#5fb3b3;">{
+		</span><span style="color:#c594c5;">return </span><span style="color:#f99157;">1
+	</span><span style="color:#5fb3b3;">}
+	</span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> n </span><span style="color:#5fb3b3;">* </span><span style="color:#6699cc;">recursiveFactorial</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">n</span><span style="color:#5fb3b3;">-</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">)
+}
+</span></pre><div id="python"/>
+<h2 id="python">Python</h2>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">def </span><span style="color:#6699cc;">recursive_factorial</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">n</span><span style="color:#5fb3b3;">):
+    </span><span style="color:#c594c5;">if </span><span style="color:#cccece;">n </span><span style="color:#5fb3b3;">== </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">:
+        </span><span style="color:#c594c5;">return </span><span style="color:#f99157;">1
+    </span><span style="color:#c594c5;">return </span><span style="color:#cccece;">n </span><span style="color:#5fb3b3;">* </span><span style="color:#6699cc;">recursive_factorial</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">n </span><span style="color:#5fb3b3;">- </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">)
+</span></pre><div id="javascript"/>
+<h2 id="javascript">JavaScript</h2>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">function </span><span style="color:#6699cc;">recursiveFactorial</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">n</span><span style="color:#5fb3b3;">) {
+  </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">n </span><span style="color:#5fb3b3;">== </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">) </span><span style="color:#c594c5;">return </span><span style="color:#f99157;">1
+  </span><span style="color:#c594c5;">return </span><span style="color:#cccece;">n </span><span style="color:#5fb3b3;">* </span><span style="color:#6699cc;">recursiveFactorial</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">n </span><span style="color:#5fb3b3;">- </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">)
+}
+</span></pre><div id="kotlin"/>
+<h2 id="kotlin">Kotlin</h2>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">fun </span><span style="color:#6699cc;">recursiveFactorial</span><span style="color:#cccece;">(</span><span style="color:#f99157;">n</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">Int</span><span style="color:#cccece;">)</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">Int</span><span style="color:#cccece;"> {
+    </span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> (n </span><span style="color:#5fb3b3;">== </span><span style="color:#f99157;">1</span><span style="color:#cccece;">) </span><span style="color:#c594c5;">return </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">;
+    </span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> n </span><span style="color:#5fb3b3;">*</span><span style="color:#cccece;"> recursiveFactorial(n </span><span style="color:#5fb3b3;">- </span><span style="color:#f99157;">1</span><span style="color:#cccece;">)</span><span style="color:#5fb3b3;">;</span><span style="color:#cccece;">
+}
+</span></pre><div id="rust"/>
+<h2 id="rust">Rust</h2>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">fn </span><span style="color:#6699cc;">factorial</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">n</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">usize</span><span style="color:#5fb3b3;">) -&gt; </span><span style="color:#c594c5;">usize </span><span style="color:#5fb3b3;">{
+    </span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> n </span><span style="color:#5fb3b3;">&lt;= </span><span style="color:#f99157;">1 </span><span style="color:#5fb3b3;">{
+        </span><span style="color:#c594c5;">return </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">;
+    }</span><span style="color:#cccece;">
+    n </span><span style="color:#5fb3b3;">* </span><span style="color:#6699cc;">factorial</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">n </span><span style="color:#5fb3b3;">- </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">)
+}
+
+#[</span><span style="color:#cccece;">test</span><span style="color:#5fb3b3;">]
+</span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">test</span><span style="color:#5fb3b3;">() {
+    </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">factorial</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">), </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">);
+    </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">factorial</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">), </span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">);
+    </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">factorial</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">3</span><span style="color:#5fb3b3;">), </span><span style="color:#f99157;">6</span><span style="color:#5fb3b3;">);
+    </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">factorial</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">5</span><span style="color:#5fb3b3;">), </span><span style="color:#f99157;">120</span><span style="color:#5fb3b3;">);
+}
+</span></pre>
+
+    </div>
+
+</div>
+
+</body>
+</html>

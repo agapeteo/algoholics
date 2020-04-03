@@ -1,0 +1,186 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <meta name="description" content="Calculate average">
+    <meta name="keywords" content="Calculate average, learn, explain, tutorial, data structures, algorithms, graph, tree, interview, java, golang, kotlin, python, javascript, rust">
+
+    <title> 
+    Average
+ | Practical algorithms and data structures </title>
+    <link rel='stylesheet' href='/styles/styles.css'/>
+</head>
+
+<body>
+
+<div class="rootContainer">
+    <div class="horizontal-menu-box">
+        
+    
+    
+    
+<div class="menu">
+    <!-- ABOUT -->
+    <div class="menuItem">
+        
+        <a href="/index.html" >
+            ABOUT
+        </a>
+        
+
+    </div>
+
+    <!-- FUNDAMENTAL -->
+    <div class="menuItem">
+        
+        <a href="/fundamental/contents" >
+            FUNDAMENTAL
+        </a>
+        
+    </div>
+
+    <!-- BASIC -->
+    <div class="menuItem">
+        
+        <a href="/basic/contents" >
+            BASIC
+        </a>
+        
+    </div>
+
+    <!-- ADVANCED -->
+    <div class="menuItem">
+        
+        <a href="/advanced/contents" >
+            ADVANCED
+        </a>
+        
+    </div>
+
+    <!-- NINJA -->
+    <div class="menuItem">
+
+        
+        <a href="/ninja/contents" >
+            NINJA
+        </a>
+        
+
+    </div>
+
+    <!-- LANGUAGES -->
+    <div class="menuItem">
+        
+        <a href="/languages/contents" >
+            LANGUAGES
+        </a>
+        
+
+    </div>
+
+</div>
+
+
+
+    </div>
+
+    <div class="content">
+        
+    <h1 id="calculate-average">Calculate average</h1>
+<h2 id="contents">Contents</h2>
+<hr />
+<ul>
+<li><a href="https://algoholics.io/fundamental/average/#description">Calculate average description</a></li>
+<li><a href="https://algoholics.io/fundamental/average/#practice">In practice</a></li>
+<li><a href="https://algoholics.io/fundamental/average/#java">Java</a></li>
+<li><a href="https://algoholics.io/fundamental/average/#go">Go</a></li>
+<li><a href="https://algoholics.io/fundamental/average/#python">Python</a></li>
+<li><a href="https://algoholics.io/fundamental/average/#javascript">JavaScript</a></li>
+<li><a href="https://algoholics.io/fundamental/average/#kotlin">Kotlin</a></li>
+<li><a href="https://algoholics.io/fundamental/average/#rust">Rust</a></li>
+</ul>
+<hr />
+<div id="description" />
+<h2 id="calculate-average-1">Calculate average</h2>
+<p>Complexity <code>O(N)</code> - requires iterating through all elements in collection </p>
+<div id="practice"/>
+<h2 id="in-practice">In practice</h2>
+<p>Used often when average number required</p>
+<div id="java"/>
+<h2 id="java">Java</h2>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">public static int </span><span style="color:#6699cc;">average</span><span style="color:#5fb3b3;">(</span><span style="color:#fac863;">List</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#fac863;">Integer</span><span style="color:#5fb3b3;">&gt;</span><span style="color:#6699cc;"> numbers</span><span style="color:#5fb3b3;">) {
+        </span><span style="color:#fac863;">Integer</span><span style="color:#cccece;"> sum </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">;
+        </span><span style="color:#c594c5;">for </span><span style="color:#5fb3b3;">(</span><span style="color:#fac863;">Integer</span><span style="color:#cccece;"> eachNumber </span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> numbers</span><span style="color:#5fb3b3;">){</span><span style="color:#cccece;">
+            sum </span><span style="color:#5fb3b3;">+=</span><span style="color:#cccece;"> eachNumber</span><span style="color:#5fb3b3;">;
+        }
+        </span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> sum</span><span style="color:#5fb3b3;">/</span><span style="color:#cccece;">numbers</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">size</span><span style="color:#5fb3b3;">();
+    }
+</span><span style="color:#cccece;">}
+</span></pre><div id="go"/>
+<h2 id="go">Go</h2>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">func </span><span style="color:#6699cc;">Average</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">numbers </span><span style="color:#5fb3b3;">[]</span><span style="color:#c594c5;">int</span><span style="color:#5fb3b3;">) </span><span style="color:#c594c5;">int </span><span style="color:#5fb3b3;">{
+	</span><span style="color:#c594c5;">var </span><span style="color:#cccece;">sum </span><span style="color:#c594c5;">int
+	for </span><span style="color:#cccece;">_</span><span style="color:#5fb3b3;">, </span><span style="color:#cccece;">n </span><span style="color:#5fb3b3;">:= </span><span style="color:#c594c5;">range</span><span style="color:#cccece;"> numbers </span><span style="color:#5fb3b3;">{</span><span style="color:#cccece;">
+		sum </span><span style="color:#5fb3b3;">+=</span><span style="color:#cccece;"> n
+	</span><span style="color:#5fb3b3;">}
+	</span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> sum</span><span style="color:#5fb3b3;">/</span><span style="color:#6699cc;">len</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">numbers</span><span style="color:#5fb3b3;">)
+}
+</span></pre><div id="python"/>
+<h2 id="python">Python</h2>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">def </span><span style="color:#6699cc;">average</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">numbers</span><span style="color:#5fb3b3;">):
+    </span><span style="color:#cccece;">sum_ </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">0
+    </span><span style="color:#c594c5;">for </span><span style="color:#cccece;">num </span><span style="color:#c594c5;">in </span><span style="color:#cccece;">numbers</span><span style="color:#5fb3b3;">:
+        </span><span style="color:#cccece;">sum_ </span><span style="color:#5fb3b3;">+= </span><span style="color:#cccece;">num
+    </span><span style="color:#c594c5;">return </span><span style="color:#cccece;">sum_</span><span style="color:#5fb3b3;">/</span><span style="color:#6699cc;">len</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">numbers</span><span style="color:#5fb3b3;">)
+</span></pre><div id="javascript"/>
+<h2 id="javascript">JavaScript</h2>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">function </span><span style="color:#6699cc;">average</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">arr</span><span style="color:#5fb3b3;">) {
+  </span><span style="color:#c594c5;">var </span><span style="color:#cccece;">sum </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">;
+  </span><span style="color:#cccece;">arr</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">forEach</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">n </span><span style="color:#c594c5;">=&gt; </span><span style="color:#5fb3b3;">{</span><span style="color:#cccece;">sum </span><span style="color:#5fb3b3;">+= </span><span style="color:#cccece;">n</span><span style="color:#5fb3b3;">})
+  </span><span style="color:#c594c5;">return </span><span style="color:#cccece;">sum</span><span style="color:#5fb3b3;">/</span><span style="color:#cccece;">arr</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">length
+</span><span style="color:#5fb3b3;">}
+</span></pre>
+<p>using <code>reduce()</code>:</p>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">function </span><span style="color:#6699cc;">average</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">arr</span><span style="color:#5fb3b3;">) {
+  </span><span style="color:#c594c5;">const </span><span style="color:#cccece;">sum </span><span style="color:#5fb3b3;">= </span><span style="color:#cccece;">arr</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">reduce</span><span style="color:#5fb3b3;">((</span><span style="color:#f99157;">sum</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">n</span><span style="color:#5fb3b3;">) </span><span style="color:#c594c5;">=&gt; </span><span style="color:#cccece;">sum </span><span style="color:#5fb3b3;">+= </span><span style="color:#cccece;">n</span><span style="color:#5fb3b3;">)
+  </span><span style="color:#c594c5;">return </span><span style="color:#cccece;">sum</span><span style="color:#5fb3b3;">/</span><span style="color:#cccece;">arr</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">length
+</span><span style="color:#5fb3b3;">}
+</span></pre><div id="kotlin"/>
+<h2 id="kotlin">Kotlin</h2>
+<p>Kotlin has <code>average()</code> method for arrays and lists for number types:</p>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#cccece;">listOf(</span><span style="color:#f99157;">0</span><span style="color:#cccece;">, </span><span style="color:#f99157;">200</span><span style="color:#cccece;">)</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">average() </span><span style="color:#5f6364;">// 100
+</span></pre>
+<p>custom way:</p>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">fun </span><span style="color:#6699cc;">average</span><span style="color:#cccece;">(</span><span style="color:#f99157;">numbers</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">List</span><span style="color:#cccece;">&lt;</span><span style="color:#c594c5;">Int</span><span style="color:#cccece;">&gt;)</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">Int</span><span style="color:#cccece;"> {
+    </span><span style="color:#c594c5;">var </span><span style="color:#cccece;">sum </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">0
+    </span><span style="color:#c594c5;">for</span><span style="color:#cccece;"> (n </span><span style="color:#c594c5;">in</span><span style="color:#cccece;"> numbers) {
+        sum </span><span style="color:#5fb3b3;">+=</span><span style="color:#cccece;"> n
+    }
+    </span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> sum</span><span style="color:#5fb3b3;">/</span><span style="color:#cccece;">numbers</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">size
+}
+</span></pre><div id="rust"/>
+<h2 id="rust">Rust</h2>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#5fb3b3;">#[</span><span style="color:#cccece;">test</span><span style="color:#5fb3b3;">]
+</span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">average</span><span style="color:#5fb3b3;">() {
+    </span><span style="color:#c594c5;">let</span><span style="color:#cccece;"> arr </span><span style="color:#5fb3b3;">= [</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">];
+    </span><span style="color:#c594c5;">let</span><span style="color:#cccece;"> average </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> arr</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">iter</span><span style="color:#5fb3b3;">().</span><span style="color:#cccece;">sum</span><span style="color:#5fb3b3;">::&lt;</span><span style="color:#c594c5;">i32</span><span style="color:#5fb3b3;">&gt;() as </span><span style="color:#c594c5;">f32 </span><span style="color:#5fb3b3;">/</span><span style="color:#cccece;"> arr</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">len</span><span style="color:#5fb3b3;">() as </span><span style="color:#c594c5;">f32</span><span style="color:#5fb3b3;">;
+
+    </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">true</span><span style="color:#5fb3b3;">,</span><span style="color:#cccece;"> average</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">eq</span><span style="color:#5fb3b3;">(&amp;</span><span style="color:#f99157;">1.5</span><span style="color:#5fb3b3;">));
+}
+</span></pre>
+
+    </div>
+
+</div>
+
+</body>
+</html>

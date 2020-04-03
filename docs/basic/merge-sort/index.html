@@ -1,0 +1,507 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <meta name="description" content="Merge sort">
+    <meta name="keywords" content="merge sort, sorting, learn, explain, tutorial, data structures, algorithms, graph, tree, interview, java, golang, kotlin, python, rust, javascript, basic level">
+
+    <title> 
+    Merge sort
+ | Practical algorithms and data structures </title>
+    <link rel='stylesheet' href='/styles/styles.css'/>
+</head>
+
+<body>
+
+<div class="rootContainer">
+    <div class="horizontal-menu-box">
+        
+    
+    
+    
+<div class="menu">
+    <!-- ABOUT -->
+    <div class="menuItem">
+        
+        <a href="/index.html" >
+            ABOUT
+        </a>
+        
+
+    </div>
+
+    <!-- FUNDAMENTAL -->
+    <div class="menuItem">
+        
+        <a href="/fundamental/contents" >
+            FUNDAMENTAL
+        </a>
+        
+    </div>
+
+    <!-- BASIC -->
+    <div class="menuItem">
+        
+        <a href="/basic/contents" >
+            BASIC
+        </a>
+        
+    </div>
+
+    <!-- ADVANCED -->
+    <div class="menuItem">
+        
+        <a href="/advanced/contents" >
+            ADVANCED
+        </a>
+        
+    </div>
+
+    <!-- NINJA -->
+    <div class="menuItem">
+
+        
+        <a href="/ninja/contents" >
+            NINJA
+        </a>
+        
+
+    </div>
+
+    <!-- LANGUAGES -->
+    <div class="menuItem">
+        
+        <a href="/languages/contents" >
+            LANGUAGES
+        </a>
+        
+
+    </div>
+
+</div>
+
+
+
+    </div>
+
+    <div class="content">
+        
+    <h1 id="merge-sort">Merge sort</h1>
+<h2 id="contents">Contents</h2>
+<hr />
+<ul>
+<li><a href="https://algoholics.io/basic/merge-sort/#description">Description</a></li>
+<li><a href="https://algoholics.io/basic/merge-sort/#complexity">Complexity</a></li>
+<li><a href="https://algoholics.io/basic/merge-sort/#practice">In practice</a></li>
+<li><a href="https://algoholics.io/basic/merge-sort/#java">Java</a></li>
+<li><a href="https://algoholics.io/basic/merge-sort/#go">Go</a></li>
+<li><a href="https://algoholics.io/basic/merge-sort/#python">Python</a></li>
+<li><a href="https://algoholics.io/basic/merge-sort/#javascript">JavaScript</a></li>
+<li><a href="https://algoholics.io/basic/merge-sort/#kotlin">Kotlin</a></li>
+<li><a href="https://algoholics.io/basic/merge-sort/#rust">Rust</a></li>
+</ul>
+<hr />
+<div id="description"/>
+<h2 id="description">Description</h2>
+<p>Stable
+more details on <a href="https://en.wikipedia.org/wiki/Merge_sort">wikipedia on Merge sort</a></p>
+<div id="complexity"/>
+<h2 id="complexity">Complexity</h2>
+<p><code>O(N log(N))</code></p>
+<div id="practice"/>
+<h2 id="in-practice">In practice</h2>
+<p><code>Merge sort</code> for sorting collection that doesn't fit memory</p>
+<div id="java"/>
+<h2 id="java">Java</h2>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">package </span><span style="color:#cccece;">sort</span><span style="color:#5fb3b3;">;
+
+</span><span style="color:#c594c5;">import </span><span style="color:#fac863;">java</span><span style="color:#5fb3b3;">.</span><span style="color:#fac863;">util</span><span style="color:#5fb3b3;">.</span><span style="color:#fac863;">ArrayList</span><span style="color:#5fb3b3;">;
+</span><span style="color:#c594c5;">import </span><span style="color:#fac863;">java</span><span style="color:#5fb3b3;">.</span><span style="color:#fac863;">util</span><span style="color:#5fb3b3;">.</span><span style="color:#fac863;">List</span><span style="color:#5fb3b3;">;
+
+
+</span><span style="color:#c594c5;">public class </span><span style="color:#fac863;">MergeSort </span><span style="color:#5fb3b3;">{
+
+    </span><span style="color:#5f6364;">/**
+     * Using Lists for better support of generics. Same algorithms applies to arrays
+     **/
+    </span><span style="color:#c594c5;">public static </span><span style="color:#5fb3b3;">&lt;</span><span style="color:#f99157;">T </span><span style="color:#c594c5;">extends </span><span style="color:#fac863;">Comparable</span><span style="color:#5fb3b3;">&lt;? </span><span style="color:#c594c5;">super </span><span style="color:#fac863;">T</span><span style="color:#5fb3b3;">&gt;&gt; </span><span style="color:#c594c5;">void </span><span style="color:#6699cc;">mergeSort</span><span style="color:#5fb3b3;">(</span><span style="color:#fac863;">List</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#fac863;">T</span><span style="color:#5fb3b3;">&gt; </span><span style="color:#f99157;">listToSort</span><span style="color:#5fb3b3;">) {
+        </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">listToSort </span><span style="color:#5fb3b3;">== </span><span style="color:#f99157;">null </span><span style="color:#5fb3b3;">||</span><span style="color:#cccece;"> listToSort</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">size</span><span style="color:#5fb3b3;">() &lt; </span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">) </span><span style="color:#c594c5;">return</span><span style="color:#5fb3b3;">;
+
+        </span><span style="color:#fac863;">List</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#fac863;">T</span><span style="color:#5fb3b3;">&gt;</span><span style="color:#cccece;"> tmpList </span><span style="color:#5fb3b3;">= </span><span style="color:#c594c5;">new </span><span style="color:#fac863;">ArrayList</span><span style="color:#5fb3b3;">&lt;&gt;(</span><span style="color:#cccece;">listToSort</span><span style="color:#5fb3b3;">); </span><span style="color:#5f6364;">// temporarily container to keep data for merge sort
+
+        </span><span style="color:#6699cc;">mergeSort</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">listToSort</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> tmpList</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> listToSort</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">size</span><span style="color:#5fb3b3;">() - </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">); </span><span style="color:#5f6364;">// high index inclusive
+    </span><span style="color:#5fb3b3;">}
+
+    </span><span style="color:#c594c5;">private static </span><span style="color:#5fb3b3;">&lt;</span><span style="color:#f99157;">T </span><span style="color:#c594c5;">extends </span><span style="color:#fac863;">Comparable</span><span style="color:#5fb3b3;">&lt;? </span><span style="color:#c594c5;">super </span><span style="color:#fac863;">T</span><span style="color:#5fb3b3;">&gt;&gt; </span><span style="color:#c594c5;">void </span><span style="color:#6699cc;">mergeSort</span><span style="color:#5fb3b3;">(</span><span style="color:#fac863;">List</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#fac863;">T</span><span style="color:#5fb3b3;">&gt; </span><span style="color:#f99157;">listToSort</span><span style="color:#5fb3b3;">, </span><span style="color:#fac863;">List</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#fac863;">T</span><span style="color:#5fb3b3;">&gt; </span><span style="color:#f99157;">tmpList</span><span style="color:#5fb3b3;">, </span><span style="color:#c594c5;">int </span><span style="color:#f99157;">lowIdx</span><span style="color:#5fb3b3;">, </span><span style="color:#c594c5;">int </span><span style="color:#f99157;">highIdx</span><span style="color:#5fb3b3;">) {
+        </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">lowIdx </span><span style="color:#5fb3b3;">&gt;=</span><span style="color:#cccece;"> highIdx</span><span style="color:#5fb3b3;">) </span><span style="color:#c594c5;">return</span><span style="color:#5fb3b3;">;
+
+        </span><span style="color:#c594c5;">int</span><span style="color:#cccece;"> middleIdx </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> lowIdx </span><span style="color:#5fb3b3;">+ (</span><span style="color:#cccece;">highIdx </span><span style="color:#5fb3b3;">-</span><span style="color:#cccece;"> lowIdx</span><span style="color:#5fb3b3;">) / </span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">;
+        </span><span style="color:#6699cc;">mergeSort</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">listToSort</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> tmpList</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> lowIdx</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> middleIdx</span><span style="color:#5fb3b3;">); </span><span style="color:#5f6364;">//  sort left side
+        </span><span style="color:#6699cc;">mergeSort</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">listToSort</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> tmpList</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> middleIdx </span><span style="color:#5fb3b3;">+ </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> highIdx</span><span style="color:#5fb3b3;">); </span><span style="color:#5f6364;">// sort right side
+
+        </span><span style="color:#6699cc;">merge</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">listToSort</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> tmpList</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> lowIdx</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> middleIdx</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> highIdx</span><span style="color:#5fb3b3;">); </span><span style="color:#5f6364;">// merge sorted from left and right sides
+    </span><span style="color:#5fb3b3;">}
+
+    </span><span style="color:#c594c5;">private static </span><span style="color:#5fb3b3;">&lt;</span><span style="color:#f99157;">T </span><span style="color:#c594c5;">extends </span><span style="color:#fac863;">Comparable</span><span style="color:#5fb3b3;">&lt;? </span><span style="color:#c594c5;">super </span><span style="color:#fac863;">T</span><span style="color:#5fb3b3;">&gt;&gt; </span><span style="color:#c594c5;">void </span><span style="color:#6699cc;">merge</span><span style="color:#5fb3b3;">(</span><span style="color:#fac863;">List</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#fac863;">T</span><span style="color:#5fb3b3;">&gt; </span><span style="color:#f99157;">listToSort</span><span style="color:#5fb3b3;">, </span><span style="color:#fac863;">List</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#fac863;">T</span><span style="color:#5fb3b3;">&gt; </span><span style="color:#f99157;">tmpList</span><span style="color:#5fb3b3;">, </span><span style="color:#c594c5;">int </span><span style="color:#f99157;">lowIdx</span><span style="color:#5fb3b3;">, </span><span style="color:#c594c5;">int </span><span style="color:#f99157;">middleIdx</span><span style="color:#5fb3b3;">, </span><span style="color:#c594c5;">int </span><span style="color:#f99157;">highIdx</span><span style="color:#5fb3b3;">) {
+        </span><span style="color:#c594c5;">for </span><span style="color:#5fb3b3;">(</span><span style="color:#c594c5;">int</span><span style="color:#cccece;"> i </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> lowIdx</span><span style="color:#5fb3b3;">;</span><span style="color:#cccece;"> i </span><span style="color:#5fb3b3;">&lt;=</span><span style="color:#cccece;"> highIdx</span><span style="color:#5fb3b3;">;</span><span style="color:#cccece;"> i</span><span style="color:#5fb3b3;">++) {</span><span style="color:#cccece;">
+            tmpList</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">set</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">i</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> listToSort</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">get</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">i</span><span style="color:#5fb3b3;">));
+        }
+
+        </span><span style="color:#c594c5;">int</span><span style="color:#cccece;"> leftIdx </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> lowIdx</span><span style="color:#5fb3b3;">;
+        </span><span style="color:#c594c5;">int</span><span style="color:#cccece;"> rightIdx </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> middleIdx </span><span style="color:#5fb3b3;">+ </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">;
+        </span><span style="color:#c594c5;">int</span><span style="color:#cccece;"> curIdx </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> leftIdx</span><span style="color:#5fb3b3;">;
+
+        </span><span style="color:#c594c5;">while </span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">leftIdx </span><span style="color:#5fb3b3;">&lt;=</span><span style="color:#cccece;"> middleIdx </span><span style="color:#5fb3b3;">&amp;&amp;</span><span style="color:#cccece;"> rightIdx </span><span style="color:#5fb3b3;">&lt;=</span><span style="color:#cccece;"> highIdx</span><span style="color:#5fb3b3;">) {
+            </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">tmpList</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">get</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">leftIdx</span><span style="color:#5fb3b3;">).</span><span style="color:#6699cc;">compareTo</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">tmpList</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">get</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">rightIdx</span><span style="color:#5fb3b3;">)) &lt; </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">) {</span><span style="color:#cccece;">
+                listToSort</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">set</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">curIdx</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> tmpList</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">get</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">leftIdx</span><span style="color:#5fb3b3;">));</span><span style="color:#cccece;">
+                leftIdx</span><span style="color:#5fb3b3;">++;
+            } </span><span style="color:#c594c5;">else </span><span style="color:#5fb3b3;">{</span><span style="color:#cccece;">
+                listToSort</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">set</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">curIdx</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> tmpList</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">get</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">rightIdx</span><span style="color:#5fb3b3;">));</span><span style="color:#cccece;">
+                rightIdx</span><span style="color:#5fb3b3;">++;
+            }</span><span style="color:#cccece;">
+            curIdx</span><span style="color:#5fb3b3;">++;
+        }
+
+        </span><span style="color:#c594c5;">int</span><span style="color:#cccece;"> remainingCount </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> middleIdx </span><span style="color:#5fb3b3;">-</span><span style="color:#cccece;"> leftIdx</span><span style="color:#5fb3b3;">;
+        </span><span style="color:#c594c5;">for </span><span style="color:#5fb3b3;">(</span><span style="color:#c594c5;">int</span><span style="color:#cccece;"> i </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">;</span><span style="color:#cccece;"> i </span><span style="color:#5fb3b3;">&lt;=</span><span style="color:#cccece;"> remainingCount</span><span style="color:#5fb3b3;">;</span><span style="color:#cccece;"> i</span><span style="color:#5fb3b3;">++) {</span><span style="color:#cccece;">
+            listToSort</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">set</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">curIdx </span><span style="color:#5fb3b3;">+</span><span style="color:#6699cc;"> i</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> tmpList</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">get</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">leftIdx </span><span style="color:#5fb3b3;">+</span><span style="color:#6699cc;"> i</span><span style="color:#5fb3b3;">));
+        }
+    }
+}
+
+</span></pre><div id="go"/>
+<h2 id="go">Go</h2>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">package</span><span style="color:#cccece;"> sort
+
+</span><span style="color:#c594c5;">func </span><span style="color:#6699cc;">MergeSort</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">inputSlice </span><span style="color:#5fb3b3;">[]</span><span style="color:#c594c5;">int</span><span style="color:#5fb3b3;">) {
+	</span><span style="color:#c594c5;">if </span><span style="color:#6699cc;">len</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">inputSlice</span><span style="color:#5fb3b3;">) &lt; </span><span style="color:#f99157;">2 </span><span style="color:#5fb3b3;">{
+		</span><span style="color:#c594c5;">return
+	</span><span style="color:#5fb3b3;">}
+	</span><span style="color:#cccece;">tmpSlice </span><span style="color:#5fb3b3;">:= </span><span style="color:#6699cc;">make</span><span style="color:#5fb3b3;">([]</span><span style="color:#c594c5;">int</span><span style="color:#5fb3b3;">, </span><span style="color:#6699cc;">len</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">inputSlice</span><span style="color:#5fb3b3;">), </span><span style="color:#6699cc;">len</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">inputSlice</span><span style="color:#5fb3b3;">))
+	</span><span style="color:#6699cc;">mergeSortRange</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">inputSlice</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> tmpSlice</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">, </span><span style="color:#6699cc;">len</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">inputSlice</span><span style="color:#5fb3b3;">)-</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">)
+}
+
+</span><span style="color:#c594c5;">func </span><span style="color:#6699cc;">mergeSortRange</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">inputSlice</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">tmpSlice </span><span style="color:#5fb3b3;">[]</span><span style="color:#c594c5;">int</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">lowIdx</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">highIdx </span><span style="color:#c594c5;">int</span><span style="color:#5fb3b3;">) {
+	</span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> lowIdx </span><span style="color:#5fb3b3;">&gt;=</span><span style="color:#cccece;"> highIdx </span><span style="color:#5fb3b3;">{
+		</span><span style="color:#c594c5;">return
+	</span><span style="color:#5fb3b3;">}
+	</span><span style="color:#cccece;">midIdx </span><span style="color:#5fb3b3;">:=</span><span style="color:#cccece;"> lowIdx </span><span style="color:#5fb3b3;">+ (</span><span style="color:#cccece;">highIdx</span><span style="color:#5fb3b3;">-</span><span style="color:#cccece;">lowIdx</span><span style="color:#5fb3b3;">)/</span><span style="color:#f99157;">2
+	</span><span style="color:#6699cc;">mergeSortRange</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">inputSlice</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> tmpSlice</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> lowIdx</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> midIdx</span><span style="color:#5fb3b3;">)
+	</span><span style="color:#6699cc;">mergeSortRange</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">inputSlice</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> tmpSlice</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> midIdx</span><span style="color:#5fb3b3;">+</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> highIdx</span><span style="color:#5fb3b3;">)
+
+	</span><span style="color:#6699cc;">merge</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">inputSlice</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> tmpSlice</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> lowIdx</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> midIdx</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> highIdx</span><span style="color:#5fb3b3;">)
+}
+
+</span><span style="color:#c594c5;">func </span><span style="color:#6699cc;">merge</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">inputSlice</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">tmpSlice </span><span style="color:#5fb3b3;">[]</span><span style="color:#c594c5;">int</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">lowIdx</span><span style="color:#5fb3b3;">,</span><span style="color:#cccece;"> midIdx</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">highIdx </span><span style="color:#c594c5;">int</span><span style="color:#5fb3b3;">) {
+	</span><span style="color:#c594c5;">for </span><span style="color:#cccece;">i </span><span style="color:#5fb3b3;">:=</span><span style="color:#cccece;"> lowIdx; i </span><span style="color:#5fb3b3;">&lt;=</span><span style="color:#cccece;"> highIdx; i</span><span style="color:#5fb3b3;">++ {</span><span style="color:#cccece;">
+		tmpSlice</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">i</span><span style="color:#5fb3b3;">] =</span><span style="color:#cccece;"> inputSlice</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">i</span><span style="color:#5fb3b3;">]
+	}
+
+	</span><span style="color:#cccece;">leftIdx </span><span style="color:#5fb3b3;">:=</span><span style="color:#cccece;"> lowIdx
+	rightIdx </span><span style="color:#5fb3b3;">:=</span><span style="color:#cccece;"> midIdx </span><span style="color:#5fb3b3;">+ </span><span style="color:#f99157;">1
+	</span><span style="color:#cccece;">curIdx </span><span style="color:#5fb3b3;">:=</span><span style="color:#cccece;"> leftIdx
+
+	</span><span style="color:#c594c5;">for</span><span style="color:#cccece;"> leftIdx </span><span style="color:#5fb3b3;">&lt;=</span><span style="color:#cccece;"> midIdx </span><span style="color:#5fb3b3;">&amp;&amp;</span><span style="color:#cccece;"> rightIdx </span><span style="color:#5fb3b3;">&lt;=</span><span style="color:#cccece;"> highIdx </span><span style="color:#5fb3b3;">{
+		</span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> tmpSlice</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">leftIdx</span><span style="color:#5fb3b3;">] &lt;=</span><span style="color:#cccece;"> tmpSlice</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">rightIdx</span><span style="color:#5fb3b3;">] {</span><span style="color:#cccece;">
+			inputSlice</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">curIdx</span><span style="color:#5fb3b3;">] =</span><span style="color:#cccece;"> tmpSlice</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">leftIdx</span><span style="color:#5fb3b3;">]</span><span style="color:#cccece;">
+			leftIdx</span><span style="color:#5fb3b3;">++
+		} </span><span style="color:#c594c5;">else </span><span style="color:#5fb3b3;">{</span><span style="color:#cccece;">
+			inputSlice</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">curIdx</span><span style="color:#5fb3b3;">] =</span><span style="color:#cccece;"> tmpSlice</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">rightIdx</span><span style="color:#5fb3b3;">]</span><span style="color:#cccece;">
+			rightIdx</span><span style="color:#5fb3b3;">++
+		}</span><span style="color:#cccece;">
+		curIdx</span><span style="color:#5fb3b3;">++
+	}
+
+	</span><span style="color:#cccece;">remaining </span><span style="color:#5fb3b3;">:=</span><span style="color:#cccece;"> midIdx </span><span style="color:#5fb3b3;">-</span><span style="color:#cccece;"> leftIdx
+	</span><span style="color:#c594c5;">for </span><span style="color:#cccece;">i </span><span style="color:#5fb3b3;">:= </span><span style="color:#f99157;">0</span><span style="color:#cccece;">; i </span><span style="color:#5fb3b3;">&lt;=</span><span style="color:#cccece;"> remaining; i</span><span style="color:#5fb3b3;">++ {</span><span style="color:#cccece;">
+		inputSlice</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">curIdx</span><span style="color:#5fb3b3;">+</span><span style="color:#cccece;">i</span><span style="color:#5fb3b3;">] =</span><span style="color:#cccece;"> tmpSlice</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">leftIdx</span><span style="color:#5fb3b3;">+</span><span style="color:#cccece;">i</span><span style="color:#5fb3b3;">]
+	}
+}
+
+</span></pre><div id="python"/>
+<h2 id="python">Python</h2>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">def </span><span style="color:#6699cc;">merge</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">input_list</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">tmp_list</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">low_idx</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">mid_idx</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">high_idx</span><span style="color:#5fb3b3;">):
+    </span><span style="color:#c594c5;">for </span><span style="color:#cccece;">i </span><span style="color:#c594c5;">in </span><span style="color:#6699cc;">range</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">low_idx</span><span style="color:#5fb3b3;">, </span><span style="color:#6699cc;">high_idx </span><span style="color:#5fb3b3;">+ </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">):
+        </span><span style="color:#cccece;">tmp_list</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">i</span><span style="color:#5fb3b3;">] = </span><span style="color:#cccece;">input_list</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">i</span><span style="color:#5fb3b3;">]
+
+    </span><span style="color:#cccece;">left_idx </span><span style="color:#5fb3b3;">= </span><span style="color:#cccece;">low_idx
+    right_idx </span><span style="color:#5fb3b3;">= </span><span style="color:#cccece;">mid_idx </span><span style="color:#5fb3b3;">+ </span><span style="color:#f99157;">1
+    </span><span style="color:#cccece;">cur_idx </span><span style="color:#5fb3b3;">= </span><span style="color:#cccece;">left_idx
+
+    </span><span style="color:#c594c5;">while </span><span style="color:#cccece;">left_idx </span><span style="color:#5fb3b3;">&lt;= </span><span style="color:#cccece;">mid_idx </span><span style="color:#5fb3b3;">and </span><span style="color:#cccece;">right_idx </span><span style="color:#5fb3b3;">&lt;= </span><span style="color:#cccece;">high_idx</span><span style="color:#5fb3b3;">:
+        </span><span style="color:#c594c5;">if </span><span style="color:#cccece;">tmp_list</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">left_idx</span><span style="color:#5fb3b3;">] &lt;= </span><span style="color:#cccece;">tmp_list</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">right_idx</span><span style="color:#5fb3b3;">]:
+            </span><span style="color:#cccece;">input_list</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">cur_idx</span><span style="color:#5fb3b3;">] = </span><span style="color:#cccece;">tmp_list</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">left_idx</span><span style="color:#5fb3b3;">]
+            </span><span style="color:#cccece;">left_idx </span><span style="color:#5fb3b3;">= </span><span style="color:#cccece;">left_idx </span><span style="color:#5fb3b3;">+ </span><span style="color:#f99157;">1
+        </span><span style="color:#c594c5;">else</span><span style="color:#5fb3b3;">:
+            </span><span style="color:#cccece;">input_list</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">cur_idx</span><span style="color:#5fb3b3;">] = </span><span style="color:#cccece;">tmp_list</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">right_idx</span><span style="color:#5fb3b3;">]
+            </span><span style="color:#cccece;">right_idx </span><span style="color:#5fb3b3;">= </span><span style="color:#cccece;">right_idx </span><span style="color:#5fb3b3;">+ </span><span style="color:#f99157;">1
+        </span><span style="color:#cccece;">cur_idx </span><span style="color:#5fb3b3;">= </span><span style="color:#cccece;">cur_idx </span><span style="color:#5fb3b3;">+ </span><span style="color:#f99157;">1
+
+    </span><span style="color:#cccece;">remaining </span><span style="color:#5fb3b3;">= </span><span style="color:#cccece;">mid_idx </span><span style="color:#5fb3b3;">- </span><span style="color:#cccece;">left_idx
+    </span><span style="color:#c594c5;">for </span><span style="color:#cccece;">i </span><span style="color:#c594c5;">in </span><span style="color:#6699cc;">range</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">, </span><span style="color:#6699cc;">remaining </span><span style="color:#5fb3b3;">+ </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">):
+        </span><span style="color:#cccece;">input_list</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">cur_idx </span><span style="color:#5fb3b3;">+ </span><span style="color:#cccece;">i</span><span style="color:#5fb3b3;">] = </span><span style="color:#cccece;">tmp_list</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">left_idx </span><span style="color:#5fb3b3;">+ </span><span style="color:#cccece;">i</span><span style="color:#5fb3b3;">]
+
+
+</span><span style="color:#c594c5;">def </span><span style="color:#6699cc;">merge_sort_range</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">input_list</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">tmp_list</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">low_idx</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">high_idx</span><span style="color:#5fb3b3;">):
+    </span><span style="color:#c594c5;">if </span><span style="color:#cccece;">low_idx </span><span style="color:#5fb3b3;">&gt;= </span><span style="color:#cccece;">high_idx</span><span style="color:#5fb3b3;">:
+        </span><span style="color:#c594c5;">return
+
+    </span><span style="color:#cccece;">mid_idx </span><span style="color:#5fb3b3;">= </span><span style="color:#cccece;">low_idx </span><span style="color:#5fb3b3;">+ (</span><span style="color:#cccece;">high_idx </span><span style="color:#5fb3b3;">- </span><span style="color:#cccece;">low_idx</span><span style="color:#5fb3b3;">) / </span><span style="color:#f99157;">2
+    </span><span style="color:#6699cc;">merge_sort_range</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">input_list</span><span style="color:#5fb3b3;">, </span><span style="color:#6699cc;">tmp_list</span><span style="color:#5fb3b3;">, </span><span style="color:#6699cc;">low_idx</span><span style="color:#5fb3b3;">, </span><span style="color:#6699cc;">mid_idx</span><span style="color:#5fb3b3;">)
+    </span><span style="color:#6699cc;">merge_sort_range</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">input_list</span><span style="color:#5fb3b3;">, </span><span style="color:#6699cc;">tmp_list</span><span style="color:#5fb3b3;">, </span><span style="color:#6699cc;">mid_idx </span><span style="color:#5fb3b3;">+ </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">, </span><span style="color:#6699cc;">high_idx</span><span style="color:#5fb3b3;">)
+
+    </span><span style="color:#6699cc;">merge</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">input_list</span><span style="color:#5fb3b3;">, </span><span style="color:#6699cc;">tmp_list</span><span style="color:#5fb3b3;">, </span><span style="color:#6699cc;">low_idx</span><span style="color:#5fb3b3;">, </span><span style="color:#6699cc;">mid_idx</span><span style="color:#5fb3b3;">, </span><span style="color:#6699cc;">high_idx</span><span style="color:#5fb3b3;">)
+
+
+</span><span style="color:#c594c5;">def </span><span style="color:#6699cc;">merge_sort</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">input_list</span><span style="color:#5fb3b3;">):
+    </span><span style="color:#c594c5;">if </span><span style="color:#6699cc;">len</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">input_list</span><span style="color:#5fb3b3;">) &lt; </span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">:
+        </span><span style="color:#c594c5;">return
+
+    </span><span style="color:#cccece;">tmp_list </span><span style="color:#5fb3b3;">= [</span><span style="color:#f99157;">None</span><span style="color:#5fb3b3;">] * </span><span style="color:#6699cc;">len</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">input_list</span><span style="color:#5fb3b3;">)
+    </span><span style="color:#6699cc;">merge_sort_range</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">input_list</span><span style="color:#5fb3b3;">, </span><span style="color:#6699cc;">tmp_list</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">, </span><span style="color:#6699cc;">len</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">input_list</span><span style="color:#5fb3b3;">) - </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">)
+</span></pre><div id="javascript"/>
+<h2 id="javascript">JavaScript</h2>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">function </span><span style="color:#6699cc;">mergeSort</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">inputArr</span><span style="color:#5fb3b3;">) {
+  </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">inputArr</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">length </span><span style="color:#5fb3b3;">&lt; </span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">) </span><span style="color:#c594c5;">return </span><span style="color:#cccece;">inputArr
+
+  </span><span style="color:#c594c5;">const </span><span style="color:#cccece;">tmpArr </span><span style="color:#5fb3b3;">= </span><span style="color:#fac863;">Array</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">inputArr</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">length</span><span style="color:#5fb3b3;">).</span><span style="color:#6699cc;">fill</span><span style="color:#5fb3b3;">({})
+
+  </span><span style="color:#6699cc;">mergeSortRange</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">inputArr</span><span style="color:#5fb3b3;">, </span><span style="color:#cccece;">tmpArr</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">, </span><span style="color:#cccece;">inputArr</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">length </span><span style="color:#5fb3b3;">- </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">)
+}
+
+</span><span style="color:#c594c5;">function </span><span style="color:#6699cc;">mergeSortRange</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">inputArr</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">tmpArr</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">lowIdx</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">highIdx</span><span style="color:#5fb3b3;">) {
+  </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">lowIdx </span><span style="color:#5fb3b3;">&gt;= </span><span style="color:#cccece;">highIdx</span><span style="color:#5fb3b3;">) </span><span style="color:#c594c5;">return
+
+  const </span><span style="color:#cccece;">midIdx </span><span style="color:#5fb3b3;">= </span><span style="color:#fac863;">Math</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">floor</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">lowIdx </span><span style="color:#5fb3b3;">+ (</span><span style="color:#cccece;">highIdx </span><span style="color:#5fb3b3;">- </span><span style="color:#cccece;">lowIdx</span><span style="color:#5fb3b3;">)/</span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">)  
+  </span><span style="color:#6699cc;">mergeSortRange</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">inputArr</span><span style="color:#5fb3b3;">, </span><span style="color:#cccece;">tmpArr</span><span style="color:#5fb3b3;">, </span><span style="color:#cccece;">lowIdx</span><span style="color:#5fb3b3;">, </span><span style="color:#cccece;">midIdx</span><span style="color:#5fb3b3;">)
+  </span><span style="color:#6699cc;">mergeSortRange</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">inputArr</span><span style="color:#5fb3b3;">, </span><span style="color:#cccece;">tmpArr</span><span style="color:#5fb3b3;">, </span><span style="color:#cccece;">midIdx </span><span style="color:#5fb3b3;">+ </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">, </span><span style="color:#cccece;">highIdx</span><span style="color:#5fb3b3;">)
+
+  </span><span style="color:#6699cc;">merge</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">inputArr</span><span style="color:#5fb3b3;">, </span><span style="color:#cccece;">tmpArr</span><span style="color:#5fb3b3;">, </span><span style="color:#cccece;">lowIdx</span><span style="color:#5fb3b3;">, </span><span style="color:#cccece;">midIdx</span><span style="color:#5fb3b3;">, </span><span style="color:#cccece;">highIdx</span><span style="color:#5fb3b3;">)
+}
+
+</span><span style="color:#c594c5;">function </span><span style="color:#6699cc;">merge</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">inputArr</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">tmpArr</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">lowIdx</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">midIdx</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">highIdx</span><span style="color:#5fb3b3;">) {
+  </span><span style="color:#c594c5;">for </span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">i </span><span style="color:#5fb3b3;">= </span><span style="color:#cccece;">lowIdx</span><span style="color:#5fb3b3;">; </span><span style="color:#cccece;">i </span><span style="color:#5fb3b3;">&lt;= </span><span style="color:#cccece;">highIdx</span><span style="color:#5fb3b3;">; </span><span style="color:#cccece;">i</span><span style="color:#5fb3b3;">++) {
+    </span><span style="color:#cccece;">tmpArr</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">i</span><span style="color:#5fb3b3;">] = </span><span style="color:#cccece;">inputArr</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">i</span><span style="color:#5fb3b3;">]
+  }
+
+  </span><span style="color:#c594c5;">let </span><span style="color:#cccece;">leftIdx </span><span style="color:#5fb3b3;">= </span><span style="color:#cccece;">lowIdx
+  </span><span style="color:#c594c5;">let </span><span style="color:#cccece;">rightIdx </span><span style="color:#5fb3b3;">= </span><span style="color:#cccece;">midIdx </span><span style="color:#5fb3b3;">+ </span><span style="color:#f99157;">1
+  </span><span style="color:#c594c5;">let </span><span style="color:#cccece;">curIdx </span><span style="color:#5fb3b3;">= </span><span style="color:#cccece;">lowIdx
+
+  </span><span style="color:#c594c5;">while </span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">leftIdx </span><span style="color:#5fb3b3;">&lt;= </span><span style="color:#cccece;">midIdx </span><span style="color:#5fb3b3;">&amp;&amp; </span><span style="color:#cccece;">rightIdx </span><span style="color:#5fb3b3;">&lt;= </span><span style="color:#cccece;">highIdx</span><span style="color:#5fb3b3;">) {
+    </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">tmpArr</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">leftIdx</span><span style="color:#5fb3b3;">] &lt;= </span><span style="color:#cccece;">tmpArr</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">rightIdx</span><span style="color:#5fb3b3;">]) {
+      </span><span style="color:#cccece;">inputArr</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">curIdx</span><span style="color:#5fb3b3;">] = </span><span style="color:#cccece;">tmpArr</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">leftIdx</span><span style="color:#5fb3b3;">]
+      </span><span style="color:#cccece;">leftIdx</span><span style="color:#5fb3b3;">++
+    } </span><span style="color:#c594c5;">else </span><span style="color:#5fb3b3;">{
+      </span><span style="color:#cccece;">inputArr</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">curIdx</span><span style="color:#5fb3b3;">] = </span><span style="color:#cccece;">tmpArr</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">rightIdx</span><span style="color:#5fb3b3;">]
+      </span><span style="color:#cccece;">rightIdx</span><span style="color:#5fb3b3;">++
+    }
+    </span><span style="color:#cccece;">curIdx</span><span style="color:#5fb3b3;">++
+  }
+  </span><span style="color:#c594c5;">const </span><span style="color:#cccece;">remaining </span><span style="color:#5fb3b3;">= </span><span style="color:#cccece;">midIdx </span><span style="color:#5fb3b3;">- </span><span style="color:#cccece;">leftIdx
+  </span><span style="color:#c594c5;">for </span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">i </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">; </span><span style="color:#cccece;">i </span><span style="color:#5fb3b3;">&lt;= </span><span style="color:#cccece;">remaining</span><span style="color:#5fb3b3;">; </span><span style="color:#cccece;">i</span><span style="color:#5fb3b3;">++) {
+    </span><span style="color:#cccece;">inputArr</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">curIdx </span><span style="color:#5fb3b3;">+ </span><span style="color:#cccece;">i</span><span style="color:#5fb3b3;">] = </span><span style="color:#cccece;">tmpArr</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">leftIdx </span><span style="color:#5fb3b3;">+ </span><span style="color:#cccece;">i</span><span style="color:#5fb3b3;">]
+  }
+}
+</span></pre><div id="kotlin"/>
+<h2 id="kotlin">Kotlin</h2>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">package </span><span style="color:#cccece;">sort
+
+import java</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">util</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">ArrayList
+
+
+</span><span style="color:#c594c5;">fun</span><span style="color:#cccece;"> &lt;</span><span style="color:#c594c5;">T </span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> Comparable&lt;</span><span style="color:#c594c5;">in</span><span style="color:#cccece;"> T&gt;&gt; </span><span style="color:#6699cc;">mergeSort</span><span style="color:#cccece;">(
+        </span><span style="color:#f99157;">listToSort</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> MutableList&lt;T&gt;,
+        </span><span style="color:#f99157;">tmpList</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> MutableList&lt;T&gt; </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> ArrayList(listToSort),
+        </span><span style="color:#f99157;">lowIdx</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">Int </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">0</span><span style="color:#cccece;">, </span><span style="color:#f99157;">highIdx</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">Int </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> listToSort</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">size </span><span style="color:#5fb3b3;">- </span><span style="color:#f99157;">1</span><span style="color:#cccece;">) {
+
+    </span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> (lowIdx </span><span style="color:#5fb3b3;">&gt;=</span><span style="color:#cccece;"> highIdx </span><span style="color:#5fb3b3;">||</span><span style="color:#cccece;"> listToSort</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">size </span><span style="color:#5fb3b3;">&lt; </span><span style="color:#f99157;">2</span><span style="color:#cccece;">) </span><span style="color:#c594c5;">return
+
+    val </span><span style="color:#cccece;">middleIdx </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> lowIdx </span><span style="color:#5fb3b3;">+</span><span style="color:#cccece;"> (highIdx </span><span style="color:#5fb3b3;">-</span><span style="color:#cccece;"> lowIdx) </span><span style="color:#5fb3b3;">/ </span><span style="color:#f99157;">2</span><span style="color:#cccece;">
+    mergeSort(listToSort, tmpList, lowIdx, middleIdx) </span><span style="color:#5f6364;">//  sort left side
+</span><span style="color:#cccece;">    mergeSort(listToSort, tmpList, middleIdx </span><span style="color:#5fb3b3;">+ </span><span style="color:#f99157;">1</span><span style="color:#cccece;">, highIdx) </span><span style="color:#5f6364;">// sort right side
+</span><span style="color:#cccece;">
+    merge(listToSort, tmpList, lowIdx, middleIdx, highIdx) </span><span style="color:#5f6364;">// merge sorted from left and right sides
+</span><span style="color:#cccece;">}
+
+</span><span style="color:#c594c5;">private fun</span><span style="color:#cccece;"> &lt;</span><span style="color:#c594c5;">T </span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> Comparable&lt;T&gt;&gt; </span><span style="color:#6699cc;">merge</span><span style="color:#cccece;">(</span><span style="color:#f99157;">listToSort</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> MutableList&lt;T&gt;, </span><span style="color:#f99157;">tmpList</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> MutableList&lt;T&gt;, </span><span style="color:#f99157;">lowIdx</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">Int</span><span style="color:#cccece;">, </span><span style="color:#f99157;">middleIdx</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">Int</span><span style="color:#cccece;">, </span><span style="color:#f99157;">highIdx</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">Int</span><span style="color:#cccece;">) {
+    </span><span style="color:#c594c5;">for</span><span style="color:#cccece;"> (i </span><span style="color:#c594c5;">in</span><span style="color:#cccece;"> lowIdx</span><span style="color:#5fb3b3;">..</span><span style="color:#cccece;">highIdx) {
+        tmpList[i] </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> listToSort[i]
+    }
+    
+    </span><span style="color:#c594c5;">var </span><span style="color:#cccece;">leftIdx </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> lowIdx
+    </span><span style="color:#c594c5;">var </span><span style="color:#cccece;">rightIdx </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> middleIdx </span><span style="color:#5fb3b3;">+ </span><span style="color:#f99157;">1
+    </span><span style="color:#c594c5;">var </span><span style="color:#cccece;">curIdx </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> leftIdx
+
+    </span><span style="color:#c594c5;">while</span><span style="color:#cccece;"> (leftIdx </span><span style="color:#5fb3b3;">&lt;=</span><span style="color:#cccece;"> middleIdx </span><span style="color:#5fb3b3;">&amp;&amp;</span><span style="color:#cccece;"> rightIdx </span><span style="color:#5fb3b3;">&lt;=</span><span style="color:#cccece;"> highIdx) {
+        </span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> (tmpList[leftIdx] </span><span style="color:#5fb3b3;">&lt;=</span><span style="color:#cccece;"> (tmpList[rightIdx])) {
+            listToSort[curIdx] </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> tmpList[leftIdx]
+            leftIdx</span><span style="color:#5fb3b3;">++</span><span style="color:#cccece;">
+        } </span><span style="color:#c594c5;">else</span><span style="color:#cccece;"> {
+            listToSort[curIdx] </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> tmpList[rightIdx]
+            rightIdx</span><span style="color:#5fb3b3;">++</span><span style="color:#cccece;">
+        }
+        curIdx</span><span style="color:#5fb3b3;">++</span><span style="color:#cccece;">
+    }
+
+    </span><span style="color:#c594c5;">val </span><span style="color:#cccece;">remainingCount </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> middleIdx </span><span style="color:#5fb3b3;">-</span><span style="color:#cccece;"> leftIdx
+    </span><span style="color:#c594c5;">for</span><span style="color:#cccece;"> (i </span><span style="color:#c594c5;">in </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">..</span><span style="color:#cccece;">remainingCount) {
+        listToSort[curIdx </span><span style="color:#5fb3b3;">+</span><span style="color:#cccece;"> i] </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> tmpList[leftIdx </span><span style="color:#5fb3b3;">+</span><span style="color:#cccece;"> i]
+    }
+}
+
+</span></pre><div id="rust"/>
+<h2 id="rust">Rust</h2>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">struct </span><span style="color:#cccece;">Range </span><span style="color:#5fb3b3;">{
+    </span><span style="color:#cccece;">low_idx</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">usize</span><span style="color:#cccece;">,
+    high_idx</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">usize</span><span style="color:#cccece;">,
+</span><span style="color:#5fb3b3;">}
+
+</span><span style="color:#c594c5;">impl </span><span style="color:#cccece;">Range </span><span style="color:#5fb3b3;">{
+    </span><span style="color:#c594c5;">pub fn </span><span style="color:#6699cc;">new</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">low_idx</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">usize</span><span style="color:#cccece;">, </span><span style="color:#f99157;">high_idx</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">usize</span><span style="color:#5fb3b3;">) -&gt; </span><span style="color:#c594c5;">Self </span><span style="color:#5fb3b3;">{</span><span style="color:#cccece;">
+        Range </span><span style="color:#5fb3b3;">{</span><span style="color:#cccece;"> low_idx</span><span style="color:#5fb3b3;">,</span><span style="color:#cccece;"> high_idx </span><span style="color:#5fb3b3;">}
+    }
+    </span><span style="color:#c594c5;">pub fn </span><span style="color:#6699cc;">len</span><span style="color:#5fb3b3;">(&amp;</span><span style="color:#f99157;">self</span><span style="color:#5fb3b3;">) -&gt; </span><span style="color:#c594c5;">usize </span><span style="color:#5fb3b3;">{
+        </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">high_idx </span><span style="color:#5fb3b3;">- </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">low_idx
+    </span><span style="color:#5fb3b3;">}
+}
+
+</span><span style="color:#c594c5;">pub fn </span><span style="color:#6699cc;">sort</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#cccece;">T</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> Ord </span><span style="color:#5fb3b3;">+</span><span style="color:#cccece;"> Clone</span><span style="color:#5fb3b3;">&gt;(</span><span style="color:#f99157;">slice</span><span style="color:#5fb3b3;">: &amp;</span><span style="color:#c594c5;">mut</span><span style="color:#cccece;"> [T]</span><span style="color:#5fb3b3;">) {
+    </span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> slice</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">len</span><span style="color:#5fb3b3;">() &lt; </span><span style="color:#f99157;">2 </span><span style="color:#5fb3b3;">{
+        </span><span style="color:#c594c5;">return
+    </span><span style="color:#5fb3b3;">}
+    </span><span style="color:#c594c5;">let mut</span><span style="color:#cccece;"> helper_vec </span><span style="color:#5fb3b3;">= </span><span style="color:#fac863;">Vec</span><span style="color:#5fb3b3;">::</span><span style="color:#cccece;">new</span><span style="color:#5fb3b3;">();</span><span style="color:#cccece;">
+    helper_vec</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">extend_from_slice</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">slice</span><span style="color:#5fb3b3;">);
+
+    </span><span style="color:#6699cc;">sort_range</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">slice</span><span style="color:#5fb3b3;">, &amp;</span><span style="color:#cccece;">Range</span><span style="color:#5fb3b3;">::</span><span style="color:#cccece;">new</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">,</span><span style="color:#cccece;"> slice</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">len</span><span style="color:#5fb3b3;">() - </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">), &amp;</span><span style="color:#c594c5;">mut</span><span style="color:#cccece;"> helper_vec</span><span style="color:#5fb3b3;">);
+}
+
+</span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">sort_range</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#cccece;">T</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> Ord </span><span style="color:#5fb3b3;">+</span><span style="color:#cccece;"> Clone</span><span style="color:#5fb3b3;">&gt;(</span><span style="color:#f99157;">slice</span><span style="color:#5fb3b3;">: &amp;</span><span style="color:#c594c5;">mut</span><span style="color:#cccece;"> [T], </span><span style="color:#f99157;">range</span><span style="color:#5fb3b3;">: &amp;</span><span style="color:#cccece;">Range, </span><span style="color:#f99157;">helper_slice</span><span style="color:#5fb3b3;">: &amp;</span><span style="color:#c594c5;">mut</span><span style="color:#cccece;"> [T]</span><span style="color:#5fb3b3;">) {
+    </span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> range</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">low_idx </span><span style="color:#5fb3b3;">&gt;=</span><span style="color:#cccece;"> range</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">high_idx </span><span style="color:#5fb3b3;">{
+        </span><span style="color:#c594c5;">return</span><span style="color:#5fb3b3;">;
+    }
+
+    </span><span style="color:#c594c5;">let</span><span style="color:#cccece;"> mid_idx </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> range</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">low_idx </span><span style="color:#5fb3b3;">+ (</span><span style="color:#cccece;">range</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">high_idx </span><span style="color:#5fb3b3;">-</span><span style="color:#cccece;"> range</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">low_idx</span><span style="color:#5fb3b3;">) / </span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">;
+
+    </span><span style="color:#c594c5;">let</span><span style="color:#cccece;"> left_range </span><span style="color:#5fb3b3;">= &amp;</span><span style="color:#cccece;">Range</span><span style="color:#5fb3b3;">::</span><span style="color:#cccece;">new</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">range</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">low_idx</span><span style="color:#5fb3b3;">,</span><span style="color:#cccece;"> mid_idx</span><span style="color:#5fb3b3;">);
+    </span><span style="color:#6699cc;">sort_range</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">slice</span><span style="color:#5fb3b3;">,</span><span style="color:#cccece;"> left_range</span><span style="color:#5fb3b3;">,</span><span style="color:#cccece;"> helper_slice</span><span style="color:#5fb3b3;">);
+
+    </span><span style="color:#c594c5;">let</span><span style="color:#cccece;"> right_range </span><span style="color:#5fb3b3;">= &amp;</span><span style="color:#cccece;">Range</span><span style="color:#5fb3b3;">::</span><span style="color:#cccece;">new</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">mid_idx </span><span style="color:#5fb3b3;">+ </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">,</span><span style="color:#cccece;"> range</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">high_idx</span><span style="color:#5fb3b3;">);
+    </span><span style="color:#6699cc;">sort_range</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">slice</span><span style="color:#5fb3b3;">,</span><span style="color:#cccece;"> right_range</span><span style="color:#5fb3b3;">,</span><span style="color:#cccece;"> helper_slice</span><span style="color:#5fb3b3;">);
+
+    </span><span style="color:#6699cc;">merge</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">slice</span><span style="color:#5fb3b3;">,</span><span style="color:#cccece;"> left_range</span><span style="color:#5fb3b3;">,</span><span style="color:#cccece;"> right_range</span><span style="color:#5fb3b3;">,</span><span style="color:#cccece;"> helper_slice</span><span style="color:#5fb3b3;">);
+}
+
+</span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">merge</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#cccece;">T</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> Ord </span><span style="color:#5fb3b3;">+</span><span style="color:#cccece;"> Clone</span><span style="color:#5fb3b3;">&gt;(</span><span style="color:#f99157;">slice</span><span style="color:#5fb3b3;">: &amp;</span><span style="color:#c594c5;">mut</span><span style="color:#cccece;"> [T], </span><span style="color:#f99157;">left_range</span><span style="color:#5fb3b3;">: &amp;</span><span style="color:#cccece;">Range, </span><span style="color:#f99157;">right_range</span><span style="color:#5fb3b3;">: &amp;</span><span style="color:#cccece;">Range, </span><span style="color:#f99157;">helper_slice</span><span style="color:#5fb3b3;">: &amp;</span><span style="color:#c594c5;">mut</span><span style="color:#cccece;"> [T]</span><span style="color:#5fb3b3;">) {</span><span style="color:#cccece;">
+    helper_slice</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">left_range</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">low_idx</span><span style="color:#5fb3b3;">..=</span><span style="color:#cccece;">right_range</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">high_idx</span><span style="color:#5fb3b3;">]
+        .</span><span style="color:#6699cc;">clone_from_slice</span><span style="color:#5fb3b3;">(&amp;</span><span style="color:#cccece;">slice</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">left_range</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">low_idx</span><span style="color:#5fb3b3;">..=</span><span style="color:#cccece;">right_range</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">high_idx</span><span style="color:#5fb3b3;">]);
+
+    </span><span style="color:#c594c5;">let mut</span><span style="color:#cccece;"> cur_idx </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> left_range</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">low_idx</span><span style="color:#5fb3b3;">;
+    </span><span style="color:#c594c5;">let mut</span><span style="color:#cccece;"> cur_left_idx </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> left_range</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">low_idx</span><span style="color:#5fb3b3;">;
+    </span><span style="color:#c594c5;">let mut</span><span style="color:#cccece;"> cur_right_idx </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> right_range</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">low_idx</span><span style="color:#5fb3b3;">;
+
+    </span><span style="color:#c594c5;">while</span><span style="color:#cccece;"> cur_left_idx </span><span style="color:#5fb3b3;">&lt;=</span><span style="color:#cccece;"> left_range</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">high_idx </span><span style="color:#5fb3b3;">&amp;&amp;</span><span style="color:#cccece;"> cur_right_idx </span><span style="color:#5fb3b3;">&lt;=</span><span style="color:#cccece;"> right_range</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">high_idx </span><span style="color:#5fb3b3;">{
+        </span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> helper_slice</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">cur_left_idx</span><span style="color:#5fb3b3;">] &lt;</span><span style="color:#cccece;"> helper_slice</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">cur_right_idx</span><span style="color:#5fb3b3;">] {</span><span style="color:#cccece;">
+            slice</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">cur_idx</span><span style="color:#5fb3b3;">] =</span><span style="color:#cccece;"> helper_slice</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">cur_left_idx</span><span style="color:#5fb3b3;">].</span><span style="color:#6699cc;">clone</span><span style="color:#5fb3b3;">();</span><span style="color:#cccece;">
+            cur_left_idx </span><span style="color:#5fb3b3;">+= </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">;
+        } </span><span style="color:#c594c5;">else </span><span style="color:#5fb3b3;">{</span><span style="color:#cccece;">
+            slice</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">cur_idx</span><span style="color:#5fb3b3;">] =</span><span style="color:#cccece;"> helper_slice</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">cur_right_idx</span><span style="color:#5fb3b3;">].</span><span style="color:#6699cc;">clone</span><span style="color:#5fb3b3;">();</span><span style="color:#cccece;">
+            cur_right_idx </span><span style="color:#5fb3b3;">+= </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">;
+        }</span><span style="color:#cccece;">
+        cur_idx </span><span style="color:#5fb3b3;">+= </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">;
+    }
+
+    </span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> cur_right_idx </span><span style="color:#5fb3b3;">&lt;=</span><span style="color:#cccece;"> right_range</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">high_idx </span><span style="color:#5fb3b3;">{
+        </span><span style="color:#c594c5;">while</span><span style="color:#cccece;"> cur_right_idx </span><span style="color:#5fb3b3;">&lt;=</span><span style="color:#cccece;"> right_range</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">high_idx </span><span style="color:#5fb3b3;">{</span><span style="color:#cccece;">
+            slice</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">cur_idx</span><span style="color:#5fb3b3;">] =</span><span style="color:#cccece;"> helper_slice</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">cur_right_idx</span><span style="color:#5fb3b3;">].</span><span style="color:#6699cc;">clone</span><span style="color:#5fb3b3;">();</span><span style="color:#cccece;">
+            cur_right_idx </span><span style="color:#5fb3b3;">+= </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">;</span><span style="color:#cccece;">
+            cur_idx </span><span style="color:#5fb3b3;">+= </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">;
+        }
+    } </span><span style="color:#c594c5;">else </span><span style="color:#5fb3b3;">{
+        </span><span style="color:#c594c5;">while</span><span style="color:#cccece;"> cur_left_idx </span><span style="color:#5fb3b3;">&lt;=</span><span style="color:#cccece;"> left_range</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">high_idx </span><span style="color:#5fb3b3;">{</span><span style="color:#cccece;">
+            slice</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">cur_idx</span><span style="color:#5fb3b3;">] =</span><span style="color:#cccece;"> helper_slice</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">cur_left_idx</span><span style="color:#5fb3b3;">].</span><span style="color:#6699cc;">clone</span><span style="color:#5fb3b3;">();</span><span style="color:#cccece;">
+            cur_left_idx </span><span style="color:#5fb3b3;">+= </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">;</span><span style="color:#cccece;">
+            cur_idx </span><span style="color:#5fb3b3;">+= </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">;
+        }
+    }
+}
+
+#[</span><span style="color:#cccece;">cfg</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">test</span><span style="color:#5fb3b3;">)]
+</span><span style="color:#c594c5;">mod </span><span style="color:#cccece;">tests </span><span style="color:#5fb3b3;">{
+    </span><span style="color:#c594c5;">use super</span><span style="color:#5fb3b3;">::</span><span style="color:#cccece;">sort</span><span style="color:#5fb3b3;">;
+    </span><span style="color:#c594c5;">use </span><span style="color:#cccece;">rand</span><span style="color:#5fb3b3;">::</span><span style="color:#cccece;">prelude</span><span style="color:#5fb3b3;">::*;
+
+    </span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">sorted</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#cccece;">T</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> Ord</span><span style="color:#5fb3b3;">&gt;(</span><span style="color:#f99157;">slice</span><span style="color:#5fb3b3;">: &amp;</span><span style="color:#cccece;">[T]</span><span style="color:#5fb3b3;">) -&gt; </span><span style="color:#c594c5;">bool </span><span style="color:#5fb3b3;">{
+        </span><span style="color:#c594c5;">for</span><span style="color:#cccece;"> i </span><span style="color:#5fb3b3;">in </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">..(</span><span style="color:#cccece;">slice</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">len</span><span style="color:#5fb3b3;">() -</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">) {
+            </span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> slice</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">i</span><span style="color:#5fb3b3;">] &gt;</span><span style="color:#cccece;"> slice</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">i</span><span style="color:#5fb3b3;">+</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">] {
+                </span><span style="color:#c594c5;">return </span><span style="color:#f99157;">false</span><span style="color:#5fb3b3;">;
+            }
+        }
+        </span><span style="color:#f99157;">true
+    </span><span style="color:#5fb3b3;">}
+
+    #[</span><span style="color:#cccece;">test</span><span style="color:#5fb3b3;">]
+    </span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">already_sorted</span><span style="color:#5fb3b3;">() {
+        </span><span style="color:#c594c5;">let mut</span><span style="color:#cccece;"> arr </span><span style="color:#5fb3b3;">= [</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">3</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">4</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">5</span><span style="color:#5fb3b3;">];
+        </span><span style="color:#6699cc;">sort</span><span style="color:#5fb3b3;">(&amp;</span><span style="color:#c594c5;">mut</span><span style="color:#cccece;"> arr</span><span style="color:#5fb3b3;">);
+        </span><span style="color:#cccece;">assert!</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">sorted</span><span style="color:#5fb3b3;">(&amp;</span><span style="color:#cccece;">arr</span><span style="color:#5fb3b3;">));
+    }
+
+    #[</span><span style="color:#cccece;">test</span><span style="color:#5fb3b3;">]
+    </span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">already_sorted_reversed</span><span style="color:#5fb3b3;">() {
+        </span><span style="color:#c594c5;">let mut</span><span style="color:#cccece;"> arr </span><span style="color:#5fb3b3;">= [</span><span style="color:#f99157;">5</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">4</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">3</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">];
+        </span><span style="color:#6699cc;">sort</span><span style="color:#5fb3b3;">(&amp;</span><span style="color:#c594c5;">mut</span><span style="color:#cccece;"> arr</span><span style="color:#5fb3b3;">);
+        </span><span style="color:#cccece;">assert!</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">sorted</span><span style="color:#5fb3b3;">(&amp;</span><span style="color:#cccece;">arr</span><span style="color:#5fb3b3;">));
+    }
+
+    #[</span><span style="color:#cccece;">test</span><span style="color:#5fb3b3;">]
+    </span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">with_dups</span><span style="color:#5fb3b3;">() {
+        </span><span style="color:#c594c5;">let mut</span><span style="color:#cccece;"> arr </span><span style="color:#5fb3b3;">= [</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">4</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">3</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">19</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">19</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">40</span><span style="color:#5fb3b3;">];
+        </span><span style="color:#6699cc;">sort</span><span style="color:#5fb3b3;">(&amp;</span><span style="color:#c594c5;">mut</span><span style="color:#cccece;"> arr</span><span style="color:#5fb3b3;">);
+        </span><span style="color:#cccece;">assert!</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">sorted</span><span style="color:#5fb3b3;">(&amp;</span><span style="color:#cccece;">arr</span><span style="color:#5fb3b3;">));
+    }
+
+    #[</span><span style="color:#cccece;">test</span><span style="color:#5fb3b3;">]
+    </span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">shuffled_0_100</span><span style="color:#5fb3b3;">() {
+        </span><span style="color:#c594c5;">let mut</span><span style="color:#cccece;"> rng </span><span style="color:#5fb3b3;">= </span><span style="color:#cccece;">rand</span><span style="color:#5fb3b3;">::</span><span style="color:#cccece;">thread_rng</span><span style="color:#5fb3b3;">();
+        </span><span style="color:#c594c5;">let</span><span style="color:#cccece;"> y</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">f64 </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> rng</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">gen</span><span style="color:#5fb3b3;">();
+
+        </span><span style="color:#c594c5;">let mut</span><span style="color:#cccece;"> arr</span><span style="color:#5fb3b3;">: </span><span style="color:#cccece;">Vec</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#c594c5;">i32</span><span style="color:#5fb3b3;">&gt; = (</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">..</span><span style="color:#f99157;">100</span><span style="color:#5fb3b3;">).</span><span style="color:#6699cc;">collect</span><span style="color:#5fb3b3;">();</span><span style="color:#cccece;">
+        arr</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">shuffle</span><span style="color:#5fb3b3;">(&amp;</span><span style="color:#c594c5;">mut</span><span style="color:#cccece;"> rng</span><span style="color:#5fb3b3;">);
+
+        </span><span style="color:#6699cc;">sort</span><span style="color:#5fb3b3;">(&amp;</span><span style="color:#c594c5;">mut</span><span style="color:#cccece;"> arr</span><span style="color:#5fb3b3;">);
+
+        </span><span style="color:#cccece;">assert!</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">sorted</span><span style="color:#5fb3b3;">(&amp;</span><span style="color:#cccece;">arr</span><span style="color:#5fb3b3;">))
+    }
+
+    #[</span><span style="color:#cccece;">test</span><span style="color:#5fb3b3;">]
+    </span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">random_arr</span><span style="color:#5fb3b3;">() {
+        </span><span style="color:#c594c5;">const </span><span style="color:#cccece;">TIMES</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">usize </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">100</span><span style="color:#5fb3b3;">;
+        </span><span style="color:#c594c5;">for </span><span style="color:#5fb3b3;">_ in </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">..</span><span style="color:#cccece;">TIMES </span><span style="color:#5fb3b3;">{
+            </span><span style="color:#c594c5;">let mut</span><span style="color:#cccece;"> arr</span><span style="color:#5fb3b3;">: </span><span style="color:#cccece;">Vec</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#c594c5;">i32</span><span style="color:#5fb3b3;">&gt; = </span><span style="color:#cccece;">vec!</span><span style="color:#5fb3b3;">[];
+            </span><span style="color:#c594c5;">let mut</span><span style="color:#cccece;"> rng </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">thread_rng</span><span style="color:#5fb3b3;">();
+            </span><span style="color:#c594c5;">let</span><span style="color:#cccece;"> rnd_vec_size</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">usize </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> rng</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">gen_range</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">1_000</span><span style="color:#5fb3b3;">);
+            </span><span style="color:#c594c5;">for </span><span style="color:#5fb3b3;">_ in </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">..</span><span style="color:#cccece;">rnd_vec_size </span><span style="color:#5fb3b3;">{
+                </span><span style="color:#c594c5;">let</span><span style="color:#cccece;"> rnd_num</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">i32 </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> rng</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">gen</span><span style="color:#5fb3b3;">();</span><span style="color:#cccece;">
+                arr</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">push</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">rnd_num</span><span style="color:#5fb3b3;">);
+            }
+            </span><span style="color:#6699cc;">sort</span><span style="color:#5fb3b3;">(&amp;</span><span style="color:#c594c5;">mut</span><span style="color:#cccece;"> arr</span><span style="color:#5fb3b3;">);
+            </span><span style="color:#cccece;">assert!</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">sorted</span><span style="color:#5fb3b3;">(&amp;</span><span style="color:#cccece;">arr</span><span style="color:#5fb3b3;">));
+        }
+    }
+}
+</span></pre>
+
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,818 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <meta name="description" content="Binary search tree">
+    <meta name="keywords" content="binary search tree, tree, learn, explain, tutorial, data structures, algorithms, graph, tree, interview, java, golang, kotlin, python, rust, javascript, basic level">
+
+    <title> 
+    Binary search tree
+ | Practical algorithms and data structures </title>
+    <link rel='stylesheet' href='/styles/styles.css'/>
+</head>
+
+<body>
+
+<div class="rootContainer">
+    <div class="horizontal-menu-box">
+        
+    
+    
+    
+<div class="menu">
+    <!-- ABOUT -->
+    <div class="menuItem">
+        
+        <a href="/index.html" >
+            ABOUT
+        </a>
+        
+
+    </div>
+
+    <!-- FUNDAMENTAL -->
+    <div class="menuItem">
+        
+        <a href="/fundamental/contents" >
+            FUNDAMENTAL
+        </a>
+        
+    </div>
+
+    <!-- BASIC -->
+    <div class="menuItem">
+        
+        <a href="/basic/contents" >
+            BASIC
+        </a>
+        
+    </div>
+
+    <!-- ADVANCED -->
+    <div class="menuItem">
+        
+        <a href="/advanced/contents" >
+            ADVANCED
+        </a>
+        
+    </div>
+
+    <!-- NINJA -->
+    <div class="menuItem">
+
+        
+        <a href="/ninja/contents" >
+            NINJA
+        </a>
+        
+
+    </div>
+
+    <!-- LANGUAGES -->
+    <div class="menuItem">
+        
+        <a href="/languages/contents" >
+            LANGUAGES
+        </a>
+        
+
+    </div>
+
+</div>
+
+
+
+    </div>
+
+    <div class="content">
+        
+    <h1 id="binary-search-tree">Binary search tree</h1>
+<h2 id="contents">Contents</h2>
+<hr />
+<ul>
+<li><a href="https://algoholics.io/basic/binary-search-tree/#description">Binary search description</a></li>
+<li><a href="https://algoholics.io/basic/binary-search-tree/#java">Java</a></li>
+<li><a href="https://algoholics.io/basic/binary-search-tree/#go">Go</a></li>
+<li><a href="https://algoholics.io/basic/binary-search-tree/#python">Python</a></li>
+<li><a href="https://algoholics.io/basic/binary-search-tree/#javascript">JavaScript</a></li>
+<li><a href="https://algoholics.io/basic/binary-search-tree/#kotlin">Kotlin</a></li>
+<li><a href="https://algoholics.io/basic/binary-search-tree/#rust">Rust</a></li>
+</ul>
+<hr />
+<div id="description" />
+<h2 id="binary-search-tree-1">Binary search tree</h2>
+<p>Most operations <code>O log(N)</code> </p>
+<div id="java"/>
+<h2 id="java">Java</h2>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">package </span><span style="color:#cccece;">tree</span><span style="color:#5fb3b3;">;
+
+</span><span style="color:#c594c5;">import </span><span style="color:#fac863;">java</span><span style="color:#5fb3b3;">.</span><span style="color:#fac863;">util</span><span style="color:#5fb3b3;">.</span><span style="color:#fac863;">ArrayList</span><span style="color:#5fb3b3;">;
+</span><span style="color:#c594c5;">import </span><span style="color:#fac863;">java</span><span style="color:#5fb3b3;">.</span><span style="color:#fac863;">util</span><span style="color:#5fb3b3;">.</span><span style="color:#fac863;">List</span><span style="color:#5fb3b3;">;
+
+</span><span style="color:#c594c5;">public class </span><span style="color:#fac863;">UnbalancedBinarySearchTree</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#f99157;">E </span><span style="color:#c594c5;">extends </span><span style="color:#fac863;">Comparable</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#fac863;">E</span><span style="color:#5fb3b3;">&gt;&gt; {
+    </span><span style="color:#c594c5;">static class </span><span style="color:#fac863;">Node</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#f99157;">E</span><span style="color:#5fb3b3;">&gt; {
+        </span><span style="color:#fac863;">E </span><span style="color:#cccece;">value</span><span style="color:#5fb3b3;">;
+        </span><span style="color:#fac863;">Node</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#fac863;">E</span><span style="color:#5fb3b3;">&gt; </span><span style="color:#cccece;">left</span><span style="color:#5fb3b3;">;
+        </span><span style="color:#fac863;">Node</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#fac863;">E</span><span style="color:#5fb3b3;">&gt; </span><span style="color:#cccece;">right</span><span style="color:#5fb3b3;">;
+
+        </span><span style="color:#6699cc;">Node</span><span style="color:#5fb3b3;">(</span><span style="color:#fac863;">E </span><span style="color:#f99157;">value</span><span style="color:#5fb3b3;">) {
+            </span><span style="color:#ec5f67;">this</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">value </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> value</span><span style="color:#5fb3b3;">;
+        }
+    }
+
+    </span><span style="color:#c594c5;">private </span><span style="color:#fac863;">Node</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#fac863;">E</span><span style="color:#5fb3b3;">&gt; </span><span style="color:#cccece;">root</span><span style="color:#5fb3b3;">;
+
+    </span><span style="color:#c594c5;">public void </span><span style="color:#6699cc;">add</span><span style="color:#5fb3b3;">(</span><span style="color:#fac863;">E </span><span style="color:#f99157;">value</span><span style="color:#5fb3b3;">) {
+        </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">root </span><span style="color:#5fb3b3;">== </span><span style="color:#f99157;">null</span><span style="color:#5fb3b3;">) {</span><span style="color:#cccece;">
+            root </span><span style="color:#5fb3b3;">= </span><span style="color:#c594c5;">new </span><span style="color:#fac863;">Node</span><span style="color:#5fb3b3;">&lt;&gt;(</span><span style="color:#cccece;">value</span><span style="color:#5fb3b3;">);
+            </span><span style="color:#c594c5;">return</span><span style="color:#5fb3b3;">;
+        }
+        </span><span style="color:#6699cc;">addToRootNode</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">root</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> value</span><span style="color:#5fb3b3;">);
+    }
+
+    </span><span style="color:#c594c5;">private void </span><span style="color:#6699cc;">addToRootNode</span><span style="color:#5fb3b3;">(</span><span style="color:#fac863;">Node</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#fac863;">E</span><span style="color:#5fb3b3;">&gt; </span><span style="color:#f99157;">rootNode</span><span style="color:#5fb3b3;">, </span><span style="color:#fac863;">E </span><span style="color:#f99157;">value</span><span style="color:#5fb3b3;">) {
+        </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">value</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">compareTo</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">rootNode</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">value</span><span style="color:#5fb3b3;">) &lt;= </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">) {
+            </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">rootNode</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">left </span><span style="color:#5fb3b3;">== </span><span style="color:#f99157;">null</span><span style="color:#5fb3b3;">) {</span><span style="color:#cccece;">
+                rootNode</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">left </span><span style="color:#5fb3b3;">= </span><span style="color:#c594c5;">new </span><span style="color:#fac863;">Node</span><span style="color:#5fb3b3;">&lt;&gt;(</span><span style="color:#cccece;">value</span><span style="color:#5fb3b3;">);
+            } </span><span style="color:#c594c5;">else </span><span style="color:#5fb3b3;">{
+                </span><span style="color:#6699cc;">addToRootNode</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">rootNode</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">left</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> value</span><span style="color:#5fb3b3;">);
+            }
+        } </span><span style="color:#c594c5;">else </span><span style="color:#5fb3b3;">{
+            </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">rootNode</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">right </span><span style="color:#5fb3b3;">== </span><span style="color:#f99157;">null</span><span style="color:#5fb3b3;">) {</span><span style="color:#cccece;">
+                rootNode</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">right </span><span style="color:#5fb3b3;">= </span><span style="color:#c594c5;">new </span><span style="color:#fac863;">Node</span><span style="color:#5fb3b3;">&lt;&gt;(</span><span style="color:#cccece;">value</span><span style="color:#5fb3b3;">);
+            } </span><span style="color:#c594c5;">else </span><span style="color:#5fb3b3;">{
+                </span><span style="color:#6699cc;">addToRootNode</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">rootNode</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">right</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> value</span><span style="color:#5fb3b3;">);
+            }
+        }
+    }
+
+    </span><span style="color:#c594c5;">public boolean </span><span style="color:#6699cc;">contains</span><span style="color:#5fb3b3;">(</span><span style="color:#fac863;">E </span><span style="color:#f99157;">value</span><span style="color:#5fb3b3;">) {
+        </span><span style="color:#c594c5;">return </span><span style="color:#6699cc;">rootNodeContains</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">root</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> value</span><span style="color:#5fb3b3;">);
+    }
+
+    </span><span style="color:#c594c5;">private boolean </span><span style="color:#6699cc;">rootNodeContains</span><span style="color:#5fb3b3;">(</span><span style="color:#fac863;">Node</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#fac863;">E</span><span style="color:#5fb3b3;">&gt; </span><span style="color:#f99157;">rootNode</span><span style="color:#5fb3b3;">, </span><span style="color:#fac863;">E </span><span style="color:#f99157;">value</span><span style="color:#5fb3b3;">) {
+        </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">rootNode </span><span style="color:#5fb3b3;">== </span><span style="color:#f99157;">null</span><span style="color:#5fb3b3;">) </span><span style="color:#c594c5;">return </span><span style="color:#f99157;">false</span><span style="color:#5fb3b3;">;
+
+        </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">value </span><span style="color:#5fb3b3;">==</span><span style="color:#cccece;"> rootNode</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">value</span><span style="color:#5fb3b3;">) </span><span style="color:#c594c5;">return </span><span style="color:#f99157;">true</span><span style="color:#5fb3b3;">;
+
+        </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">value</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">compareTo</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">rootNode</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">value</span><span style="color:#5fb3b3;">) &lt; </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">) {
+            </span><span style="color:#c594c5;">return </span><span style="color:#6699cc;">rootNodeContains</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">rootNode</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">left</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> value</span><span style="color:#5fb3b3;">);
+        } </span><span style="color:#c594c5;">else </span><span style="color:#5fb3b3;">{
+            </span><span style="color:#c594c5;">return </span><span style="color:#6699cc;">rootNodeContains</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">rootNode</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">right</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> value</span><span style="color:#5fb3b3;">);
+        }
+    }
+
+    </span><span style="color:#c594c5;">public </span><span style="color:#fac863;">List</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#fac863;">E</span><span style="color:#5fb3b3;">&gt; </span><span style="color:#6699cc;">elementsSorted</span><span style="color:#5fb3b3;">() {
+        </span><span style="color:#fac863;">List</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#fac863;">E</span><span style="color:#5fb3b3;">&gt;</span><span style="color:#cccece;"> result </span><span style="color:#5fb3b3;">= </span><span style="color:#c594c5;">new </span><span style="color:#fac863;">ArrayList</span><span style="color:#5fb3b3;">&lt;&gt;();
+        </span><span style="color:#6699cc;">appendSortedForRootNode</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">root</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> result</span><span style="color:#5fb3b3;">);
+        </span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> result</span><span style="color:#5fb3b3;">;
+    }
+
+    </span><span style="color:#c594c5;">private void </span><span style="color:#6699cc;">appendSortedForRootNode</span><span style="color:#5fb3b3;">(</span><span style="color:#fac863;">Node</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#fac863;">E</span><span style="color:#5fb3b3;">&gt; </span><span style="color:#f99157;">rootNode</span><span style="color:#5fb3b3;">, </span><span style="color:#fac863;">List</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#fac863;">E</span><span style="color:#5fb3b3;">&gt; </span><span style="color:#f99157;">elements</span><span style="color:#5fb3b3;">) {
+        </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">rootNode </span><span style="color:#5fb3b3;">== </span><span style="color:#f99157;">null</span><span style="color:#5fb3b3;">) </span><span style="color:#c594c5;">return</span><span style="color:#5fb3b3;">;
+
+        </span><span style="color:#6699cc;">appendSortedForRootNode</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">rootNode</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">left</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> elements</span><span style="color:#5fb3b3;">);</span><span style="color:#cccece;">
+        elements</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">add</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">rootNode</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">value</span><span style="color:#5fb3b3;">);
+        </span><span style="color:#6699cc;">appendSortedForRootNode</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">rootNode</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">right</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> elements</span><span style="color:#5fb3b3;">);
+    }
+
+    </span><span style="color:#c594c5;">public int </span><span style="color:#6699cc;">depth</span><span style="color:#5fb3b3;">() {
+        </span><span style="color:#c594c5;">return </span><span style="color:#6699cc;">depthFromNode</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">root</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">);
+    }
+
+    </span><span style="color:#c594c5;">private int </span><span style="color:#6699cc;">depthFromNode</span><span style="color:#5fb3b3;">(</span><span style="color:#fac863;">Node</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#fac863;">E</span><span style="color:#5fb3b3;">&gt; </span><span style="color:#f99157;">node</span><span style="color:#5fb3b3;">, </span><span style="color:#c594c5;">int </span><span style="color:#f99157;">curDepth</span><span style="color:#5fb3b3;">) {
+        </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">node </span><span style="color:#5fb3b3;">== </span><span style="color:#f99157;">null </span><span style="color:#5fb3b3;">|| (</span><span style="color:#cccece;">node</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">left </span><span style="color:#5fb3b3;">== </span><span style="color:#f99157;">null </span><span style="color:#5fb3b3;">&amp;&amp;</span><span style="color:#cccece;"> node</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">right </span><span style="color:#5fb3b3;">== </span><span style="color:#f99157;">null</span><span style="color:#5fb3b3;">)) {
+            </span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> curDepth</span><span style="color:#5fb3b3;">;
+        }
+
+        </span><span style="color:#c594c5;">return </span><span style="color:#fac863;">Math</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">max</span><span style="color:#5fb3b3;">(
+                </span><span style="color:#6699cc;">depthFromNode</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">node</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">left</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> curDepth </span><span style="color:#5fb3b3;">+ </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">),
+                </span><span style="color:#6699cc;">depthFromNode</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">node</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">right</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> curDepth </span><span style="color:#5fb3b3;">+ </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">)
+        );
+    }
+}
+
+</span></pre><div id="go"/>
+<h2 id="go">Go</h2>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">package</span><span style="color:#cccece;"> tree
+
+</span><span style="color:#c594c5;">type </span><span style="color:#cccece;">node </span><span style="color:#c594c5;">struct </span><span style="color:#5fb3b3;">{
+	</span><span style="color:#cccece;">value </span><span style="color:#c594c5;">int
+	</span><span style="color:#cccece;">left *node
+	right *node
+</span><span style="color:#5fb3b3;">}
+
+</span><span style="color:#c594c5;">func </span><span style="color:#6699cc;">newNode</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">value </span><span style="color:#c594c5;">int</span><span style="color:#5fb3b3;">) *</span><span style="color:#cccece;">node</span><span style="color:#5fb3b3;">{
+	</span><span style="color:#c594c5;">return </span><span style="color:#5fb3b3;">&amp;</span><span style="color:#cccece;">node</span><span style="color:#5fb3b3;">{</span><span style="color:#cccece;">value</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">nil</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">nil</span><span style="color:#5fb3b3;">}
+}
+
+</span><span style="color:#c594c5;">type </span><span style="color:#cccece;">UnbalancedBinarySearchTree </span><span style="color:#c594c5;">struct </span><span style="color:#5fb3b3;">{
+	</span><span style="color:#cccece;">root *node
+</span><span style="color:#5fb3b3;">}
+
+</span><span style="color:#c594c5;">func </span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">t </span><span style="color:#5fb3b3;">*</span><span style="color:#cccece;">UnbalancedBinarySearchTree</span><span style="color:#5fb3b3;">) </span><span style="color:#6699cc;">Add</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">newValue </span><span style="color:#c594c5;">int</span><span style="color:#5fb3b3;">) {
+	</span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> t</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">root </span><span style="color:#5fb3b3;">== </span><span style="color:#f99157;">nil</span><span style="color:#5fb3b3;">{</span><span style="color:#cccece;">
+		t</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">root </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">newNode</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">newValue</span><span style="color:#5fb3b3;">)
+		</span><span style="color:#c594c5;">return
+	</span><span style="color:#5fb3b3;">}
+
+	</span><span style="color:#6699cc;">addToNode</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">t</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">root</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> newValue</span><span style="color:#5fb3b3;">)
+}
+
+</span><span style="color:#c594c5;">func </span><span style="color:#6699cc;">addToNode</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">n </span><span style="color:#5fb3b3;">*</span><span style="color:#cccece;">node</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">newValue </span><span style="color:#c594c5;">int</span><span style="color:#5fb3b3;">) {
+	</span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> newValue </span><span style="color:#5fb3b3;">&lt;=</span><span style="color:#cccece;"> n</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">value </span><span style="color:#5fb3b3;">{
+		</span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> n</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">left </span><span style="color:#5fb3b3;">== </span><span style="color:#f99157;">nil</span><span style="color:#5fb3b3;">{</span><span style="color:#cccece;">
+			n</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">left </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">newNode</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">newValue</span><span style="color:#5fb3b3;">)
+		} </span><span style="color:#c594c5;">else </span><span style="color:#5fb3b3;">{
+			</span><span style="color:#6699cc;">addToNode</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">n</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">left</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> newValue</span><span style="color:#5fb3b3;">)
+		}
+	} </span><span style="color:#c594c5;">else </span><span style="color:#5fb3b3;">{
+		</span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> n</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">right </span><span style="color:#5fb3b3;">== </span><span style="color:#f99157;">nil </span><span style="color:#5fb3b3;">{</span><span style="color:#cccece;">
+			n</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">right </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">newNode</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">newValue</span><span style="color:#5fb3b3;">)
+		} </span><span style="color:#c594c5;">else </span><span style="color:#5fb3b3;">{
+			</span><span style="color:#6699cc;">addToNode</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">n</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">right</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> newValue</span><span style="color:#5fb3b3;">)
+		}
+	}
+}
+
+</span><span style="color:#c594c5;">func </span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">t </span><span style="color:#5fb3b3;">*</span><span style="color:#cccece;">UnbalancedBinarySearchTree</span><span style="color:#5fb3b3;">) </span><span style="color:#6699cc;">OrderedElements</span><span style="color:#5fb3b3;">() []</span><span style="color:#c594c5;">int</span><span style="color:#5fb3b3;">{
+	</span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> t</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">root </span><span style="color:#5fb3b3;">== </span><span style="color:#f99157;">nil </span><span style="color:#5fb3b3;">{
+		</span><span style="color:#c594c5;">return </span><span style="color:#6699cc;">make</span><span style="color:#5fb3b3;">([]</span><span style="color:#c594c5;">int</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">)
+	}
+
+	</span><span style="color:#c594c5;">var </span><span style="color:#cccece;">result </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">addToSlice</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">t</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">root</span><span style="color:#5fb3b3;">, </span><span style="color:#6699cc;">make</span><span style="color:#5fb3b3;">([]</span><span style="color:#c594c5;">int</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">))
+
+	</span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> result
+</span><span style="color:#5fb3b3;">}
+
+</span><span style="color:#c594c5;">func </span><span style="color:#6699cc;">addToSlice</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">n </span><span style="color:#5fb3b3;">*</span><span style="color:#cccece;">node</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">values </span><span style="color:#5fb3b3;">[]</span><span style="color:#c594c5;">int</span><span style="color:#5fb3b3;">) []</span><span style="color:#c594c5;">int </span><span style="color:#5fb3b3;">{
+	</span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> n </span><span style="color:#5fb3b3;">== </span><span style="color:#f99157;">nil </span><span style="color:#5fb3b3;">{
+		</span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> values
+	</span><span style="color:#5fb3b3;">}</span><span style="color:#cccece;">
+
+	values </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">addToSlice</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">n</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">left</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> values</span><span style="color:#5fb3b3;">)</span><span style="color:#cccece;">
+	values </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">append</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">values</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> n</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">value</span><span style="color:#5fb3b3;">)</span><span style="color:#cccece;">
+	values </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">addToSlice</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">n</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">right</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> values</span><span style="color:#5fb3b3;">)
+
+	</span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> values
+</span><span style="color:#5fb3b3;">}
+
+</span><span style="color:#c594c5;">func </span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">t</span><span style="color:#cccece;"> UnbalancedBinarySearchTree</span><span style="color:#5fb3b3;">) </span><span style="color:#6699cc;">Contains</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">value </span><span style="color:#c594c5;">int</span><span style="color:#5fb3b3;">) </span><span style="color:#c594c5;">bool</span><span style="color:#5fb3b3;">{
+	</span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> t</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">root </span><span style="color:#5fb3b3;">== </span><span style="color:#f99157;">nil </span><span style="color:#5fb3b3;">{
+		</span><span style="color:#c594c5;">return </span><span style="color:#f99157;">false
+	</span><span style="color:#5fb3b3;">}
+
+	</span><span style="color:#c594c5;">return </span><span style="color:#6699cc;">containsInNode</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">t</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">root</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> value</span><span style="color:#5fb3b3;">)
+}
+
+</span><span style="color:#c594c5;">func </span><span style="color:#6699cc;">containsInNode</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">n </span><span style="color:#5fb3b3;">*</span><span style="color:#cccece;">node</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">value </span><span style="color:#c594c5;">int</span><span style="color:#5fb3b3;">) </span><span style="color:#c594c5;">bool </span><span style="color:#5fb3b3;">{
+	</span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> n</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">value </span><span style="color:#5fb3b3;">==</span><span style="color:#cccece;"> value</span><span style="color:#5fb3b3;">{
+		</span><span style="color:#c594c5;">return </span><span style="color:#f99157;">true
+	</span><span style="color:#5fb3b3;">}
+
+	</span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> value </span><span style="color:#5fb3b3;">&lt;</span><span style="color:#cccece;"> n</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">value</span><span style="color:#5fb3b3;">{
+		</span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> n</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">left </span><span style="color:#5fb3b3;">== </span><span style="color:#f99157;">nil</span><span style="color:#5fb3b3;">{
+			</span><span style="color:#c594c5;">return </span><span style="color:#f99157;">false
+		</span><span style="color:#5fb3b3;">} </span><span style="color:#c594c5;">else </span><span style="color:#5fb3b3;">{
+			</span><span style="color:#c594c5;">return </span><span style="color:#6699cc;">containsInNode</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">n</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">left</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> value</span><span style="color:#5fb3b3;">)
+		}
+	} </span><span style="color:#c594c5;">else </span><span style="color:#5fb3b3;">{
+		</span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> n</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">right </span><span style="color:#5fb3b3;">== </span><span style="color:#f99157;">nil</span><span style="color:#5fb3b3;">{
+			</span><span style="color:#c594c5;">return </span><span style="color:#f99157;">false
+		</span><span style="color:#5fb3b3;">} </span><span style="color:#c594c5;">else </span><span style="color:#5fb3b3;">{
+			</span><span style="color:#c594c5;">return </span><span style="color:#6699cc;">containsInNode</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">n</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">right</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> value</span><span style="color:#5fb3b3;">)
+		}
+	}
+}
+
+</span><span style="color:#c594c5;">func </span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">t </span><span style="color:#5fb3b3;">*</span><span style="color:#cccece;">UnbalancedBinarySearchTree</span><span style="color:#5fb3b3;">) </span><span style="color:#6699cc;">Depth</span><span style="color:#5fb3b3;">() </span><span style="color:#c594c5;">int</span><span style="color:#5fb3b3;">{
+	</span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> t</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">root </span><span style="color:#5fb3b3;">== </span><span style="color:#f99157;">nil</span><span style="color:#5fb3b3;">{
+		</span><span style="color:#c594c5;">return </span><span style="color:#f99157;">0
+	</span><span style="color:#5fb3b3;">}
+
+	</span><span style="color:#c594c5;">return </span><span style="color:#6699cc;">nodeDepth</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">t</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">root</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">)
+}
+
+</span><span style="color:#c594c5;">func </span><span style="color:#6699cc;">nodeDepth</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">n </span><span style="color:#5fb3b3;">*</span><span style="color:#cccece;">node</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">curDepth </span><span style="color:#c594c5;">int</span><span style="color:#5fb3b3;">) </span><span style="color:#c594c5;">int </span><span style="color:#5fb3b3;">{
+	</span><span style="color:#c594c5;">var </span><span style="color:#cccece;">leftDepth </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> curDepth
+	</span><span style="color:#c594c5;">var </span><span style="color:#cccece;">rightDepth </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> curDepth
+
+	</span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> n</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">left </span><span style="color:#5fb3b3;">!= </span><span style="color:#f99157;">nil </span><span style="color:#5fb3b3;">{</span><span style="color:#cccece;">
+		leftDepth </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">nodeDepth</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">n</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">left</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> curDepth </span><span style="color:#5fb3b3;">+ </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">)
+	}
+
+	</span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> n</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">right </span><span style="color:#5fb3b3;">!= </span><span style="color:#f99157;">nil </span><span style="color:#5fb3b3;">{</span><span style="color:#cccece;">
+		rightDepth </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">nodeDepth</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">n</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">right</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> curDepth </span><span style="color:#5fb3b3;">+ </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">)
+	}
+
+	</span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> leftDepth </span><span style="color:#5fb3b3;">&gt;</span><span style="color:#cccece;"> rightDepth</span><span style="color:#5fb3b3;">{
+		</span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> leftDepth
+	</span><span style="color:#5fb3b3;">} </span><span style="color:#c594c5;">else </span><span style="color:#5fb3b3;">{
+		</span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> rightDepth
+	</span><span style="color:#5fb3b3;">}
+}
+
+</span></pre><div id="python"/>
+<h2 id="python">Python</h2>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">class </span><span style="color:#fac863;">Node</span><span style="color:#5fb3b3;">:
+    </span><span style="color:#c594c5;">def </span><span style="color:#6699cc;">__init__</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">self</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">input_value</span><span style="color:#5fb3b3;">):
+        </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">value </span><span style="color:#5fb3b3;">= </span><span style="color:#cccece;">input_value
+        </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">left </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">None
+        </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">right </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">None
+
+
+</span><span style="color:#c594c5;">class </span><span style="color:#fac863;">Tree</span><span style="color:#5fb3b3;">:
+    </span><span style="color:#c594c5;">def </span><span style="color:#6699cc;">__init__</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">self</span><span style="color:#5fb3b3;">):
+        </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">root </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">None
+        </span><span style="color:#c594c5;">pass
+
+    def </span><span style="color:#6699cc;">add</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">self</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">input_value</span><span style="color:#5fb3b3;">):
+        </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">not </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">root</span><span style="color:#5fb3b3;">:
+            </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">root </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">Node</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">input_value</span><span style="color:#5fb3b3;">)
+            </span><span style="color:#c594c5;">return
+        </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">add_to_node</span><span style="color:#5fb3b3;">(</span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">root</span><span style="color:#5fb3b3;">, </span><span style="color:#6699cc;">input_value</span><span style="color:#5fb3b3;">)
+
+    </span><span style="color:#c594c5;">def </span><span style="color:#6699cc;">add_to_node</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">self</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">root_node</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">input_value</span><span style="color:#5fb3b3;">):
+        </span><span style="color:#c594c5;">if </span><span style="color:#cccece;">input_value </span><span style="color:#5fb3b3;">&lt;= </span><span style="color:#cccece;">root_node</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">value</span><span style="color:#5fb3b3;">:
+            </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">not </span><span style="color:#cccece;">root_node</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">left</span><span style="color:#5fb3b3;">:
+                </span><span style="color:#cccece;">root_node</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">left </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">Node</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">input_value</span><span style="color:#5fb3b3;">)
+            </span><span style="color:#c594c5;">else</span><span style="color:#5fb3b3;">:
+                </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">add_to_node</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">root_node</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">left</span><span style="color:#5fb3b3;">, </span><span style="color:#6699cc;">input_value</span><span style="color:#5fb3b3;">)
+        </span><span style="color:#c594c5;">else</span><span style="color:#5fb3b3;">:
+            </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">not </span><span style="color:#cccece;">root_node</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">right</span><span style="color:#5fb3b3;">:
+                </span><span style="color:#cccece;">root_node</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">right </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">Node</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">input_value</span><span style="color:#5fb3b3;">)
+            </span><span style="color:#c594c5;">else</span><span style="color:#5fb3b3;">:
+                </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">add_to_node</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">root_node</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">right</span><span style="color:#5fb3b3;">, </span><span style="color:#6699cc;">input_value</span><span style="color:#5fb3b3;">)
+
+    </span><span style="color:#c594c5;">def </span><span style="color:#6699cc;">__contains__</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">self</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">input_value</span><span style="color:#5fb3b3;">):
+        </span><span style="color:#c594c5;">return </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">contains_from_node</span><span style="color:#5fb3b3;">(</span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">root</span><span style="color:#5fb3b3;">, </span><span style="color:#6699cc;">input_value</span><span style="color:#5fb3b3;">)
+
+    </span><span style="color:#c594c5;">def </span><span style="color:#6699cc;">contains_from_node</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">self</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">root_node</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">input_value</span><span style="color:#5fb3b3;">):
+        </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">not </span><span style="color:#cccece;">root_node</span><span style="color:#5fb3b3;">:
+            </span><span style="color:#c594c5;">return </span><span style="color:#f99157;">False
+        </span><span style="color:#c594c5;">if </span><span style="color:#cccece;">root_node</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">value </span><span style="color:#5fb3b3;">== </span><span style="color:#cccece;">input_value</span><span style="color:#5fb3b3;">:
+            </span><span style="color:#c594c5;">return </span><span style="color:#f99157;">True
+        </span><span style="color:#c594c5;">if </span><span style="color:#cccece;">input_value </span><span style="color:#5fb3b3;">&lt; </span><span style="color:#cccece;">root_node</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">value</span><span style="color:#5fb3b3;">:
+            </span><span style="color:#c594c5;">return </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">contains_from_node</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">root_node</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">left</span><span style="color:#5fb3b3;">, </span><span style="color:#6699cc;">input_value</span><span style="color:#5fb3b3;">)
+        </span><span style="color:#c594c5;">else</span><span style="color:#5fb3b3;">:
+            </span><span style="color:#c594c5;">return </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">contains_from_node</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">root_node</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">right</span><span style="color:#5fb3b3;">, </span><span style="color:#6699cc;">input_value</span><span style="color:#5fb3b3;">)
+
+    </span><span style="color:#c594c5;">def </span><span style="color:#6699cc;">elements_sorted</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">self</span><span style="color:#5fb3b3;">):
+        </span><span style="color:#cccece;">result_list </span><span style="color:#5fb3b3;">= []
+        </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">elements_sorted_from_node</span><span style="color:#5fb3b3;">(</span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">root</span><span style="color:#5fb3b3;">, </span><span style="color:#6699cc;">result_list</span><span style="color:#5fb3b3;">)
+        </span><span style="color:#c594c5;">return </span><span style="color:#cccece;">result_list
+
+    </span><span style="color:#c594c5;">def </span><span style="color:#6699cc;">elements_sorted_from_node</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">self</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">root_node</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">input_list</span><span style="color:#5fb3b3;">):
+        </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">not </span><span style="color:#cccece;">root_node</span><span style="color:#5fb3b3;">:
+            </span><span style="color:#c594c5;">return
+        </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">elements_sorted_from_node</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">root_node</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">left</span><span style="color:#5fb3b3;">, </span><span style="color:#6699cc;">input_list</span><span style="color:#5fb3b3;">)
+        </span><span style="color:#6699cc;">input_list</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">append</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">root_node</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">value</span><span style="color:#5fb3b3;">)
+        </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">elements_sorted_from_node</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">root_node</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">right</span><span style="color:#5fb3b3;">, </span><span style="color:#6699cc;">input_list</span><span style="color:#5fb3b3;">)
+
+</span></pre><div id="javascript"/>
+<h2 id="javascript">JavaScript</h2>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">function </span><span style="color:#6699cc;">Node</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">inputValue</span><span style="color:#5fb3b3;">) {
+  </span><span style="color:#ec5f67;">this</span><span style="color:#5fb3b3;">.</span><span style="color:#f99157;">value </span><span style="color:#5fb3b3;">= </span><span style="color:#cccece;">inputValue
+  </span><span style="color:#ec5f67;">this</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">left
+  </span><span style="color:#ec5f67;">this</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">right
+</span><span style="color:#5fb3b3;">}
+
+</span><span style="color:#c594c5;">class </span><span style="color:#fac863;">Tree </span><span style="color:#5fb3b3;">{
+  </span><span style="color:#6699cc;">constructor</span><span style="color:#5fb3b3;">(){
+    </span><span style="color:#ec5f67;">this</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">root</span><span style="color:#5fb3b3;">;
+  }
+
+  </span><span style="color:#6699cc;">add</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">value</span><span style="color:#5fb3b3;">) {
+    </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">(!</span><span style="color:#ec5f67;">this</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">root</span><span style="color:#5fb3b3;">) {
+      </span><span style="color:#ec5f67;">this</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">root </span><span style="color:#5fb3b3;">= new </span><span style="color:#cccece;">Node</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">value</span><span style="color:#5fb3b3;">)
+      </span><span style="color:#c594c5;">return
+      
+    </span><span style="color:#5fb3b3;">}
+    </span><span style="color:#ec5f67;">this</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">addToNode</span><span style="color:#5fb3b3;">(</span><span style="color:#ec5f67;">this</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">root</span><span style="color:#5fb3b3;">, </span><span style="color:#cccece;">value</span><span style="color:#5fb3b3;">)
+  }
+
+  </span><span style="color:#6699cc;">addToNode</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">node</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">value</span><span style="color:#5fb3b3;">){
+    </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">value </span><span style="color:#5fb3b3;">&lt;= </span><span style="color:#cccece;">node</span><span style="color:#5fb3b3;">.</span><span style="color:#f99157;">value</span><span style="color:#5fb3b3;">) {
+      </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">(!</span><span style="color:#cccece;">node</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">left</span><span style="color:#5fb3b3;">) {
+        </span><span style="color:#cccece;">node</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">left </span><span style="color:#5fb3b3;">= new </span><span style="color:#cccece;">Node</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">value</span><span style="color:#5fb3b3;">)
+      } </span><span style="color:#c594c5;">else </span><span style="color:#5fb3b3;">{
+        </span><span style="color:#ec5f67;">this</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">addToNode</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">node</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">left</span><span style="color:#5fb3b3;">, </span><span style="color:#cccece;">value</span><span style="color:#5fb3b3;">)
+      }
+    } </span><span style="color:#c594c5;">else </span><span style="color:#5fb3b3;">{
+      </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">(!</span><span style="color:#cccece;">node</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">right</span><span style="color:#5fb3b3;">) {
+        </span><span style="color:#cccece;">node</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">right </span><span style="color:#5fb3b3;">= new </span><span style="color:#cccece;">Node</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">value </span><span style="color:#5fb3b3;">)
+      } </span><span style="color:#c594c5;">else </span><span style="color:#5fb3b3;">{
+        </span><span style="color:#ec5f67;">this</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">addToNode</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">node</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">right</span><span style="color:#5fb3b3;">, </span><span style="color:#cccece;">value</span><span style="color:#5fb3b3;">)
+      }
+    }   
+  }
+
+  </span><span style="color:#6699cc;">contains</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">value</span><span style="color:#5fb3b3;">) {
+    </span><span style="color:#c594c5;">return </span><span style="color:#ec5f67;">this</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">containsInNode</span><span style="color:#5fb3b3;">(</span><span style="color:#ec5f67;">this</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">root</span><span style="color:#5fb3b3;">, </span><span style="color:#cccece;">value</span><span style="color:#5fb3b3;">)
+  }
+
+  </span><span style="color:#6699cc;">containsInNode</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">node</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">value</span><span style="color:#5fb3b3;">) {
+    </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">(!</span><span style="color:#cccece;">node</span><span style="color:#5fb3b3;">) </span><span style="color:#c594c5;">return </span><span style="color:#f99157;">false
+   
+    </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">node</span><span style="color:#5fb3b3;">.</span><span style="color:#f99157;">value </span><span style="color:#5fb3b3;">== </span><span style="color:#cccece;">value</span><span style="color:#5fb3b3;">) </span><span style="color:#c594c5;">return </span><span style="color:#f99157;">true
+
+    </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">value </span><span style="color:#5fb3b3;">&lt; </span><span style="color:#cccece;">node</span><span style="color:#5fb3b3;">.</span><span style="color:#f99157;">value</span><span style="color:#5fb3b3;">) {
+      </span><span style="color:#c594c5;">return </span><span style="color:#ec5f67;">this</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">containsInNode</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">node</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">left</span><span style="color:#5fb3b3;">, </span><span style="color:#cccece;">value</span><span style="color:#5fb3b3;">)
+    } </span><span style="color:#c594c5;">else </span><span style="color:#5fb3b3;">{
+      </span><span style="color:#c594c5;">return </span><span style="color:#ec5f67;">this</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">containsInNode</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">node</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">right</span><span style="color:#5fb3b3;">, </span><span style="color:#cccece;">value</span><span style="color:#5fb3b3;">)
+    }   
+  }
+
+  </span><span style="color:#6699cc;">elements</span><span style="color:#5fb3b3;">(){    
+    </span><span style="color:#cccece;">result </span><span style="color:#5fb3b3;">= []
+    </span><span style="color:#ec5f67;">this</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">elementsForNode</span><span style="color:#5fb3b3;">(</span><span style="color:#ec5f67;">this</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">root</span><span style="color:#5fb3b3;">, </span><span style="color:#cccece;">result</span><span style="color:#5fb3b3;">)
+    </span><span style="color:#c594c5;">return </span><span style="color:#cccece;">result
+  </span><span style="color:#5fb3b3;">}
+
+  </span><span style="color:#6699cc;">elementsForNode</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">node</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">arr</span><span style="color:#5fb3b3;">) {
+    </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">node </span><span style="color:#5fb3b3;">== </span><span style="color:#f99157;">null</span><span style="color:#5fb3b3;">) {
+      </span><span style="color:#c594c5;">return
+    </span><span style="color:#5fb3b3;">}
+    </span><span style="color:#ec5f67;">this</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">elementsForNode</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">node</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">left</span><span style="color:#5fb3b3;">, </span><span style="color:#cccece;">arr</span><span style="color:#5fb3b3;">)
+    </span><span style="color:#cccece;">arr</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">push</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">node</span><span style="color:#5fb3b3;">.</span><span style="color:#f99157;">value</span><span style="color:#5fb3b3;">)
+    </span><span style="color:#ec5f67;">this</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">elementsForNode</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">node</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">right</span><span style="color:#5fb3b3;">, </span><span style="color:#cccece;">arr</span><span style="color:#5fb3b3;">)
+  }
+
+  </span><span style="color:#6699cc;">depth</span><span style="color:#5fb3b3;">() {
+    </span><span style="color:#c594c5;">return </span><span style="color:#ec5f67;">this</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">depthForNode</span><span style="color:#5fb3b3;">(</span><span style="color:#ec5f67;">this</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">root</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">)
+  }
+  
+  </span><span style="color:#6699cc;">depthForNode</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">node</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">curDepth</span><span style="color:#5fb3b3;">) {
+    </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">(!</span><span style="color:#cccece;">node </span><span style="color:#5fb3b3;">|| (!</span><span style="color:#cccece;">node</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">left </span><span style="color:#5fb3b3;">&amp;&amp; !</span><span style="color:#cccece;">node</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">right</span><span style="color:#5fb3b3;">)) </span><span style="color:#c594c5;">return </span><span style="color:#cccece;">curDepth
+    </span><span style="color:#c594c5;">return </span><span style="color:#fac863;">Math</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">max</span><span style="color:#5fb3b3;">(
+      </span><span style="color:#ec5f67;">this</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">depthForNode</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">node</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">left</span><span style="color:#5fb3b3;">, </span><span style="color:#cccece;">curDepth </span><span style="color:#5fb3b3;">+ </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">),
+      </span><span style="color:#ec5f67;">this</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">depthForNode</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">node</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">right</span><span style="color:#5fb3b3;">, </span><span style="color:#cccece;">curDepth </span><span style="color:#5fb3b3;">+ </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">),
+    )
+  }
+  
+}
+</span></pre><div id="kotlin"/>
+<h2 id="kotlin">Kotlin</h2>
+<p>interface:</p>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">package </span><span style="color:#cccece;">tree
+
+interface BinarySearchTree&lt;E </span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> Comparable&lt;E&gt;&gt; {
+    </span><span style="color:#c594c5;">fun </span><span style="color:#6699cc;">add</span><span style="color:#cccece;">(</span><span style="color:#f99157;">value</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> E)
+    </span><span style="color:#c594c5;">fun </span><span style="color:#6699cc;">elements</span><span style="color:#cccece;">()</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">List</span><span style="color:#cccece;">&lt;E&gt;
+    </span><span style="color:#c594c5;">fun </span><span style="color:#6699cc;">contains</span><span style="color:#cccece;">(</span><span style="color:#f99157;">value</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> E)</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">Boolean
+    fun </span><span style="color:#6699cc;">orderedElements</span><span style="color:#cccece;">()</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">List</span><span style="color:#cccece;">&lt;E&gt;
+    </span><span style="color:#c594c5;">fun </span><span style="color:#6699cc;">depth</span><span style="color:#cccece;">()</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">Int</span><span style="color:#cccece;">
+}
+</span></pre>
+<p>implementation:</p>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#cccece;"> </span><span style="color:#c594c5;">package </span><span style="color:#cccece;">tree
+ 
+ import kotlin</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">math</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">max
+ 
+ class </span><span style="color:#fac863;">UnbalancedBinarySearchTree</span><span style="color:#cccece;">&lt;</span><span style="color:#c594c5;">E </span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> Comparable&lt;E&gt;&gt; </span><span style="color:#5fb3b3;">: </span><span style="color:#99c794;">BinarySearchTree</span><span style="color:#cccece;">&lt;</span><span style="color:#99c794;">E</span><span style="color:#cccece;">&gt; {
+ 
+     </span><span style="color:#c594c5;">private var </span><span style="color:#cccece;">root</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> Node&lt;E&gt;? </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">null
+ 
+     </span><span style="color:#c594c5;">private data</span><span style="color:#cccece;"> class </span><span style="color:#fac863;">Node</span><span style="color:#cccece;">&lt;</span><span style="color:#c594c5;">E</span><span style="color:#cccece;">&gt;(</span><span style="color:#c594c5;">val </span><span style="color:#f99157;">value</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> E, </span><span style="color:#c594c5;">var </span><span style="color:#f99157;">left</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> Node&lt;E&gt;? </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">null</span><span style="color:#cccece;">, </span><span style="color:#c594c5;">var </span><span style="color:#f99157;">right</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> Node&lt;E&gt;? </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">null</span><span style="color:#cccece;">)
+ 
+     </span><span style="color:#c594c5;">override fun </span><span style="color:#6699cc;">add</span><span style="color:#cccece;">(</span><span style="color:#f99157;">value</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> E) {
+         </span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> (root </span><span style="color:#5fb3b3;">== </span><span style="color:#f99157;">null</span><span style="color:#cccece;">) {
+             root </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> Node(value)
+             </span><span style="color:#c594c5;">return</span><span style="color:#cccece;">
+         }
+ 
+         addNode(root</span><span style="color:#5fb3b3;">!!</span><span style="color:#cccece;">, value)
+     }
+ 
+     </span><span style="color:#c594c5;">private fun </span><span style="color:#6699cc;">addNode</span><span style="color:#cccece;">(</span><span style="color:#f99157;">rootNode</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> Node&lt;E&gt;, </span><span style="color:#f99157;">value</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> E) {
+         </span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> (value </span><span style="color:#5fb3b3;">&lt;=</span><span style="color:#cccece;"> rootNode</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">value) {
+             </span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> (rootNode</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">left </span><span style="color:#5fb3b3;">== </span><span style="color:#f99157;">null</span><span style="color:#cccece;">) {
+                 rootNode</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">left </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> Node(value)
+             } </span><span style="color:#c594c5;">else</span><span style="color:#cccece;"> {
+                 addNode(rootNode</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">left</span><span style="color:#5fb3b3;">!!</span><span style="color:#cccece;">, value)
+             }
+         } </span><span style="color:#c594c5;">else</span><span style="color:#cccece;"> {
+             </span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> (rootNode</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">right </span><span style="color:#5fb3b3;">== </span><span style="color:#f99157;">null</span><span style="color:#cccece;">) {
+                 rootNode</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">right </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> Node(value)
+             } </span><span style="color:#c594c5;">else</span><span style="color:#cccece;"> {
+                 addNode(rootNode</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">right</span><span style="color:#5fb3b3;">!!</span><span style="color:#cccece;">, value)
+             }
+         }
+     }
+ 
+     </span><span style="color:#c594c5;">override fun </span><span style="color:#6699cc;">elements</span><span style="color:#cccece;">()</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">List</span><span style="color:#cccece;">&lt;E&gt; {
+         </span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> (root </span><span style="color:#5fb3b3;">== </span><span style="color:#f99157;">null</span><span style="color:#cccece;">) </span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> listOf()
+ 
+         </span><span style="color:#c594c5;">val </span><span style="color:#cccece;">result </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> mutableListOf&lt;E&gt;()
+ 
+         addRootElements(root, result)
+ 
+         </span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> result
+     }
+ 
+     </span><span style="color:#c594c5;">private fun </span><span style="color:#6699cc;">addRootElements</span><span style="color:#cccece;">(</span><span style="color:#f99157;">root</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> Node&lt;E&gt;?, </span><span style="color:#f99157;">list</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> MutableList&lt;E&gt;) {
+         </span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> (root </span><span style="color:#5fb3b3;">== </span><span style="color:#f99157;">null</span><span style="color:#cccece;">) </span><span style="color:#c594c5;">return</span><span style="color:#cccece;">
+ 
+         list</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">add(root</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">value)
+         addRootElements(root</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">left, list)
+         addRootElements(root</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">right, list)
+     }
+ 
+     </span><span style="color:#c594c5;">override fun </span><span style="color:#6699cc;">contains</span><span style="color:#cccece;">(</span><span style="color:#f99157;">value</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> E)</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">Boolean</span><span style="color:#cccece;"> {
+         </span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> (root </span><span style="color:#5fb3b3;">== </span><span style="color:#f99157;">null</span><span style="color:#cccece;">) </span><span style="color:#c594c5;">return </span><span style="color:#f99157;">false
+ 
+         </span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> containsFromRoot(root, value)
+     }
+ 
+     </span><span style="color:#c594c5;">private fun </span><span style="color:#6699cc;">containsFromRoot</span><span style="color:#cccece;">(</span><span style="color:#f99157;">root</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> Node&lt;E&gt;?, </span><span style="color:#f99157;">value</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> E)</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">Boolean</span><span style="color:#cccece;"> {
+         </span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> (root </span><span style="color:#5fb3b3;">== </span><span style="color:#f99157;">null</span><span style="color:#cccece;">) </span><span style="color:#c594c5;">return </span><span style="color:#f99157;">false
+ 
+         </span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> (root</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">value </span><span style="color:#5fb3b3;">==</span><span style="color:#cccece;"> value) </span><span style="color:#c594c5;">return </span><span style="color:#f99157;">true
+ 
+         </span><span style="color:#c594c5;">return if</span><span style="color:#cccece;"> (value </span><span style="color:#5fb3b3;">&lt;</span><span style="color:#cccece;"> root</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">value) {
+             containsFromRoot(root</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">left, value)
+         } </span><span style="color:#c594c5;">else</span><span style="color:#cccece;"> {
+             containsFromRoot(root</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">right, value)
+         }
+     }
+ 
+     </span><span style="color:#c594c5;">override fun </span><span style="color:#6699cc;">orderedElements</span><span style="color:#cccece;">()</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">List</span><span style="color:#cccece;">&lt;E&gt; {
+         </span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> (root </span><span style="color:#5fb3b3;">== </span><span style="color:#f99157;">null</span><span style="color:#cccece;">) </span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> listOf()
+ 
+         </span><span style="color:#c594c5;">val </span><span style="color:#cccece;">result </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> mutableListOf&lt;E&gt;()
+         addElement(root, result)
+         </span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> result
+     }
+ 
+     </span><span style="color:#c594c5;">private fun </span><span style="color:#6699cc;">addElement</span><span style="color:#cccece;">(</span><span style="color:#f99157;">node</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> Node&lt;E&gt;?, </span><span style="color:#f99157;">list</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> MutableList&lt;E&gt;) {
+         </span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> (node </span><span style="color:#5fb3b3;">== </span><span style="color:#f99157;">null</span><span style="color:#cccece;">) </span><span style="color:#c594c5;">return</span><span style="color:#cccece;">
+ 
+         addElement(node</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">left, list)
+         list</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">add(node</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">value)
+         addElement(node</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">right, list)
+     }
+ 
+     </span><span style="color:#c594c5;">override fun </span><span style="color:#6699cc;">depth</span><span style="color:#cccece;">()</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">Int</span><span style="color:#cccece;"> {
+         </span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> (root </span><span style="color:#5fb3b3;">== </span><span style="color:#f99157;">null</span><span style="color:#cccece;">) </span><span style="color:#c594c5;">return </span><span style="color:#f99157;">0
+ 
+         </span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> depthNode(root</span><span style="color:#5fb3b3;">!!</span><span style="color:#cccece;">, </span><span style="color:#f99157;">0</span><span style="color:#cccece;">)
+     }
+ 
+     </span><span style="color:#c594c5;">private fun </span><span style="color:#6699cc;">depthNode</span><span style="color:#cccece;">(</span><span style="color:#f99157;">node</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> Node&lt;E&gt;, </span><span style="color:#f99157;">curDepth</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">Int</span><span style="color:#cccece;">)</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">Int</span><span style="color:#cccece;"> {
+         </span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> max(
+                 </span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> (node</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">left </span><span style="color:#5fb3b3;">== </span><span style="color:#f99157;">null</span><span style="color:#cccece;">) {
+                     curDepth
+                 } </span><span style="color:#c594c5;">else</span><span style="color:#cccece;"> {
+                     depthNode(node</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">left</span><span style="color:#5fb3b3;">!!</span><span style="color:#cccece;">, curDepth </span><span style="color:#5fb3b3;">+ </span><span style="color:#f99157;">1</span><span style="color:#cccece;">)
+                 }, </span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> (node</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">right </span><span style="color:#5fb3b3;">== </span><span style="color:#f99157;">null</span><span style="color:#cccece;">) {
+             curDepth
+         } </span><span style="color:#c594c5;">else</span><span style="color:#cccece;"> {
+             depthNode(node</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">right</span><span style="color:#5fb3b3;">!!</span><span style="color:#cccece;">, curDepth </span><span style="color:#5fb3b3;">+ </span><span style="color:#f99157;">1</span><span style="color:#cccece;">)
+         })
+     }     
+ }
+
+</span></pre><div id="rust"/>
+<h2 id="rust">Rust</h2>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">pub struct </span><span style="color:#cccece;">BinaryTree</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#cccece;">T</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> PartialOrd </span><span style="color:#5fb3b3;">+</span><span style="color:#cccece;"> Clone</span><span style="color:#5fb3b3;">&gt; {
+    </span><span style="color:#cccece;">root</span><span style="color:#5fb3b3;">: </span><span style="color:#cccece;">Option</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#cccece;">Box</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#cccece;">Node</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#cccece;">T</span><span style="color:#5fb3b3;">&gt;&gt;&gt;
+}
+
+</span><span style="color:#c594c5;">impl</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#cccece;">T</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> PartialOrd </span><span style="color:#5fb3b3;">+</span><span style="color:#cccece;"> Clone</span><span style="color:#5fb3b3;">&gt; </span><span style="color:#cccece;">BinaryTree</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#cccece;">T</span><span style="color:#5fb3b3;">&gt; {
+    </span><span style="color:#c594c5;">pub fn </span><span style="color:#6699cc;">new</span><span style="color:#5fb3b3;">() -&gt; </span><span style="color:#c594c5;">Self </span><span style="color:#5fb3b3;">{</span><span style="color:#cccece;">
+        BinaryTree </span><span style="color:#5fb3b3;">{</span><span style="color:#cccece;"> root</span><span style="color:#5fb3b3;">: </span><span style="color:#fac863;">None </span><span style="color:#5fb3b3;">}
+    }
+
+    </span><span style="color:#c594c5;">pub fn </span><span style="color:#6699cc;">add</span><span style="color:#5fb3b3;">(&amp;</span><span style="color:#c594c5;">mut </span><span style="color:#f99157;">self</span><span style="color:#cccece;">, </span><span style="color:#f99157;">value</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> T</span><span style="color:#5fb3b3;">) {
+        </span><span style="color:#c594c5;">let</span><span style="color:#cccece;"> new_node </span><span style="color:#5fb3b3;">= </span><span style="color:#cccece;">Node</span><span style="color:#5fb3b3;">::</span><span style="color:#cccece;">new_boxed</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">value</span><span style="color:#5fb3b3;">);
+        </span><span style="color:#c594c5;">match </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">root </span><span style="color:#5fb3b3;">{
+            </span><span style="color:#fac863;">None </span><span style="color:#5fb3b3;">=&gt; {
+                </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">root</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">replace</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">new_node</span><span style="color:#5fb3b3;">);
+            }
+            </span><span style="color:#fac863;">Some</span><span style="color:#5fb3b3;">(</span><span style="color:#c594c5;">ref mut</span><span style="color:#cccece;"> root</span><span style="color:#5fb3b3;">) =&gt; {</span><span style="color:#cccece;">
+                root</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">add</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">new_node</span><span style="color:#5fb3b3;">);
+            }
+        }
+    }
+
+    </span><span style="color:#c594c5;">pub fn </span><span style="color:#6699cc;">contains</span><span style="color:#5fb3b3;">(&amp;</span><span style="color:#f99157;">self</span><span style="color:#cccece;">, </span><span style="color:#f99157;">item</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> T</span><span style="color:#5fb3b3;">) -&gt; </span><span style="color:#c594c5;">bool </span><span style="color:#5fb3b3;">{
+        </span><span style="color:#c594c5;">match </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">root </span><span style="color:#5fb3b3;">{
+            </span><span style="color:#fac863;">None </span><span style="color:#5fb3b3;">=&gt; { </span><span style="color:#f99157;">false </span><span style="color:#5fb3b3;">}
+            </span><span style="color:#fac863;">Some</span><span style="color:#5fb3b3;">(</span><span style="color:#c594c5;">ref</span><span style="color:#cccece;"> node</span><span style="color:#5fb3b3;">) =&gt; {</span><span style="color:#cccece;">
+                node</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">contains</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">item</span><span style="color:#5fb3b3;">)
+            }
+        }
+    }
+
+    </span><span style="color:#c594c5;">pub fn </span><span style="color:#6699cc;">depth</span><span style="color:#5fb3b3;">(&amp;</span><span style="color:#f99157;">self</span><span style="color:#5fb3b3;">) -&gt; </span><span style="color:#c594c5;">usize </span><span style="color:#5fb3b3;">{
+        </span><span style="color:#c594c5;">let mut</span><span style="color:#cccece;"> size </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">0_</span><span style="color:#c594c5;">usize</span><span style="color:#5fb3b3;">;
+
+        </span><span style="color:#c594c5;">if let </span><span style="color:#fac863;">Some</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">root_node</span><span style="color:#5fb3b3;">) = &amp;</span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">root </span><span style="color:#5fb3b3;">{</span><span style="color:#cccece;">
+            size </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> root_node</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">depth</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">size</span><span style="color:#5fb3b3;">);
+        }</span><span style="color:#cccece;">
+        size
+    </span><span style="color:#5fb3b3;">}
+
+    </span><span style="color:#c594c5;">pub fn </span><span style="color:#6699cc;">collect_values</span><span style="color:#5fb3b3;">(&amp;</span><span style="color:#f99157;">self</span><span style="color:#5fb3b3;">) -&gt; </span><span style="color:#cccece;">Vec</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#cccece;">T</span><span style="color:#5fb3b3;">&gt; {
+        </span><span style="color:#c594c5;">let mut</span><span style="color:#cccece;"> vec</span><span style="color:#5fb3b3;">: </span><span style="color:#cccece;">Vec</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#cccece;">T</span><span style="color:#5fb3b3;">&gt; = </span><span style="color:#fac863;">Vec</span><span style="color:#5fb3b3;">::</span><span style="color:#cccece;">new</span><span style="color:#5fb3b3;">();
+
+        </span><span style="color:#c594c5;">if let </span><span style="color:#fac863;">Some</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">root_node</span><span style="color:#5fb3b3;">) = &amp;</span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">root </span><span style="color:#5fb3b3;">{</span><span style="color:#cccece;">
+            root_node</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">collect_values</span><span style="color:#5fb3b3;">(&amp;</span><span style="color:#c594c5;">mut</span><span style="color:#cccece;"> vec</span><span style="color:#5fb3b3;">);
+        }</span><span style="color:#cccece;">
+        vec
+    </span><span style="color:#5fb3b3;">}
+}
+
+</span><span style="color:#c594c5;">impl</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#cccece;">T</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> PartialOrd </span><span style="color:#5fb3b3;">+</span><span style="color:#cccece;"> Clone</span><span style="color:#5fb3b3;">&gt;</span><span style="color:#cccece;"> Default </span><span style="color:#c594c5;">for </span><span style="color:#cccece;">BinaryTree</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#cccece;">T</span><span style="color:#5fb3b3;">&gt; {
+    </span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">default</span><span style="color:#5fb3b3;">() -&gt; </span><span style="color:#c594c5;">Self </span><span style="color:#5fb3b3;">{
+        </span><span style="color:#cccece;">BinaryTree</span><span style="color:#5fb3b3;">::</span><span style="color:#cccece;">new</span><span style="color:#5fb3b3;">()
+    }
+}
+
+</span><span style="color:#c594c5;">struct </span><span style="color:#cccece;">Node</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#cccece;">T</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> PartialOrd </span><span style="color:#5fb3b3;">+</span><span style="color:#cccece;"> Clone</span><span style="color:#5fb3b3;">&gt; {
+    </span><span style="color:#cccece;">value</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> T,
+    left</span><span style="color:#5fb3b3;">: </span><span style="color:#cccece;">Option</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#cccece;">Box</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#cccece;">Node</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#cccece;">T</span><span style="color:#5fb3b3;">&gt;&gt;&gt;</span><span style="color:#cccece;">,
+    right</span><span style="color:#5fb3b3;">: </span><span style="color:#cccece;">Option</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#cccece;">Box</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#cccece;">Node</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#cccece;">T</span><span style="color:#5fb3b3;">&gt;&gt;&gt;</span><span style="color:#cccece;">,
+</span><span style="color:#5fb3b3;">}
+
+</span><span style="color:#c594c5;">impl</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#cccece;">T</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> PartialOrd </span><span style="color:#5fb3b3;">+</span><span style="color:#cccece;"> Clone</span><span style="color:#5fb3b3;">&gt; </span><span style="color:#cccece;">Node</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#cccece;">T</span><span style="color:#5fb3b3;">&gt; {
+    </span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">new_boxed</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">value</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> T</span><span style="color:#5fb3b3;">) -&gt; </span><span style="color:#cccece;">Box</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#cccece;">Node</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#cccece;">T</span><span style="color:#5fb3b3;">&gt;&gt; {
+        </span><span style="color:#fac863;">Box</span><span style="color:#5fb3b3;">::</span><span style="color:#cccece;">new</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">Node </span><span style="color:#5fb3b3;">{</span><span style="color:#cccece;"> value</span><span style="color:#5fb3b3;">,</span><span style="color:#cccece;"> left</span><span style="color:#5fb3b3;">: </span><span style="color:#fac863;">None</span><span style="color:#5fb3b3;">,</span><span style="color:#cccece;"> right</span><span style="color:#5fb3b3;">: </span><span style="color:#fac863;">None </span><span style="color:#5fb3b3;">})
+    }
+
+    </span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">add</span><span style="color:#5fb3b3;">(&amp;</span><span style="color:#c594c5;">mut </span><span style="color:#f99157;">self</span><span style="color:#cccece;">, </span><span style="color:#f99157;">other_node</span><span style="color:#5fb3b3;">: </span><span style="color:#cccece;">Box</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#cccece;">Node</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#cccece;">T</span><span style="color:#5fb3b3;">&gt;&gt;) {
+        </span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> other_node</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">value </span><span style="color:#5fb3b3;">&gt; </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">value </span><span style="color:#5fb3b3;">{
+            </span><span style="color:#c594c5;">match </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">right </span><span style="color:#5fb3b3;">{
+                </span><span style="color:#fac863;">None </span><span style="color:#5fb3b3;">=&gt; {
+                    </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">right</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">replace</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">other_node</span><span style="color:#5fb3b3;">);
+                }
+                </span><span style="color:#fac863;">Some</span><span style="color:#5fb3b3;">(</span><span style="color:#c594c5;">ref mut</span><span style="color:#cccece;"> right_node</span><span style="color:#5fb3b3;">) =&gt; {</span><span style="color:#cccece;">
+                    right_node</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">add</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">other_node</span><span style="color:#5fb3b3;">);
+                }
+            }
+        } </span><span style="color:#c594c5;">else </span><span style="color:#5fb3b3;">{ </span><span style="color:#5f6364;">// add to left branch
+            </span><span style="color:#c594c5;">match </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">left </span><span style="color:#5fb3b3;">{
+                </span><span style="color:#fac863;">None </span><span style="color:#5fb3b3;">=&gt; {
+                    </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">left</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">replace</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">other_node</span><span style="color:#5fb3b3;">);
+                }
+                </span><span style="color:#fac863;">Some</span><span style="color:#5fb3b3;">(</span><span style="color:#c594c5;">ref mut</span><span style="color:#cccece;"> left_node</span><span style="color:#5fb3b3;">) =&gt; {</span><span style="color:#cccece;">
+                    left_node</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">add</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">other_node</span><span style="color:#5fb3b3;">);
+                }
+            }
+        }
+    }
+
+    </span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">contains</span><span style="color:#5fb3b3;">(&amp;</span><span style="color:#f99157;">self</span><span style="color:#cccece;">, </span><span style="color:#f99157;">item</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> T</span><span style="color:#5fb3b3;">) -&gt; </span><span style="color:#c594c5;">bool </span><span style="color:#5fb3b3;">{
+        </span><span style="color:#c594c5;">if </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">value </span><span style="color:#5fb3b3;">==</span><span style="color:#cccece;"> item </span><span style="color:#5fb3b3;">{
+            </span><span style="color:#c594c5;">return </span><span style="color:#f99157;">true</span><span style="color:#5fb3b3;">;
+        }
+        </span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> item </span><span style="color:#5fb3b3;">&gt; </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">value </span><span style="color:#5fb3b3;">{
+            </span><span style="color:#c594c5;">if let </span><span style="color:#fac863;">Some</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">right_node</span><span style="color:#5fb3b3;">) = &amp;</span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">right </span><span style="color:#5fb3b3;">{
+                </span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> right_node</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">contains</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">item</span><span style="color:#5fb3b3;">);
+            }
+        } </span><span style="color:#c594c5;">else </span><span style="color:#5fb3b3;">{ </span><span style="color:#5f6364;">// search in left branch
+            </span><span style="color:#c594c5;">if let </span><span style="color:#fac863;">Some</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">left_node</span><span style="color:#5fb3b3;">) = &amp;</span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">left </span><span style="color:#5fb3b3;">{
+                </span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> left_node</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">contains</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">item</span><span style="color:#5fb3b3;">);
+            }
+        }
+        </span><span style="color:#f99157;">false
+    </span><span style="color:#5fb3b3;">}
+
+    </span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">depth</span><span style="color:#5fb3b3;">(&amp;</span><span style="color:#f99157;">self</span><span style="color:#cccece;">, </span><span style="color:#f99157;">cur_size</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">usize</span><span style="color:#5fb3b3;">) -&gt; </span><span style="color:#c594c5;">usize </span><span style="color:#5fb3b3;">{
+        </span><span style="color:#c594c5;">let mut</span><span style="color:#cccece;"> left_depth </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">0_</span><span style="color:#c594c5;">usize</span><span style="color:#5fb3b3;">;
+        </span><span style="color:#c594c5;">if let </span><span style="color:#fac863;">Some</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">left_node</span><span style="color:#5fb3b3;">) = &amp;</span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">left </span><span style="color:#5fb3b3;">{</span><span style="color:#cccece;">
+            left_depth </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> left_node</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">depth</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">cur_size </span><span style="color:#5fb3b3;">+ </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">);
+        }
+
+        </span><span style="color:#c594c5;">let mut</span><span style="color:#cccece;"> right_depth </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">0_</span><span style="color:#c594c5;">usize</span><span style="color:#5fb3b3;">;
+        </span><span style="color:#c594c5;">if let </span><span style="color:#fac863;">Some</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">right_node</span><span style="color:#5fb3b3;">) = &amp;</span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">right </span><span style="color:#5fb3b3;">{</span><span style="color:#cccece;">
+            right_depth </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> right_node</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">depth</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">cur_size </span><span style="color:#5fb3b3;">+ </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">);
+        }
+        </span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> left_depth </span><span style="color:#5fb3b3;">== </span><span style="color:#f99157;">0 </span><span style="color:#5fb3b3;">&amp;&amp;</span><span style="color:#cccece;"> right_depth </span><span style="color:#5fb3b3;">== </span><span style="color:#f99157;">0 </span><span style="color:#5fb3b3;">{</span><span style="color:#cccece;">
+            cur_size
+        </span><span style="color:#5fb3b3;">} </span><span style="color:#c594c5;">else </span><span style="color:#5fb3b3;">{
+            </span><span style="color:#cccece;">std</span><span style="color:#5fb3b3;">::</span><span style="color:#cccece;">cmp</span><span style="color:#5fb3b3;">::</span><span style="color:#cccece;">max</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">left_depth</span><span style="color:#5fb3b3;">,</span><span style="color:#cccece;"> right_depth</span><span style="color:#5fb3b3;">)
+        }
+    }
+
+    </span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">collect_values</span><span style="color:#5fb3b3;">(&amp;</span><span style="color:#f99157;">self</span><span style="color:#cccece;">, </span><span style="color:#f99157;">vec</span><span style="color:#5fb3b3;">: &amp;</span><span style="color:#c594c5;">mut </span><span style="color:#cccece;">Vec</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#cccece;">T</span><span style="color:#5fb3b3;">&gt;) {
+        </span><span style="color:#c594c5;">if let </span><span style="color:#fac863;">Some</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">left_node</span><span style="color:#5fb3b3;">) = &amp;</span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">left </span><span style="color:#5fb3b3;">{</span><span style="color:#cccece;">
+            left_node</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">collect_values</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">vec</span><span style="color:#5fb3b3;">);
+        }
+        </span><span style="color:#c594c5;">let</span><span style="color:#cccece;"> value </span><span style="color:#5fb3b3;">= &amp;</span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">value</span><span style="color:#5fb3b3;">;</span><span style="color:#cccece;">
+        vec</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">push</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">value</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">to_owned</span><span style="color:#5fb3b3;">());
+
+        </span><span style="color:#c594c5;">if let </span><span style="color:#fac863;">Some</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">right_node</span><span style="color:#5fb3b3;">) = &amp;</span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">right </span><span style="color:#5fb3b3;">{</span><span style="color:#cccece;">
+            right_node</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">collect_values</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">vec</span><span style="color:#5fb3b3;">);
+        }
+    }
+}
+
+#[</span><span style="color:#cccece;">cfg</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">test</span><span style="color:#5fb3b3;">)]
+</span><span style="color:#c594c5;">mod </span><span style="color:#cccece;">tests </span><span style="color:#5fb3b3;">{
+    </span><span style="color:#c594c5;">use super</span><span style="color:#5fb3b3;">::*;
+
+    #[</span><span style="color:#cccece;">test</span><span style="color:#5fb3b3;">]
+    </span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">collect_values</span><span style="color:#5fb3b3;">() {
+        </span><span style="color:#c594c5;">let mut</span><span style="color:#cccece;"> tree </span><span style="color:#5fb3b3;">= </span><span style="color:#cccece;">BinaryTree</span><span style="color:#5fb3b3;">::</span><span style="color:#cccece;">new</span><span style="color:#5fb3b3;">();</span><span style="color:#cccece;">
+        tree</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">add</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">6</span><span style="color:#5fb3b3;">);</span><span style="color:#cccece;">
+        tree</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">add</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">3</span><span style="color:#5fb3b3;">);</span><span style="color:#cccece;">
+        tree</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">add</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">8</span><span style="color:#5fb3b3;">);</span><span style="color:#cccece;">
+        tree</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">add</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">);</span><span style="color:#cccece;">
+        tree</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">add</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">);</span><span style="color:#cccece;">
+        tree</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">add</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">7</span><span style="color:#5fb3b3;">);</span><span style="color:#cccece;">
+        tree</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">add</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">10</span><span style="color:#5fb3b3;">);</span><span style="color:#cccece;">
+        tree</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">add</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">4</span><span style="color:#5fb3b3;">);</span><span style="color:#cccece;">
+        tree</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">add</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">5</span><span style="color:#5fb3b3;">);</span><span style="color:#cccece;">
+        tree</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">add</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">9</span><span style="color:#5fb3b3;">);
+
+        </span><span style="color:#c594c5;">let</span><span style="color:#cccece;"> values </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> tree</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">collect_values</span><span style="color:#5fb3b3;">();
+        </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">values</span><span style="color:#5fb3b3;">, (</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">..=</span><span style="color:#f99157;">10</span><span style="color:#5fb3b3;">).</span><span style="color:#cccece;">collect</span><span style="color:#5fb3b3;">::&lt;</span><span style="color:#cccece;">Vec</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#c594c5;">i32</span><span style="color:#5fb3b3;">&gt;&gt;());
+    }
+
+    #[</span><span style="color:#cccece;">test</span><span style="color:#5fb3b3;">]
+    </span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">contains</span><span style="color:#5fb3b3;">() {
+        </span><span style="color:#c594c5;">let mut</span><span style="color:#cccece;"> tree </span><span style="color:#5fb3b3;">= </span><span style="color:#cccece;">BinaryTree</span><span style="color:#5fb3b3;">::</span><span style="color:#cccece;">new</span><span style="color:#5fb3b3;">();</span><span style="color:#cccece;">
+        tree</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">add</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">6</span><span style="color:#5fb3b3;">);</span><span style="color:#cccece;">
+        tree</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">add</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">3</span><span style="color:#5fb3b3;">);</span><span style="color:#cccece;">
+        tree</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">add</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">8</span><span style="color:#5fb3b3;">);
+
+        </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">tree</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">contains</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">6</span><span style="color:#5fb3b3;">), </span><span style="color:#f99157;">true</span><span style="color:#5fb3b3;">);
+        </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">tree</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">contains</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">3</span><span style="color:#5fb3b3;">), </span><span style="color:#f99157;">true</span><span style="color:#5fb3b3;">);
+        </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">tree</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">contains</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">8</span><span style="color:#5fb3b3;">), </span><span style="color:#f99157;">true</span><span style="color:#5fb3b3;">);
+
+        </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">tree</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">contains</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">5</span><span style="color:#5fb3b3;">), </span><span style="color:#f99157;">false</span><span style="color:#5fb3b3;">);
+        </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">tree</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">contains</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">), </span><span style="color:#f99157;">false</span><span style="color:#5fb3b3;">);
+        </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">tree</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">contains</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">7</span><span style="color:#5fb3b3;">), </span><span style="color:#f99157;">false</span><span style="color:#5fb3b3;">);</span><span style="color:#cccece;">
+
+        tree</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">add</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">5</span><span style="color:#5fb3b3;">);</span><span style="color:#cccece;">
+        tree</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">add</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">);</span><span style="color:#cccece;">
+        tree</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">add</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">7</span><span style="color:#5fb3b3;">);
+
+        </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">tree</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">contains</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">5</span><span style="color:#5fb3b3;">), </span><span style="color:#f99157;">true</span><span style="color:#5fb3b3;">);
+        </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">tree</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">contains</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">), </span><span style="color:#f99157;">true</span><span style="color:#5fb3b3;">);
+        </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">tree</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">contains</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">7</span><span style="color:#5fb3b3;">), </span><span style="color:#f99157;">true</span><span style="color:#5fb3b3;">);
+    }
+
+    #[</span><span style="color:#cccece;">test</span><span style="color:#5fb3b3;">]
+    </span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">depth</span><span style="color:#5fb3b3;">() {
+        </span><span style="color:#c594c5;">let mut</span><span style="color:#cccece;"> tree </span><span style="color:#5fb3b3;">= </span><span style="color:#cccece;">BinaryTree</span><span style="color:#5fb3b3;">::</span><span style="color:#cccece;">new</span><span style="color:#5fb3b3;">();
+        </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">tree</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">depth</span><span style="color:#5fb3b3;">(), </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">);</span><span style="color:#cccece;">
+
+        tree</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">add</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">6</span><span style="color:#5fb3b3;">);
+        </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">tree</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">depth</span><span style="color:#5fb3b3;">(), </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">);</span><span style="color:#cccece;">
+
+        tree</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">add</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">3</span><span style="color:#5fb3b3;">);
+        </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">tree</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">depth</span><span style="color:#5fb3b3;">(), </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">);</span><span style="color:#cccece;">
+
+        tree</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">add</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">8</span><span style="color:#5fb3b3;">);
+        </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">tree</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">depth</span><span style="color:#5fb3b3;">(), </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">);</span><span style="color:#cccece;">
+
+        tree</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">add</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">);
+        </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">tree</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">depth</span><span style="color:#5fb3b3;">(), </span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">);</span><span style="color:#cccece;">
+
+        tree</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">add</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">10</span><span style="color:#5fb3b3;">);
+        </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">tree</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">depth</span><span style="color:#5fb3b3;">(), </span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">);</span><span style="color:#cccece;">
+
+        tree</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">add</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">11</span><span style="color:#5fb3b3;">);
+        </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">tree</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">depth</span><span style="color:#5fb3b3;">(), </span><span style="color:#f99157;">3</span><span style="color:#5fb3b3;">);
+    }
+
+    #[</span><span style="color:#cccece;">test</span><span style="color:#5fb3b3;">]
+    </span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">depth_right_unbalanced</span><span style="color:#5fb3b3;">() {
+        </span><span style="color:#c594c5;">let mut</span><span style="color:#cccece;"> tree </span><span style="color:#5fb3b3;">= </span><span style="color:#cccece;">BinaryTree</span><span style="color:#5fb3b3;">::</span><span style="color:#cccece;">new</span><span style="color:#5fb3b3;">();
+        </span><span style="color:#c594c5;">const</span><span style="color:#cccece;"> N</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">usize </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">100</span><span style="color:#5fb3b3;">;
+
+        </span><span style="color:#c594c5;">for</span><span style="color:#cccece;"> i </span><span style="color:#5fb3b3;">in </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">..=</span><span style="color:#cccece;">N </span><span style="color:#5fb3b3;">{</span><span style="color:#cccece;">
+            tree</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">add</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">i</span><span style="color:#5fb3b3;">);
+        }
+        </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">tree</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">depth</span><span style="color:#5fb3b3;">(),</span><span style="color:#cccece;"> N</span><span style="color:#5fb3b3;">);
+    }
+
+    #[</span><span style="color:#cccece;">test</span><span style="color:#5fb3b3;">]
+    </span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">depth_left_unbalanced</span><span style="color:#5fb3b3;">() {
+        </span><span style="color:#c594c5;">let mut</span><span style="color:#cccece;"> tree </span><span style="color:#5fb3b3;">= </span><span style="color:#cccece;">BinaryTree</span><span style="color:#5fb3b3;">::</span><span style="color:#cccece;">new</span><span style="color:#5fb3b3;">();
+        </span><span style="color:#c594c5;">const</span><span style="color:#cccece;"> N</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">usize </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">100</span><span style="color:#5fb3b3;">;
+
+        </span><span style="color:#c594c5;">for</span><span style="color:#cccece;"> i </span><span style="color:#5fb3b3;">in (</span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">..=</span><span style="color:#cccece;">N</span><span style="color:#5fb3b3;">).</span><span style="color:#6699cc;">rev</span><span style="color:#5fb3b3;">() {</span><span style="color:#cccece;">
+            tree</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">add</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">i</span><span style="color:#5fb3b3;">);
+        }
+        </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">tree</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">depth</span><span style="color:#5fb3b3;">(),</span><span style="color:#cccece;"> N</span><span style="color:#5fb3b3;">);
+    }
+}
+</span></pre>
+
+    </div>
+
+</div>
+
+</body>
+</html>

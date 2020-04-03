@@ -1,0 +1,323 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <meta name="description" content="Copy Array">
+    <meta name="keywords" content="copy array, clone, array, memory, learn, explain, tutorial, data structures, algorithms, graph, tree, interview, java, golang, kotlin, python, javascript, rust">
+
+    <title> 
+    Copy Array
+ | Practical algorithms and data structures </title>
+    <link rel='stylesheet' href='/styles/styles.css'/>
+</head>
+
+<body>
+
+<div class="rootContainer">
+    <div class="horizontal-menu-box">
+        
+    
+    
+    
+<div class="menu">
+    <!-- ABOUT -->
+    <div class="menuItem">
+        
+        <a href="/index.html" >
+            ABOUT
+        </a>
+        
+
+    </div>
+
+    <!-- FUNDAMENTAL -->
+    <div class="menuItem">
+        
+        <a href="/fundamental/contents" >
+            FUNDAMENTAL
+        </a>
+        
+    </div>
+
+    <!-- BASIC -->
+    <div class="menuItem">
+        
+        <a href="/basic/contents" >
+            BASIC
+        </a>
+        
+    </div>
+
+    <!-- ADVANCED -->
+    <div class="menuItem">
+        
+        <a href="/advanced/contents" >
+            ADVANCED
+        </a>
+        
+    </div>
+
+    <!-- NINJA -->
+    <div class="menuItem">
+
+        
+        <a href="/ninja/contents" >
+            NINJA
+        </a>
+        
+
+    </div>
+
+    <!-- LANGUAGES -->
+    <div class="menuItem">
+        
+        <a href="/languages/contents" >
+            LANGUAGES
+        </a>
+        
+
+    </div>
+
+</div>
+
+
+
+    </div>
+
+    <div class="content">
+        
+    <h1 id="copy-array">Copy array</h1>
+<h2 id="contents">Contents</h2>
+<hr />
+<ul>
+<li><a href="https://algoholics.io/fundamental/copy-array/#description">Copy array description</a></li>
+<li><a href="https://algoholics.io/fundamental/copy-array/#practice">In practice</a></li>
+<li><a href="https://algoholics.io/fundamental/copy-array/#java">Java</a></li>
+<li><a href="https://algoholics.io/fundamental/copy-array/#go">Go</a></li>
+<li><a href="https://algoholics.io/fundamental/copy-array/#python">Python</a></li>
+<li><a href="https://algoholics.io/fundamental/copy-array/#javascript">JavaScript</a></li>
+<li><a href="https://algoholics.io/fundamental/copy-array/#kotlin">Kotlin</a></li>
+<li><a href="https://algoholics.io/fundamental/copy-array/#rust">Rust</a></li>
+</ul>
+<hr />
+<div id="description" />
+<h2 id="copy-array-1">Copy array</h2>
+<p>Complexity <code>O(N)</code> - requires iterating through all elements in collection</p>
+<div id="practice"/>
+<h2 id="in-practice">In practice</h2>
+<p>Used very often. Dynamic array creates new array and copied data into new array for growing and shrinking</p>
+<div id="java"/>
+<h2 id="java">Java</h2>
+<p>There few way to copy array in Java:</p>
+<ul>
+<li><code>Object.clone()</code> - to create new same copy of array </li>
+<li><code>Arrays.copyOf()</code></li>
+<li><code>Arrays.copyOfRange()</code></li>
+<li><code>System.arraycopy()</code> </li>
+<li>using streams API: <code>String[] newArray = Arrays.stream(srcArray).toArray(String[]::new)</code></li>
+</ul>
+<blockquote>
+<p><code>Arrays.copyOf()</code> and <code>Arrays.copyOfRange()</code> are using <code>System.arraycopy()</code> inside.</p>
+<p><code>System.arraycopy()</code> is very fast native implementation  which is used very often in core Java</p>
+</blockquote>
+<p>System.arraycopy() signature:</p>
+<p><code>arraycopy(Object srcArray, int srcPos, Object destArray, int destPos, int length)</code></p>
+<ul>
+<li><strong><code>srcArray</code></strong> - source array</li>
+<li><strong><code>srcPos</code></strong> - source initial position</li>
+<li><strong><code>destArray</code></strong> - destination array </li>
+<li><strong><code>destPos</code></strong> - destination initial position</li>
+<li><strong><code>length</code></strong> - how many elements to copy from source to destination</li>
+</ul>
+<p>Example for creating twice bigger array and copy data into new array:</p>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">int[]</span><span style="color:#cccece;"> srcArr </span><span style="color:#5fb3b3;">= {</span><span style="color:#f99157;">1</span><span style="color:#cccece;">, </span><span style="color:#f99157;">2</span><span style="color:#cccece;">, </span><span style="color:#f99157;">3</span><span style="color:#5fb3b3;">};
+</span><span style="color:#c594c5;">int[]</span><span style="color:#cccece;"> destArr </span><span style="color:#5fb3b3;">= </span><span style="color:#c594c5;">new int</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">srcArr</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">length </span><span style="color:#5fb3b3;">* </span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">];
+</span><span style="color:#fac863;">System</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">arraycopy</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">srcArr</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> destArr</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> srcArr</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">length</span><span style="color:#5fb3b3;">); </span><span style="color:#5f6364;">// [1, 2, 3, 0, 0, 0]
+</span></pre>
+<p>Brute-force approach (same size):</p>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">int[]</span><span style="color:#cccece;"> srcArr </span><span style="color:#5fb3b3;">= {</span><span style="color:#f99157;">1</span><span style="color:#cccece;">, </span><span style="color:#f99157;">2</span><span style="color:#cccece;">, </span><span style="color:#f99157;">3</span><span style="color:#5fb3b3;">};
+</span><span style="color:#c594c5;">int[]</span><span style="color:#cccece;"> destArr </span><span style="color:#5fb3b3;">= </span><span style="color:#c594c5;">new int</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">srcArr</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">length</span><span style="color:#5fb3b3;">];
+
+</span><span style="color:#c594c5;">for </span><span style="color:#5fb3b3;">(</span><span style="color:#c594c5;">int</span><span style="color:#cccece;"> i </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">;</span><span style="color:#cccece;"> i </span><span style="color:#5fb3b3;">&lt;</span><span style="color:#cccece;"> srcArr</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">length</span><span style="color:#5fb3b3;">;</span><span style="color:#cccece;"> i</span><span style="color:#5fb3b3;">++) {</span><span style="color:#cccece;">
+    destArr[i] </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> srcArr[i]</span><span style="color:#5fb3b3;">;
+}
+</span><span style="color:#fac863;">System</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">out</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">println</span><span style="color:#5fb3b3;">(</span><span style="color:#fac863;">Arrays</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">toString</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">destArr</span><span style="color:#5fb3b3;">));
+</span></pre><div id="go"/>
+<h2 id="go">Go</h2>
+<p>copy into new slice which is twice bigger:</p>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#cccece;">srcArr </span><span style="color:#5fb3b3;">:= []</span><span style="color:#c594c5;">int</span><span style="color:#5fb3b3;">{</span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">}
+</span><span style="color:#cccece;">destArr </span><span style="color:#5fb3b3;">:= </span><span style="color:#6699cc;">make</span><span style="color:#5fb3b3;">([]</span><span style="color:#c594c5;">int</span><span style="color:#5fb3b3;">, </span><span style="color:#6699cc;">len</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">srcArr</span><span style="color:#5fb3b3;">) * </span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">)
+</span><span style="color:#6699cc;">copy</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">destArr</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> srcArr</span><span style="color:#5fb3b3;">) </span><span style="color:#5f6364;">// pay attention: destination is first argument
+</span><span style="color:#cccece;">
+fmt</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">Printf</span><span style="color:#5fb3b3;">(&quot;</span><span style="color:#99c794;">new array: %v</span><span style="color:#5fb3b3;">&quot;,</span><span style="color:#6699cc;"> destArr</span><span style="color:#5fb3b3;">) </span><span style="color:#5f6364;">// new array: [0 1 2 0 0 0]
+</span></pre>
+<p>Brute-force approach (same size):</p>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#cccece;">srcArr </span><span style="color:#5fb3b3;">:= []</span><span style="color:#c594c5;">int</span><span style="color:#5fb3b3;">{</span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">}
+</span><span style="color:#cccece;">destArr </span><span style="color:#5fb3b3;">:= </span><span style="color:#6699cc;">make</span><span style="color:#5fb3b3;">([]</span><span style="color:#c594c5;">int</span><span style="color:#5fb3b3;">, </span><span style="color:#6699cc;">len</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">srcArr</span><span style="color:#5fb3b3;">))
+
+</span><span style="color:#c594c5;">for </span><span style="color:#cccece;">idx</span><span style="color:#5fb3b3;">, </span><span style="color:#cccece;">v </span><span style="color:#5fb3b3;">:= </span><span style="color:#c594c5;">range</span><span style="color:#cccece;"> srcArr </span><span style="color:#5fb3b3;">{</span><span style="color:#cccece;">
+    destArr</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">idx</span><span style="color:#5fb3b3;">] =</span><span style="color:#cccece;"> v
+</span><span style="color:#5fb3b3;">}</span><span style="color:#cccece;">
+
+fmt</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">Printf</span><span style="color:#5fb3b3;">(&quot;</span><span style="color:#99c794;">new array: %v</span><span style="color:#5fb3b3;">&quot;,</span><span style="color:#6699cc;"> destArr</span><span style="color:#5fb3b3;">)
+
+</span></pre><div id="python"/>
+<h2 id="python">Python</h2>
+<p>There few ways to copy list in Python:</p>
+<ul>
+<li><code>dest_list = list(src_list)</code></li>
+<li><code>dest_list = src_list[:]</code></li>
+<li><code>dest_list = src_list.copy()</code> (since Python 3.3 )</li>
+<li>for copy and deep copy:</li>
+</ul>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">import </span><span style="color:#cccece;">copy
+dest_list </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">copy</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">deepcopy</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">src_list</span><span style="color:#5fb3b3;">)
+</span></pre>
+<p>Brute-force approach (same size):</p>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#cccece;">src_list </span><span style="color:#5fb3b3;">= [</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">3</span><span style="color:#5fb3b3;">]
+</span><span style="color:#cccece;">dst_list </span><span style="color:#5fb3b3;">= []
+
+</span><span style="color:#c594c5;">for </span><span style="color:#cccece;">n </span><span style="color:#c594c5;">in </span><span style="color:#cccece;">src_list</span><span style="color:#5fb3b3;">:
+    </span><span style="color:#6699cc;">dst_list</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">append</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">n</span><span style="color:#5fb3b3;">)
+
+</span><span style="color:#c594c5;">print </span><span style="color:#cccece;">dst_list
+</span></pre><div id="javascript"/>
+<h2 id="javascript">JavaScript</h2>
+<p>There few ways to copy list in JavaScript:</p>
+<p>using <code>slice()</code>:</p>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">const </span><span style="color:#cccece;">srcArr </span><span style="color:#5fb3b3;">= [</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">3</span><span style="color:#5fb3b3;">]
+</span><span style="color:#c594c5;">const </span><span style="color:#cccece;">destArr </span><span style="color:#5fb3b3;">= </span><span style="color:#cccece;">srcArr</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">slice</span><span style="color:#5fb3b3;">()
+</span></pre>
+<p>using <code>Array.from()</code>:</p>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">const </span><span style="color:#cccece;">srcArr </span><span style="color:#5fb3b3;">= [</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">3</span><span style="color:#5fb3b3;">]
+</span><span style="color:#c594c5;">const </span><span style="color:#cccece;">destArr </span><span style="color:#5fb3b3;">= </span><span style="color:#fac863;">Array</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">from</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">srcArr</span><span style="color:#5fb3b3;">)
+</span></pre>
+<p>ES6 way <code>[...]</code>:</p>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">const </span><span style="color:#cccece;">srcArr </span><span style="color:#5fb3b3;">= [</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">3</span><span style="color:#5fb3b3;">]
+</span><span style="color:#c594c5;">const </span><span style="color:#cccece;">destArr </span><span style="color:#5fb3b3;">= [...</span><span style="color:#cccece;">srcArr</span><span style="color:#5fb3b3;">]
+</span></pre>
+<p>deep copy using JSON:</p>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">const </span><span style="color:#cccece;">srcArr </span><span style="color:#5fb3b3;">= [[</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">], </span><span style="color:#f99157;">3</span><span style="color:#5fb3b3;">]
+</span><span style="color:#c594c5;">const </span><span style="color:#cccece;">destArr </span><span style="color:#5fb3b3;">= </span><span style="color:#fac863;">JSON</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">parse</span><span style="color:#5fb3b3;">(</span><span style="color:#fac863;">JSON</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">stringify</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">srcArr</span><span style="color:#5fb3b3;">))
+</span></pre>
+<p>Brute-force approach (same size):</p>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#cccece;">srcArr </span><span style="color:#5fb3b3;">= [</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">3</span><span style="color:#5fb3b3;">]
+</span><span style="color:#cccece;">destArr </span><span style="color:#5fb3b3;">= []
+</span><span style="color:#cccece;">srcArr</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">forEach</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">n </span><span style="color:#c594c5;">=&gt; </span><span style="color:#5fb3b3;">{</span><span style="color:#cccece;">destArr</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">push</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">n</span><span style="color:#5fb3b3;">)})
+
+</span><span style="color:#fac863;">console</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">log</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">destArr</span><span style="color:#5fb3b3;">)
+</span></pre><div id="kotlin"/>
+<h2 id="kotlin">Kotlin</h2>
+<p>Can use Java's <code>System.arraycopy()</code></p>
+<p>Few other simple ways:</p>
+<ul>
+<li><code>val destArr = arrayOf(srcArr)</code></li>
+<li><code>val destArr = srcArr.copyOf()</code></li>
+<li><code>val destArr = srcArr.clone()</code> </li>
+</ul>
+<p>Brute-force approach (same size):</p>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">val </span><span style="color:#cccece;">srcArr </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> arrayOf(</span><span style="color:#f99157;">1</span><span style="color:#cccece;">, </span><span style="color:#f99157;">2</span><span style="color:#cccece;">, </span><span style="color:#f99157;">3</span><span style="color:#cccece;">)
+</span><span style="color:#c594c5;">val </span><span style="color:#cccece;">destArr </span><span style="color:#5fb3b3;">= </span><span style="color:#c594c5;">IntArray</span><span style="color:#cccece;">(srcArr</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">size)
+
+</span><span style="color:#c594c5;">for</span><span style="color:#cccece;"> ((idx, value) </span><span style="color:#c594c5;">in</span><span style="color:#cccece;"> srcArr</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">withIndex()) {
+    destArr[idx] </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> srcArr[idx]
+}
+println(</span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">destArr is: </span><span style="color:#f99157;">${Arrays.toString(destArr)}</span><span style="color:#5fb3b3;">&quot;</span><span style="color:#cccece;">)
+</span></pre>
+<blockquote>
+<p>You can use <code>arrayOfNulls&lt;T&gt;(size)</code> for any custom type of arrays, </p>
+<p>For example: <code>arrayOfNulls&lt;String&gt;(10)</code> </p>
+</blockquote>
+<div id="rust"/>
+<h2 id="rust">Rust</h2>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#5fb3b3;">#[</span><span style="color:#cccece;">test</span><span style="color:#5fb3b3;">]
+</span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">copy_copyable_array</span><span style="color:#5fb3b3;">() {
+    </span><span style="color:#5f6364;">// if array contain Copy type, assigning to another variable will copy array.
+    // i32 is copyable
+    </span><span style="color:#c594c5;">let mut</span><span style="color:#cccece;"> a </span><span style="color:#5fb3b3;">= [</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">3</span><span style="color:#5fb3b3;">];
+    </span><span style="color:#c594c5;">let</span><span style="color:#cccece;"> b </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> a</span><span style="color:#5fb3b3;">;
+
+    </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">a</span><span style="color:#5fb3b3;">,</span><span style="color:#cccece;"> b</span><span style="color:#5fb3b3;">);</span><span style="color:#cccece;">
+    a</span><span style="color:#5fb3b3;">[</span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">] = </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">;
+
+    </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">a</span><span style="color:#5fb3b3;">, [</span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">3</span><span style="color:#5fb3b3;">]);
+    </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">b</span><span style="color:#5fb3b3;">, [</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">3</span><span style="color:#5fb3b3;">]);
+}
+
+#[</span><span style="color:#cccece;">test</span><span style="color:#5fb3b3;">]
+</span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">clone_array</span><span style="color:#5fb3b3;">() {
+    #[</span><span style="color:#cccece;">derive</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">PartialEq</span><span style="color:#5fb3b3;">,</span><span style="color:#cccece;"> Debug</span><span style="color:#5fb3b3;">,</span><span style="color:#cccece;"> Clone</span><span style="color:#5fb3b3;">)]
+    </span><span style="color:#c594c5;">struct </span><span style="color:#cccece;">S</span><span style="color:#5fb3b3;">(</span><span style="color:#c594c5;">i32</span><span style="color:#5fb3b3;">);
+
+    </span><span style="color:#c594c5;">let mut</span><span style="color:#cccece;"> array_a </span><span style="color:#5fb3b3;">= [</span><span style="color:#cccece;">S</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">),</span><span style="color:#cccece;"> S</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">)];
+    </span><span style="color:#5f6364;">// let mut array_b = array_a; // -&gt; moves, doesn&#39;t copy (to copy struct S should implement Copy)
+    </span><span style="color:#c594c5;">let</span><span style="color:#cccece;"> array_b </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> array_a</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">clone</span><span style="color:#5fb3b3;">();
+
+    </span><span style="color:#cccece;">println!</span><span style="color:#5fb3b3;">(&quot;</span><span style="color:#99c794;">array_a: {:?}</span><span style="color:#5fb3b3;">&quot;,</span><span style="color:#cccece;"> array_a</span><span style="color:#5fb3b3;">);
+    </span><span style="color:#cccece;">println!</span><span style="color:#5fb3b3;">(&quot;</span><span style="color:#99c794;">array_b: {:?}</span><span style="color:#5fb3b3;">&quot;,</span><span style="color:#cccece;"> array_b</span><span style="color:#5fb3b3;">);
+    </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">array_a</span><span style="color:#5fb3b3;">,</span><span style="color:#cccece;"> array_b</span><span style="color:#5fb3b3;">);</span><span style="color:#cccece;">
+
+    array_a</span><span style="color:#5fb3b3;">[</span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">] =</span><span style="color:#cccece;"> S</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">);
+
+    </span><span style="color:#cccece;">println!</span><span style="color:#5fb3b3;">(&quot;</span><span style="color:#99c794;">array_a: {:?}</span><span style="color:#5fb3b3;">&quot;,</span><span style="color:#cccece;"> array_a</span><span style="color:#5fb3b3;">);
+    </span><span style="color:#cccece;">println!</span><span style="color:#5fb3b3;">(&quot;</span><span style="color:#99c794;">array_b: {:?}</span><span style="color:#5fb3b3;">&quot;,</span><span style="color:#cccece;"> array_b</span><span style="color:#5fb3b3;">);
+
+    </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">array_a</span><span style="color:#5fb3b3;">, [</span><span style="color:#cccece;">S</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">),</span><span style="color:#cccece;"> S</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">)]);
+    </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">array_b</span><span style="color:#5fb3b3;">, [</span><span style="color:#cccece;">S</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">),</span><span style="color:#cccece;"> S</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">)]);
+}
+
+#[</span><span style="color:#cccece;">test</span><span style="color:#5fb3b3;">]
+</span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">copy_vec</span><span style="color:#5fb3b3;">() {
+    </span><span style="color:#c594c5;">let</span><span style="color:#cccece;"> src </span><span style="color:#5fb3b3;">= </span><span style="color:#cccece;">vec!</span><span style="color:#5fb3b3;">[</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">3</span><span style="color:#5fb3b3;">];
+
+    </span><span style="color:#c594c5;">let</span><span style="color:#cccece;"> dest_a </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> src</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">clone</span><span style="color:#5fb3b3;">();
+    </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">src</span><span style="color:#5fb3b3;">,</span><span style="color:#cccece;"> dest_a</span><span style="color:#5fb3b3;">);
+
+    </span><span style="color:#c594c5;">let mut</span><span style="color:#cccece;"> dest_b</span><span style="color:#5fb3b3;">: </span><span style="color:#cccece;">Vec</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#c594c5;">i32</span><span style="color:#5fb3b3;">&gt; = </span><span style="color:#cccece;">vec!</span><span style="color:#5fb3b3;">[];</span><span style="color:#cccece;">
+    dest_b</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">clone_from</span><span style="color:#5fb3b3;">(&amp;</span><span style="color:#cccece;">src</span><span style="color:#5fb3b3;">);
+    </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">src</span><span style="color:#5fb3b3;">,</span><span style="color:#cccece;"> dest_b</span><span style="color:#5fb3b3;">);
+
+    </span><span style="color:#c594c5;">let mut</span><span style="color:#cccece;"> dest_c</span><span style="color:#5fb3b3;">: </span><span style="color:#cccece;">Vec</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#c594c5;">i32</span><span style="color:#5fb3b3;">&gt; = </span><span style="color:#cccece;">vec!</span><span style="color:#5fb3b3;">[];</span><span style="color:#cccece;">
+    dest_c</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">append</span><span style="color:#5fb3b3;">(&amp;</span><span style="color:#c594c5;">mut</span><span style="color:#cccece;"> dest_b</span><span style="color:#5fb3b3;">);
+    </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">src</span><span style="color:#5fb3b3;">,</span><span style="color:#cccece;"> dest_c</span><span style="color:#5fb3b3;">);
+}
+
+#[</span><span style="color:#cccece;">test</span><span style="color:#5fb3b3;">]
+</span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">iter_collect_slow</span><span style="color:#5fb3b3;">() {
+    </span><span style="color:#c594c5;">let</span><span style="color:#cccece;"> src </span><span style="color:#5fb3b3;">= </span><span style="color:#cccece;">vec!</span><span style="color:#5fb3b3;">[</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">3</span><span style="color:#5fb3b3;">];
+    </span><span style="color:#c594c5;">let</span><span style="color:#cccece;"> dest</span><span style="color:#5fb3b3;">: </span><span style="color:#cccece;">Vec</span><span style="color:#5fb3b3;">&lt;_&gt; =</span><span style="color:#cccece;"> src</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">iter</span><span style="color:#5fb3b3;">().</span><span style="color:#6699cc;">copied</span><span style="color:#5fb3b3;">().</span><span style="color:#6699cc;">collect</span><span style="color:#5fb3b3;">();
+    </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">src</span><span style="color:#5fb3b3;">,</span><span style="color:#cccece;"> dest</span><span style="color:#5fb3b3;">);
+}
+
+#[</span><span style="color:#cccece;">test</span><span style="color:#5fb3b3;">]
+</span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">copy_vec_brute_force_slow</span><span style="color:#5fb3b3;">() {
+    </span><span style="color:#c594c5;">let</span><span style="color:#cccece;"> src </span><span style="color:#5fb3b3;">= </span><span style="color:#cccece;">vec!</span><span style="color:#5fb3b3;">[</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">3</span><span style="color:#5fb3b3;">];
+    </span><span style="color:#c594c5;">let mut</span><span style="color:#cccece;"> dest </span><span style="color:#5fb3b3;">= </span><span style="color:#fac863;">Vec</span><span style="color:#5fb3b3;">::</span><span style="color:#cccece;">with_capacity</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">src</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">len</span><span style="color:#5fb3b3;">());
+
+    </span><span style="color:#c594c5;">for</span><span style="color:#cccece;"> x </span><span style="color:#5fb3b3;">in</span><span style="color:#cccece;"> src</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">iter</span><span style="color:#5fb3b3;">() {</span><span style="color:#cccece;">
+        dest</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">push</span><span style="color:#5fb3b3;">(*</span><span style="color:#cccece;">x</span><span style="color:#5fb3b3;">);
+    }
+    </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">src</span><span style="color:#5fb3b3;">,</span><span style="color:#cccece;"> dest</span><span style="color:#5fb3b3;">);
+}
+</span></pre>
+
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %} About practical algorithms {% endblock title %}
+
+{% block header %}
+    {% set menu_item = "index" %}
+    {% include "header.html" %}
+{% endblock header %}
+
+
+{% block seo_meta %}
+    <meta name="description" content="data structures and algorithms in practice">
+    <meta name="keywords" content="learn, explain, tutorial, data structures, algorithms, graph, tree, interview, java, golang, kotlin, python, javascript, rust">
+{% endblock seo_meta %}
+
+
+{% block content %}
+
+<h1> Project objectives </h1>
+
+<h2> This project is designed to help: </h2>
+
+<ul>
+    <li> learn data structures algorithms in practical way </li>
+    <li> learn new programming language </li>
+    <li> prepare to interview </li>
+</ul>
+
+{% endblock content %}

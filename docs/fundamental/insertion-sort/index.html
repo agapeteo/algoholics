@@ -1,0 +1,203 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <meta name="description" content="Insertion sort">
+    <meta name="keywords" content="Insertion sort, sorting, learn, explain, tutorial, data structures, algorithms, graph, tree, interview, java, golang, kotlin, python, javascript, rust">
+
+    <title> 
+    Insertion sort
+ | Practical algorithms and data structures </title>
+    <link rel='stylesheet' href='/styles/styles.css'/>
+</head>
+
+<body>
+
+<div class="rootContainer">
+    <div class="horizontal-menu-box">
+        
+    
+    
+    
+<div class="menu">
+    <!-- ABOUT -->
+    <div class="menuItem">
+        
+        <a href="/index.html" >
+            ABOUT
+        </a>
+        
+
+    </div>
+
+    <!-- FUNDAMENTAL -->
+    <div class="menuItem">
+        
+        <a href="/fundamental/contents" >
+            FUNDAMENTAL
+        </a>
+        
+    </div>
+
+    <!-- BASIC -->
+    <div class="menuItem">
+        
+        <a href="/basic/contents" >
+            BASIC
+        </a>
+        
+    </div>
+
+    <!-- ADVANCED -->
+    <div class="menuItem">
+        
+        <a href="/advanced/contents" >
+            ADVANCED
+        </a>
+        
+    </div>
+
+    <!-- NINJA -->
+    <div class="menuItem">
+
+        
+        <a href="/ninja/contents" >
+            NINJA
+        </a>
+        
+
+    </div>
+
+    <!-- LANGUAGES -->
+    <div class="menuItem">
+        
+        <a href="/languages/contents" >
+            LANGUAGES
+        </a>
+        
+
+    </div>
+
+</div>
+
+
+
+    </div>
+
+    <div class="content">
+        
+    <h1 id="insertion-sort">Insertion sort</h1>
+<h2 id="contents">Contents</h2>
+<hr />
+<ul>
+<li><a href="https://algoholics.io/fundamental/insertion-sort/#description">Description</a></li>
+<li><a href="https://algoholics.io/fundamental/insertion-sort/#complexity">Complexity</a></li>
+<li><a href="https://algoholics.io/fundamental/insertion-sort/#practice">In practice</a></li>
+<li><a href="https://algoholics.io/fundamental/insertion-sort/#java">Java</a></li>
+<li><a href="https://algoholics.io/fundamental/insertion-sort/#go">Go</a></li>
+<li><a href="https://algoholics.io/fundamental/insertion-sort/#python">Python</a></li>
+<li><a href="https://algoholics.io/fundamental/insertion-sort/#javascript">JavaScript</a></li>
+<li><a href="https://algoholics.io/fundamental/insertion-sort/#kotlin">Kotlin</a></li>
+<li><a href="https://algoholics.io/fundamental/insertion-sort/#rust">Rust</a></li>
+</ul>
+<hr />
+<div id="description"/>
+<h2 id="description">Description</h2>
+<p>more details on <a href="https://en.wikipedia.org/wiki/Insertion_sort">wikipedia on Insertion sort</a></p>
+<div id="complexity"/>
+<h2 id="complexity">Complexity</h2>
+<p><code>O(n^2)</code></p>
+<div id="practice"/>
+<h2 id="in-practice">In practice</h2>
+<p>Most popular among quadratic sort logarithms in practice</p>
+<div id="java"/>
+<h2 id="java">Java</h2>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">static</span><span style="color:#cccece;"> void </span><span style="color:#6699cc;">insertionSort</span><span style="color:#5fb3b3;">(</span><span style="color:#c594c5;">int[]</span><span style="color:#6699cc;"> array</span><span style="color:#5fb3b3;">) {
+    </span><span style="color:#c594c5;">for </span><span style="color:#5fb3b3;">(</span><span style="color:#c594c5;">int</span><span style="color:#cccece;"> i </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">;</span><span style="color:#cccece;"> i </span><span style="color:#5fb3b3;">&lt;</span><span style="color:#cccece;"> array</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">length</span><span style="color:#5fb3b3;">;</span><span style="color:#cccece;"> i</span><span style="color:#5fb3b3;">++) {
+        </span><span style="color:#c594c5;">int</span><span style="color:#cccece;"> j </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> i</span><span style="color:#5fb3b3;">;
+        </span><span style="color:#c594c5;">while </span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">j </span><span style="color:#5fb3b3;">&gt; </span><span style="color:#f99157;">0 </span><span style="color:#5fb3b3;">&amp;&amp;</span><span style="color:#cccece;"> array[j] </span><span style="color:#5fb3b3;">&lt;</span><span style="color:#cccece;"> array[j </span><span style="color:#5fb3b3;">- </span><span style="color:#f99157;">1</span><span style="color:#cccece;">]</span><span style="color:#5fb3b3;">) {
+            </span><span style="color:#c594c5;">int</span><span style="color:#cccece;"> tmp </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> array[j]</span><span style="color:#5fb3b3;">;</span><span style="color:#cccece;">
+            array[j] </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> array[j </span><span style="color:#5fb3b3;">- </span><span style="color:#f99157;">1</span><span style="color:#cccece;">]</span><span style="color:#5fb3b3;">;</span><span style="color:#cccece;">
+            array[j </span><span style="color:#5fb3b3;">- </span><span style="color:#f99157;">1</span><span style="color:#cccece;">] </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> tmp</span><span style="color:#5fb3b3;">;</span><span style="color:#cccece;">
+            j</span><span style="color:#5fb3b3;">--;
+        }
+    }
+}
+</span></pre><div id="go"/>
+<h2 id="go">Go</h2>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">func </span><span style="color:#6699cc;">insertionSort</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">arr </span><span style="color:#5fb3b3;">[]</span><span style="color:#c594c5;">int</span><span style="color:#5fb3b3;">) {
+	</span><span style="color:#c594c5;">for </span><span style="color:#cccece;">i </span><span style="color:#5fb3b3;">:= </span><span style="color:#f99157;">1</span><span style="color:#cccece;">; i </span><span style="color:#5fb3b3;">&lt; </span><span style="color:#6699cc;">len</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">arr</span><span style="color:#5fb3b3;">)</span><span style="color:#cccece;">; i</span><span style="color:#5fb3b3;">++ {
+		</span><span style="color:#cccece;">j </span><span style="color:#5fb3b3;">:=</span><span style="color:#cccece;"> i
+		</span><span style="color:#c594c5;">for</span><span style="color:#cccece;"> j </span><span style="color:#5fb3b3;">&gt; </span><span style="color:#f99157;">0 </span><span style="color:#5fb3b3;">&amp;&amp;</span><span style="color:#cccece;"> arr</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">j</span><span style="color:#5fb3b3;">] &lt;</span><span style="color:#cccece;"> arr</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">j</span><span style="color:#5fb3b3;">-</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">] {</span><span style="color:#cccece;">
+			arr</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">j</span><span style="color:#5fb3b3;">],</span><span style="color:#cccece;"> arr</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">j</span><span style="color:#5fb3b3;">-</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">] =</span><span style="color:#cccece;"> arr</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">j</span><span style="color:#5fb3b3;">-</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">],</span><span style="color:#cccece;"> arr</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">j</span><span style="color:#5fb3b3;">]</span><span style="color:#cccece;">
+			j</span><span style="color:#5fb3b3;">--
+		}
+	}
+}
+</span></pre><div id="python"/>
+<h2 id="python">Python</h2>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">def </span><span style="color:#6699cc;">insertion_sort</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">arr</span><span style="color:#5fb3b3;">):
+    </span><span style="color:#c594c5;">for </span><span style="color:#cccece;">i </span><span style="color:#c594c5;">in </span><span style="color:#6699cc;">range</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">len</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">arr</span><span style="color:#5fb3b3;">)):
+        </span><span style="color:#cccece;">j </span><span style="color:#5fb3b3;">= </span><span style="color:#cccece;">i
+        </span><span style="color:#c594c5;">while </span><span style="color:#cccece;">j </span><span style="color:#5fb3b3;">&gt; </span><span style="color:#f99157;">0 </span><span style="color:#5fb3b3;">and </span><span style="color:#cccece;">arr</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">j</span><span style="color:#5fb3b3;">] &lt; </span><span style="color:#cccece;">arr</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">j </span><span style="color:#5fb3b3;">- </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">]:
+            </span><span style="color:#cccece;">arr</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">j</span><span style="color:#5fb3b3;">]</span><span style="color:#cccece;">, arr</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">j </span><span style="color:#5fb3b3;">- </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">] = </span><span style="color:#cccece;">arr</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">j </span><span style="color:#5fb3b3;">- </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">]</span><span style="color:#cccece;">, arr</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">j</span><span style="color:#5fb3b3;">]
+            </span><span style="color:#cccece;">j </span><span style="color:#5fb3b3;">-= </span><span style="color:#f99157;">1
+</span></pre><div id="javascript"/>
+<h2 id="javascript">JavaScript</h2>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">function </span><span style="color:#6699cc;">insertionSort</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">arr</span><span style="color:#5fb3b3;">) {
+    </span><span style="color:#c594c5;">for </span><span style="color:#5fb3b3;">(</span><span style="color:#c594c5;">let </span><span style="color:#cccece;">i </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">; </span><span style="color:#cccece;">i </span><span style="color:#5fb3b3;">&lt; </span><span style="color:#cccece;">arr</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">length</span><span style="color:#5fb3b3;">; </span><span style="color:#cccece;">i</span><span style="color:#5fb3b3;">++) {
+        </span><span style="color:#c594c5;">let </span><span style="color:#cccece;">j </span><span style="color:#5fb3b3;">= </span><span style="color:#cccece;">i</span><span style="color:#5fb3b3;">;
+        </span><span style="color:#c594c5;">while </span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">j </span><span style="color:#5fb3b3;">&gt; </span><span style="color:#f99157;">0 </span><span style="color:#5fb3b3;">&amp;&amp; </span><span style="color:#cccece;">arr</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">j</span><span style="color:#5fb3b3;">] &lt; </span><span style="color:#cccece;">arr</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">j </span><span style="color:#5fb3b3;">- </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">]) {
+            </span><span style="color:#c594c5;">let </span><span style="color:#cccece;">tmp </span><span style="color:#5fb3b3;">= </span><span style="color:#cccece;">arr</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">j</span><span style="color:#5fb3b3;">];
+            </span><span style="color:#cccece;">arr</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">j</span><span style="color:#5fb3b3;">] = </span><span style="color:#cccece;">arr</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">j </span><span style="color:#5fb3b3;">- </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">];
+            </span><span style="color:#cccece;">arr</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">j </span><span style="color:#5fb3b3;">- </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">] = </span><span style="color:#cccece;">tmp</span><span style="color:#5fb3b3;">;
+            </span><span style="color:#cccece;">j</span><span style="color:#5fb3b3;">--
+        }
+    }
+}
+</span></pre><div id="kotlin"/>
+<h2 id="kotlin">Kotlin</h2>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">fun </span><span style="color:#6699cc;">insertionSort</span><span style="color:#cccece;">(</span><span style="color:#f99157;">array</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">IntArray</span><span style="color:#cccece;">) {
+    </span><span style="color:#c594c5;">fun </span><span style="color:#6699cc;">swap</span><span style="color:#cccece;">(</span><span style="color:#f99157;">i</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">Int</span><span style="color:#cccece;">, </span><span style="color:#f99157;">j</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">Int</span><span style="color:#cccece;">) {
+        </span><span style="color:#c594c5;">val </span><span style="color:#cccece;">tmp </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> array[i]
+        array[i] </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> array[j]
+        array[j] </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> tmp
+    }
+    </span><span style="color:#c594c5;">for</span><span style="color:#cccece;"> (i </span><span style="color:#c594c5;">in </span><span style="color:#f99157;">1</span><span style="color:#cccece;"> until array</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">size) {
+        </span><span style="color:#c594c5;">var </span><span style="color:#cccece;">j </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> i
+        </span><span style="color:#c594c5;">while</span><span style="color:#cccece;"> (j </span><span style="color:#5fb3b3;">&gt; </span><span style="color:#f99157;">0 </span><span style="color:#5fb3b3;">&amp;&amp;</span><span style="color:#cccece;"> array[j] </span><span style="color:#5fb3b3;">&lt;</span><span style="color:#cccece;"> array[j </span><span style="color:#5fb3b3;">- </span><span style="color:#f99157;">1</span><span style="color:#cccece;">]) {
+            swap(j, j </span><span style="color:#5fb3b3;">- </span><span style="color:#f99157;">1</span><span style="color:#cccece;">)
+            j</span><span style="color:#5fb3b3;">--</span><span style="color:#cccece;">
+        }
+    }
+}
+</span></pre><div id="rust"/>
+<h2 id="rust">Rust</h2>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">fn </span><span style="color:#6699cc;">sort</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#cccece;">T</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> PartialOrd</span><span style="color:#5fb3b3;">&gt;(</span><span style="color:#f99157;">slice</span><span style="color:#5fb3b3;">: &amp;</span><span style="color:#c594c5;">mut</span><span style="color:#cccece;"> [T]</span><span style="color:#5fb3b3;">) {
+    </span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> slice</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">len</span><span style="color:#5fb3b3;">() &lt; </span><span style="color:#f99157;">2 </span><span style="color:#5fb3b3;">{
+        </span><span style="color:#c594c5;">return</span><span style="color:#5fb3b3;">;
+    }
+    </span><span style="color:#c594c5;">for</span><span style="color:#cccece;"> i </span><span style="color:#5fb3b3;">in </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">..</span><span style="color:#cccece;">slice</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">len</span><span style="color:#5fb3b3;">() {
+        </span><span style="color:#c594c5;">let mut</span><span style="color:#cccece;"> j </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> i</span><span style="color:#5fb3b3;">;
+        </span><span style="color:#c594c5;">while</span><span style="color:#cccece;"> j </span><span style="color:#5fb3b3;">&gt; </span><span style="color:#f99157;">0 </span><span style="color:#5fb3b3;">&amp;&amp;</span><span style="color:#cccece;"> slice</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">j</span><span style="color:#5fb3b3;">] &lt;</span><span style="color:#cccece;"> slice</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">j </span><span style="color:#5fb3b3;">- </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">] {</span><span style="color:#cccece;">
+            slice</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">swap</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">j</span><span style="color:#5fb3b3;">,</span><span style="color:#cccece;"> j </span><span style="color:#5fb3b3;">- </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">);</span><span style="color:#cccece;">
+            j </span><span style="color:#5fb3b3;">-= </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">;
+        }
+    }
+}
+
+</span></pre>
+
+    </div>
+
+</div>
+
+</body>
+</html>

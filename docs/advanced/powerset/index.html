@@ -1,0 +1,349 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <meta name="description" content="Power set">
+    <meta name="keywords" content="Power set, learn, explain, tutorial, data structures, algorithms, graph, tree, interview, java, golang, kotlin, python, rust, javascript, advanced">
+
+    <title> 
+    Power set
+ | Practical algorithms and data structures </title>
+    <link rel='stylesheet' href='/styles/styles.css'/>
+</head>
+
+<body>
+
+<div class="rootContainer">
+    <div class="horizontal-menu-box">
+        
+    
+    
+    
+<div class="menu">
+    <!-- ABOUT -->
+    <div class="menuItem">
+        
+        <a href="/index.html" >
+            ABOUT
+        </a>
+        
+
+    </div>
+
+    <!-- FUNDAMENTAL -->
+    <div class="menuItem">
+        
+        <a href="/fundamental/contents" >
+            FUNDAMENTAL
+        </a>
+        
+    </div>
+
+    <!-- BASIC -->
+    <div class="menuItem">
+        
+        <a href="/basic/contents" >
+            BASIC
+        </a>
+        
+    </div>
+
+    <!-- ADVANCED -->
+    <div class="menuItem">
+        
+        <a href="/advanced/contents" >
+            ADVANCED
+        </a>
+        
+    </div>
+
+    <!-- NINJA -->
+    <div class="menuItem">
+
+        
+        <a href="/ninja/contents" >
+            NINJA
+        </a>
+        
+
+    </div>
+
+    <!-- LANGUAGES -->
+    <div class="menuItem">
+        
+        <a href="/languages/contents" >
+            LANGUAGES
+        </a>
+        
+
+    </div>
+
+</div>
+
+
+
+    </div>
+
+    <div class="content">
+        
+    <h1 id="power-set">Power Set</h1>
+<h2 id="contents">Contents</h2>
+<hr />
+<ul>
+<li><a href="https://algoholics.io/advanced/powerset/#java">Java</a></li>
+<li><a href="https://algoholics.io/advanced/powerset/#go">Go</a></li>
+<li><a href="https://algoholics.io/advanced/powerset/#python">Python</a></li>
+<li><a href="https://algoholics.io/advanced/powerset/#javascript">JavaScript</a></li>
+<li><a href="https://algoholics.io/advanced/powerset/#kotlin">Kotlin</a></li>
+<li><a href="https://algoholics.io/advanced/powerset/#rust">Rust</a></li>
+</ul>
+<hr />
+<div id="java"/>
+<h2 id="java">Java</h2>
+<p>dynamic:</p>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">package </span><span style="color:#cccece;">dynamic</span><span style="color:#5fb3b3;">;
+
+</span><span style="color:#c594c5;">import </span><span style="color:#fac863;">java</span><span style="color:#5fb3b3;">.</span><span style="color:#fac863;">util</span><span style="color:#5fb3b3;">.*;
+
+</span><span style="color:#c594c5;">public class </span><span style="color:#fac863;">PowerSet </span><span style="color:#5fb3b3;">{
+    </span><span style="color:#c594c5;">public static </span><span style="color:#5fb3b3;">&lt;</span><span style="color:#f99157;">T</span><span style="color:#5fb3b3;">&gt; </span><span style="color:#fac863;">List</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#fac863;">List</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#fac863;">T</span><span style="color:#5fb3b3;">&gt;&gt; </span><span style="color:#6699cc;">powerSet</span><span style="color:#5fb3b3;">(</span><span style="color:#fac863;">List</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#fac863;">T</span><span style="color:#5fb3b3;">&gt; </span><span style="color:#f99157;">inputSet</span><span style="color:#5fb3b3;">) {
+        </span><span style="color:#fac863;">List</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#fac863;">List</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#fac863;">T</span><span style="color:#5fb3b3;">&gt;&gt;</span><span style="color:#cccece;"> powerSet </span><span style="color:#5fb3b3;">= </span><span style="color:#c594c5;">new </span><span style="color:#fac863;">ArrayList</span><span style="color:#5fb3b3;">&lt;&gt;();
+
+        </span><span style="color:#c594c5;">for </span><span style="color:#5fb3b3;">(</span><span style="color:#fac863;">T</span><span style="color:#cccece;"> inputElement</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> inputSet</span><span style="color:#5fb3b3;">) {
+            </span><span style="color:#fac863;">ListIterator</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#fac863;">List</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#fac863;">T</span><span style="color:#5fb3b3;">&gt;&gt;</span><span style="color:#cccece;"> psIterator </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> powerSet</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">listIterator</span><span style="color:#5fb3b3;">();
+            </span><span style="color:#c594c5;">while </span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">psIterator</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">hasNext</span><span style="color:#5fb3b3;">()) {
+                </span><span style="color:#fac863;">List</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#fac863;">T</span><span style="color:#5fb3b3;">&gt;</span><span style="color:#cccece;"> curList </span><span style="color:#5fb3b3;">= </span><span style="color:#c594c5;">new </span><span style="color:#fac863;">ArrayList</span><span style="color:#5fb3b3;">&lt;&gt;(</span><span style="color:#cccece;">psIterator</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">next</span><span style="color:#5fb3b3;">());</span><span style="color:#cccece;">
+                curList</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">add</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">inputElement</span><span style="color:#5fb3b3;">);</span><span style="color:#cccece;">
+                psIterator</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">add</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">curList</span><span style="color:#5fb3b3;">);
+            }</span><span style="color:#cccece;">
+            powerSet</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">add</span><span style="color:#5fb3b3;">(</span><span style="color:#fac863;">Arrays</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">asList</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">inputElement</span><span style="color:#5fb3b3;">));
+        }</span><span style="color:#cccece;">
+        powerSet</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">add</span><span style="color:#5fb3b3;">(</span><span style="color:#fac863;">Collections</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">emptyList</span><span style="color:#5fb3b3;">());
+        </span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> powerSet</span><span style="color:#5fb3b3;">;
+    }
+}
+</span></pre>
+<p>combinatorics:</p>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">package </span><span style="color:#cccece;">bits</span><span style="color:#5fb3b3;">;
+
+</span><span style="color:#c594c5;">import </span><span style="color:#fac863;">java</span><span style="color:#5fb3b3;">.</span><span style="color:#fac863;">util</span><span style="color:#5fb3b3;">.</span><span style="color:#fac863;">ArrayList</span><span style="color:#5fb3b3;">;
+</span><span style="color:#c594c5;">import </span><span style="color:#fac863;">java</span><span style="color:#5fb3b3;">.</span><span style="color:#fac863;">util</span><span style="color:#5fb3b3;">.</span><span style="color:#fac863;">List</span><span style="color:#5fb3b3;">;
+
+</span><span style="color:#c594c5;">public class </span><span style="color:#fac863;">PowerSet </span><span style="color:#5fb3b3;">{
+    </span><span style="color:#c594c5;">public static </span><span style="color:#5fb3b3;">&lt;</span><span style="color:#f99157;">T</span><span style="color:#5fb3b3;">&gt; </span><span style="color:#fac863;">List</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#fac863;">List</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#fac863;">T</span><span style="color:#5fb3b3;">&gt;&gt; </span><span style="color:#6699cc;">powerSet</span><span style="color:#5fb3b3;">(</span><span style="color:#fac863;">List</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#fac863;">T</span><span style="color:#5fb3b3;">&gt; </span><span style="color:#f99157;">inputSet</span><span style="color:#5fb3b3;">) {
+        </span><span style="color:#fac863;">List</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#fac863;">List</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#fac863;">T</span><span style="color:#5fb3b3;">&gt;&gt;</span><span style="color:#cccece;"> powerSet </span><span style="color:#5fb3b3;">= </span><span style="color:#c594c5;">new </span><span style="color:#fac863;">ArrayList</span><span style="color:#5fb3b3;">&lt;&gt;();
+        </span><span style="color:#c594c5;">int</span><span style="color:#cccece;"> max </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">1 </span><span style="color:#5fb3b3;">&lt;&lt;</span><span style="color:#cccece;"> inputSet</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">size</span><span style="color:#5fb3b3;">(); </span><span style="color:#5f6364;">// 2^n, where n is size of inputSet
+
+        </span><span style="color:#c594c5;">for </span><span style="color:#5fb3b3;">(</span><span style="color:#c594c5;">int</span><span style="color:#cccece;"> intNumber </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">;</span><span style="color:#cccece;"> intNumber </span><span style="color:#5fb3b3;">&lt;</span><span style="color:#cccece;"> max</span><span style="color:#5fb3b3;">;</span><span style="color:#cccece;"> intNumber</span><span style="color:#5fb3b3;">++) {
+            </span><span style="color:#fac863;">List</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#fac863;">T</span><span style="color:#5fb3b3;">&gt;</span><span style="color:#cccece;"> curSet </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">toSubset</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">intNumber</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> inputSet</span><span style="color:#5fb3b3;">);</span><span style="color:#cccece;">
+            powerSet</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">add</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">curSet</span><span style="color:#5fb3b3;">);
+        }
+        </span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> powerSet</span><span style="color:#5fb3b3;">;
+    }
+
+    </span><span style="color:#c594c5;">private static </span><span style="color:#5fb3b3;">&lt;</span><span style="color:#f99157;">T</span><span style="color:#5fb3b3;">&gt; </span><span style="color:#fac863;">List</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#fac863;">T</span><span style="color:#5fb3b3;">&gt; </span><span style="color:#6699cc;">toSubset</span><span style="color:#5fb3b3;">(</span><span style="color:#c594c5;">int </span><span style="color:#f99157;">intNumber</span><span style="color:#5fb3b3;">, </span><span style="color:#fac863;">List</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#fac863;">T</span><span style="color:#5fb3b3;">&gt; </span><span style="color:#f99157;">inputSet</span><span style="color:#5fb3b3;">) {
+        </span><span style="color:#fac863;">List</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#fac863;">T</span><span style="color:#5fb3b3;">&gt;</span><span style="color:#cccece;"> subSet </span><span style="color:#5fb3b3;">= </span><span style="color:#c594c5;">new </span><span style="color:#fac863;">ArrayList</span><span style="color:#5fb3b3;">&lt;&gt;();
+        </span><span style="color:#c594c5;">int</span><span style="color:#cccece;"> idx </span><span style="color:#5fb3b3;">= -</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">;
+        </span><span style="color:#c594c5;">for </span><span style="color:#5fb3b3;">(</span><span style="color:#c594c5;">int</span><span style="color:#cccece;"> bits </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> intNumber</span><span style="color:#5fb3b3;">;</span><span style="color:#cccece;"> bits </span><span style="color:#5fb3b3;">&gt; </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">;</span><span style="color:#cccece;"> bits </span><span style="color:#5fb3b3;">&gt;&gt;= </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">) {</span><span style="color:#cccece;">
+            idx</span><span style="color:#5fb3b3;">++;
+
+            </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">((</span><span style="color:#cccece;">bits </span><span style="color:#5fb3b3;">&amp; </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">) != </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">) </span><span style="color:#c594c5;">continue</span><span style="color:#5fb3b3;">; </span><span style="color:#5f6364;">// cur bit is 0
+</span><span style="color:#cccece;">
+            subSet</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">add</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">inputSet</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">get</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">idx</span><span style="color:#5fb3b3;">));
+        }
+        </span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> subSet</span><span style="color:#5fb3b3;">;
+    }
+}
+
+</span></pre><div id="go"/>
+<h2 id="go">Go</h2>
+<p>dynamic:</p>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">package</span><span style="color:#cccece;"> dynamic
+
+</span><span style="color:#c594c5;">func </span><span style="color:#6699cc;">PowerSet</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">inSet </span><span style="color:#5fb3b3;">[]</span><span style="color:#c594c5;">interface</span><span style="color:#5fb3b3;">{}) [][]</span><span style="color:#c594c5;">interface</span><span style="color:#5fb3b3;">{} {
+	</span><span style="color:#cccece;">powerSet </span><span style="color:#5fb3b3;">:= </span><span style="color:#6699cc;">make</span><span style="color:#5fb3b3;">([][]</span><span style="color:#c594c5;">interface</span><span style="color:#5fb3b3;">{}, </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">)
+
+	</span><span style="color:#c594c5;">for </span><span style="color:#cccece;">_</span><span style="color:#5fb3b3;">, </span><span style="color:#cccece;">elem </span><span style="color:#5fb3b3;">:= </span><span style="color:#c594c5;">range</span><span style="color:#cccece;"> inSet </span><span style="color:#5fb3b3;">{
+		</span><span style="color:#c594c5;">for </span><span style="color:#cccece;">_</span><span style="color:#5fb3b3;">, </span><span style="color:#cccece;">curSet </span><span style="color:#5fb3b3;">:= </span><span style="color:#c594c5;">range</span><span style="color:#cccece;"> powerSet </span><span style="color:#5fb3b3;">{
+			</span><span style="color:#cccece;">newSet </span><span style="color:#5fb3b3;">:= </span><span style="color:#6699cc;">make</span><span style="color:#5fb3b3;">([]</span><span style="color:#c594c5;">interface</span><span style="color:#5fb3b3;">{}, </span><span style="color:#6699cc;">len</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">curSet</span><span style="color:#5fb3b3;">))
+			</span><span style="color:#6699cc;">copy</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">newSet</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> curSet</span><span style="color:#5fb3b3;">)</span><span style="color:#cccece;">
+			newSet </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">append</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">newSet</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> elem</span><span style="color:#5fb3b3;">)</span><span style="color:#cccece;">
+			powerSet </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">append</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">powerSet</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> newSet</span><span style="color:#5fb3b3;">)
+		}
+		</span><span style="color:#cccece;">curElemSet </span><span style="color:#5fb3b3;">:= </span><span style="color:#6699cc;">make</span><span style="color:#5fb3b3;">([]</span><span style="color:#c594c5;">interface</span><span style="color:#5fb3b3;">{}, </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">)</span><span style="color:#cccece;">
+		curElemSet </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">append</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">curElemSet</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> elem</span><span style="color:#5fb3b3;">)</span><span style="color:#cccece;">
+		powerSet </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">append</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">powerSet</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> curElemSet</span><span style="color:#5fb3b3;">)
+	}</span><span style="color:#cccece;">
+	powerSet </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">append</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">powerSet</span><span style="color:#5fb3b3;">, </span><span style="color:#6699cc;">make</span><span style="color:#5fb3b3;">([]</span><span style="color:#c594c5;">interface</span><span style="color:#5fb3b3;">{}, </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">))
+	</span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> powerSet
+</span><span style="color:#5fb3b3;">}
+</span></pre>
+<p>combinatorics:</p>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">package</span><span style="color:#cccece;"> bits
+
+</span><span style="color:#c594c5;">func </span><span style="color:#6699cc;">PowerSet</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">inSet </span><span style="color:#5fb3b3;">[]</span><span style="color:#c594c5;">interface</span><span style="color:#5fb3b3;">{}) [][]</span><span style="color:#c594c5;">interface</span><span style="color:#5fb3b3;">{} {
+	</span><span style="color:#cccece;">powerSet </span><span style="color:#5fb3b3;">:= </span><span style="color:#6699cc;">make</span><span style="color:#5fb3b3;">([][]</span><span style="color:#c594c5;">interface</span><span style="color:#5fb3b3;">{}, </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">)
+
+	</span><span style="color:#cccece;">max </span><span style="color:#5fb3b3;">:= </span><span style="color:#f99157;">1 </span><span style="color:#5fb3b3;">&lt;&lt; </span><span style="color:#c594c5;">uint</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">len</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">inSet</span><span style="color:#5fb3b3;">))
+	</span><span style="color:#c594c5;">for </span><span style="color:#cccece;">i </span><span style="color:#5fb3b3;">:= </span><span style="color:#f99157;">0</span><span style="color:#cccece;">; i </span><span style="color:#5fb3b3;">&lt;</span><span style="color:#cccece;"> max; i</span><span style="color:#5fb3b3;">++ {</span><span style="color:#cccece;">
+		powerSet </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">append</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">powerSet</span><span style="color:#5fb3b3;">, </span><span style="color:#6699cc;">setForNUmber</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">i</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> inSet</span><span style="color:#5fb3b3;">))
+	}
+	</span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> powerSet
+</span><span style="color:#5fb3b3;">}
+
+</span><span style="color:#c594c5;">func </span><span style="color:#6699cc;">setForNUmber</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">n </span><span style="color:#c594c5;">int</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">inSet </span><span style="color:#5fb3b3;">[]</span><span style="color:#c594c5;">interface</span><span style="color:#5fb3b3;">{}) []</span><span style="color:#c594c5;">interface</span><span style="color:#5fb3b3;">{} {
+	</span><span style="color:#cccece;">set </span><span style="color:#5fb3b3;">:= </span><span style="color:#6699cc;">make</span><span style="color:#5fb3b3;">([]</span><span style="color:#c594c5;">interface</span><span style="color:#5fb3b3;">{}, </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">)
+
+	</span><span style="color:#cccece;">i </span><span style="color:#5fb3b3;">:= </span><span style="color:#f99157;">0
+	</span><span style="color:#cccece;">num </span><span style="color:#5fb3b3;">:=</span><span style="color:#cccece;"> n
+
+	</span><span style="color:#c594c5;">for</span><span style="color:#cccece;"> num </span><span style="color:#5fb3b3;">&gt; </span><span style="color:#f99157;">0 </span><span style="color:#5fb3b3;">{
+		</span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">num </span><span style="color:#5fb3b3;">&amp; </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">) != </span><span style="color:#f99157;">0 </span><span style="color:#5fb3b3;">{</span><span style="color:#cccece;">
+			set </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">append</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">set</span><span style="color:#5fb3b3;">,</span><span style="color:#6699cc;"> inSet</span><span style="color:#5fb3b3;">[</span><span style="color:#6699cc;">i</span><span style="color:#5fb3b3;">])
+		}</span><span style="color:#cccece;">
+		num </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> num </span><span style="color:#5fb3b3;">&gt;&gt; </span><span style="color:#f99157;">1</span><span style="color:#cccece;">
+		i</span><span style="color:#5fb3b3;">++
+	}
+	</span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> set
+</span><span style="color:#5fb3b3;">}
+</span></pre><div id="python"/>
+<h2 id="python">Python</h2>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">def </span><span style="color:#6699cc;">power_set</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">in_set</span><span style="color:#5fb3b3;">):
+    </span><span style="color:#cccece;">result_set </span><span style="color:#5fb3b3;">= []
+    </span><span style="color:#c594c5;">for </span><span style="color:#cccece;">cur_elem </span><span style="color:#c594c5;">in </span><span style="color:#cccece;">in_set</span><span style="color:#5fb3b3;">:
+        </span><span style="color:#cccece;">result_set_len </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">len</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">result_set</span><span style="color:#5fb3b3;">)
+        </span><span style="color:#c594c5;">for </span><span style="color:#cccece;">cur_set_idx </span><span style="color:#c594c5;">in </span><span style="color:#6699cc;">range</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">result_set_len</span><span style="color:#5fb3b3;">):
+            </span><span style="color:#cccece;">new_set </span><span style="color:#5fb3b3;">= </span><span style="color:#cccece;">result_set</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">cur_set_idx</span><span style="color:#5fb3b3;">].</span><span style="color:#6699cc;">copy</span><span style="color:#5fb3b3;">()
+            </span><span style="color:#6699cc;">new_set</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">append</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">cur_elem</span><span style="color:#5fb3b3;">)
+            </span><span style="color:#6699cc;">result_set</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">append</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">new_set</span><span style="color:#5fb3b3;">)
+
+        </span><span style="color:#6699cc;">result_set</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">append</span><span style="color:#5fb3b3;">([</span><span style="color:#6699cc;">cur_elem</span><span style="color:#5fb3b3;">])
+
+    </span><span style="color:#6699cc;">result_set</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">append</span><span style="color:#5fb3b3;">([])
+
+    </span><span style="color:#c594c5;">return </span><span style="color:#cccece;">result_set
+</span></pre><div id="javascript"/>
+<h2 id="javascript">JavaScript</h2>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">function </span><span style="color:#6699cc;">powerSet</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">inSet</span><span style="color:#5fb3b3;">) {
+    </span><span style="color:#c594c5;">const </span><span style="color:#cccece;">resultSet </span><span style="color:#5fb3b3;">= [];
+    </span><span style="color:#c594c5;">for </span><span style="color:#5fb3b3;">(</span><span style="color:#c594c5;">const </span><span style="color:#cccece;">elem </span><span style="color:#5fb3b3;">of </span><span style="color:#cccece;">inSet</span><span style="color:#5fb3b3;">) {
+        </span><span style="color:#c594c5;">const </span><span style="color:#cccece;">resultSetLen </span><span style="color:#5fb3b3;">= </span><span style="color:#cccece;">resultSet</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">length</span><span style="color:#5fb3b3;">;
+        </span><span style="color:#c594c5;">for </span><span style="color:#5fb3b3;">(</span><span style="color:#c594c5;">let </span><span style="color:#cccece;">i </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">; </span><span style="color:#cccece;">i </span><span style="color:#5fb3b3;">&lt; </span><span style="color:#cccece;">resultSetLen</span><span style="color:#5fb3b3;">; </span><span style="color:#cccece;">i</span><span style="color:#5fb3b3;">++) {
+            </span><span style="color:#c594c5;">const </span><span style="color:#cccece;">newSet </span><span style="color:#5fb3b3;">= [...</span><span style="color:#cccece;">resultSet</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">i</span><span style="color:#5fb3b3;">]];
+            </span><span style="color:#cccece;">newSet</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">push</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">elem</span><span style="color:#5fb3b3;">);
+            </span><span style="color:#cccece;">resultSet</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">push</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">newSet</span><span style="color:#5fb3b3;">);
+        }
+        </span><span style="color:#cccece;">resultSet</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">push</span><span style="color:#5fb3b3;">([</span><span style="color:#cccece;">elem</span><span style="color:#5fb3b3;">]);
+    }
+    </span><span style="color:#cccece;">resultSet</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">push</span><span style="color:#5fb3b3;">([]);
+    </span><span style="color:#c594c5;">return </span><span style="color:#cccece;">resultSet</span><span style="color:#5fb3b3;">;
+}
+</span></pre><div id="kotlin"/>
+<h2 id="kotlin">Kotlin</h2>
+<p>dynamic:</p>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">package </span><span style="color:#cccece;">dynamic
+
+object PowerSet {
+
+    </span><span style="color:#c594c5;">fun</span><span style="color:#cccece;"> &lt;</span><span style="color:#c594c5;">T</span><span style="color:#cccece;">&gt; </span><span style="color:#6699cc;">powerSet</span><span style="color:#cccece;">(</span><span style="color:#f99157;">inputSet</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">List</span><span style="color:#cccece;">&lt;T&gt;)</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">List</span><span style="color:#cccece;">&lt;</span><span style="color:#c594c5;">List</span><span style="color:#cccece;">&lt;T&gt;&gt; {
+        </span><span style="color:#c594c5;">val </span><span style="color:#cccece;">powerSet </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> mutableListOf&lt;</span><span style="color:#c594c5;">List</span><span style="color:#cccece;">&lt;T&gt;&gt;()
+
+        </span><span style="color:#c594c5;">for</span><span style="color:#cccece;"> (item </span><span style="color:#c594c5;">in</span><span style="color:#cccece;"> inputSet) {
+            </span><span style="color:#c594c5;">val </span><span style="color:#cccece;">powerSetIter </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> powerSet</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">listIterator()
+
+            </span><span style="color:#c594c5;">while</span><span style="color:#cccece;"> (powerSetIter</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">hasNext()) {
+                </span><span style="color:#c594c5;">val </span><span style="color:#cccece;">curSet </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> powerSetIter</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">next()
+                </span><span style="color:#c594c5;">val </span><span style="color:#cccece;">newSet </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> curSet</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">plus(item)
+                powerSetIter</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">add(newSet)
+            }
+            powerSet</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">add(listOf(item))
+        }
+        powerSet</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">add(emptyList())
+
+        </span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> powerSet
+    }
+}
+</span></pre>
+<p>combinatorics:</p>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">package </span><span style="color:#cccece;">bits
+
+object PowerSet {
+
+    </span><span style="color:#c594c5;">fun</span><span style="color:#cccece;"> &lt;</span><span style="color:#c594c5;">T</span><span style="color:#cccece;">&gt; </span><span style="color:#6699cc;">powerSet</span><span style="color:#cccece;">(</span><span style="color:#f99157;">inputSet</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">List</span><span style="color:#cccece;">&lt;T&gt;)</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">List</span><span style="color:#cccece;">&lt;</span><span style="color:#c594c5;">List</span><span style="color:#cccece;">&lt;T&gt;&gt; {
+
+        </span><span style="color:#c594c5;">fun </span><span style="color:#6699cc;">binaryToSet</span><span style="color:#cccece;">(</span><span style="color:#f99157;">number</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">Int</span><span style="color:#cccece;">)</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">List</span><span style="color:#cccece;">&lt;T&gt; {
+            </span><span style="color:#c594c5;">val </span><span style="color:#cccece;">curSet </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> mutableListOf&lt;T&gt;()
+            </span><span style="color:#c594c5;">var </span><span style="color:#cccece;">i </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">0
+            </span><span style="color:#c594c5;">var </span><span style="color:#cccece;">curNumber </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> number
+            </span><span style="color:#c594c5;">while</span><span style="color:#cccece;"> (curNumber </span><span style="color:#5fb3b3;">&gt; </span><span style="color:#f99157;">0</span><span style="color:#cccece;">) {
+                </span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> ((curNumber and </span><span style="color:#f99157;">1</span><span style="color:#cccece;">) </span><span style="color:#5fb3b3;">!= </span><span style="color:#f99157;">0</span><span style="color:#cccece;">) {
+                    curSet</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">add(inputSet[i])
+                }
+                curNumber </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> curNumber shr </span><span style="color:#f99157;">1</span><span style="color:#cccece;">
+                i</span><span style="color:#5fb3b3;">++</span><span style="color:#cccece;">
+            }
+            </span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> curSet
+        }
+
+        </span><span style="color:#c594c5;">val </span><span style="color:#cccece;">powerSet </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> mutableListOf&lt;</span><span style="color:#c594c5;">List</span><span style="color:#cccece;">&lt;T&gt;&gt;()
+        </span><span style="color:#c594c5;">val </span><span style="color:#cccece;">max </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">1</span><span style="color:#cccece;"> shl inputSet</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">size
+
+        </span><span style="color:#c594c5;">for</span><span style="color:#cccece;"> (i </span><span style="color:#c594c5;">in </span><span style="color:#f99157;">0</span><span style="color:#cccece;"> until max) {
+            powerSet</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">add(binaryToSet(i))
+        }
+        </span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> powerSet
+    }
+}
+</span></pre><div id="rust"/>
+<h2 id="rust">Rust</h2>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">fn </span><span style="color:#6699cc;">power_set</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#c594c5;">&#39;a</span><span style="color:#cccece;">, T</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> Clone</span><span style="color:#5fb3b3;">&gt;(</span><span style="color:#f99157;">items</span><span style="color:#5fb3b3;">: &amp;</span><span style="color:#c594c5;">&#39;a</span><span style="color:#cccece;"> [</span><span style="color:#5fb3b3;">&amp;</span><span style="color:#cccece;">T]</span><span style="color:#5fb3b3;">) -&gt; </span><span style="color:#cccece;">Vec</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#cccece;">Vec</span><span style="color:#5fb3b3;">&lt;&amp;</span><span style="color:#c594c5;">&#39;a</span><span style="color:#cccece;"> T</span><span style="color:#5fb3b3;">&gt;&gt; {
+    </span><span style="color:#c594c5;">let mut</span><span style="color:#cccece;"> power_set</span><span style="color:#5fb3b3;">: </span><span style="color:#cccece;">Vec</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#cccece;">Vec</span><span style="color:#5fb3b3;">&lt;&amp;</span><span style="color:#c594c5;">&#39;a</span><span style="color:#cccece;"> T</span><span style="color:#5fb3b3;">&gt;&gt; = </span><span style="color:#fac863;">Vec</span><span style="color:#5fb3b3;">::</span><span style="color:#cccece;">new</span><span style="color:#5fb3b3;">();
+
+    </span><span style="color:#c594c5;">for</span><span style="color:#cccece;"> item </span><span style="color:#5fb3b3;">in</span><span style="color:#cccece;"> items </span><span style="color:#5fb3b3;">{
+        </span><span style="color:#c594c5;">for</span><span style="color:#cccece;"> i </span><span style="color:#5fb3b3;">in </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">..</span><span style="color:#cccece;">power_set</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">len</span><span style="color:#5fb3b3;">() {
+            </span><span style="color:#c594c5;">let</span><span style="color:#cccece;"> cur_set </span><span style="color:#5fb3b3;">= &amp;</span><span style="color:#cccece;">power_set</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">i</span><span style="color:#5fb3b3;">];
+            </span><span style="color:#c594c5;">let mut</span><span style="color:#cccece;"> new_set </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> cur_set</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">clone</span><span style="color:#5fb3b3;">();</span><span style="color:#cccece;">
+            new_set</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">push</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">item</span><span style="color:#5fb3b3;">);</span><span style="color:#cccece;">
+            power_set</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">push</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">new_set</span><span style="color:#5fb3b3;">);
+        }</span><span style="color:#cccece;">
+        power_set</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">push</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">vec!</span><span style="color:#5fb3b3;">[</span><span style="color:#cccece;">item</span><span style="color:#5fb3b3;">]);
+    }</span><span style="color:#cccece;">
+    power_set</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">push</span><span style="color:#5fb3b3;">(</span><span style="color:#fac863;">Vec</span><span style="color:#5fb3b3;">::</span><span style="color:#cccece;">new</span><span style="color:#5fb3b3;">());</span><span style="color:#cccece;">
+    power_set
+</span><span style="color:#5fb3b3;">}
+
+#[</span><span style="color:#cccece;">test</span><span style="color:#5fb3b3;">]
+</span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">test_power_set</span><span style="color:#5fb3b3;">() {
+    </span><span style="color:#c594c5;">let mut</span><span style="color:#cccece;"> actual </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">power_set</span><span style="color:#5fb3b3;">(&amp;[&amp;</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">, &amp;</span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">, &amp;</span><span style="color:#f99157;">3</span><span style="color:#5fb3b3;">]);</span><span style="color:#cccece;">
+    actual</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">sort</span><span style="color:#5fb3b3;">();
+
+    </span><span style="color:#c594c5;">let</span><span style="color:#cccece;"> expected</span><span style="color:#5fb3b3;">: </span><span style="color:#cccece;">Vec</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#cccece;">Vec</span><span style="color:#5fb3b3;">&lt;&amp;</span><span style="color:#c594c5;">i32</span><span style="color:#5fb3b3;">&gt;&gt; = </span><span style="color:#cccece;">vec!</span><span style="color:#5fb3b3;">[
+        </span><span style="color:#cccece;">vec!</span><span style="color:#5fb3b3;">[],
+        </span><span style="color:#cccece;">vec!</span><span style="color:#5fb3b3;">[&amp;</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">],
+        </span><span style="color:#cccece;">vec!</span><span style="color:#5fb3b3;">[&amp;</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">, &amp;</span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">],
+        </span><span style="color:#cccece;">vec!</span><span style="color:#5fb3b3;">[&amp;</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">, &amp;</span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">, &amp;</span><span style="color:#f99157;">3</span><span style="color:#5fb3b3;">],
+        </span><span style="color:#cccece;">vec!</span><span style="color:#5fb3b3;">[&amp;</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">, &amp;</span><span style="color:#f99157;">3</span><span style="color:#5fb3b3;">],
+        </span><span style="color:#cccece;">vec!</span><span style="color:#5fb3b3;">[&amp;</span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">],
+        </span><span style="color:#cccece;">vec!</span><span style="color:#5fb3b3;">[&amp;</span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">, &amp;</span><span style="color:#f99157;">3</span><span style="color:#5fb3b3;">],
+        </span><span style="color:#cccece;">vec!</span><span style="color:#5fb3b3;">[&amp;</span><span style="color:#f99157;">3</span><span style="color:#5fb3b3;">]];
+
+    </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">actual</span><span style="color:#5fb3b3;">,</span><span style="color:#cccece;"> expected</span><span style="color:#5fb3b3;">);
+}
+</span></pre>
+
+    </div>
+
+</div>
+
+</body>
+</html>
