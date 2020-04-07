@@ -15,24 +15,47 @@ description = "Data structures and algorithms advanced level"
 - [Binary heap](/advanced/binary-heap)
 
 
-
 ### algorithms:
 - [basic bit manipulations](/advanced/bit-manipulations)
 - [Maximum subarray sum (Kadane's algorithm)](/advanced/maximum-subarray-sum)
-- Dijstra's shortest path in weighted graph s
-- Node removal from BST
-- Union find
+
+HashMap:
+- [LRU cache](/advanced/lru-cache)
+
+Tree:
+- swap left right
+- tree diameter
++ floor and ceiling 
+
+Sorting:
+- radix sort
+- bucket sort
+
+Heap:
+- Huffman tree?
+
+Graph:
+- Dijstra's shortest path in weighted graph
 - shortest path in graph
 - [minimum spanning tree](/advanced/kruskal-minimum-spanning-tree)
 - graph degree of separation in graph 
 - graph reachability
 - graph shortest path
+- Kruskal
 - [topological sort](/advanced/topological-sort)
-- radix sort
-- bucket sort
-- expression evaluation using Dijkstra's two-stack algorithm
+
+- Union find
+
+Dynamic:
 - [stairs jump count algorithm](/advanced/stairs-jump-algorithm)
 - [power set](/advanced/powerset)
 - [recursive string permutations](/advanced/recursive-string-permutations)
 - coin change ways
 - knapsack problem
+
+Randomization:
+- random number from infinite stream
+- shuffle array
+
+String pattern search:
+- Rabin-Karp

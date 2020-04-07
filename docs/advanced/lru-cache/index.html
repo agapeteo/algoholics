@@ -1,0 +1,400 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <meta name="description" content="LRU cache">
+    <meta name="keywords" content="LRU cache, learn, explain, tutorial, data structures, algorithms, graph, tree, interview, java, golang, kotlin, python, rust, javascript, advanced">
+
+    <title> 
+    LRU cache
+ | Practical algorithms and data structures </title>
+    <link rel='stylesheet' href='/styles/styles.css'/>
+</head>
+
+<body>
+
+<div class="rootContainer">
+    <div class="horizontal-menu-box">
+        
+    
+    
+    
+<div class="menu">
+    <!-- ABOUT -->
+    <div class="menuItem">
+        
+        <a href="/index.html" >
+            ABOUT
+        </a>
+        
+
+    </div>
+
+    <!-- FUNDAMENTAL -->
+    <div class="menuItem">
+        
+        <a href="/fundamental/contents" >
+            FUNDAMENTAL
+        </a>
+        
+    </div>
+
+    <!-- BASIC -->
+    <div class="menuItem">
+        
+        <a href="/basic/contents" >
+            BASIC
+        </a>
+        
+    </div>
+
+    <!-- ADVANCED -->
+    <div class="menuItem">
+        
+        <a href="/advanced/contents" >
+            ADVANCED
+        </a>
+        
+    </div>
+
+    <!-- NINJA -->
+    <div class="menuItem">
+
+        
+        <a href="/ninja/contents" >
+            NINJA
+        </a>
+        
+
+    </div>
+
+    <!-- LANGUAGES -->
+    <div class="menuItem">
+        
+        <a href="/languages/contents" >
+            LANGUAGES
+        </a>
+        
+
+    </div>
+
+</div>
+
+
+
+    </div>
+
+    <div class="content">
+        
+    <h1 id="lru-cache">LRU cache</h1>
+<h2 id="contents">Contents</h2>
+<hr />
+<ul>
+<li><a href="https://algoholics.io/advanced/lru-cache/#kotlin">Kotlin</a></li>
+<li><a href="https://algoholics.io/advanced/lru-cache/#rust">Rust</a></li>
+</ul>
+<hr />
+<div id="kotlin"/>
+<h2 id="kotlin">Kotlin</h2>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">package </span><span style="color:#cccece;">list
+
+private class </span><span style="color:#fac863;">CacheList</span><span style="color:#cccece;">&lt;</span><span style="color:#c594c5;">K</span><span style="color:#cccece;">, </span><span style="color:#c594c5;">V</span><span style="color:#cccece;">&gt;(</span><span style="color:#c594c5;">var </span><span style="color:#f99157;">head</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> CacheNode&lt;K, V&gt;? </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">null</span><span style="color:#cccece;">, </span><span style="color:#c594c5;">var </span><span style="color:#f99157;">tail</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> CacheNode&lt;K, V&gt;? </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">null</span><span style="color:#cccece;">) {
+    </span><span style="color:#c594c5;">fun </span><span style="color:#6699cc;">addLast</span><span style="color:#cccece;">(</span><span style="color:#f99157;">node</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> CacheNode&lt;K, V&gt;) {
+        </span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> (handleEmpty(node)) {
+            </span><span style="color:#c594c5;">return</span><span style="color:#cccece;">
+        }
+        </span><span style="color:#c594c5;">val </span><span style="color:#cccece;">curTail </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> tail
+        curTail</span><span style="color:#5fb3b3;">!!.</span><span style="color:#cccece;">next </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> node
+        node</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">prev </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> curTail
+        tail </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> node
+    }
+
+    </span><span style="color:#c594c5;">fun </span><span style="color:#6699cc;">handleEmpty</span><span style="color:#cccece;">(</span><span style="color:#f99157;">node</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> CacheNode&lt;K, V&gt;)</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">Boolean</span><span style="color:#cccece;"> {
+        </span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> (head </span><span style="color:#5fb3b3;">!= </span><span style="color:#f99157;">null</span><span style="color:#cccece;">) {
+            </span><span style="color:#c594c5;">return </span><span style="color:#f99157;">false</span><span style="color:#cccece;">
+        }
+        head </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> node
+        tail </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> node
+        </span><span style="color:#c594c5;">return </span><span style="color:#f99157;">true</span><span style="color:#cccece;">
+    }
+
+    </span><span style="color:#c594c5;">fun </span><span style="color:#6699cc;">remove</span><span style="color:#cccece;">(</span><span style="color:#f99157;">node</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> CacheNode&lt;K, V&gt;?) {
+        </span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> (node </span><span style="color:#5fb3b3;">== </span><span style="color:#f99157;">null</span><span style="color:#cccece;">) {
+            </span><span style="color:#c594c5;">return</span><span style="color:#cccece;">
+        }
+        </span><span style="color:#c594c5;">val </span><span style="color:#cccece;">prevNode </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> node</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">prev
+        </span><span style="color:#c594c5;">val </span><span style="color:#cccece;">nextNode </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> node</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">next
+
+        </span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> (prevNode </span><span style="color:#5fb3b3;">!= </span><span style="color:#f99157;">null</span><span style="color:#cccece;">) {
+            prevNode</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">next </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> nextNode
+        }
+        </span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> (nextNode </span><span style="color:#5fb3b3;">!= </span><span style="color:#f99157;">null</span><span style="color:#cccece;">) {
+            nextNode</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">prev </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> prevNode
+        }
+        </span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> (head </span><span style="color:#5fb3b3;">==</span><span style="color:#cccece;"> node) {
+            head </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> nextNode
+        }
+        </span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> (tail </span><span style="color:#5fb3b3;">==</span><span style="color:#cccece;"> node) {
+            tail </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> prevNode
+        }
+    }
+
+    </span><span style="color:#c594c5;">fun </span><span style="color:#6699cc;">head</span><span style="color:#cccece;">()</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> CacheNode&lt;K, V&gt;? {
+        </span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> head
+    }
+}
+
+</span><span style="color:#c594c5;">private</span><span style="color:#cccece;"> class </span><span style="color:#fac863;">CacheNode</span><span style="color:#cccece;">&lt;</span><span style="color:#c594c5;">K</span><span style="color:#cccece;">, </span><span style="color:#c594c5;">V</span><span style="color:#cccece;">&gt;(</span><span style="color:#c594c5;">val </span><span style="color:#f99157;">key</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> K, </span><span style="color:#c594c5;">val </span><span style="color:#f99157;">value</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> V, </span><span style="color:#c594c5;">var </span><span style="color:#f99157;">next</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> CacheNode&lt;K, V&gt;? </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">null</span><span style="color:#cccece;">, </span><span style="color:#c594c5;">var </span><span style="color:#f99157;">prev</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> CacheNode&lt;K, V&gt;? </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">null</span><span style="color:#cccece;">)
+
+class </span><span style="color:#fac863;">CacheLru</span><span style="color:#cccece;">&lt;</span><span style="color:#c594c5;">K</span><span style="color:#cccece;">, </span><span style="color:#c594c5;">V</span><span style="color:#cccece;">&gt;(</span><span style="color:#c594c5;">private val </span><span style="color:#f99157;">capacity</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">Int</span><span style="color:#cccece;">) {
+    </span><span style="color:#c594c5;">private val </span><span style="color:#cccece;">cache </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> mutableMapOf&lt;K, CacheNode&lt;K, V&gt;&gt;()
+    </span><span style="color:#c594c5;">private val </span><span style="color:#cccece;">queue </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> CacheList&lt;K, V&gt;()
+
+    </span><span style="color:#c594c5;">fun </span><span style="color:#6699cc;">put</span><span style="color:#cccece;">(</span><span style="color:#f99157;">key</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> K, </span><span style="color:#f99157;">value</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> V) {
+        </span><span style="color:#c594c5;">val </span><span style="color:#cccece;">existingNode </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> cache[key]
+        </span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> (existingNode </span><span style="color:#5fb3b3;">!= </span><span style="color:#f99157;">null</span><span style="color:#cccece;">) {
+            queue</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">remove(existingNode)
+            cache</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">remove(existingNode</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">key)
+        }
+        </span><span style="color:#c594c5;">val </span><span style="color:#cccece;">newNode </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> CacheNode(key, value)
+        queue</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">addLast(newNode)
+        cache[key] </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> newNode
+
+        </span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> (cache</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">size </span><span style="color:#5fb3b3;">&gt;</span><span style="color:#cccece;"> capacity) {
+            </span><span style="color:#c594c5;">val </span><span style="color:#cccece;">nodeToDelete </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> queue</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">head()
+
+            </span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> (nodeToDelete </span><span style="color:#5fb3b3;">!= </span><span style="color:#f99157;">null</span><span style="color:#cccece;">) {
+                queue</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">remove(nodeToDelete)
+                cache</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">remove(nodeToDelete</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">key)
+            }
+        }
+    }
+
+    </span><span style="color:#c594c5;">fun </span><span style="color:#6699cc;">get</span><span style="color:#cccece;">(</span><span style="color:#f99157;">key</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> K)</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> V? {
+        </span><span style="color:#c594c5;">val </span><span style="color:#cccece;">foundNode </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> cache[key]
+
+        </span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> (foundNode </span><span style="color:#5fb3b3;">!= </span><span style="color:#f99157;">null</span><span style="color:#cccece;">) {
+            queue</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">remove(foundNode)
+            queue</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">addLast(foundNode)
+        }
+        </span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> foundNode?</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">value
+    }
+
+    </span><span style="color:#c594c5;">fun </span><span style="color:#6699cc;">size</span><span style="color:#cccece;">()</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">Int</span><span style="color:#cccece;"> {
+        </span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> cache</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">size
+    }
+}
+</span></pre><div id="rust"/>
+<h2 id="rust">Rust</h2>
+<blockquote>
+<p>Using Copy type for some simplicity</p>
+</blockquote>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">use </span><span style="color:#cccece;">std</span><span style="color:#5fb3b3;">::</span><span style="color:#cccece;">collections</span><span style="color:#5fb3b3;">::</span><span style="color:#cccece;">HashMap</span><span style="color:#5fb3b3;">;
+</span><span style="color:#c594c5;">use </span><span style="color:#cccece;">std</span><span style="color:#5fb3b3;">::</span><span style="color:#cccece;">hash</span><span style="color:#5fb3b3;">::</span><span style="color:#cccece;">Hash</span><span style="color:#5fb3b3;">;
+</span><span style="color:#c594c5;">use </span><span style="color:#cccece;">std</span><span style="color:#5fb3b3;">::</span><span style="color:#cccece;">rc</span><span style="color:#5fb3b3;">::</span><span style="color:#cccece;">Rc</span><span style="color:#5fb3b3;">;
+</span><span style="color:#c594c5;">use </span><span style="color:#cccece;">std</span><span style="color:#5fb3b3;">::</span><span style="color:#cccece;">collections</span><span style="color:#5fb3b3;">::</span><span style="color:#cccece;">hash_map</span><span style="color:#5fb3b3;">::</span><span style="color:#cccece;">Entry</span><span style="color:#5fb3b3;">;
+</span><span style="color:#c594c5;">use </span><span style="color:#cccece;">std</span><span style="color:#5fb3b3;">::</span><span style="color:#cccece;">cell</span><span style="color:#5fb3b3;">::</span><span style="color:#cccece;">RefCell</span><span style="color:#5fb3b3;">;
+
+</span><span style="color:#c594c5;">type </span><span style="color:#cccece;">NodeLink</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#cccece;">K</span><span style="color:#5fb3b3;">,</span><span style="color:#cccece;"> V</span><span style="color:#5fb3b3;">&gt; = </span><span style="color:#cccece;">Rc</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#cccece;">RefCell</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#cccece;">Node</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#cccece;">K, V</span><span style="color:#5fb3b3;">&gt;&gt;&gt;;
+
+</span><span style="color:#c594c5;">struct </span><span style="color:#cccece;">Node</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#cccece;">K</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> Eq </span><span style="color:#5fb3b3;">+</span><span style="color:#cccece;"> Hash </span><span style="color:#5fb3b3;">+</span><span style="color:#cccece;"> Copy, V</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> Copy</span><span style="color:#5fb3b3;">&gt; {
+    </span><span style="color:#cccece;">key</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> K,
+    value</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> V,
+    next</span><span style="color:#5fb3b3;">: </span><span style="color:#cccece;">Option</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#cccece;">NodeLink</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#cccece;">K, V</span><span style="color:#5fb3b3;">&gt;&gt;</span><span style="color:#cccece;">,
+    prev</span><span style="color:#5fb3b3;">: </span><span style="color:#cccece;">Option</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#cccece;">NodeLink</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#cccece;">K, V</span><span style="color:#5fb3b3;">&gt;&gt;</span><span style="color:#cccece;">,
+</span><span style="color:#5fb3b3;">}
+
+</span><span style="color:#c594c5;">impl</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#cccece;">K</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> Eq </span><span style="color:#5fb3b3;">+</span><span style="color:#cccece;"> Hash </span><span style="color:#5fb3b3;">+</span><span style="color:#cccece;"> Copy, V</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> Copy</span><span style="color:#5fb3b3;">&gt; </span><span style="color:#cccece;">Node</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#cccece;">K, V</span><span style="color:#5fb3b3;">&gt; {
+    </span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">new_node_link</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">key</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> K, </span><span style="color:#f99157;">value</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> V</span><span style="color:#5fb3b3;">) -&gt; </span><span style="color:#cccece;">NodeLink</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#cccece;">K, V</span><span style="color:#5fb3b3;">&gt; {
+        </span><span style="color:#c594c5;">let</span><span style="color:#cccece;"> node </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> Node </span><span style="color:#5fb3b3;">{</span><span style="color:#cccece;"> key</span><span style="color:#5fb3b3;">,</span><span style="color:#cccece;"> value</span><span style="color:#5fb3b3;">,</span><span style="color:#cccece;"> next</span><span style="color:#5fb3b3;">: </span><span style="color:#fac863;">None</span><span style="color:#5fb3b3;">,</span><span style="color:#cccece;"> prev</span><span style="color:#5fb3b3;">: </span><span style="color:#fac863;">None </span><span style="color:#5fb3b3;">};
+        </span><span style="color:#cccece;">Rc</span><span style="color:#5fb3b3;">::</span><span style="color:#cccece;">new</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">RefCell</span><span style="color:#5fb3b3;">::</span><span style="color:#cccece;">new</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">node</span><span style="color:#5fb3b3;">))
+    }
+
+    </span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">link_prev_to_next</span><span style="color:#5fb3b3;">(&amp;</span><span style="color:#c594c5;">mut </span><span style="color:#f99157;">self</span><span style="color:#5fb3b3;">) {
+        </span><span style="color:#c594c5;">if let </span><span style="color:#fac863;">Some</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">prev</span><span style="color:#5fb3b3;">) = &amp;</span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">prev </span><span style="color:#5fb3b3;">{
+            </span><span style="color:#c594c5;">match </span><span style="color:#5fb3b3;">&amp;</span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">next </span><span style="color:#5fb3b3;">{
+                </span><span style="color:#fac863;">None </span><span style="color:#5fb3b3;">=&gt; {</span><span style="color:#cccece;">
+                    prev</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">clone</span><span style="color:#5fb3b3;">().</span><span style="color:#6699cc;">as_ref</span><span style="color:#5fb3b3;">().</span><span style="color:#6699cc;">borrow_mut</span><span style="color:#5fb3b3;">().</span><span style="color:#cccece;">next </span><span style="color:#5fb3b3;">= </span><span style="color:#fac863;">None
+                </span><span style="color:#5fb3b3;">}
+                </span><span style="color:#fac863;">Some</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">next</span><span style="color:#5fb3b3;">) =&gt; {</span><span style="color:#cccece;">
+                    prev</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">clone</span><span style="color:#5fb3b3;">().</span><span style="color:#6699cc;">as_ref</span><span style="color:#5fb3b3;">().</span><span style="color:#6699cc;">borrow_mut</span><span style="color:#5fb3b3;">().</span><span style="color:#cccece;">next </span><span style="color:#5fb3b3;">= </span><span style="color:#fac863;">Some</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">next</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">clone</span><span style="color:#5fb3b3;">());
+                }
+            }
+        }
+    }
+
+    </span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">link_next_to_prev</span><span style="color:#5fb3b3;">(&amp;</span><span style="color:#c594c5;">mut </span><span style="color:#f99157;">self</span><span style="color:#5fb3b3;">) {
+        </span><span style="color:#c594c5;">if let </span><span style="color:#fac863;">Some</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">next</span><span style="color:#5fb3b3;">) = &amp;</span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">next </span><span style="color:#5fb3b3;">{
+            </span><span style="color:#c594c5;">match </span><span style="color:#5fb3b3;">&amp;</span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">prev </span><span style="color:#5fb3b3;">{
+                </span><span style="color:#fac863;">None </span><span style="color:#5fb3b3;">=&gt; {</span><span style="color:#cccece;">
+                    next</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">clone</span><span style="color:#5fb3b3;">().</span><span style="color:#6699cc;">as_ref</span><span style="color:#5fb3b3;">().</span><span style="color:#6699cc;">borrow_mut</span><span style="color:#5fb3b3;">().</span><span style="color:#cccece;">prev </span><span style="color:#5fb3b3;">= </span><span style="color:#fac863;">None
+                </span><span style="color:#5fb3b3;">}
+                </span><span style="color:#fac863;">Some</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">next</span><span style="color:#5fb3b3;">) =&gt; {</span><span style="color:#cccece;">
+                    next</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">clone</span><span style="color:#5fb3b3;">().</span><span style="color:#6699cc;">as_ref</span><span style="color:#5fb3b3;">().</span><span style="color:#6699cc;">borrow_mut</span><span style="color:#5fb3b3;">().</span><span style="color:#cccece;">prev </span><span style="color:#5fb3b3;">= </span><span style="color:#fac863;">Some</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">next</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">clone</span><span style="color:#5fb3b3;">());
+                }
+            }
+        }
+    }
+
+    </span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">prev</span><span style="color:#5fb3b3;">(&amp;</span><span style="color:#f99157;">self</span><span style="color:#5fb3b3;">) -&gt; </span><span style="color:#cccece;">Option</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#cccece;">NodeLink</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#cccece;">K, V</span><span style="color:#5fb3b3;">&gt;&gt; {
+        </span><span style="color:#c594c5;">match </span><span style="color:#5fb3b3;">&amp;</span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">prev </span><span style="color:#5fb3b3;">{
+            </span><span style="color:#fac863;">Some</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">prev_node</span><span style="color:#5fb3b3;">) =&gt; {
+                </span><span style="color:#fac863;">Some</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">prev_node</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">clone</span><span style="color:#5fb3b3;">())
+            }
+            </span><span style="color:#fac863;">None </span><span style="color:#5fb3b3;">=&gt; {
+                </span><span style="color:#fac863;">None
+            </span><span style="color:#5fb3b3;">}
+        }
+    }
+
+    </span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">next</span><span style="color:#5fb3b3;">(&amp;</span><span style="color:#f99157;">self</span><span style="color:#5fb3b3;">) -&gt; </span><span style="color:#cccece;">Option</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#cccece;">NodeLink</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#cccece;">K, V</span><span style="color:#5fb3b3;">&gt;&gt; {
+        </span><span style="color:#c594c5;">match </span><span style="color:#5fb3b3;">&amp;</span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">next </span><span style="color:#5fb3b3;">{
+            </span><span style="color:#fac863;">Some</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">next_node</span><span style="color:#5fb3b3;">) =&gt; {
+                </span><span style="color:#fac863;">Some</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">next_node</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">clone</span><span style="color:#5fb3b3;">())
+            }
+            </span><span style="color:#fac863;">None </span><span style="color:#5fb3b3;">=&gt; {
+                </span><span style="color:#fac863;">None
+            </span><span style="color:#5fb3b3;">}
+        }
+    }
+}
+
+#[</span><span style="color:#cccece;">allow</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">dead_code</span><span style="color:#5fb3b3;">)]
+</span><span style="color:#c594c5;">struct </span><span style="color:#cccece;">Queue</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#cccece;">K</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> Eq </span><span style="color:#5fb3b3;">+</span><span style="color:#cccece;"> Hash </span><span style="color:#5fb3b3;">+</span><span style="color:#cccece;"> Copy, V</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> Copy</span><span style="color:#5fb3b3;">&gt; {
+    </span><span style="color:#cccece;">head</span><span style="color:#5fb3b3;">: </span><span style="color:#cccece;">Option</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#cccece;">NodeLink</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#cccece;">K, V</span><span style="color:#5fb3b3;">&gt;&gt;</span><span style="color:#cccece;">,
+    tail</span><span style="color:#5fb3b3;">: </span><span style="color:#cccece;">Option</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#cccece;">NodeLink</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#cccece;">K, V</span><span style="color:#5fb3b3;">&gt;&gt;</span><span style="color:#cccece;">,
+</span><span style="color:#5fb3b3;">}
+
+</span><span style="color:#c594c5;">impl</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#cccece;">K</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> Eq </span><span style="color:#5fb3b3;">+</span><span style="color:#cccece;"> Hash </span><span style="color:#5fb3b3;">+</span><span style="color:#cccece;"> Copy, V</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> Copy</span><span style="color:#5fb3b3;">&gt; </span><span style="color:#cccece;">Queue</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#cccece;">K, V</span><span style="color:#5fb3b3;">&gt; {
+    </span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">new</span><span style="color:#5fb3b3;">() -&gt; </span><span style="color:#c594c5;">Self </span><span style="color:#5fb3b3;">{</span><span style="color:#cccece;">
+        Queue </span><span style="color:#5fb3b3;">{</span><span style="color:#cccece;"> head</span><span style="color:#5fb3b3;">: </span><span style="color:#fac863;">None</span><span style="color:#5fb3b3;">,</span><span style="color:#cccece;"> tail</span><span style="color:#5fb3b3;">: </span><span style="color:#fac863;">None </span><span style="color:#5fb3b3;">}
+    }
+
+    </span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">push_last</span><span style="color:#5fb3b3;">(&amp;</span><span style="color:#c594c5;">mut </span><span style="color:#f99157;">self</span><span style="color:#cccece;">, </span><span style="color:#f99157;">node</span><span style="color:#5fb3b3;">: </span><span style="color:#cccece;">NodeLink</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#cccece;">K, V</span><span style="color:#5fb3b3;">&gt;) {
+        </span><span style="color:#c594c5;">if </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">head</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">is_none</span><span style="color:#5fb3b3;">() {
+            </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">head </span><span style="color:#5fb3b3;">= </span><span style="color:#fac863;">Some</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">node</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">clone</span><span style="color:#5fb3b3;">());
+            </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">tail </span><span style="color:#5fb3b3;">= </span><span style="color:#fac863;">Some</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">node</span><span style="color:#5fb3b3;">);
+            </span><span style="color:#c594c5;">return</span><span style="color:#5fb3b3;">;
+        }
+        </span><span style="color:#c594c5;">if let </span><span style="color:#fac863;">Some</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">cur_tail</span><span style="color:#5fb3b3;">) = &amp;</span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">tail </span><span style="color:#5fb3b3;">{</span><span style="color:#cccece;">
+            cur_tail</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">clone</span><span style="color:#5fb3b3;">().</span><span style="color:#6699cc;">as_ref</span><span style="color:#5fb3b3;">().</span><span style="color:#6699cc;">borrow_mut</span><span style="color:#5fb3b3;">().</span><span style="color:#cccece;">next </span><span style="color:#5fb3b3;">= </span><span style="color:#fac863;">Some</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">node</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">clone</span><span style="color:#5fb3b3;">());</span><span style="color:#cccece;">
+            node</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">as_ref</span><span style="color:#5fb3b3;">().</span><span style="color:#6699cc;">borrow_mut</span><span style="color:#5fb3b3;">().</span><span style="color:#cccece;">prev </span><span style="color:#5fb3b3;">= </span><span style="color:#fac863;">Some</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">cur_tail</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">clone</span><span style="color:#5fb3b3;">());
+
+            </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">tail </span><span style="color:#5fb3b3;">= </span><span style="color:#fac863;">Some</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">node</span><span style="color:#5fb3b3;">);
+        }
+    }
+
+    </span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">remove</span><span style="color:#5fb3b3;">(&amp;</span><span style="color:#c594c5;">mut </span><span style="color:#f99157;">self</span><span style="color:#cccece;">, </span><span style="color:#f99157;">node</span><span style="color:#5fb3b3;">: </span><span style="color:#cccece;">NodeLink</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#cccece;">K, V</span><span style="color:#5fb3b3;">&gt;) {</span><span style="color:#cccece;">
+        node</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">as_ref</span><span style="color:#5fb3b3;">().</span><span style="color:#6699cc;">borrow_mut</span><span style="color:#5fb3b3;">().</span><span style="color:#6699cc;">link_prev_to_next</span><span style="color:#5fb3b3;">();</span><span style="color:#cccece;">
+        node</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">as_ref</span><span style="color:#5fb3b3;">().</span><span style="color:#6699cc;">borrow_mut</span><span style="color:#5fb3b3;">().</span><span style="color:#6699cc;">link_next_to_prev</span><span style="color:#5fb3b3;">();
+
+        </span><span style="color:#c594c5;">if let </span><span style="color:#fac863;">Some</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">head</span><span style="color:#5fb3b3;">) = &amp;</span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">head </span><span style="color:#5fb3b3;">{
+            </span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> head</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">clone</span><span style="color:#5fb3b3;">().</span><span style="color:#6699cc;">as_ref</span><span style="color:#5fb3b3;">().</span><span style="color:#6699cc;">borrow</span><span style="color:#5fb3b3;">().</span><span style="color:#cccece;">key </span><span style="color:#5fb3b3;">==</span><span style="color:#cccece;"> node</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">clone</span><span style="color:#5fb3b3;">().</span><span style="color:#6699cc;">as_ref</span><span style="color:#5fb3b3;">().</span><span style="color:#6699cc;">borrow</span><span style="color:#5fb3b3;">().</span><span style="color:#cccece;">key </span><span style="color:#5fb3b3;">{
+                </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">head </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> node</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">clone</span><span style="color:#5fb3b3;">().</span><span style="color:#6699cc;">as_ref</span><span style="color:#5fb3b3;">().</span><span style="color:#6699cc;">borrow</span><span style="color:#5fb3b3;">().</span><span style="color:#6699cc;">next</span><span style="color:#5fb3b3;">();
+            }
+        }
+
+        </span><span style="color:#c594c5;">if let </span><span style="color:#fac863;">Some</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">tail</span><span style="color:#5fb3b3;">) = &amp;</span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">tail </span><span style="color:#5fb3b3;">{
+            </span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> tail</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">clone</span><span style="color:#5fb3b3;">().</span><span style="color:#6699cc;">as_ref</span><span style="color:#5fb3b3;">().</span><span style="color:#6699cc;">borrow</span><span style="color:#5fb3b3;">().</span><span style="color:#cccece;">key </span><span style="color:#5fb3b3;">==</span><span style="color:#cccece;"> node</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">clone</span><span style="color:#5fb3b3;">().</span><span style="color:#6699cc;">as_ref</span><span style="color:#5fb3b3;">().</span><span style="color:#6699cc;">borrow</span><span style="color:#5fb3b3;">().</span><span style="color:#cccece;">key </span><span style="color:#5fb3b3;">{
+                </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">tail </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> node</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">as_ref</span><span style="color:#5fb3b3;">().</span><span style="color:#6699cc;">borrow</span><span style="color:#5fb3b3;">().</span><span style="color:#6699cc;">prev</span><span style="color:#5fb3b3;">();
+            }
+        }
+    }
+
+    </span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">pop_first</span><span style="color:#5fb3b3;">(&amp;</span><span style="color:#c594c5;">mut </span><span style="color:#f99157;">self</span><span style="color:#5fb3b3;">) -&gt; </span><span style="color:#cccece;">NodeLink</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#cccece;">K, V</span><span style="color:#5fb3b3;">&gt; {
+        </span><span style="color:#c594c5;">let</span><span style="color:#cccece;"> first </span><span style="color:#5fb3b3;">= </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">head</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">as_ref</span><span style="color:#5fb3b3;">().</span><span style="color:#6699cc;">unwrap</span><span style="color:#5fb3b3;">().</span><span style="color:#6699cc;">clone</span><span style="color:#5fb3b3;">();
+        </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">remove</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">first</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">clone</span><span style="color:#5fb3b3;">());</span><span style="color:#cccece;">
+        first
+    </span><span style="color:#5fb3b3;">}
+}
+
+</span><span style="color:#c594c5;">pub struct </span><span style="color:#cccece;">CacheLru</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#cccece;">K</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> Eq </span><span style="color:#5fb3b3;">+</span><span style="color:#cccece;"> Hash </span><span style="color:#5fb3b3;">+</span><span style="color:#cccece;"> Copy, V</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> Copy</span><span style="color:#5fb3b3;">&gt; {
+    </span><span style="color:#cccece;">cache</span><span style="color:#5fb3b3;">: </span><span style="color:#cccece;">HashMap</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#cccece;">K, NodeLink</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#cccece;">K, V</span><span style="color:#5fb3b3;">&gt;&gt;</span><span style="color:#cccece;">,
+    queue</span><span style="color:#5fb3b3;">: </span><span style="color:#cccece;">Queue</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#cccece;">K, V</span><span style="color:#5fb3b3;">&gt;</span><span style="color:#cccece;">,
+    capacity</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">usize</span><span style="color:#cccece;">,
+</span><span style="color:#5fb3b3;">}
+
+</span><span style="color:#c594c5;">impl</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#cccece;">K</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> Eq </span><span style="color:#5fb3b3;">+</span><span style="color:#cccece;"> Hash </span><span style="color:#5fb3b3;">+</span><span style="color:#cccece;"> Copy, V</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> Copy</span><span style="color:#5fb3b3;">&gt; </span><span style="color:#cccece;">CacheLru</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#cccece;">K, V</span><span style="color:#5fb3b3;">&gt; {
+    </span><span style="color:#c594c5;">pub fn </span><span style="color:#6699cc;">new</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">capacity</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">usize</span><span style="color:#5fb3b3;">) -&gt; </span><span style="color:#c594c5;">Self </span><span style="color:#5fb3b3;">{</span><span style="color:#cccece;">
+        CacheLru </span><span style="color:#5fb3b3;">{</span><span style="color:#cccece;"> cache</span><span style="color:#5fb3b3;">: </span><span style="color:#cccece;">HashMap</span><span style="color:#5fb3b3;">::</span><span style="color:#cccece;">new</span><span style="color:#5fb3b3;">(),</span><span style="color:#cccece;"> queue</span><span style="color:#5fb3b3;">: </span><span style="color:#cccece;">Queue</span><span style="color:#5fb3b3;">::</span><span style="color:#cccece;">new</span><span style="color:#5fb3b3;">(),</span><span style="color:#cccece;"> capacity </span><span style="color:#5fb3b3;">}
+    }
+
+    #[</span><span style="color:#cccece;">allow</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">dead_code</span><span style="color:#5fb3b3;">)]
+    </span><span style="color:#c594c5;">pub fn </span><span style="color:#6699cc;">set</span><span style="color:#5fb3b3;">(&amp;</span><span style="color:#c594c5;">mut </span><span style="color:#f99157;">self</span><span style="color:#cccece;">, </span><span style="color:#f99157;">key</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> K, </span><span style="color:#f99157;">value</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> V</span><span style="color:#5fb3b3;">) {
+        </span><span style="color:#c594c5;">if let </span><span style="color:#cccece;">Entry</span><span style="color:#5fb3b3;">::</span><span style="color:#cccece;">Occupied</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">existing_entry</span><span style="color:#5fb3b3;">) = </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">cache</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">entry</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">key</span><span style="color:#5fb3b3;">) {
+            </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">queue</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">remove</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">existing_entry</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">get</span><span style="color:#5fb3b3;">().</span><span style="color:#6699cc;">clone</span><span style="color:#5fb3b3;">());</span><span style="color:#cccece;">
+            existing_entry</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">remove</span><span style="color:#5fb3b3;">();
+        }
+        </span><span style="color:#c594c5;">let</span><span style="color:#cccece;"> new_node </span><span style="color:#5fb3b3;">= </span><span style="color:#cccece;">Node</span><span style="color:#5fb3b3;">::</span><span style="color:#cccece;">new_node_link</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">key</span><span style="color:#5fb3b3;">,</span><span style="color:#cccece;"> value</span><span style="color:#5fb3b3;">);
+        </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">queue</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">push_last</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">new_node</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">clone</span><span style="color:#5fb3b3;">());
+        </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">cache</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">insert</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">key</span><span style="color:#5fb3b3;">,</span><span style="color:#cccece;"> new_node</span><span style="color:#5fb3b3;">);
+
+        </span><span style="color:#c594c5;">if </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">cache</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">len</span><span style="color:#5fb3b3;">() &gt; </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">capacity </span><span style="color:#5fb3b3;">{
+            </span><span style="color:#c594c5;">let</span><span style="color:#cccece;"> first_node </span><span style="color:#5fb3b3;">= </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">queue</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">pop_first</span><span style="color:#5fb3b3;">();
+            </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">cache</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">remove</span><span style="color:#5fb3b3;">(&amp;</span><span style="color:#cccece;">first_node</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">borrow</span><span style="color:#5fb3b3;">().</span><span style="color:#cccece;">key</span><span style="color:#5fb3b3;">);
+        }
+    }
+
+    #[</span><span style="color:#cccece;">allow</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">dead_code</span><span style="color:#5fb3b3;">)]
+    </span><span style="color:#c594c5;">pub fn </span><span style="color:#6699cc;">get</span><span style="color:#5fb3b3;">(&amp;</span><span style="color:#c594c5;">mut </span><span style="color:#f99157;">self</span><span style="color:#cccece;">, </span><span style="color:#f99157;">key</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> K</span><span style="color:#5fb3b3;">) -&gt; </span><span style="color:#cccece;">Option</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#cccece;">V</span><span style="color:#5fb3b3;">&gt; {
+        </span><span style="color:#c594c5;">match </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">cache</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">entry</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">key</span><span style="color:#5fb3b3;">) {
+            </span><span style="color:#cccece;">Entry</span><span style="color:#5fb3b3;">::</span><span style="color:#cccece;">Occupied</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">entry</span><span style="color:#5fb3b3;">) =&gt; {
+                </span><span style="color:#c594c5;">let</span><span style="color:#cccece;"> node </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> entry</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">get</span><span style="color:#5fb3b3;">();
+                </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">queue</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">remove</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">node</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">clone</span><span style="color:#5fb3b3;">());
+                </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">queue</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">push_last</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">node</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">clone</span><span style="color:#5fb3b3;">());
+
+                </span><span style="color:#fac863;">Some</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">node</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">borrow</span><span style="color:#5fb3b3;">().</span><span style="color:#cccece;">value</span><span style="color:#5fb3b3;">)
+            }
+            </span><span style="color:#cccece;">Entry</span><span style="color:#5fb3b3;">::</span><span style="color:#cccece;">Vacant</span><span style="color:#5fb3b3;">(_) =&gt; {
+                </span><span style="color:#fac863;">None
+            </span><span style="color:#5fb3b3;">}
+        }
+    }
+}
+
+
+#[</span><span style="color:#cccece;">cfg</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">test</span><span style="color:#5fb3b3;">)]
+</span><span style="color:#c594c5;">mod </span><span style="color:#cccece;">test </span><span style="color:#5fb3b3;">{
+    </span><span style="color:#c594c5;">use super</span><span style="color:#5fb3b3;">::*;
+
+    #[</span><span style="color:#cccece;">test</span><span style="color:#5fb3b3;">]
+    </span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">simple</span><span style="color:#5fb3b3;">() {
+        </span><span style="color:#c594c5;">let mut</span><span style="color:#cccece;"> cache</span><span style="color:#5fb3b3;">: </span><span style="color:#cccece;">CacheLru</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#c594c5;">i32</span><span style="color:#cccece;">, </span><span style="color:#5fb3b3;">&amp;</span><span style="color:#c594c5;">str</span><span style="color:#5fb3b3;">&gt; = </span><span style="color:#cccece;">CacheLru</span><span style="color:#5fb3b3;">::</span><span style="color:#cccece;">new</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">);</span><span style="color:#cccece;">
+        cache</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">set</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">, &quot;</span><span style="color:#99c794;">one</span><span style="color:#5fb3b3;">&quot;);</span><span style="color:#cccece;">
+        cache</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">set</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">, &quot;</span><span style="color:#99c794;">two</span><span style="color:#5fb3b3;">&quot;);
+
+        </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">cache</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">get</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">), </span><span style="color:#fac863;">Some</span><span style="color:#5fb3b3;">(&quot;</span><span style="color:#99c794;">one</span><span style="color:#5fb3b3;">&quot;));</span><span style="color:#cccece;">
+
+        cache</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">set</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">3</span><span style="color:#5fb3b3;">, &quot;</span><span style="color:#99c794;">three</span><span style="color:#5fb3b3;">&quot;);
+        </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">cache</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">get</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">), </span><span style="color:#fac863;">None</span><span style="color:#5fb3b3;">);</span><span style="color:#cccece;">
+
+        cache</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">set</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">4</span><span style="color:#5fb3b3;">,&quot;</span><span style="color:#99c794;">four</span><span style="color:#5fb3b3;">&quot;);
+        </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">cache</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">get</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">), </span><span style="color:#fac863;">None</span><span style="color:#5fb3b3;">);
+
+        </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">cache</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">get</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">3</span><span style="color:#5fb3b3;">), </span><span style="color:#fac863;">Some</span><span style="color:#5fb3b3;">(&quot;</span><span style="color:#99c794;">three</span><span style="color:#5fb3b3;">&quot;));
+        </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">cache</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">get</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">4</span><span style="color:#5fb3b3;">), </span><span style="color:#fac863;">Some</span><span style="color:#5fb3b3;">(&quot;</span><span style="color:#99c794;">four</span><span style="color:#5fb3b3;">&quot;));
+    }
+
+    #[</span><span style="color:#cccece;">test</span><span style="color:#5fb3b3;">]
+    </span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">save_value</span><span style="color:#5fb3b3;">() {
+        </span><span style="color:#c594c5;">let mut</span><span style="color:#cccece;"> cache</span><span style="color:#5fb3b3;">: </span><span style="color:#cccece;">CacheLru</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#c594c5;">i32</span><span style="color:#cccece;">, </span><span style="color:#5fb3b3;">&amp;</span><span style="color:#c594c5;">str</span><span style="color:#5fb3b3;">&gt; = </span><span style="color:#cccece;">CacheLru</span><span style="color:#5fb3b3;">::</span><span style="color:#cccece;">new</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">);
+        </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">cache</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">get</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">), </span><span style="color:#fac863;">None</span><span style="color:#5fb3b3;">);</span><span style="color:#cccece;">
+
+        cache</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">set</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">,&quot;</span><span style="color:#99c794;">0</span><span style="color:#5fb3b3;">&quot;);
+        </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">cache</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">get</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">), </span><span style="color:#fac863;">Some</span><span style="color:#5fb3b3;">(&quot;</span><span style="color:#99c794;">0</span><span style="color:#5fb3b3;">&quot;));</span><span style="color:#cccece;">
+
+        cache</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">set</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">,&quot;</span><span style="color:#99c794;">zero</span><span style="color:#5fb3b3;">&quot;);
+        </span><span style="color:#cccece;">assert_eq!</span><span style="color:#5fb3b3;">(</span><span style="color:#cccece;">cache</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">get</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">), </span><span style="color:#fac863;">Some</span><span style="color:#5fb3b3;">(&quot;</span><span style="color:#99c794;">zero</span><span style="color:#5fb3b3;">&quot;));
+    }
+}
+</span></pre>
+
+    </div>
+
+</div>
+
+</body>
+</html>
