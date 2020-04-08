@@ -10,7 +10,7 @@ description = "Data structures and algorithms advanced level"
 # Advanced
 
 ### data structures:
-- Trie
+- [Trie](/advanced/trie)
 - Ternary Search Tree
 - [Binary heap](/advanced/binary-heap)
 
@@ -21,11 +21,6 @@ description = "Data structures and algorithms advanced level"
 
 HashMap:
 - [LRU cache](/advanced/lru-cache)
-
-Tree:
-- swap left right
-- tree diameter
-+ floor and ceiling 
 
 Sorting:
 - radix sort
