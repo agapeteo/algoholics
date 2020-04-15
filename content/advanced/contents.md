@@ -11,7 +11,6 @@ description = "Data structures and algorithms advanced level"
 
 ### data structures:
 - [Trie](/advanced/trie)
-- Ternary Search Tree
 - [Binary heap](/advanced/binary-heap)
 
 
@@ -22,24 +21,17 @@ description = "Data structures and algorithms advanced level"
 HashMap:
 - [LRU cache](/advanced/lru-cache)
 
+Graph:
+- Dijstra's shortest path in weighted graph
+- [topological sort](/advanced/topological-sort)
+- [minimum spanning tree](/advanced/kruskal-minimum-spanning-tree)
+- Kruskal
+
+- [Disjoint Set (Union find)](/advanced/union-find)
+
 Sorting:
 - radix sort
 - bucket sort
-
-Heap:
-- Huffman tree?
-
-Graph:
-- Dijstra's shortest path in weighted graph
-- shortest path in graph
-- [minimum spanning tree](/advanced/kruskal-minimum-spanning-tree)
-- graph degree of separation in graph 
-- graph reachability
-- graph shortest path
-- Kruskal
-- [topological sort](/advanced/topological-sort)
-
-- Union find
 
 Dynamic:
 - [stairs jump count algorithm](/advanced/stairs-jump-algorithm)
