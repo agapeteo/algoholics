@@ -3,7 +3,7 @@ title = "Stairs jump count"
 template = "level.html"
 description = "Stairs jump count"
 [extra]
-    keywords = "Stairs jump count, learn, explain, tutorial, data structures, algorithms, graph, tree, interview, java, golang, kotlin, python, rust, javascript, advanced"
+    keywords = "Stairs jump count, dynamic programming, recursion, learn, explain, tutorial, data structures, algorithms, graph, tree, interview, java, golang, kotlin, python, rust, javascript, advanced"
 +++
 
 # Stairs jump algorithm

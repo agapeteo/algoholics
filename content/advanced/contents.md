@@ -33,11 +33,11 @@ Sorting:
 - radix sort
 - bucket sort
 
-Dynamic:
+Dynamic and recursion:
 - [stairs jump count algorithm](/advanced/stairs-jump-algorithm)
 - [power set](/advanced/powerset)
 - [recursive string permutations](/advanced/recursive-string-permutations)
-- coin change ways
+- [count coin change ways](/advanced/coin-change-count)
 - knapsack problem
 
 Randomization:
