@@ -9,40 +9,37 @@ description = "Data structures and algorithms advanced level"
 
 # Advanced
 
-### data structures:
+### Data structures:
 - [Trie](/advanced/trie)
 - [Binary heap](/advanced/binary-heap)
 
-
-### algorithms:
+### Algorithms:
 - [basic bit manipulations](/advanced/bit-manipulations)
 - [Maximum subarray sum (Kadane's algorithm)](/advanced/maximum-subarray-sum)
 
-HashMap:
+### HashMap and doubly linked list:
 - [LRU cache](/advanced/lru-cache)
 
-Graph:
-- Dijstra's shortest path in weighted graph
+### Graph:
+- [Dijstra shortest path in weighted graph](/advanced/dijstra-shortest-path)
 - [topological sort](/advanced/topological-sort)
 - [minimum spanning tree](/advanced/kruskal-minimum-spanning-tree)
-- Kruskal
-
 - [Disjoint Set (Union find)](/advanced/union-find)
 
-Sorting:
-- radix sort
-- bucket sort
-
-Dynamic and recursion:
+### Dynamic and recursion:
 - [stairs jump count algorithm](/advanced/stairs-jump-algorithm)
 - [power set](/advanced/powerset)
 - [recursive string permutations](/advanced/recursive-string-permutations)
 - [count coin change ways](/advanced/coin-change-count)
 - [knapsack problem](/advanced/knapsack-problem)
 
-Randomization:
+### Sorting:
+- radix sort
+- bucket sort
+
+### Randomization:
 - random number from infinite stream
 - shuffle array
 
-String pattern search:
+### String pattern search:
 - Rabin-Karp
