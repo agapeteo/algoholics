@@ -38,7 +38,7 @@ Dynamic and recursion:
 - [power set](/advanced/powerset)
 - [recursive string permutations](/advanced/recursive-string-permutations)
 - [count coin change ways](/advanced/coin-change-count)
-- knapsack problem
+- [knapsack problem](/advanced/knapsack-problem)
 
 Randomization:
 - random number from infinite stream
