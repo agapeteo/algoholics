@@ -34,8 +34,8 @@ description = "Data structures and algorithms advanced level"
 - [knapsack problem](/advanced/knapsack-problem)
 
 ### Sorting:
-- radix sort
-- bucket sort
+- [radix sort](/advanced/radix-sort)
+- [bucket sort](/advanced/bucket-sort)
 
 ### Randomization:
 - random number from infinite stream

@@ -1,0 +1,171 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <meta name="description" content="Radix sort">
+    <meta name="keywords" content="radix sort, sorting, learn, explain, tutorial, data structures, algorithms, graph, tree, interview, java, golang, kotlin, python, rust, javascript, advanced">
+
+    <title> 
+    Radix sort
+ | Practical algorithms and data structures </title>
+    <link rel='stylesheet' href='/styles/styles.css'/>
+</head>
+
+<body>
+
+<div class="rootContainer">
+    <div class="horizontal-menu-box">
+        
+    
+    
+    
+<div class="menu">
+    <!-- ABOUT -->
+    <div class="menuItem">
+        
+        <a href="/index.html" >
+            ABOUT
+        </a>
+        
+
+    </div>
+
+    <!-- FUNDAMENTAL -->
+    <div class="menuItem">
+        
+        <a href="/fundamental/contents" >
+            FUNDAMENTAL
+        </a>
+        
+    </div>
+
+    <!-- BASIC -->
+    <div class="menuItem">
+        
+        <a href="/basic/contents" >
+            BASIC
+        </a>
+        
+    </div>
+
+    <!-- ADVANCED -->
+    <div class="menuItem">
+        
+        <a href="/advanced/contents" >
+            ADVANCED
+        </a>
+        
+    </div>
+
+    <!-- NINJA -->
+    <div class="menuItem">
+
+        
+        <a href="/ninja/contents" >
+            NINJA
+        </a>
+        
+
+    </div>
+
+    <!-- LANGUAGES -->
+    <div class="menuItem">
+        
+        <a href="/languages/contents" >
+            LANGUAGES
+        </a>
+        
+
+    </div>
+
+</div>
+
+
+
+    </div>
+
+    <div class="content">
+        
+    <h1 id="radix-sort">Radix sort</h1>
+<h2 id="contents">Contents</h2>
+<hr />
+<ul>
+<li><a href="https://algoholics.io/advanced/radix-sort/#description">Description</a></li>
+<li><a href="https://algoholics.io/advanced/radix-sort/#kotlin">Kotlin</a></li>
+</ul>
+<hr />
+<div id="description"/>
+<h2 id="description">Description</h2>
+<p>Very old algorithm used to sort punch cards. Idea is to sort number by each digit level (from lowest to highest or opposite way).
+Complexity is <code>O(N*d)</code>, where <code>d</code> is number of digits in numbers.</p>
+<div id="kotlin"/>
+<h2 id="kotlin">Kotlin</h2>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">package </span><span style="color:#cccece;">sort
+
+import kotlin</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">math</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">pow
+
+object </span><span style="color:#fac863;">RadixSort</span><span style="color:#cccece;"> {
+    </span><span style="color:#c594c5;">private const val </span><span style="color:#cccece;">BASE </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">10
+
+    </span><span style="color:#c594c5;">fun </span><span style="color:#6699cc;">sort</span><span style="color:#cccece;">(</span><span style="color:#f99157;">list</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">List</span><span style="color:#cccece;">&lt;</span><span style="color:#c594c5;">Int</span><span style="color:#cccece;">&gt;)</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">List</span><span style="color:#cccece;">&lt;</span><span style="color:#c594c5;">Int</span><span style="color:#cccece;">&gt; {
+        </span><span style="color:#c594c5;">var </span><span style="color:#cccece;">result </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> list
+
+        </span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> (list</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">size </span><span style="color:#5fb3b3;">&lt; </span><span style="color:#f99157;">2</span><span style="color:#cccece;">) </span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> result
+
+        </span><span style="color:#c594c5;">val </span><span style="color:#cccece;">digitsCount </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> countDigits(list</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">max()</span><span style="color:#5fb3b3;">!!</span><span style="color:#cccece;">)
+
+        </span><span style="color:#c594c5;">for</span><span style="color:#cccece;"> (digitLevel </span><span style="color:#c594c5;">in </span><span style="color:#f99157;">0</span><span style="color:#cccece;"> until digitsCount) {
+            result </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> sortAtLevel(result, digitLevel)
+        }
+        </span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> result
+    }
+
+    </span><span style="color:#c594c5;">private fun </span><span style="color:#6699cc;">countDigits</span><span style="color:#cccece;">(</span><span style="color:#f99157;">maxNumber</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">Int</span><span style="color:#cccece;">)</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">Int</span><span style="color:#cccece;"> {
+        </span><span style="color:#c594c5;">var </span><span style="color:#cccece;">digits </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">0
+        </span><span style="color:#c594c5;">var </span><span style="color:#cccece;">number </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> maxNumber
+
+        </span><span style="color:#c594c5;">while</span><span style="color:#cccece;"> (number </span><span style="color:#5fb3b3;">!= </span><span style="color:#f99157;">0</span><span style="color:#cccece;">) {
+            number </span><span style="color:#5fb3b3;">/= </span><span style="color:#f99157;">10</span><span style="color:#cccece;">
+            digits </span><span style="color:#5fb3b3;">+= </span><span style="color:#f99157;">1</span><span style="color:#cccece;">
+        }
+        </span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> digits
+    }
+
+    </span><span style="color:#c594c5;">private fun </span><span style="color:#6699cc;">sortAtLevel</span><span style="color:#cccece;">(</span><span style="color:#f99157;">numbers</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">List</span><span style="color:#cccece;">&lt;</span><span style="color:#c594c5;">Int</span><span style="color:#cccece;">&gt;, </span><span style="color:#f99157;">digitLevel</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">Int</span><span style="color:#cccece;">)</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">List</span><span style="color:#cccece;">&lt;</span><span style="color:#c594c5;">Int</span><span style="color:#cccece;">&gt; {
+        </span><span style="color:#c594c5;">var </span><span style="color:#cccece;">buckets </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> tenEmptyDigitBuckets()
+
+        </span><span style="color:#c594c5;">for</span><span style="color:#cccece;"> (number </span><span style="color:#c594c5;">in</span><span style="color:#cccece;"> numbers) {
+            </span><span style="color:#c594c5;">val </span><span style="color:#cccece;">bucketIdx </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> (number </span><span style="color:#5fb3b3;">/</span><span style="color:#cccece;"> tenInPow(digitLevel)) </span><span style="color:#5fb3b3;">% </span><span style="color:#cccece;">BASE
+
+            buckets[bucketIdx]</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">add(number)
+        }
+
+        </span><span style="color:#c594c5;">val </span><span style="color:#cccece;">result </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> mutableListOf&lt;</span><span style="color:#c594c5;">Int</span><span style="color:#cccece;">&gt;()
+        </span><span style="color:#c594c5;">for</span><span style="color:#cccece;"> (bucket </span><span style="color:#c594c5;">in</span><span style="color:#cccece;"> buckets) {
+            result</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">addAll(bucket)
+        }
+        </span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> result
+    }
+
+    </span><span style="color:#c594c5;">private fun </span><span style="color:#6699cc;">tenInPow</span><span style="color:#cccece;">(</span><span style="color:#f99157;">digitLevel</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">Int</span><span style="color:#cccece;">)</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">Int</span><span style="color:#cccece;"> {
+        </span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> (BASE</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">toDouble())</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">pow(digitLevel)</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">toInt()
+    }
+
+    </span><span style="color:#c594c5;">private fun </span><span style="color:#6699cc;">tenEmptyDigitBuckets</span><span style="color:#cccece;">()</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">List</span><span style="color:#cccece;">&lt;MutableList&lt;</span><span style="color:#c594c5;">Int</span><span style="color:#cccece;">&gt;&gt; {
+        </span><span style="color:#c594c5;">var </span><span style="color:#cccece;">buckets </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> mutableListOf&lt;MutableList&lt;</span><span style="color:#c594c5;">Int</span><span style="color:#cccece;">&gt;&gt;()
+        </span><span style="color:#c594c5;">for</span><span style="color:#cccece;"> (i </span><span style="color:#c594c5;">in </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">..</span><span style="color:#cccece;">BASE) {
+            buckets</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">add(mutableListOf())
+        }
+        </span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> buckets
+    }
+}
+</span></pre>
+
+    </div>
+
+</div>
+
+</body>
+</html>

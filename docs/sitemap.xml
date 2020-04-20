@@ -17,6 +17,11 @@
         </url>
     
         <url>
+            <loc>https://algoholics.io/advanced/bucket-sort/</loc>
+            
+        </url>
+    
+        <url>
             <loc>https://algoholics.io/advanced/coin-change-count/</loc>
             
         </url>
@@ -53,6 +58,11 @@
     
         <url>
             <loc>https://algoholics.io/advanced/powerset/</loc>
+            
+        </url>
+    
+        <url>
+            <loc>https://algoholics.io/advanced/radix-sort/</loc>
             
         </url>
     
