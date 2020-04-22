@@ -13,6 +13,7 @@ description = "Fundamental data structures and algorithms"
 [Algorithm complexity - Big O](/fundamental/bigo)
 
 ### Data structures:
+
 - [Array](/fundamental/array) 
 - [Dynamic Array](/fundamental/dynamic-array)
 - [Linked list](/fundamental/linkedlist)
@@ -31,12 +32,12 @@ description = "Fundamental data structures and algorithms"
 - [Binary search](/fundamental/binary-search)
 - [Validate single parentheses](/fundamental/validate-single-parentheses)
 - [Validate multiple parentheses using Stack](/fundamental/validate-multiple-parentheses)
-- Recursion
+- #### Recursion
   - [Factorial](/fundamental/recursive-factorial)
   - [Directory traversal](/fundamental/recursive-directory-traversal)
   - [Greatest common divisor (GCD)](/fundamental/recursive-greatest-common-divisor) 
 
-- Sorting
+- #### Sorting
   - [Bubble sort](/fundamental/bubble-sort)
   - [Insertion sort](/fundamental/insertion-sort)
 - [Word count using map](/fundamental/word-count)

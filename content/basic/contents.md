@@ -9,21 +9,21 @@ description = "Data structures and algorithms basic level"
 
 # Basic data structures
 
-### data structures:
+### Data structures:
 - [Binary search tree](/basic/binary-search-tree)
 - [Graph](/basic/graph)
 - [Ring buffer](/basic/ring-buffer)
 
  
-#### sorting
-- [merge sort](/basic/merge-sort)
-- [quick sort](/basic/quick-sort)
-- [counting sort](/basic/counting-sort)
-- [quick select (find smallest k element)](/basic/quick-select)
+### Sorting
+- [Merge sort](/basic/merge-sort)
+- [Quick sort](/basic/quick-sort)
+- [Counting sort](/basic/counting-sort)
+- [Quick select (find smallest k element)](/basic/quick-select)
 
 
-#### other: 
-- [remove duplicates in-place](/basic/remove-duplicates-inplace)
-- [rotate string](/basic/rotate-string)
-- [sieve of Eratosthenes (find prime numbers)](/basic/sieve-of-eratosthenes-primes)
+### Other: 
+- [Remove duplicates in-place](/basic/remove-duplicates-inplace)
+- [Rotate string](/basic/rotate-string)
+- [Sieve of Eratosthenes (find prime numbers)](/basic/sieve-of-eratosthenes-primes)
 

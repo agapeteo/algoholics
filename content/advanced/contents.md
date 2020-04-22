@@ -14,7 +14,7 @@ description = "Data structures and algorithms advanced level"
 - [Binary heap](/advanced/binary-heap)
 
 ### Algorithms:
-- [basic bit manipulations](/advanced/bit-manipulations)
+- [Basic bit manipulations](/advanced/bit-manipulations)
 - [Maximum subarray sum (Kadane's algorithm)](/advanced/maximum-subarray-sum)
 
 ### HashMap and doubly linked list:
@@ -22,24 +22,21 @@ description = "Data structures and algorithms advanced level"
 
 ### Graph:
 - [Dijstra shortest path in weighted graph](/advanced/dijstra-shortest-path)
-- [topological sort](/advanced/topological-sort)
-- [minimum spanning tree](/advanced/kruskal-minimum-spanning-tree)
+- [Topological sort](/advanced/topological-sort)
+- [Minimum spanning tree](/advanced/kruskal-minimum-spanning-tree)
 - [Disjoint Set (Union find)](/advanced/union-find)
 
 ### Dynamic and recursion:
-- [stairs jump count algorithm](/advanced/stairs-jump-algorithm)
-- [power set](/advanced/powerset)
-- [recursive string permutations](/advanced/recursive-string-permutations)
-- [count coin change ways](/advanced/coin-change-count)
-- [knapsack problem](/advanced/knapsack-problem)
+- [Stairs jump count algorithm](/advanced/stairs-jump-algorithm)
+- [Power set](/advanced/powerset)
+- [Recursive string permutations](/advanced/recursive-string-permutations)
+- [Count coin change ways](/advanced/coin-change-count)
+- [Knapsack problem](/advanced/knapsack-problem)
 
 ### Sorting:
-- [radix sort](/advanced/radix-sort)
-- [bucket sort](/advanced/bucket-sort)
+- [Radix sort](/advanced/radix-sort)
+- [Bucket sort](/advanced/bucket-sort)
 
 ### Randomization:
-- random number from infinite stream
-- shuffle array
-
-### String pattern search:
-- Rabin-Karp
+- [Shuffle array](/advanced/shuffle-array)
+- [Random element from infinite stream](/advanced/random-from-stream)

@@ -11,16 +11,40 @@ description = "Data structures and algorithms ninja level"
 
 Ninja data structures and algorithms
 
-### data structures:
+### Data structures:
 
 - Balanced Search Tree
 - B* tree
+- Kd tree
+- interval trees
 
-### algorithms:
 
+### Graph:
+
+- MST, like Kruskal's
+- max flow
+- shortest path in graph with negative weights
+- A* 
 - graph coloring
 - sales person travel problem 
+
+### String and text:
+
 - regular expressions
 - LZW compression
+- substring search: KMP, Rabin-Karp
 - suffix array
+- text compression
+
+### Dynamic programming:
+
+- rod cutting
 - edit distance
+- longest common subsequence
+- longest increasing sequence
+
+
+### Other:
+
+- backtracking algorithms, like TSP
+- bloom filter

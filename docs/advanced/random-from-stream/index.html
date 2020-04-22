@@ -1,0 +1,135 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <meta name="description" content="Random element from stream">
+    <meta name="keywords" content="random, stream, learn, explain, tutorial, data structures, algorithms, graph, tree, interview, java, golang, kotlin, python, rust, javascript, advanced">
+
+    <title> 
+    Random element from stream
+ | Practical algorithms and data structures </title>
+    <link rel='stylesheet' href='/styles/styles.css'/>
+</head>
+
+<body>
+
+<div class="rootContainer">
+    <div class="horizontal-menu-box">
+        
+    
+    
+    
+<div class="menu">
+    <!-- ABOUT -->
+    <div class="menuItem">
+        
+        <a href="/index.html" >
+            ABOUT
+        </a>
+        
+
+    </div>
+
+    <!-- FUNDAMENTAL -->
+    <div class="menuItem">
+        
+        <a href="/fundamental/contents" >
+            FUNDAMENTAL
+        </a>
+        
+    </div>
+
+    <!-- BASIC -->
+    <div class="menuItem">
+        
+        <a href="/basic/contents" >
+            BASIC
+        </a>
+        
+    </div>
+
+    <!-- ADVANCED -->
+    <div class="menuItem">
+        
+        <a href="/advanced/contents" >
+            ADVANCED
+        </a>
+        
+    </div>
+
+    <!-- NINJA -->
+    <div class="menuItem">
+
+        
+        <a href="/ninja/contents" >
+            NINJA
+        </a>
+        
+
+    </div>
+
+    <!-- LANGUAGES -->
+    <div class="menuItem">
+        
+        <a href="/languages/contents" >
+            LANGUAGES
+        </a>
+        
+
+    </div>
+
+</div>
+
+
+
+    </div>
+
+    <div class="content">
+        
+    <h1 id="random-element-from-stream">Random element from stream</h1>
+<h2 id="contents">Contents</h2>
+<hr />
+<ul>
+<li><a href="https://algoholics.io/advanced/random-from-stream/#kotlin">Kotlin</a></li>
+</ul>
+<hr />
+<div id="kotlin"/>
+<h2 id="kotlin">Kotlin</h2>
+<pre style="background-color:#2b2c2f;">
+<span style="color:#c594c5;">package </span><span style="color:#cccece;">random
+
+import java</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">util</span><span style="color:#5fb3b3;">.*
+</span><span style="color:#c594c5;">import</span><span style="color:#cccece;"> java.util.stream.Stream
+
+object RandomFromStream {
+
+    </span><span style="color:#c594c5;">fun</span><span style="color:#cccece;"> &lt;</span><span style="color:#c594c5;">T</span><span style="color:#cccece;">&gt; </span><span style="color:#6699cc;">random</span><span style="color:#cccece;">(</span><span style="color:#f99157;">stream</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> Stream&lt;T&gt;)</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> T? {
+        </span><span style="color:#c594c5;">val </span><span style="color:#cccece;">rnd </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> Random()
+
+        </span><span style="color:#c594c5;">var </span><span style="color:#cccece;">result</span><span style="color:#5fb3b3;">:</span><span style="color:#cccece;"> T? </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">null
+
+        </span><span style="color:#c594c5;">var </span><span style="color:#cccece;">i </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">0</span><span style="color:#cccece;">
+        stream</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">forEach { element </span><span style="color:#5fb3b3;">-&gt;</span><span style="color:#cccece;">
+            i </span><span style="color:#5fb3b3;">+= </span><span style="color:#f99157;">1
+            </span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> (i </span><span style="color:#5fb3b3;">== </span><span style="color:#f99157;">1</span><span style="color:#cccece;">) {
+                result </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> element
+                </span><span style="color:#c594c5;">return</span><span style="color:#cccece;">@forEach
+            }
+
+            </span><span style="color:#c594c5;">val </span><span style="color:#cccece;">rndIdx </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">1 </span><span style="color:#5fb3b3;">+</span><span style="color:#cccece;"> rnd</span><span style="color:#5fb3b3;">.</span><span style="color:#cccece;">nextInt(i)
+            </span><span style="color:#c594c5;">if</span><span style="color:#cccece;"> (rndIdx </span><span style="color:#5fb3b3;">==</span><span style="color:#cccece;"> i) {
+                result </span><span style="color:#5fb3b3;">=</span><span style="color:#cccece;"> element
+            }
+        }
+        </span><span style="color:#c594c5;">return</span><span style="color:#cccece;"> result
+    }
+}
+</span></pre>
+
+    </div>
+
+</div>
+
+</body>
+</html>
