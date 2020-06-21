@@ -40,3 +40,7 @@ description = "Data structures and algorithms advanced level"
 ### Randomization:
 - [Shuffle array](/advanced/shuffle-array)
 - [Random element from infinite stream](/advanced/random-from-stream)
+
+<!-- 
+- Rabin-Karp, cracking code - page 636
+-->
